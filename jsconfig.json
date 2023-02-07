@@ -2,7 +2,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/core": ["components/core/index.js"],
+      "@/core/*": ["components/core/*"],
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"],
+      "@/locales": ["locales/index.js"],
+      "@/hooks": ["hooks/index.js"]
     }
   }
 }

@@ -1,7 +1,8 @@
-import Landing from '@/components/landing'
+import Layout from '@/components/layout/AppLayout'
+import HomeView from '@/components/views/Home'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function Home() {
   const renderMetadata = useMetadataRenderer()
 
   return (
@@ -10,7 +11,9 @@ export default function LandingPage() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Landing />
+      <Layout>
+        <HomeView />
+      </Layout>
     </>
   )
 }
