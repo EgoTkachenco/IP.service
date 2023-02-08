@@ -1,7 +1,7 @@
-import Landing from '@/components/landing/Landing'
+import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function PricingPage() {
   const renderMetadata = useMetadataRenderer()
 
   return (
@@ -10,7 +10,7 @@ export default function LandingPage() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Landing />
+      <Pricing />
     </>
   )
 }

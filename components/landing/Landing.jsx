@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
+import Layout from './Layout'
 import {
   Main,
   ApiPreview,
@@ -15,9 +13,7 @@ import {
 
 const Landing = () => {
   return (
-    <Wrapper>
-      {/* <InnerContent> */}
-      <Header />
+    <Layout>
       <Main />
       <ApiPreview />
       <Feedback />
@@ -27,19 +23,8 @@ const Landing = () => {
       <FAQ />
       <Partners />
       <GetStarted />
-      <Footer />
-      {/* </InnerContent> */}
-    </Wrapper>
+    </Layout>
   )
 }
 
 export default Landing
-
-const Wrapper = styled.div`
-  background: #f9fafc;
-`
-
-const InnerContent = styled.div`
-  max-width: 1140px;
-  margin: 0 auto;
-`

@@ -13,6 +13,9 @@ const Chip = ({ type, children }) => {
     case 'success':
       ChipComponent = SuccessChip
       break
+    case 'dark':
+      ChipComponent = DarkChip
+      break
     default:
       ChipComponent = GreyChip
   }
@@ -52,6 +55,11 @@ const SuccessChip = styled(RoundedChip)`
 
 const GreyChip = styled(DefaultChip)`
   background: #f9fafc;
+  color: ${({ theme }) => theme.colors.text};
+`
+
+const DarkChip = styled(DefaultChip)`
+  background: rgba(255, 255, 255, 0.05);
   color: ${({ theme }) => theme.colors.text};
 `
 

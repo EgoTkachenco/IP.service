@@ -1,18 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import theme from '@/styles/theme'
 import Flex from '../Flex'
-import { Label } from '../Text'
-
-type CheckboxSize = keyof typeof theme.forms.checkbox.sizes
-
-interface CheckboxProps {
-  name?: string
-  value: boolean
-  onChange?: (value: boolean) => void
-  label?: string | JSX.Element
-  size: CheckboxSize
-}
+import { Caption } from '../Text'
+import Icon from '../Icon'
 
 export default function Checkbox({
   name,
@@ -20,49 +10,54 @@ export default function Checkbox({
   onChange = () => {},
   label,
   size = 'medium',
-}: CheckboxProps) {
+}) {
   const [state, setState] = useState(false)
   useEffect(() => {
     setState(!!value)
   }, [value])
-  const handleChange = (newValue: boolean) => {
+  const handleChange = (newValue) => {
     setState(newValue)
     onChange(newValue)
   }
 
   return (
-    <Flex align="center" onClick={() => handleChange(!state)} gap="8px">
-      <Box size={size}>
-        <Value active={!!state} />
+    <Flex align="flex-start" onClick={() => handleChange(!state)} gap="10px">
+      <Box size={size} active={!!state}>
+        <Value active={!!state}>
+          <Icon icon="checkmark" size="8px" color="white" />
+        </Value>
       </Box>
-      <Label color="gray">{label}</Label>
+      <Label color="light-grey">{label}</Label>
     </Flex>
   )
 }
 
-const Box = styled.div<{ size: CheckboxSize }>`
-  border: 1px solid ${theme.colors.dark};
-  border-radius: 8px;
-  width: ${({ size }) => theme.forms.checkbox.sizes[size]};
-  height: ${({ size }) => theme.forms.checkbox.sizes[size]};
+const Box = styled.div`
+  border: 1px solid
+    ${({ theme, active }) => (active ? 'transparent' : theme.colors.text)};
+  border-radius: 4px;
+  min-width: 18px;
+  min-height: 18px;
+  max-width: 18px;
+  max-height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
-
+  background: ${({ theme, active }) =>
+    active ? theme.colors.primary : 'transparent'};
   &:hover {
-    border-color: ${theme.colors.primary};
+    border-color: ${({ theme }) => theme.colors.primary};
   }
 `
-const Value = styled.div<{ active: boolean }>`
-  width: 50%;
-  height: 25%;
-  transform: rotate(-45deg) translate(2px, -1px);
-  transition: all 0.3s;
-  border: 2px solid transparent;
-  border-color: ${({ active }) =>
-    active ? theme.colors.primary : 'transparent'};
-  border-right: none;
-  border-top: none;
+const Value = styled.div`
+  svg {
+    transition: all 0.3s;
+    opacity: ${({ active }) => (active ? 1 : 0)};
+  }
+`
+
+const Label = styled(Caption)`
+  line-height: 100%;
 `

@@ -118,22 +118,6 @@ const ButtonTextCore = styled(ButtonCore)`
   padding: 0;
   transition: all 0.1s;
 
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    transition: all 0.3s;
-    background: ${({ color, theme }) => theme.colors[color]};
-  }
-
-  &:hover {
-    &:before {
-      width: 100%;
-    }
-  }
   &:active {
     transform: scale(1.02);
   }

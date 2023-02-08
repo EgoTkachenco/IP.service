@@ -64,7 +64,7 @@ const FAQItem = ({ question, answer, onClick, isOpen }) => {
       <Flex gap="13px">
         <H6 color={isOpen ? 'primary' : 'text'}>{question}</H6>
         <Icon
-          icon="chevron"
+          icon="chevron-outline"
           size="24px"
           color={isOpen ? 'primary' : 'text'}
           style={{ transform: `rotate(${isOpen ? '180deg' : '0'})` }}
