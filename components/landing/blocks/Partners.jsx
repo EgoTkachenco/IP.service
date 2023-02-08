@@ -1,19 +1,21 @@
-import styled from 'styled-components'
-import Image from 'next/image'
-import { Flex, H2, Text, Icon } from '@/core'
+import { H2 } from '@/core'
 import { Block } from './Block'
+import PartnersCarousel from '@/components/reusable/PartnersCarousel'
+import styled from 'styled-components'
 
 const Partners = () => {
   return (
     <Block>
-      <H2 color="dark" align="center">
+      <Title color="dark" align="center">
         {'Industry-leading companies \n around the world trust our APIs'}
-      </H2>
-      <CarouselWrapper></CarouselWrapper>
+      </Title>
+      <PartnersCarousel />
     </Block>
   )
 }
 
 export default Partners
 
-const CarouselWrapper = styled.div``
+const Title = styled(H2)`
+  margin-bottom: 60px;
+`
