@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from '@/core'
-import { useEffect, useState } from 'react'
+import { infinite_line } from '@/styles/animations'
 
 const PartnersCarousel = () => {
   return (
@@ -43,42 +43,11 @@ const carousel_2 = [
 ]
 
 const Carousel = ({ items, delay = 0 }) => {
-  // TODO
-  // try to use effect return function for transition cancel
-  const [state, setState] = useState({ offset: 0, transition: false })
-  useEffect(() => {
-    let interval, timeout
-    timeout = setTimeout(() => {
-      interval = setInterval(() => iteration(), 200)
-    }, delay)
-    return () => {
-      clearTimeout(timeout)
-      clearInterval(interval)
-    }
-  }, [])
-
-  const iteration = async () => {
-    setState((state) => {
-      if (state.offset === 100) {
-        return { offset: 0, transition: false }
-      } else {
-        return { offset: state.offset + 1, transition: true }
-      }
-    })
-  }
-  useEffect(() => {
-    if (state.offset === 0) setTimeout(iteration, 50)
-  }, [state.offset])
-
   return (
     <>
       <CarouselWrapper>
         {[1, 2].map((carousel) => (
-          <CarouselItem
-            offset={state.offset}
-            isTransition={state.transition}
-            key={carousel}
-          >
+          <CarouselItem key={carousel} delay={delay}>
             <CarouselItemInner>
               {items.map((item, i) => (
                 <img src={item.image} key={i} />
@@ -98,9 +67,13 @@ const CarouselWrapper = styled.div`
   overflow: hidden;
 `
 const CarouselItem = styled.div`
-  transform: translateX(${({ offset }) => (offset ? -offset + '%' : offset)});
-  transition: all ${({ isTransition }) => (isTransition ? '0.2s' : '0')} linear;
   padding: 20px;
+  animation-name: ${infinite_line};
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-fill-mode: forward;
+  animation-iteration-count: infinite;
+  animation-delay: ${({ delay }) => delay + 'ms'};
 `
 
 const CarouselItemInner = styled.div`
