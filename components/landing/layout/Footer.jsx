@@ -24,65 +24,35 @@ const Footer = () => {
                 ))}
               </Flex>
             ))}
-            {/* <Flex direction="column" gap="10px">
-              <FooterTitle>Products</FooterTitle>
-              <Caption>IP Geolocation API</Caption>
-              <Caption>IP to Company</Caption>
-              <Caption>Abuse Contact API</Caption>
-              <Caption>Privacy Detection API</Caption>
-              <Caption>IP Database Download</Caption>
-            </Flex>
-            <Flex direction="column" gap="10px">
-              <FooterTitle>Products</FooterTitle>
-              <Caption>IP Geolocation API</Caption>
-              <Caption>IP to Company</Caption>
-              <Caption>Abuse Contact API</Caption>
-              <Caption>Privacy Detection API</Caption>
-              <Caption>IP Database Download</Caption>
-            </Flex>
-            <Flex direction="column" gap="10px">
-              <FooterTitle> </FooterTitle>
-              <Caption>IP Ranges API</Caption>
-              <Caption>IP to Mobile Carrier</Caption>
-              <Caption>ASN API</Caption>
-              <Caption>Hosted Domains API</Caption>
-              <Caption>IP WHOIS Down</Caption>
-            </Flex>
-
-            <Flex direction="column" gap="10px">
-              <FooterTitle>Data</FooterTitle>
-              <Caption>IP address information</Caption>
-              <Caption>My IP address</Caption>
-              <Caption>Global ASNs</Caption>
-              <Caption>IP Ranges</Caption>
-              <Caption>Hosted Domains by ASNs</Caption>
-              <Caption>Submit a geo correction</Caption>
-            </Flex>
-
-            <Flex direction="column" gap="10px">
-              <FooterTitle>Resourses</FooterTitle>
-              <Caption>Documentaion</Caption>
-              <Caption>Libraries</Caption>
-              <Caption>Help center</Caption>
-              <Caption>Blog</Caption>
-              <Caption>E-blog</Caption>
-            </Flex>
-
-            <Flex direction="column" gap="10px">
-              <FooterTitle>Company</FooterTitle>
-              <Caption>About</Caption>
-              <Caption>Careers</Caption>
-              <Caption>Press</Caption>
-              <Caption>Contact us</Caption>
-            </Flex> */}
           </Flex>
         </WrapperTop>
         <WrapperBottom>
           <Flex direction="column" gap="20px">
             <Flex gap="15px">
-              <Icon icon="linkedin" size="25px" />
-              <Icon icon="twitter" size="25px" />
-              <Icon icon="github" size="25px" />
+              <Link href="">
+                <Icon
+                  icon="linkedin"
+                  size="25px"
+                  color="light-grey"
+                  hoverColor="dark"
+                />
+              </Link>
+              <Link href="">
+                <Icon
+                  icon="twitter"
+                  size="25px"
+                  color="light-grey"
+                  hoverColor="dark"
+                />
+              </Link>
+              <Link href="">
+                <Icon
+                  icon="github"
+                  size="25px"
+                  color="light-grey"
+                  hoverColor="dark"
+                />
+              </Link>
             </Flex>
             <Caption>
               Copyright © 2022 IPinfo® | Terms & Conditions · Privacy Policy
@@ -190,7 +160,7 @@ const LinkText = styled(Caption)`
     width: 0;
     height: 1px;
     transition: width 0.3s;
-    background: ${({ theme }) => theme.colors.text}
+    background: ${({ theme }) => theme.colors.text};
   }
   &:hover::before {
     width: 100%;
