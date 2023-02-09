@@ -63,9 +63,19 @@ const LightWrapper = styled(Wrapper)`
   }
 `
 const DefaultWrapper = styled(Wrapper)`
-  height: 50px;
+  ${({ isTextarea }) =>
+    isTextarea
+      ? `
+		padding: 14px;
+		height: auto;
+		`
+      : `
+		padding: 0 14px;
+		height: 50px;
+	`}
   border-radius: 6px;
   padding: 0 14px;
+  /* background: ${({ theme }) => theme.colors.white}; */
   border: 1px solid
     ${({ focused, theme }) =>
       focused ? theme.colors.primary : 'rgba(102, 112, 128, 0.2)'};

@@ -85,6 +85,8 @@ const PlanCard = ({
           {labelTitle}
         </Caption>
         <Caption>{labelDescription}</Caption>
+
+        <PriceCardLabelIllustration src="/building.svg" />
       </PriceCardLabel>
 
       <Flex direction="column" gap="25px">
@@ -129,6 +131,7 @@ const PlanCardName = styled.div`
 `
 
 const PriceCardLabel = styled.div`
+  position: relative;
   background: linear-gradient(90.43deg, #002e47 7.13%, #031924 99.63%);
   border-radius: 10px;
   width: 100%;
@@ -136,6 +139,12 @@ const PriceCardLabel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
+`
+
+const PriceCardLabelIllustration = styled.img`
+  position: absolute;
+  right: 11px;
+  bottom: 0;
 `
 
 const PriceCardDelimiter = styled.div`

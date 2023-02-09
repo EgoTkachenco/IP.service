@@ -13,7 +13,6 @@ import {
   Checkbox,
 } from '@/core'
 import { BlockInner } from './blocks/Block'
-
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import { TextField, TextareaField } from '@/components/reusable/FormFields'
 

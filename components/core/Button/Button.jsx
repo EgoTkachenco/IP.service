@@ -130,6 +130,14 @@ const PrimaryTransparentButton = styled(ButtonCore)`
     background: ${({ theme }) => theme.colors.white};
   }
 `
+const DarkTransparentButton = styled(ButtonCore)`
+  background: rgba(80, 92, 117, 0.05);
+  color: ${({ theme }) => theme.colors.dark};
+
+  &:hover {
+    background: rgba(80, 92, 117, 0.1);
+  }
+`
 const IconButton = styled(ButtonCore)`
   max-width: ${({ height }) => height};
   min-width: ${({ height }) => height};
@@ -162,6 +170,7 @@ const IconButton = styled(ButtonCore)`
 // Variants for custom buttons
 const variants = {
   'primary-transparent': PrimaryTransparentButton,
+  'dark-transparent': DarkTransparentButton,
   icon: IconButton,
 }
 

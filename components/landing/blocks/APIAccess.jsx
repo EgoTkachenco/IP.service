@@ -84,7 +84,7 @@ const PlanCard = ({
         </PriceCardLabel>
 
         <TypesContainer>
-          <Caption>{types} data types</Caption>
+          <Caption weight="700">{types} data types</Caption>
           <TypesLine value={types} />
         </TypesContainer>
 
