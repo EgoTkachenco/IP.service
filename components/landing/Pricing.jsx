@@ -50,6 +50,9 @@ const Pricing = () => {
             />
           )}
         </ButtonsContainer>
+
+        {activeBlock === 'api' && <APIAccess period={period} />}
+        {activeBlock === 'data' && <DataDownload />}
       </BlockInner>
     </Layout>
   )

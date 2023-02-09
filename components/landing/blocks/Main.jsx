@@ -1,9 +1,12 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { Flex, H2, Text, Button, Icon } from '@/core'
 import { BlockInner } from './Block'
-
+import ModalContext from '@/utils/modalContext'
+import Link from 'next/link'
 const Main = () => {
+  const { openModal } = useContext(ModalContext)
   return (
     <Wrapper>
       <Image
@@ -23,13 +26,19 @@ const Main = () => {
         with our API that's built for low latency responses.
       </Subtitle>
       <Flex gap="20px">
-        <Button width="211px" height="55px">
+        <Button
+          width="211px"
+          height="55px"
+          onClick={() => openModal('sign-up')}
+        >
           Sign up for free <Icon icon="user-add" color="white" size="20" />
         </Button>
-        <Button color="dark" outline width="211px" height="55px">
-          Contact Us
-          <Icon icon="phone" size="20" />
-        </Button>
+        <Link href="/contact">
+          <Button color="dark" outline width="211px" height="55px">
+            Contact Us
+            <Icon icon="phone" size="20" />
+          </Button>
+        </Link>
       </Flex>
     </Wrapper>
   )

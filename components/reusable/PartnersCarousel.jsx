@@ -6,7 +6,7 @@ const PartnersCarousel = () => {
   return (
     <Flex direction="column" gap="40px">
       <Carousel items={carousel_1} />
-      <Carousel items={carousel_2} delay={1000} />
+      <Carousel items={carousel_2} reverse />
     </Flex>
   )
 }
@@ -42,12 +42,12 @@ const carousel_2 = [
   { name: '', image: '/partners/partner_24.png' },
 ]
 
-const Carousel = ({ items, delay = 0 }) => {
+const Carousel = ({ items, reverse = false }) => {
   return (
     <>
       <CarouselWrapper>
         {[1, 2].map((carousel) => (
-          <CarouselItem key={carousel} delay={delay}>
+          <CarouselItem key={carousel} reverse={reverse}>
             <CarouselItemInner>
               {items.map((item, i) => (
                 <img src={item.image} key={i} />
@@ -73,7 +73,7 @@ const CarouselItem = styled.div`
   animation-timing-function: linear;
   animation-fill-mode: forward;
   animation-iteration-count: infinite;
-  animation-delay: ${({ delay }) => delay + 'ms'};
+  animation-direction: ${({ reverse }) => reverse ? 'reverse': 'normal'};
 `
 
 const CarouselItemInner = styled.div`

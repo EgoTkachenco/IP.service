@@ -10,11 +10,15 @@ const Modal = ({ children, onClose, isIllustration = false }) => {
           size="30px"
           onClick={onClose}
           color={isIllustration ? 'white' : 'text'}
-          style={{ position: 'absolute', top: '10px', right: '10px' }}
+          style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10 }}
         />
         <ModalContentInner>{children}</ModalContentInner>
 
-        {isIllustration && <ModalIllustration src="/modal-illustration.png" />}
+        {isIllustration && (
+          <ModalIllustration>
+            <img src="/modal-illustration.png" />
+          </ModalIllustration>
+        )}
       </ModalContent>
     </ModalWrapper>
   )
@@ -23,7 +27,7 @@ const Modal = ({ children, onClose, isIllustration = false }) => {
 export default Modal
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -48,7 +52,17 @@ const ModalContentInner = styled.div`
   width: 400px;
 `
 
-const ModalIllustration = styled.img`
+const ModalIllustration = styled.div`
+position: relative;
   width: 400px;
-  height: 100%;
+  min-height: 632px;
+  align-self: stretch;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `

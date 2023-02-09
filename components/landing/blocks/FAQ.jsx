@@ -60,7 +60,7 @@ export default FAQ
 
 const FAQItem = ({ question, answer, onClick, isOpen }) => {
   return (
-    <FAQItemWrapper onClick={onClick} isOpen={isOpen}>
+    <FAQItemWrapper isOpen={isOpen}>
       <Flex gap="13px">
         <H6 color={isOpen ? 'primary' : 'text'}>{question}</H6>
         <Icon
@@ -68,6 +68,7 @@ const FAQItem = ({ question, answer, onClick, isOpen }) => {
           size="24px"
           color={isOpen ? 'primary' : 'text'}
           style={{ transform: `rotate(${isOpen ? '180deg' : '0'})` }}
+          onClick={onClick}
         />
       </Flex>
       <FAQItemAnswer isOpen={isOpen}>{answer}</FAQItemAnswer>

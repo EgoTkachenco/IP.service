@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Flex, Text, Icon, Card, Input, Chip } from '@/core'
 import { BlockInner } from './Block'
 import { ObjectJSON } from '@/components/reusable/searchResult/JSONPreview'
 
 const ApiPreview = () => {
+  const [ip, setIp] = useState("8.8.8.8")
   return (
     <BlockInner>
       <Card color="dark" p="40px" gap="32px" width="100%">
@@ -10,7 +12,7 @@ const ApiPreview = () => {
           variant="dark"
           disabled
           width="100%"
-          value="8.8.8.8"
+          value={ip}
           leftSlot={<Icon icon="search" size="16px" color="text" />}
         />
         <Flex flex="0 1 40%" width="100%">
@@ -41,10 +43,10 @@ const ApiPreview = () => {
           </Flex>
         </Flex>
         <Flex gap="20px" pt="10px">
-          <Chip type="dark">Your IP</Chip>
-          <Chip type="dark">215.204.222.212 IP</Chip>
-          <Chip type="dark">247.193.70.173</Chip>
-          <Chip type="dark">66.131.120.255</Chip>
+          <Chip type="dark" onClick={() => setIp("8.8.8.8")}>Your IP</Chip>
+          <Chip type="dark" onClick={() => setIp("215.204.222.212")}>215.204.222.212</Chip>
+          <Chip type="dark" onClick={() => setIp("247.193.70.173")}>247.193.70.173</Chip>
+          <Chip type="dark" onClick={() => setIp("66.131.120.255")}>66.131.120.255</Chip>
         </Flex>
       </Card>
     </BlockInner>

@@ -122,20 +122,12 @@ const ButtonTextCore = styled(ButtonCore)`
     transform: scale(1.02);
   }
 `
-const CustomButton = styled(ButtonCore)`
-  background: purple;
-  color: #fff;
-  font-weight: bold;
+const PrimaryTransparentButton = styled(ButtonCore)`
+  background: rgba(14, 93, 246, 0.1);
+  color: ${({ theme }) => theme.colors.primary};
 
   &:hover {
-    background: transparent;
-    border-color: purple;
-    color: purple;
-  }
-
-  &:active {
-    background: rgba(0, 0, 0, 0.1);
-    transform: scale(1.02);
+    background: ${({ theme }) => theme.colors.white};
   }
 `
 const IconButton = styled(ButtonCore)`
@@ -169,7 +161,7 @@ const IconButton = styled(ButtonCore)`
 
 // Variants for custom buttons
 const variants = {
-  custom: CustomButton,
+  'primary-transparent': PrimaryTransparentButton,
   icon: IconButton,
 }
 

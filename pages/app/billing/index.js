@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/AppLayout'
 import BillingView from '@/components/views/Billing'
+import BillingSubscription from '@/components/views/Billing/Subscription'
 import { useMetadataRenderer } from '@/hooks'
 
 export default function Billing() {
@@ -12,7 +13,9 @@ export default function Billing() {
         description: 'IP Service',
       })}
       <Layout>
-        <BillingView />
+        <BillingView>
+          <BillingSubscription />
+        </BillingView>
       </Layout>
     </>
   )

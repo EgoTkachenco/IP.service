@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { BlockInner } from '../blocks/Block'
 import { Flex, H6, Text, Caption, Icon } from '@/core'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -13,6 +14,24 @@ const Footer = () => {
             <H6>IP.Service</H6>
           </Flex>
           <Flex gap="75px">
+            {footer_links.map((column, i) => (
+              <Flex direction="column" gap="10px" key={i}>
+                <FooterTitle>{column.title}</FooterTitle>
+                {column.links.map((link, j) => (
+                  <Link href={link.href}>
+                    <LinkText>{link.name}</LinkText>
+                  </Link>
+                ))}
+              </Flex>
+            ))}
+            {/* <Flex direction="column" gap="10px">
+              <FooterTitle>Products</FooterTitle>
+              <Caption>IP Geolocation API</Caption>
+              <Caption>IP to Company</Caption>
+              <Caption>Abuse Contact API</Caption>
+              <Caption>Privacy Detection API</Caption>
+              <Caption>IP Database Download</Caption>
+            </Flex>
             <Flex direction="column" gap="10px">
               <FooterTitle>Products</FooterTitle>
               <Caption>IP Geolocation API</Caption>
@@ -55,7 +74,7 @@ const Footer = () => {
               <Caption>Careers</Caption>
               <Caption>Press</Caption>
               <Caption>Contact us</Caption>
-            </Flex>
+            </Flex> */}
           </Flex>
         </WrapperTop>
         <WrapperBottom>
@@ -80,6 +99,59 @@ const Footer = () => {
     </BlockInner>
   )
 }
+
+const footer_links = [
+  {
+    title: 'Products',
+    links: [
+      { name: 'IP Geolocation API', href: '' },
+      { name: 'IP to Company', href: '' },
+      { name: 'Abuse Contact API', href: '' },
+      { name: 'Privacy Detection API', href: '' },
+      { name: 'IP Database Download', href: '' },
+    ],
+  },
+  {
+    title: ' ',
+    links: [
+      { name: 'IP Ranges API', href: '' },
+      { name: 'IP to Mobile Carrier', href: '' },
+      { name: 'ASN API', href: '' },
+      { name: 'Hosted Domains API', href: '' },
+      { name: 'IP WHOIS Down', href: '' },
+    ],
+  },
+  {
+    title: 'Data',
+    links: [
+      { name: 'IP address information', href: '' },
+      { name: 'My IP address', href: '' },
+      { name: 'Global ASNs', href: '' },
+      { name: 'IP Ranges', href: '' },
+      { name: 'Hosted Domains by ASNs', href: '' },
+      { name: 'Submit a geo correction', href: '' },
+    ],
+  },
+  {
+    title: 'Resourses',
+    links: [
+      { name: 'Documentaion', href: '' },
+      { name: 'Libraries', href: '' },
+      { name: 'Help center', href: '' },
+      { name: 'Blog', href: '' },
+      { name: 'E-blog', href: '' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { name: 'About', href: '' },
+      { name: 'Careers', href: '' },
+      { name: 'Press', href: '' },
+      { name: 'Contact us', href: '' },
+    ],
+  },
+]
 
 export default Footer
 
@@ -106,4 +178,21 @@ const WrapperBottom = styled.div`
 const FooterTitle = styled(Text)`
   margin-bottom: 10px;
   font-weight: 700;
+`
+const LinkText = styled(Caption)`
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 1px;
+    transition: width 0.3s;
+    background: ${({ theme }) => theme.colors.text}
+  }
+  &:hover::before {
+    width: 100%;
+  }
 `
