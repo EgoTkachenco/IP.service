@@ -18,7 +18,7 @@ const Footer = () => {
               <Flex direction="column" gap="10px" key={i}>
                 <FooterTitle>{column.title}</FooterTitle>
                 {column.links.map((link, j) => (
-                  <Link href={link.href}>
+                  <Link href={link.href} key={j}>
                     <LinkText>{link.name}</LinkText>
                   </Link>
                 ))}

@@ -9,6 +9,7 @@ export default createGlobalStyle`
 		max-width: 100%;
 		margin: 0;	
 		font-family: ${theme.fonts.primary};
+		scroll-behavior: smooth;
 
 		&.no-scroll {
 			max-height: 100vh;
