@@ -9,7 +9,9 @@
       "@/styles/*": ["styles/*"],
       "@/utils/*": ["utils/*"],
       "@/locales": ["locales/index.js"],
-      "@/hooks": ["hooks/index.js"]
+      "@/hooks": ["hooks/index.js"],
+      "@/store": ["store/index.js"],
+      "@/store/*": ["store/*"]
     }
   }
 }

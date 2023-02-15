@@ -18,7 +18,7 @@ export const Form = styled.form`
   gap: 20px;
 `
 
-export const PasswordInput = ({ label, name }) => {
+export const PasswordInput = ({ label, name, ...props }) => {
   const [show, setShow] = useState(false)
   return (
     <Flex direction="column" gap="3px">
@@ -27,6 +27,7 @@ export const PasswordInput = ({ label, name }) => {
       </Label>
       <Input
         id={name}
+        {...props}
         type={show ? 'text' : 'password'}
         rightSlot={
           <Icon
@@ -41,13 +42,13 @@ export const PasswordInput = ({ label, name }) => {
   )
 }
 
-export const TextInput = ({ label, name }) => {
+export const TextInput = ({ label, name, ...props }) => {
   return (
     <Flex direction="column" gap="3px">
       <Label htmlFor={name} color="light-grey" caption>
         {label}
       </Label>
-      <Input id={name} />
+      <Input id={name} {...props} />
     </Flex>
   )
 }
