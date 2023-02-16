@@ -54,7 +54,7 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
           Registration
         </Caption>
       </ModalSubtitle>
-      {isFetch ? 'loading...' : ''}
+
       <Form onSubmit={onSubmit}>
         <TextInput
           label="Email"
@@ -69,7 +69,9 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         <ForgotPassword color="light-grey" onClick={onForget}>
           Forgot your password?
         </ForgotPassword>
-        <Button type="submit">Create an account</Button>
+        <Button type="submit" disabled={isFetch}>
+          Create an account
+        </Button>
       </Form>
     </Modal>
   )

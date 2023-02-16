@@ -37,13 +37,10 @@ const ButtonCore = styled.button`
     stroke: ${({ color, theme }) => theme.colors[color]} !important;
   }
 
-  path {
-    transition: all 0.3s;
-  }
-
   &:disabled {
-    opacity: 0.8;
-    cursor: default;
+    opacity: 0.5;
+    /* cursor: default; */
+    pointer-events: none;
   }
 `
 const ButtonFlatCore = styled(ButtonCore)`
@@ -187,6 +184,7 @@ const Button = React.forwardRef(function Button(
     onClick = () => {},
     width,
     height,
+    disabled = false,
   },
   ref
 ) {
@@ -209,6 +207,7 @@ const Button = React.forwardRef(function Button(
       type={type}
       width={width}
       onClick={onClick}
+      disabled={disabled}
       {...sizeProps}
     >
       {children}

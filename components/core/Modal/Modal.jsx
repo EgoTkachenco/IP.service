@@ -1,25 +1,37 @@
 import styled from 'styled-components'
 import Icon from '../Icon'
+import { useMediaQuery } from '@mantine/hooks'
+import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 
 const Modal = ({ children, onClose, isIllustration = false }) => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+  const showIllustration = isIllustration && !isMobile
+
   return (
     <ModalWrapper>
-      <ModalContent>
-        <Icon
-          icon="close"
-          size="30px"
-          onClick={onClose}
-          color={isIllustration ? 'white' : 'text'}
-          style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10 }}
-        />
-        <ModalContentInner>{children}</ModalContentInner>
+      <PageChangeAnimation>
+        <ModalContent>
+          <Icon
+            icon="close"
+            size="30px"
+            onClick={onClose}
+            color={showIllustration ? 'white' : 'text'}
+            style={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              zIndex: 10,
+            }}
+          />
+          <ModalContentInner>{children}</ModalContentInner>
 
-        {isIllustration && (
-          <ModalIllustration>
-            <img src="/modal-illustration.png" />
-          </ModalIllustration>
-        )}
-      </ModalContent>
+          {showIllustration && (
+            <ModalIllustration>
+              <img src="/modal-illustration.png" />
+            </ModalIllustration>
+          )}
+        </ModalContent>
+      </PageChangeAnimation>
     </ModalWrapper>
   )
 }
@@ -53,7 +65,7 @@ const ModalContentInner = styled.div`
 `
 
 const ModalIllustration = styled.div`
-position: relative;
+  position: relative;
   width: 400px;
   min-height: 632px;
   align-self: stretch;

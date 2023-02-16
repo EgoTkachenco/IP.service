@@ -8,7 +8,7 @@ import FAQ from './FAQ'
 import Partners from './Partners'
 import GetStarted from './GetStarted'
 
-module.exports = {
+export {
   Main,
   ApiPreview,
   Feedback,

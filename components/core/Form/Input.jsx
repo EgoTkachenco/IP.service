@@ -55,7 +55,7 @@ export default function Input({
         />
       </TextField>
       <InputError color="danger" show={!!error}>
-        {error}
+        {error || ' '}
       </InputError>
     </Flex>
   )
