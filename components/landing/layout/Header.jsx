@@ -98,7 +98,6 @@ const Wrapper = styled.header`
   border-bottom: 1px solid rgba(52, 64, 84, 0.1);
 
   @media (max-width: 1140px) {
-    margin: 0 24px;
     height: 56px;
   }
 `

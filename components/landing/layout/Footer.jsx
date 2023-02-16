@@ -17,7 +17,7 @@ const Footer = () => {
               <H6>IP.Service</H6>
             </Flex>
           )}
-          <Flex gap="75px">
+          <FooterLinks>
             {footer_links.map((column, i) => (
               <Flex direction="column" gap="10px" key={i}>
                 <FooterTitle>{column.title}</FooterTitle>
@@ -28,7 +28,7 @@ const Footer = () => {
                 ))}
               </Flex>
             ))}
-          </Flex>
+          </FooterLinks>
         </WrapperTop>
         <WrapperBottom>
           <Flex direction="column" gap="20px">
@@ -63,7 +63,7 @@ const Footer = () => {
             </Caption>
           </Flex>
 
-          <Flex gap="30px">
+          <Flex gap="30px" fwrap>
             <Image src="/get-app.png" alt="get-app" width={74} height={50} />
             <Image src="/reviews.png" alt="reviews" width={100} height={50} />
             <Image src="/capterra.png" alt="get-app" width={154} height={50} />
@@ -148,10 +148,22 @@ const WrapperTop = styled.div`
   margin-bottom: 50px;
 `
 
+const FooterLinks = styled(Flex)`
+  gap: 32px 75px;
+
+  @media (max-width: 1140px) {
+    flex-wrap: wrap;
+    & > div {
+      flex: 1 1 calc((100% - 75px) / 2);
+    }
+  }
+`
+
 const WrapperBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  flex-wrap: wrap;
 `
 
 const FooterTitle = styled(Text)`

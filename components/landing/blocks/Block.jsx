@@ -9,4 +9,8 @@ export const BlockInner = styled(Flex)`
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
+
+  @media (max-width: 1140px) {
+    padding: 0 24px;
+  }
 `
