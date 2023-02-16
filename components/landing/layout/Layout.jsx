@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import Header from './Header'
 import Footer from './Footer'
+import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 
 const Layout = ({ children }) => {
   return (
     <Wrapper>
       <Header />
-      {children}
+      <PageChangeAnimation>{children}</PageChangeAnimation>
       <Footer />
     </Wrapper>
   )

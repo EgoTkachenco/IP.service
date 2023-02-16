@@ -6,60 +6,86 @@ import { BlockInner } from '../blocks/Block'
 import ModalContext from '@/utils/modalContext'
 import Link from 'next/link'
 import { useClickOutside } from '@/hooks'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Header = () => {
-  const { openModal } = useContext(ModalContext)
+  const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <BlockInner>
       <Wrapper>
-        <Flex gap="8px" align="center">
-          <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
-          <H6>IP.Service</H6>
-        </Flex>
+        <Link href="/">
+          <Flex gap="8px" align="center">
+            <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
+            <H6 color="dark">IP.Service</H6>
+          </Flex>
+        </Link>
 
-        <Flex gap="25px" align="center">
-          <Dropdown name="Products">
-            <ProductDropdown />
-          </Dropdown>
-          <Text weight="600">Solutions</Text>
-          <Dropdown name="Why IPservice">
-            <ProductDropdown />
-          </Dropdown>
-          <Dropdown name="Resources">
-            <ProductDropdown />
-          </Dropdown>
-          <Link href="/pricing">
-            <Text weight="600">Pricing</Text>
-          </Link>
-          <Link href="/">
-            <Text weight="600">Docs</Text>
-          </Link>
-        </Flex>
+        {isMobile ? (
+          <MobileMenu />
+        ) : (
+          <>
+            <Flex gap="25px" align="center">
+              <Dropdown name="Products">
+                <ProductDropdown />
+              </Dropdown>
+              <Text weight="600">Solutions</Text>
+              <Dropdown name="Why IPservice">
+                <ProductDropdown />
+              </Dropdown>
+              <Dropdown name="Resources">
+                <ProductDropdown />
+              </Dropdown>
+              <Link href="/pricing">
+                <Text weight="600">Pricing</Text>
+              </Link>
+              <Link href="/">
+                <Text weight="600">Docs</Text>
+              </Link>
+            </Flex>
 
-        <Flex gap="10px" align="center">
-          <Button
-            size="medium"
-            width="110px"
-            onClick={() => openModal('sign-up')}
-          >
-            Sign Up
-          </Button>
-          <Button
-            size="medium"
-            width="110px"
-            text
-            color="dark"
-            onClick={() => openModal('sign-in')}
-          >
-            Login
-          </Button>
-        </Flex>
+            <AuthorizationButtons />
+          </>
+        )}
       </Wrapper>
     </BlockInner>
   )
 }
 
 export default Header
+
+const AuthorizationButtons = () => {
+  const { openModal } = useContext(ModalContext)
+  return (
+    <Flex gap="10px" align="center">
+      <Button size="medium" width="110px" onClick={() => openModal('sign-up')}>
+        Sign Up
+      </Button>
+      <Button
+        size="medium"
+        width="110px"
+        text
+        color="dark"
+        onClick={() => openModal('sign-in')}
+      >
+        Login
+      </Button>
+    </Flex>
+  )
+}
+
+const MobileMenu = () => {
+  const [show, setShow] = useState(false)
+  return (
+    <>
+      <Icon
+        icon="menu"
+        size="24px"
+        color="dark"
+        onClick={() => setShow(true)}
+      />
+    </>
+  )
+}
 
 const Wrapper = styled.header`
   position: relative;
@@ -70,6 +96,11 @@ const Wrapper = styled.header`
   height: 100px;
   width: 100%;
   border-bottom: 1px solid rgba(52, 64, 84, 0.1);
+
+  @media (max-width: 1140px) {
+    margin: 0 24px;
+    height: 56px;
+  }
 `
 
 const Dropdown = ({ name, children }) => {

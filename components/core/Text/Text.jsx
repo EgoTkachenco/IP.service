@@ -23,6 +23,11 @@ export const H1 = styled.h1.attrs(defaultProps)`
   ${({ font, color, align, theme }) =>
     defaultStyles({ font, color, align, theme })}
   ${(props) => variantStyles(props, 'h1')}
+
+	@media (max-width: 1140px) {
+    font-size: 24px;
+    line-height: 150%;
+  }
 `
 
 export const H2 = styled.h2.attrs(defaultProps)`
@@ -48,6 +53,11 @@ export const H5 = styled.h5.attrs(defaultProps)`
     defaultStyles({ font, color, align, theme })}
   ${(props) => variantStyles(props, 'h5')}
 	letter-spacing: 0.01em;
+
+  @media (max-width: 1140px) {
+    font-size: 16px;
+    line-height: 160%;
+  }
 `
 
 export const H6 = styled.h6.attrs(defaultProps)`
@@ -55,6 +65,12 @@ export const H6 = styled.h6.attrs(defaultProps)`
     defaultStyles({ font, color, align, theme })}
   ${(props) => variantStyles(props, 'h6')}
 	letter-spacing: 0.01em;
+
+  @media (max-width: 1140px) {
+    font-weight: 800;
+    font-size: 14.4px;
+    line-height: 160%;
+  }
 `
 
 export const Link = styled.div.attrs(defaultProps)`
@@ -68,6 +84,11 @@ export const Link = styled.div.attrs(defaultProps)`
   cursor: pointer;
   letter-spacing: 0.01em;
   text-decoration-line: underline;
+
+  @media (max-width: 1140px) {
+    font-size: 14px;
+    line-height: 160%;
+  }
 `
 
 export const Caption = styled.div.attrs(defaultProps)`
@@ -76,6 +97,11 @@ export const Caption = styled.div.attrs(defaultProps)`
   ${(props) => variantStyles(props, 'caption')}
   display: ${({ inline }) => (inline ? 'inline' : 'block')};
   letter-spacing: 0.01em;
+
+  @media (max-width: 1140px) {
+    font-size: 12px;
+    line-height: 160%;
+  }
 `
 
 export const Text = styled.div.attrs(defaultProps)`
@@ -84,6 +110,11 @@ export const Text = styled.div.attrs(defaultProps)`
   ${(props) => variantStyles(props, 'text')}
   display: ${({ inline }) => (inline ? 'inline' : 'block')};
   letter-spacing: 0.01em;
+
+  @media (max-width: 1140px) {
+    font-size: 14px;
+    line-height: 160%;
+  }
 `
 
 export const Label = styled.label.attrs(defaultProps)`

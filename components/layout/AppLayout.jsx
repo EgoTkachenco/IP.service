@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import PageChangeAnimation from '../reusable/PageChangeAnimation'
 import Header from './Header'
 import Menu from './Menu'
 
@@ -8,7 +9,9 @@ const Layout = ({ children }) => {
       <Header />
       <Inner>
         <Menu />
-        <Content>{children}</Content>
+        <Content>
+          <PageChangeAnimation>{children}</PageChangeAnimation>
+        </Content>
       </Inner>
     </Wrapper>
   )

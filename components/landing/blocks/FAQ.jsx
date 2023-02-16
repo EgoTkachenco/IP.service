@@ -83,6 +83,10 @@ const FAQList = styled.div`
   width: calc(100% - ((100% - 1140px) / 2));
   margin: 60px 0 0 auto;
   background: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: 1140px) {
+    width: 100%;
+  }
 `
 
 const FAQItemWrapper = styled.div`

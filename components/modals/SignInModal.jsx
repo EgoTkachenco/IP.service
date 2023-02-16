@@ -8,10 +8,12 @@ import {
   Form,
 } from './styled.jsx'
 import { useForm } from '@mantine/form'
-import { useRequest } from '@/hooks'
-import { login } from '@/utils/api'
+import store from '@/store/AuthStore'
+import { observer } from 'mobx-react-lite'
+import { useRouter } from 'next/router'
 
-const SignInModal = ({ onRegistration, onForget, onClose }) => {
+const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
+  const router = useRouter()
   const form = useForm({
     initialValues: {
       identifier: '',
@@ -30,15 +32,16 @@ const SignInModal = ({ onRegistration, onForget, onClose }) => {
       },
     },
   })
-  const { apiCall: loginUser, isFetch } = useRequest(login)
-
+  const { signIn, isFetch } = store
   const onSubmit = form.onSubmit((values) => {
-    loginUser(values)
-      .then((res) => {
-        console.log(res)
+    signIn(values)
+      .then(() => {
+        router.push('/app')
+        onClose()
       })
       .catch((error) => {
-        console.log(error.message)
+        if (error.errors) form.setErrors(error.errors)
+        else form.setErrors('identifier', error.message)
       })
   })
 
@@ -70,7 +73,7 @@ const SignInModal = ({ onRegistration, onForget, onClose }) => {
       </Form>
     </Modal>
   )
-}
+})
 
 export default SignInModal
 

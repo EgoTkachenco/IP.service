@@ -8,24 +8,17 @@ const axios = Axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
   },
 })
 
 // Request interseptor to check server response time
 axios.interceptors.request.use(
-  function (config) {
-    debugger
-    return config
-  },
-  function (error) {
-    debugger
-    return Promise.reject(error)
-  }
+  (config) => config,
+  (error) => Promise.reject(error)
 )
+
 axios.interceptors.response.use(
   function (response) {
-    debugger
     if ([200, 201].includes(response.status)) {
       return response.data
     } else {
@@ -36,11 +29,11 @@ axios.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         localStorage.removeItem(USER_STORE_NAME)
-        // window.location.pathname = '/login'
-      }
-
-      if (error.response.status === 500) {
+        // window.location.pathname = '/'
+      } else if (error.response.status === 500) {
         // window.location.pathname = '/error-500'
+      } else {
+        return Promise.reject(error.response.data)
       }
     }
     return Promise.reject(error)

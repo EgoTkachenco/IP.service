@@ -3,16 +3,20 @@ import { BlockInner } from '../blocks/Block'
 import { Flex, H6, Text, Caption, Icon } from '@/core'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Footer = () => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <BlockInner>
       <Wrapper>
         <WrapperTop>
-          <Flex gap="8px" align="center">
-            <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
-            <H6>IP.Service</H6>
-          </Flex>
+          {!isMobile && (
+            <Flex gap="8px" align="center">
+              <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
+              <H6>IP.Service</H6>
+            </Flex>
+          )}
           <Flex gap="75px">
             {footer_links.map((column, i) => (
               <Flex direction="column" gap="10px" key={i}>
@@ -129,6 +133,11 @@ const Wrapper = styled.footer`
   border-top: 1px solid rgba(52, 64, 84, 0.1);
   padding: 75px 0 150px;
   width: 100%;
+
+  @media (max-width: 1140px) {
+    padding: 32px 0;
+    margin: 0 24px;
+  }
 `
 
 const WrapperTop = styled.div`
