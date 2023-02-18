@@ -5,7 +5,7 @@ import PlanCard from './PlanCard'
 
 const Result = () => {
   return (
-    <Card color="white" width="100%">
+    <WrapperCard color="white">
       <ChipContainer gap="10px">
         <Chip type="success">Basic</Chip>
       </ChipContainer>
@@ -61,11 +61,18 @@ const Result = () => {
           />
         }
       />
-    </Card>
+    </WrapperCard>
   )
 }
 
 export default Result
+
+const WrapperCard = styled(Card)`
+  width: 100%;
+  @media (max-width: 1140px) {
+    padding: 16px;
+  }
+`
 
 const ChipContainer = styled(Flex)`
   width: 100%;
@@ -79,6 +86,10 @@ const Divider = styled.div`
   background: rgba(7, 22, 37, 0.1);
   width: 100%;
   margin: 30px 0;
+
+  @media (max-width: 1140px) {
+    margin: 24px 0;
+  }
 `
 
 const Geolocation_basic = [

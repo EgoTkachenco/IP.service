@@ -34,6 +34,11 @@ export const H2 = styled.h2.attrs(defaultProps)`
   ${({ font, color, align, theme }) =>
     defaultStyles({ font, color, align, theme })}
   ${(props) => variantStyles(props, 'h2')}
+
+	@media (max-width: 1140px) {
+    font-size: 20px;
+    line-height: 140%;
+  }
 `
 
 export const H3 = styled.h3.attrs(defaultProps)`

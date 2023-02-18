@@ -11,7 +11,8 @@
       "@/locales": ["locales/index.js"],
       "@/hooks": ["hooks/index.js"],
       "@/store": ["store/index.js"],
-      "@/store/*": ["store/*"]
+      "@/store/*": ["store/*"],
+      "@/constants/*": ["constants/*"]
     }
   }
 }

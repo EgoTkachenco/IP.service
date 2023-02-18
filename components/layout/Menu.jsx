@@ -2,20 +2,13 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Caption, Icon, Flex } from '@/core'
-
-const LINKS = [
-  { pathname: '/app', name: 'Home', icon: 'home' },
-  { pathname: '/app/search', name: 'Search', icon: 'search-fill' },
-  { pathname: '/app/billing', name: 'Billing', icon: 'document' },
-  { pathname: '/app/profile', name: 'Profile', icon: 'person' },
-  { pathname: '/app/token', name: 'Token', icon: 'lock-closed' },
-]
+import APP_LINKS from '@/constants/app-routes.json'
 
 const Menu = () => {
   const router = useRouter()
   return (
     <Wrapper>
-      {LINKS.map((link) => (
+      {APP_LINKS.map((link) => (
         <MenuLink
           key={link.name}
           name={link.name}
@@ -43,6 +36,15 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 1140px) {
+    height: auto;
+    background: none;
+    min-width: unset;
+    border-right: 0;
+    padding: 0;
+    width: 100%;
+  }
 `
 
 const Divider = styled.div`

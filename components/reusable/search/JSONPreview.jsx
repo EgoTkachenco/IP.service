@@ -10,14 +10,14 @@ const JSONPreview = ({ title, data = [], bottomSlot = '' }) => {
       return (
         <Flex direction="column" gap="8px">
           <ArrayJSON key={i} name={field.name} value={field.value} />
-          <Flex direction="column" pl="50px" gap="8px" pt="20px">
+          <OffsetContent direction="column" gap="8px">
             <Text font="monospace" weight="400">
               Array
             </Text>
             {field.children.map((item, j) => (
               <ObjectJSON key={j} value={item} />
             ))}
-          </Flex>
+          </OffsetContent>
         </Flex>
       )
 
@@ -88,4 +88,14 @@ const DataJSON = ({ icon, valueColor, name, value, textColor = 'text' }) => (
 
 const TitleContainer = styled(Flex)`
   margin-bottom: 10px;
+`
+
+const OffsetContent = styled(Flex)`
+  padding-left: 40px;
+  padding-top: 20px;
+
+  @media (max-width: 1140px) {
+    padding-left: 24px;
+    padding-top: 16px;
+  }
 `

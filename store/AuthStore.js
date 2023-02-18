@@ -4,7 +4,6 @@ import { setToken, getToken, USER_STORE_NAME } from '@/utils/axios'
 
 class AuthStore {
   isFetch = false
-  c
 
   constructor() {
     makeAutoObservable(this)

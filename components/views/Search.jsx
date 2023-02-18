@@ -1,23 +1,25 @@
-import { Flex, Text, Button } from '@/core'
-import SearchResult from '@/components/reusable/searchResult'
+import styled from 'styled-components'
+import { Flex } from '@/core'
+import SearchResult from '@/components/reusable/search/SearchResult'
+import SearchTop from '@/components/reusable/search/SearchTop'
+
 const Search = () => {
   return (
-    <Flex direction="column" gap="30px" width="100%">
-      <Flex justify="space-between" align="center" width="100%">
-        <Text weight="600">Showing results for 8.8.8.8</Text>
-        <Flex gap="16px">
-          <Button outline color="dark" size="small-text">
-            Copy API link
-          </Button>
-          <Button outline color="dark" size="small-text">
-            Copy complete JSON
-          </Button>
-        </Flex>
-      </Flex>
-
+    <Wrapper>
+      <SearchTop />
       <SearchResult />
-    </Flex>
+    </Wrapper>
   )
 }
 
 export default Search
+
+const Wrapper = styled(Flex)`
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+
+  @media (max-width: 1140px) {
+    gap: 48px;
+  }
+`

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Flex, Text, Icon, Card, Input, Chip } from '@/core'
 import { BlockInner } from './Block'
-import { ObjectJSON } from '@/components/reusable/searchResult/JSONPreview'
+import { ObjectJSON } from '@/components/reusable/search/JSONPreview'
 import { useIP } from '@/hooks'
 
 const ApiPreview = () => {
   const { ip, setIp, data, isFetch } = useIP('')
-  const [country, city, postal, address] = data?.address.split(', ') || []
+  const [country, city, postal, address] = data?.address
+    ? data.address.split(', ')
+    : []
   return (
     <BlockInner>
       <Card color="dark" p="40px" gap="32px" width="100%">
@@ -22,7 +24,7 @@ const ApiPreview = () => {
             <ObjectJSON name="ip" value={data?.ip} textColor="white" />
             <ObjectJSON
               name="hostname"
-              value={data?.asn.domain}
+              value={data?.asn?.domain}
               textColor="white"
             />
             <ObjectJSON name="city" value={city} textColor="white" />
@@ -40,7 +42,7 @@ const ApiPreview = () => {
               value=""
               textColor="white"
             />
-            <ObjectJSON name="org" value={data?.asn.name} textColor="white" />
+            <ObjectJSON name="org" value={data?.asn?.name} textColor="white" />
             <ObjectJSON name="postal" value={postal} textColor="white" />
             <ObjectJSON
               name="timezone"
@@ -54,7 +56,7 @@ const ApiPreview = () => {
           <Chip type="dark" onClick={() => setIp('')}>
             Your IP
           </Chip>
-          <Chip type="dark" onClick={() => setIp('215.204.222.212')}>
+          <Chip type="dark" onClick={() => setIp('176.120.24.58')}>
             215.204.222.212
           </Chip>
           <Chip type="dark" onClick={() => setIp('247.193.70.173')}>

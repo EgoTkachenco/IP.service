@@ -136,7 +136,6 @@ const Wrapper = styled.footer`
 
   @media (max-width: 1140px) {
     padding: 32px 0;
-    margin: 0 24px;
   }
 `
 

@@ -4,6 +4,7 @@ import SignInModal from './SignInModal'
 import SignUpModal from './SignUpModal'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import ResetPasswordModal from './ResetPasswordModal'
+import { useNoBodyScroll } from '@/hooks'
 
 const Modals = () => {
   const { modal, openModal } = useContext(ModalContext)
@@ -36,12 +37,7 @@ const Modals = () => {
     default:
       break
   }
-  useEffect(() => {
-    if (modalComponent) document.body.classList.add('no-scroll')
-    return () => {
-      document.body.classList.remove('no-scroll')
-    }
-  }, [modalComponent])
+  useNoBodyScroll(modalComponent)
 
   return modalComponent
 }

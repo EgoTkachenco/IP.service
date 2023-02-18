@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { Flex } from '@/core'
 import { infinite_line } from '@/styles/animations'
 
-const PartnersCarousel = () => {
+const PartnersCarousel = ({ gap = '40px', small = false }) => {
   return (
-    <Flex direction="column" gap="40px">
-      <Carousel items={carousel_1} />
-      <Carousel items={carousel_2} reverse />
+    <Flex direction="column" gap={gap}>
+      <Carousel items={carousel_1} small={small} />
+      <Carousel items={carousel_2} small={small} reverse />
     </Flex>
   )
 }
@@ -42,13 +42,13 @@ const carousel_2 = [
   { name: '', image: '/partners/partner_24.png' },
 ]
 
-const Carousel = ({ items, reverse = false }) => {
+const Carousel = ({ items, small, reverse = false }) => {
   return (
     <>
-      <CarouselWrapper>
+      <CarouselWrapper small={small}>
         {[1, 2].map((carousel) => (
           <CarouselItem key={carousel} reverse={reverse}>
-            <CarouselItemInner>
+            <CarouselItemInner small={small}>
               {items.map((item, i) => (
                 <img src={item.image} key={i} />
               ))}
@@ -65,23 +65,28 @@ const CarouselWrapper = styled.div`
   justify-content: flex-start;
   max-width: 100%;
   overflow: hidden;
+  gap: ${({ small }) => (small ? '20px' : '40px')};
 `
 const CarouselItem = styled.div`
-  padding: 20px;
-  animation-name: ${infinite_line};
+  animation-name: ${({ small }) =>
+    small ? infinite_line('20px') : infinite_line('40px')};
   animation-duration: 20s;
   animation-timing-function: linear;
   animation-fill-mode: forward;
   animation-iteration-count: infinite;
-  animation-direction: ${({ reverse }) => reverse ? 'reverse': 'normal'};
+  animation-direction: ${({ reverse }) => (reverse ? 'reverse' : 'normal')};
 `
 
 const CarouselItemInner = styled.div`
   display: flex;
   align-items: center;
-  padding: 30px;
-  gap: 74px;
-  height: 100px;
+  padding: ${({ small }) => (small ? '17px' : '30px')};
+  gap: ${({ small }) => (small ? '40px' : '74px')};
+  height: ${({ small }) => (small ? '55px' : '100px')};
   border: 1px solid rgba(16, 24, 32, 0.1);
-  border-radius: 20px;
+  border-radius: ${({ small }) => (small ? '10px' : '20px')};
+
+  img {
+    max-height: 100%;
+  }
 `

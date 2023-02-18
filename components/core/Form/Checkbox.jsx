@@ -21,7 +21,7 @@ export default function Checkbox({
   }
 
   return (
-    <Flex align="flex-start" onClick={() => handleChange(!state)} gap="10px">
+    <Flex align="center" onClick={() => handleChange(!state)} gap="10px">
       <Box size={size} active={!!state}>
         <Value active={!!state}>
           <Icon icon="checkmark" size="8px" color="white" />

@@ -1,43 +1,62 @@
 import { useContext } from 'react'
 import ModalContext from '@/utils/modalContext'
 import { H4, Flex, Card, Input, Label, Button, Link } from '@/core'
+import styled from 'styled-components'
+import { TextField } from '@/components/reusable/FormFields'
 
 const Profile = () => {
   const { openModal } = useContext(ModalContext)
   return (
-    <Flex direction="column" gap="30px">
+    <Wrapper direction="column">
       <H4 color="dark">Profile</H4>
-      <Card color="white" gap="30px" width="525px" align="strench">
-        <Flex direction="column" gap="3px">
-          <Label htmlFor="name" color="light-grey" caption>
-            Name
-          </Label>
-          <Input id="name" value="George" />
-        </Flex>
-        <Flex direction="column" gap="3px">
-          <Label htmlFor="lastName" color="light-grey" caption>
-            Last Name
-          </Label>
-          <Input id="lastName" value="Johnson" />
-        </Flex>
-        <Flex direction="column" gap="3px">
-          <Label htmlFor="email" color="light-grey" caption>
-            Email address
-          </Label>
-          <Input id="email" type="email" value="dond6026@gmail.com" />
-        </Flex>
+      <ProfileCard color="white" align="strench">
+        <TextField label="Name" name="name" />
+        <TextField label="Last Name" name="lastName" />
+        <TextField label="Email address" name="email" />
 
-        <Flex justify="space-between" align="center">
-          <Button size="medium" width="200px">
-            Save
-          </Button>
+        <ProfileCardBottom justify="space-between" align="center">
+          <Button size="medium">Save</Button>
           <Link caption onClick={() => openModal('reset-password')}>
             Reset password
           </Link>
-        </Flex>
-      </Card>
-    </Flex>
+        </ProfileCardBottom>
+      </ProfileCard>
+    </Wrapper>
   )
 }
 
 export default Profile
+
+const Wrapper = styled(Flex)`
+  gap: 30px;
+  @media (max-width: 1140px) {
+    gap: 16px;
+  }
+`
+
+const ProfileCard = styled(Card)`
+  width: 525px;
+  gap: 30px;
+  @media (max-width: 1140px) {
+    padding: 24px;
+    width: 100%;
+    gap: 16px;
+  }
+`
+const ProfileCardBottom = styled(Flex)`
+  justify-content: space-between;
+  align-items: center;
+
+  & :first-child {
+    width: 200px;
+    @media (max-width: 1140px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1140px) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+`

@@ -1,6 +1,70 @@
 import styled from 'styled-components'
 import { Icon, Caption } from '@/core'
 
+const SubscriptionsTable = () => {
+  const getCellValue = (value) => {
+    if (typeof value === 'boolean')
+      return value ? (
+        <Icon icon="done-outline" size="24px" color="success" />
+      ) : (
+        <Icon icon="close" size="24px" color="danger" />
+      )
+
+    return <Caption>{value}</Caption>
+  }
+  return (
+    <Table>
+      <TableHeaderRow>
+        <TableCell>Key features</TableCell>
+        <TableCell>Free plan</TableCell>
+        <TableCell>Basic</TableCell>
+        <TableCell>Standard</TableCell>
+        <TableCell>Business</TableCell>
+      </TableHeaderRow>
+
+      {data.map((row, i) => (
+        <TableRow key={i}>
+          <TableCell>
+            <Caption weight="600">{row.key}</Caption>
+          </TableCell>
+          <TableCell>{getCellValue(row.free_plan)}</TableCell>
+          <TableCell>{getCellValue(row.basic)}</TableCell>
+          <TableCell>{getCellValue(row.standard)}</TableCell>
+          <TableCell>{getCellValue(row.business)}</TableCell>
+        </TableRow>
+      ))}
+    </Table>
+  )
+}
+
+export default SubscriptionsTable
+
+const Table = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 168px;
+`
+const TableRow = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  height: 80px;
+  background: ${({ theme }) => theme.colors.white};
+  border-radius: 10px;
+  align-items: center;
+`
+const TableHeaderRow = styled(TableRow)`
+  height: 58px;
+  background: ${({ theme }) => theme.colors.dark};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 600;
+`
+
+const TableCell = styled.div`
+  padding: 0 30px;
+`
+
 const data = [
   {
     key: 'Requests per month',
@@ -87,67 +151,3 @@ const data = [
     business: false,
   },
 ]
-
-const SubscriptionsTable = () => {
-  const getCellValue = (value) => {
-    if (typeof value === 'boolean')
-      return value ? (
-        <Icon icon="done-outline" size="24px" color="success" />
-      ) : (
-        <Icon icon="close" size="24px" color="danger" />
-      )
-
-    return <Caption>{value}</Caption>
-  }
-  return (
-    <Table>
-      <TableHeaderRow>
-        <TableCell>Key features</TableCell>
-        <TableCell>Free plan</TableCell>
-        <TableCell>Basic</TableCell>
-        <TableCell>Standard</TableCell>
-        <TableCell>Business</TableCell>
-      </TableHeaderRow>
-
-      {data.map((row, i) => (
-        <TableRow key={i}>
-          <TableCell>
-            <Caption weight="600">{row.key}</Caption>
-          </TableCell>
-          <TableCell>{getCellValue(row.free_plan)}</TableCell>
-          <TableCell>{getCellValue(row.basic)}</TableCell>
-          <TableCell>{getCellValue(row.standard)}</TableCell>
-          <TableCell>{getCellValue(row.business)}</TableCell>
-        </TableRow>
-      ))}
-    </Table>
-  )
-}
-
-export default SubscriptionsTable
-
-const Table = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 168px;
-`
-const TableRow = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  height: 80px;
-  background: ${({ theme }) => theme.colors.white};
-  border-radius: 10px;
-  align-items: center;
-`
-const TableHeaderRow = styled(TableRow)`
-  height: 58px;
-  background: ${({ theme }) => theme.colors.dark};
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: 600;
-`
-
-const TableCell = styled.div`
-  padding: 0 30px;
-`

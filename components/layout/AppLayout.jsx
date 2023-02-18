@@ -1,14 +1,16 @@
+import { useMediaQuery } from '@mantine/hooks'
 import styled from 'styled-components'
 import PageChangeAnimation from '../reusable/PageChangeAnimation'
 import Header from './Header'
 import Menu from './Menu'
 
 const Layout = ({ children }) => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <Wrapper>
-      <Header />
+      <Header isMobile={isMobile} />
       <Inner>
-        <Menu />
+        {!isMobile && <Menu />}
         <Content>
           <PageChangeAnimation>{children}</PageChangeAnimation>
         </Content>
@@ -33,4 +35,9 @@ const Content = styled.div`
   overflow: auto;
   background: #f9fafc;
   padding: 50px;
+
+  @media (max-width: 1140px) {
+    padding: 48px 24px;
+    max-height: calc(100vh - 56px);
+  }
 `

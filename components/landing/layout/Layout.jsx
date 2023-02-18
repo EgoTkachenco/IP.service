@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Header from './Header'
+import Header from './header/Header'
 import Footer from './Footer'
 import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 
