@@ -1,5 +1,3 @@
-import { useText } from '@/locales'
-
 export const renderMetaData = ({ title, description, siteName }) => {
   return (
     <>
@@ -17,12 +15,11 @@ export const renderMetaData = ({ title, description, siteName }) => {
 }
 
 export function useMetadataRenderer() {
-  const t = useText()
   return ({ title, description }) => {
     return renderMetaData({
-      title: title || t('siteName'),
-      description: description || t('siteDescription'),
-      siteName: t('siteName'),
+      title: title,
+      description: description,
+      siteName: title,
     })
   }
 }
