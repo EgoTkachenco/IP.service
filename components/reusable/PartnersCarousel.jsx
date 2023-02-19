@@ -70,7 +70,7 @@ const CarouselWrapper = styled.div`
 const CarouselItem = styled.div`
   animation-name: ${({ small }) =>
     small ? infinite_line('20px') : infinite_line('40px')};
-  animation-duration: 20s;
+  animation-duration: 30s;
   animation-timing-function: linear;
   animation-fill-mode: forward;
   animation-iteration-count: infinite;

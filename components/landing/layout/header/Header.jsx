@@ -9,7 +9,7 @@ import DesktopMenu from './DesktopMenu'
 import MobileMenu from './MobileMenu'
 
 const Header = () => {
-  const isMobile = useMediaQuery('(max-width: 1140px)', true)
+  const isMobile = useMediaQuery('(max-width: 1140px)', null)
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -20,7 +20,8 @@ const Header = () => {
           </Flex>
         </Link>
 
-        {isMobile ? <MobileMenu /> : <DesktopMenu />}
+        {isMobile !== null && isMobile && <MobileMenu />}
+        {isMobile !== null && !isMobile && <DesktopMenu />}
       </HeaderWrapper>
     </Wrapper>
   )
