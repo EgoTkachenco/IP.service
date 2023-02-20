@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/AppLayout'
+import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 import TokenView from '@/components/views/Token'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -12,7 +13,9 @@ export default function Token() {
         description: 'IP Service',
       })}
       <Layout>
-        <TokenView />
+        <PageChangeAnimation>
+          <TokenView />
+        </PageChangeAnimation>
       </Layout>
     </>
   )

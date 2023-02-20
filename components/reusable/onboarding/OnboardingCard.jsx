@@ -14,7 +14,7 @@ export default OnboardingCard
 
 const OnboardingTitle = ({ step = 1, title, subtitle }) => {
   return (
-    <Flex gap="10px">
+    <TitleContent gap="10px">
       <StepNumber>{step}</StepNumber>
       <Flex direction="column" gap="10px">
         <Flex gap="4px" align="center">
@@ -25,9 +25,15 @@ const OnboardingTitle = ({ step = 1, title, subtitle }) => {
         </Flex>
         {subtitle}
       </Flex>
-    </Flex>
+    </TitleContent>
   )
 }
+
+const TitleContent = styled(Flex)`
+  @media (max-width: 1140px) {
+    flex-direction: column;
+  }
+`
 
 const StepNumber = styled.div`
   font-weight: 500;
@@ -42,4 +48,20 @@ const StepNumber = styled.div`
   justify-content: center;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
+`
+
+export const OnboardingCardContent = styled(Flex)`
+  padding-left: 40px;
+  width: 100%;
+
+  button {
+    width: auto;
+  }
+
+  @media (max-width: 1140px) {
+    padding-left: 0;
+    button {
+      width: 100%;
+    }
+  }
 `

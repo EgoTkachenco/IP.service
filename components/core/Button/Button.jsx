@@ -28,6 +28,11 @@ const ButtonCore = styled.button`
   font-weight: 700;
   padding: ${(props) => props.padding};
 
+  @media (max-width: 1140px) {
+    font-size: 12px;
+    line-height: 160%;
+  }
+
   svg:not(.stroke) {
     cursor: pointer;
     fill: ${({ color, theme }) => theme.colors[color]} !important;
@@ -39,7 +44,6 @@ const ButtonCore = styled.button`
 
   &:disabled {
     opacity: 0.5;
-    /* cursor: default; */
     pointer-events: none;
   }
 `

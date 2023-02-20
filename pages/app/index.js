@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/AppLayout'
+import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 import HomeView from '@/components/views/Home'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -12,7 +13,9 @@ export default function Home() {
         description: 'IP Service',
       })}
       <Layout>
-        <HomeView />
+        <PageChangeAnimation>
+          <HomeView />
+        </PageChangeAnimation>
       </Layout>
     </>
   )

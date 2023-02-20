@@ -91,8 +91,12 @@ export const Link = styled.div.attrs(defaultProps)`
   text-decoration-line: underline;
 
   @media (max-width: 1140px) {
-    font-size: 14px;
-    line-height: 160%;
+    ${({ caption }) =>
+      caption
+        ? `font-size: 12px;
+    	line-height: 160%;`
+        : `font-size: 14px;
+    line-height: 160%;`}
   }
 `
 

@@ -1,9 +1,11 @@
 import { Card, Caption, Icon, Text, Button, Flex } from '@/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { useState } from 'react'
 import styled from 'styled-components'
 import OnboardingCard from './OnboardingCard'
 
 const OnboardingStep1 = () => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <OnboardingCard
       step="1"
@@ -19,11 +21,17 @@ const OnboardingStep1 = () => {
         justify="space-between"
         width="100%"
         py="20px"
+        gap="8px"
       >
-        <Text color="success" font="monospace" weight="400">
+        <Text color="success" font="monospace" weight="400" width="100%">
           curl "ipinfo.io/46.172.142.181?token=dbaf59e6154d0d"
         </Text>
-        <Icon icon="copy" size="40px" color="primary" onClick={() => {}} />
+        <Icon
+          icon="copy"
+          size={isMobile ? '24px' : '40px'}
+          color="primary"
+          onClick={() => {}}
+        />
       </Card>
 
       <Details />
@@ -48,7 +56,7 @@ const Details = () => {
           <span />
           <span />
         </Points>
-        <Caption inline>
+        <Caption inline align="right">
           Show results for{' '}
           {tabs.map((tab, i) => (
             <TabText

@@ -1,6 +1,5 @@
 import { useMediaQuery } from '@mantine/hooks'
 import styled from 'styled-components'
-import PageChangeAnimation from '../reusable/PageChangeAnimation'
 import Header from './Header'
 import Menu from './Menu'
 
@@ -11,9 +10,7 @@ const Layout = ({ children }) => {
       <Header isMobile={isMobile} />
       <Inner>
         {!isMobile && <Menu />}
-        <Content>
-          <PageChangeAnimation>{children}</PageChangeAnimation>
-        </Content>
+        <Content>{children}</Content>
       </Inner>
     </Wrapper>
   )

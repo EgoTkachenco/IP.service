@@ -44,6 +44,11 @@ const DefaultChip = styled.div`
   border-radius: 6px;
   color: #fff;
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
+
+  @media (max-width: 1140px) {
+    font-size: 11px;
+    line-height: 14px;
+  }
 `
 
 const RoundedChip = styled.div`
@@ -55,6 +60,12 @@ const RoundedChip = styled.div`
   color: #fff;
   border: 1px solid transparent;
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
+
+  @media (max-width: 1140px) {
+    font-size: 11px;
+    line-height: 14px;
+    padding: 6px 12px;
+  }
 `
 
 const PrimaryChip = styled(RoundedChip)`

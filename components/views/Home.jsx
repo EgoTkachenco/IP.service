@@ -7,6 +7,8 @@ import OnboardingStep4 from '@/components/reusable/onboarding/OnboardingStep4'
 
 import LastDaysUsage from '@/components/reusable/analytics/LastDaysUsage'
 import UpcomingBill from '@/components/reusable/analytics/UpcomingBill'
+import MonthUsage from '@/components/reusable/analytics/MonthUsage'
+import AccessToken from '@/components/reusable/analytics/AccessToken'
 import UsageChart from '@/components/reusable/analytics/UsageChart'
 
 const Home = () => {
@@ -17,10 +19,15 @@ const Home = () => {
       <OnboardingStep3 />
       <OnboardingStep4 />
 
-      <AnalyticsCards>
+      <AnalyticsContent_1 flex="1">
         <LastDaysUsage />
         <UpcomingBill />
-      </AnalyticsCards>
+      </AnalyticsContent_1>
+
+      <AnalyticsContent_2 flex="1">
+        <MonthUsage />
+        <AccessToken />
+      </AnalyticsContent_2>
 
       <UsageChart />
     </Flex>
@@ -29,11 +36,26 @@ const Home = () => {
 
 export default Home
 
-const AnalyticsCards = styled(Flex)`
+const AnalyticsContent_1 = styled(Flex)`
   width: 100%;
   gap: 30px;
+  align-items: stretch;
+  height: 258px;
 
-  & > * {
-    flex: 0 1 calc((100% - 30px) / 2);
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    height: auto;
+  }
+`
+
+const AnalyticsContent_2 = styled(Flex)`
+  width: 100%;
+  gap: 30px;
+  align-items: stretch;
+  height: 336px;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    height: auto;
   }
 `

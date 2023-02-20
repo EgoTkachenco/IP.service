@@ -16,6 +16,10 @@ const Card = styled(Flex).attrs(({ p, direction, theme }) => ({
     bordered
       ? `border: 1px solid ${color ? theme.colors[color] : theme.colors.dark}`
       : ''};
+
+  @media (max-width: 1140px) {
+    padding: 24px;
+  }
 `
 
 export default Card

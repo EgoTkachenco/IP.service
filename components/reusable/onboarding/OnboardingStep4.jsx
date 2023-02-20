@@ -1,6 +1,6 @@
 import { Caption, Flex, Icon, Button } from '@/core'
 import styled from 'styled-components'
-import OnboardingCard from './OnboardingCard'
+import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 
 const OnboardingStep4 = () => {
   return (
@@ -14,8 +14,8 @@ const OnboardingStep4 = () => {
         </Caption>
       }
     >
-      <Flex direction="column" gap="30px" pl="40px">
-        <List flex="0 1 calc(100% / 3)">
+      <OnboardingCardContent direction="column" gap="30px">
+        <List>
           <ListItem>Geolocation</ListItem>
           <ListItem>Privacy Detection</ListItem>
           <ListItem>Hosted Domains</ListItem>
@@ -34,7 +34,7 @@ const OnboardingStep4 = () => {
         <Button size="small" width="auto">
           Start Free Trial
         </Button>
-      </Flex>
+      </OnboardingCardContent>
     </OnboardingCard>
   )
 }
@@ -54,4 +54,14 @@ const List = styled(Flex)`
   justify-content: flex-start;
   align-items: center;
   gap: 12px 0;
+
+  & > div {
+    flex: 0 1 calc(100% / 3);
+  }
+
+  @media (max-width: 1140px) {
+    & > div {
+      flex: 0 1 calc(100% / 2);
+    }
+  }
 `

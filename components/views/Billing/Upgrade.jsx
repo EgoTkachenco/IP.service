@@ -1,14 +1,15 @@
 import styled from 'styled-components'
-import { Flex, H1, H4, Chip, Caption, Card, Icon, Button } from '@/core'
+import { Flex, H4 } from '@/core'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
+import PlanCard from '@/components/reusable/UpgradePlanCard'
 
 const Upgrade = () => {
   const [period, setPeriod] = useState('monthly')
 
   return (
     <Flex direction="column" gap="30px" width="100%">
-      <Flex justify="space-between" align="flex-end" width="100%">
+      <TitleContainer>
         <H4 color="dark">Get two months free with annual billing</H4>
         <Switch
           labelOff="Yearly"
@@ -16,9 +17,9 @@ const Upgrade = () => {
           value={period === 'monthly'}
           onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
         />
-      </Flex>
+      </TitleContainer>
 
-      <Flex gap="24px" width="100%" flex="1 1" align="stretch">
+      <CardsContainer flex="1 1">
         <PlanCard
           name="Basic"
           priceType={period}
@@ -51,106 +52,35 @@ const Upgrade = () => {
           labelDescription="$60 per additional 50k lookups"
           features={features}
         />
-      </Flex>
+      </CardsContainer>
     </Flex>
   )
 }
 
 export default Upgrade
 
-const PlanCard = ({
-  name,
-  price,
-  priceType,
-  description,
-  labelTitle,
-  labelDescription,
-  features,
-  isCurrent,
-}) => {
-  return (
-    <PlanCardWrapper color="white" gap="30px">
-      <PlanCardName>
-        <Chip type="primary-transparent">{name}</Chip>
-      </PlanCardName>
-      <Flex direction="column" gap="16px" width="100%" align="stretch">
-        <Flex align="flex-end" pt="10px">
-          <PlanCardPrice color="dark">${price.toFixed(2)}</PlanCardPrice>
-          <Caption>/{priceType}</Caption>
-        </Flex>
-        <Caption>{description}</Caption>
-      </Flex>
-      <PriceCardLabel>
-        <Caption color="white" weight="700">
-          {labelTitle}
-        </Caption>
-        <Caption>{labelDescription}</Caption>
-
-        <PriceCardLabelIllustration src="/building.svg" />
-      </PriceCardLabel>
-
-      <Flex direction="column" gap="25px">
-        {features.map((feature, i) => (
-          <Flex
-            gap="8px"
-            align="center"
-            key={i}
-            style={{ opacity: feature.isActive ? 1 : 0.5 }}
-          >
-            <Icon
-              icon={feature.isActive ? 'checkmark' : 'closemark'}
-              size="16px"
-              color={feature.isActive ? 'primary' : 'grey'}
-            />
-            <Caption weight="400" color={feature.isActive ? 'text' : 'grey'}>
-              {feature.name}
-            </Caption>
-          </Flex>
-        ))}
-      </Flex>
-      <PriceCardDelimiter />
-      <Button variant={isCurrent ? 'primary-transparent' : ''}>
-        {isCurrent ? 'Current Plan' : name}
-      </Button>
-    </PlanCardWrapper>
-  )
-}
-
-const PlanCardWrapper = styled(Card)`
-  position: relative;
-`
-
-const PlanCardPrice = styled(H1)`
-  line-height: 100%;
-`
-
-const PlanCardName = styled.div`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-`
-
-const PriceCardLabel = styled.div`
-  position: relative;
-  background: linear-gradient(90.43deg, #002e47 7.13%, #031924 99.63%);
-  border-radius: 10px;
+const TitleContainer = styled(Flex)`
   width: 100%;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 32px;
+
+    & > :first-child {
+      width: 100%;
+    }
+  }
 `
 
-const PriceCardLabelIllustration = styled.img`
-  position: absolute;
-  right: 11px;
-  bottom: 0;
-`
-
-const PriceCardDelimiter = styled.div`
-  height: 1px;
-  background: #f1f4f9;
+const CardsContainer = styled(Flex)`
   width: 100%;
+  gap: 24px;
+  align-items: stretch;
+  @media (max-width: 1140px) {
+    flex-direction: column;
+  }
 `
 
 const features = [
