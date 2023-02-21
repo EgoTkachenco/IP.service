@@ -3,11 +3,15 @@ import Header from './header/Header'
 import Footer from './Footer'
 import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, animation = true }) => {
   return (
     <Wrapper>
       <Header />
-      <PageChangeAnimation>{children}</PageChangeAnimation>
+      {animation ? (
+        <PageChangeAnimation>{children}</PageChangeAnimation>
+      ) : (
+        children
+      )}
       <Footer />
     </Wrapper>
   )

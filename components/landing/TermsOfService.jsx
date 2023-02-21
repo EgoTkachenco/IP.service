@@ -4,9 +4,11 @@ import { H1, Flex, H5, Text, Caption, Icon } from '@/core'
 import Layout from './layout/Layout'
 import { BlockInner } from './blocks/Block'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const TermsOfService = () => {
   const [activeBlock, setActiveBlock] = useState(0)
+  const router = useRouter()
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) =>
@@ -32,8 +34,19 @@ const TermsOfService = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const blockId = router.asPath.split('#')[1]
+    if (blockId) {
+      const block = document.getElementById(blockId)
+      block.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      })
+    }
+  }, [router.asPath])
+
   return (
-    <Layout>
+    <Layout animation={false}>
       <Wrapper>
         <TitlesList activeBlock={activeBlock} />
         <Flex direction="column">
@@ -75,7 +88,7 @@ const TitlesList = ({ activeBlock }) => {
 const TitlesListWrapper = styled.div`
   position: sticky;
   margin-top: 253px;
-  top: 0;
+  top: 250px;
   left: 0;
   display: flex;
   flex-direction: column;
