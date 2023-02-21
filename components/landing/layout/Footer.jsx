@@ -11,12 +11,7 @@ const Footer = () => {
     <BlockInner>
       <Wrapper>
         <WrapperTop>
-          {!isMobile && (
-            <Flex gap="8px" align="center">
-              <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
-              <H6>IP.Service</H6>
-            </Flex>
-          )}
+          {!isMobile && <Logo />}
           <FooterLinks>
             {footer_links.map((column, i) => (
               <Flex direction="column" gap="10px" key={i}>
@@ -31,43 +26,24 @@ const Footer = () => {
           </FooterLinks>
         </WrapperTop>
         <WrapperBottom>
-          <Flex direction="column" gap="20px">
-            <Flex gap="15px">
-              <Link href="">
-                <Icon
-                  icon="linkedin"
-                  size="25px"
-                  color="light-grey"
-                  hoverColor="dark"
-                />
-              </Link>
-              <Link href="">
-                <Icon
-                  icon="twitter"
-                  size="25px"
-                  color="light-grey"
-                  hoverColor="dark"
-                />
-              </Link>
-              <Link href="">
-                <Icon
-                  icon="github"
-                  size="25px"
-                  color="light-grey"
-                  hoverColor="dark"
-                />
-              </Link>
-            </Flex>
-            <Caption>
-              Copyright © 2022 IPinfo® | Terms & Conditions · Privacy Policy
-            </Caption>
-          </Flex>
-
-          <Flex gap="30px" fwrap>
-            <Image src="/get-app.png" alt="get-app" width={74} height={50} />
-            <Image src="/reviews.png" alt="reviews" width={100} height={50} />
-            <Image src="/capterra.png" alt="get-app" width={154} height={50} />
-          </Flex>
+          {isMobile ? (
+            <>
+              <Flex justify="space-between" width="100%">
+                <Logo />
+                <SocialLinks />
+              </Flex>
+              <ArhievementsMobile />
+              <Copyrights />
+            </>
+          ) : (
+            <>
+              <Flex direction="column" gap="20px">
+                <SocialLinks />
+                <Copyrights />
+              </Flex>
+              <Arhievements />
+            </>
+          )}
         </WrapperBottom>
       </Wrapper>
     </BlockInner>
@@ -129,6 +105,13 @@ const footer_links = [
 
 export default Footer
 
+const Logo = () => (
+  <Flex gap="8px" align="center">
+    <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
+    <H6>IP.Service</H6>
+  </Flex>
+)
+
 const Wrapper = styled.footer`
   border-top: 1px solid rgba(52, 64, 84, 0.1);
   padding: 75px 0 150px;
@@ -145,6 +128,10 @@ const WrapperTop = styled.div`
   align-items: flex-start;
   gap: 69px;
   margin-bottom: 50px;
+
+  @media (max-width: 1140px) {
+    margin-bottom: 48px;
+  }
 `
 
 const FooterLinks = styled(Flex)`
@@ -163,6 +150,14 @@ const WrapperBottom = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    border-top: 1px solid rgba(52, 64, 84, 0.1);
+    padding-top: 48px;
+  }
 `
 
 const FooterTitle = styled(Text)`
@@ -186,3 +181,40 @@ const LinkText = styled(Caption)`
     width: 100%;
   }
 `
+
+const SocialLinks = () => (
+  <Flex gap="15px">
+    <Link href="">
+      <Icon icon="linkedin" size="25px" color="light-grey" hoverColor="dark" />
+    </Link>
+    <Link href="">
+      <Icon icon="twitter" size="25px" color="light-grey" hoverColor="dark" />
+    </Link>
+    <Link href="">
+      <Icon icon="github" size="25px" color="light-grey" hoverColor="dark" />
+    </Link>
+  </Flex>
+)
+
+const Copyrights = () => (
+  <Caption>
+    Copyright © 2022 IPinfo® | <Link href="/terms">Terms & Conditions</Link> ·{' '}
+    <Link href="/">Privacy Policy</Link>
+  </Caption>
+)
+
+const Arhievements = () => (
+  <Flex gap="30px" fwrap>
+    <Image src="/get-app.png" alt="get-app" width={74} height={50} />
+    <Image src="/reviews.png" alt="reviews" width={100} height={50} />
+    <Image src="/capterra.png" alt="get-app" width={154} height={50} />
+  </Flex>
+)
+
+const ArhievementsMobile = () => (
+  <Flex gap="24px" fwrap>
+    <Image src="/get-app.png" alt="get-app" width={62} height={40} />
+    <Image src="/reviews.png" alt="reviews" width={85} height={40} />
+    <Image src="/capterra.png" alt="get-app" width={130} height={40} />
+  </Flex>
+)
