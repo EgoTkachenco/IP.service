@@ -23,23 +23,23 @@ const Pricing = () => {
           }
         </H6>
 
-        <ButtonsContainer gap="20px">
-          <Button
-            color={activeBlock === 'api' ? 'primary' : 'dark'}
-            outline={activeBlock !== 'api'}
-            width="438px"
-            onClick={() => setActiveBlock('api')}
-          >
-            API access
-          </Button>
-          <Button
-            color={activeBlock === 'data' ? 'primary' : 'dark'}
-            outline={activeBlock !== 'data'}
-            width="438px"
-            onClick={() => setActiveBlock('data')}
-          >
-            Data Download
-          </Button>
+        <BottomContainer>
+          <ButtonsContainer>
+            <Button
+              color={activeBlock === 'api' ? 'primary' : 'dark'}
+              outline={activeBlock !== 'api'}
+              onClick={() => setActiveBlock('api')}
+            >
+              API access
+            </Button>
+            <Button
+              color={activeBlock === 'data' ? 'primary' : 'dark'}
+              outline={activeBlock !== 'data'}
+              onClick={() => setActiveBlock('data')}
+            >
+              Data Download
+            </Button>
+          </ButtonsContainer>
 
           {activeBlock === 'api' && (
             <Switch
@@ -49,7 +49,7 @@ const Pricing = () => {
               onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
             />
           )}
-        </ButtonsContainer>
+        </BottomContainer>
 
         {activeBlock === 'api' && <APIAccess period={period} />}
         {activeBlock === 'data' && <DataDownload />}
@@ -62,15 +62,39 @@ export default Pricing
 
 const Title = styled(H1)`
   margin: 100px 0 40px;
+
+  @media (max-width: 1140px) {
+    margin: 48px 0 16px;
+  }
 `
 
 const ButtonsContainer = styled(Flex)`
+  gap: 20px;
+  button {
+    width: 438px;
+  }
+  @media (max-width: 1140px) {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+`
+
+const BottomContainer = styled(Flex)`
   margin: 60px 0;
   width: 100%;
   align-items: flex-end;
   justify-content: flex-start;
+  gap: 20px;
 
-  & > :nth-child(2) {
-    margin-right: auto;
+  & > :last-child {
+    margin-left: auto;
+  }
+
+  @media (max-width: 1140px) {
+    margin: 32px 0 50px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 `

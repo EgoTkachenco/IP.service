@@ -45,6 +45,10 @@ const Table = styled.div`
   flex-direction: column;
   gap: 10px;
   margin-bottom: 168px;
+
+  @media (max-width: 1140px) {
+    display: none;
+  }
 `
 const TableRow = styled.div`
   display: grid;

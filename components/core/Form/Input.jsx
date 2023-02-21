@@ -72,6 +72,7 @@ export const InputField = styled.input`
   transition: all 0.3s;
   background: none;
   border: none;
+  width: 100%;
 
   &:focus {
     outline: none;
