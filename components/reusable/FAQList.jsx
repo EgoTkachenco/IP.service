@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Icon, H6 } from '@/core'
 
-const FAQList = ({ questions, question = null }) => {
-  const [activeQuestion, setActiveQuestion] = useState(question)
+const FAQList = ({ questions, active = null, onChange }) => {
+  const [activeQuestion, setActiveQuestion] = useState(active)
   const handleClick = (i) => {
-    setActiveQuestion(activeQuestion === i ? null : i)
+    const newActiveQuestion = activeQuestion === i ? null : i
+    setActiveQuestion(newActiveQuestion)
+    onChange(newActiveQuestion)
   }
+  useEffect(() => {
+    if (active !== activeQuestion) setActiveQuestion(active)
+  }, [active])
   return (
     <List>
       {questions.map((item, i) => (
@@ -50,6 +55,7 @@ const List = styled.div`
 
   @media (max-width: 1140px) {
     width: 100%;
+    gap: 20px;
   }
 `
 
@@ -62,6 +68,17 @@ const FAQItemWrapper = styled.div`
   max-width: 1140px;
   border-left: 8px solid
     ${({ theme, isOpen }) => (isOpen ? theme.colors.primary : '#02202D')};
+
+  @media (max-width: 1140px) {
+    padding: 0 16px;
+    justify-content: center;
+    min-height: 38px;
+    gap: 0;
+    border-left-width: 4px;
+    h6 {
+      flex-grow: 1;
+    }
+  }
 `
 
 const FAQItemAnswer = styled(Text)`
