@@ -5,17 +5,15 @@ import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
 
 const Modal = ({ children, onClose, isIllustration = false }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
-  const showIllustration = isIllustration && !isMobile
-
   return (
     <ModalWrapper>
-      <PageChangeAnimation>
+      <PageChangeAnimation width={isMobile ? null : 'auto'}>
         <ModalContent>
           <Icon
             icon="close"
             size="30px"
             onClick={onClose}
-            color={showIllustration ? 'white' : 'text'}
+            color={isIllustration ? 'white' : 'text'}
             style={{
               position: 'absolute',
               top: '10px',
@@ -25,9 +23,15 @@ const Modal = ({ children, onClose, isIllustration = false }) => {
           />
           <ModalContentInner>{children}</ModalContentInner>
 
-          {showIllustration && (
+          {isIllustration && (
             <ModalIllustration>
-              <img src="/modal-illustration.png" />
+              <img
+                src={
+                  isMobile
+                    ? '/modal-illustration-mobile.png'
+                    : '/modal-illustration.png'
+                }
+              />
             </ModalIllustration>
           )}
         </ModalContent>
@@ -59,10 +63,23 @@ const ModalContent = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1140px) {
+    flex-direction: column-reverse;
+    border-radius: 0;
+    width: 90%;
+    max-width: 375px;
+    margin: auto;
+  }
 `
 const ModalContentInner = styled.div`
   padding: 50px;
   width: 400px;
+
+  @media (max-width: 1140px) {
+    padding: 24px;
+    width: 100%;
+  }
 `
 
 const ModalIllustration = styled.div`
@@ -77,5 +94,11 @@ const ModalIllustration = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: 1140px) {
+    width: 100%;
+    height: 140px;
+    min-height: unset;
   }
 `

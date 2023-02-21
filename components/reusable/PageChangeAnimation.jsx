@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 
-const PageChangeAnimation = ({ children }) => (
+const PageChangeAnimation = ({ children, width }) => (
   <motion.div
-    style={{ width: '100%' }}
+    style={{ width: width || '100%' }}
     initial={{ y: -10, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     exit={{ y: -10, opacity: 0 }}
