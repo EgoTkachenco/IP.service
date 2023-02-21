@@ -88,7 +88,7 @@ const BottomContainer = styled(Flex)`
   justify-content: flex-start;
   gap: 20px;
 
-  & > :last-child {
+  & > :nth-child(2) {
     margin-left: auto;
   }
 
