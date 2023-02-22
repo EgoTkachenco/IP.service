@@ -1,39 +1,46 @@
 import styled from 'styled-components'
 import { Flex, H6, Button, Icon, Text } from '@/core'
+import CopyButton from '../CopyButton'
 
-const JSONPreview = ({ title, data = [], bottomSlot = '' }) => {
-  const renderDataField = (field, i) => {
-    if (field.type === 'number')
-      return <NumberJSON key={i} name={field.name} value={field.value} />
+const JSONPreview = ({ title, data = {}, bottomSlot = '' }) => {
+  const renderDataField = (field, value, key) => {
+    if (typeof value === 'number')
+      return <NumberJSON key={key} name={field} value={value} />
 
-    if (field.type === 'array')
-      return (
-        <Flex direction="column" gap="8px">
-          <ArrayJSON key={i} name={field.name} value={field.value} />
-          <OffsetContent direction="column" gap="8px">
-            <Text font="monospace" weight="400">
-              Array
-            </Text>
-            {field.children.map((item, j) => (
-              <ObjectJSON key={j} value={item} />
-            ))}
-          </OffsetContent>
-        </Flex>
-      )
+    // if (typeof value === 'array')
+    //   return (
+    //     <Flex direction="column" gap="8px">
+    //       <ArrayJSON key={i} name={field} value={value} />
+    //       <OffsetContent direction="column" gap="8px">
+    //         <Text font="monospace" weight="400">
+    //           Array
+    //         </Text>
+    //         {field.children.map((item, j) => (
+    //           <ObjectJSON key={j} value={item} />
+    //         ))}
+    //       </OffsetContent>
+    //     </Flex>
+    //   )
 
-    return <ObjectJSON key={i} name={field.name} value={field.value} />
+    return <ObjectJSON key={key} name={field} value={value} />
   }
   return (
     <Flex direction="column" width="100%">
       <TitleContainer justify="space-between" align="center" width="100%">
         <H6>{title}</H6>
-        <Button outline color="dark" size="small-text" width="auto">
+        <CopyButton
+          outline
+          color="dark"
+          size="small-text"
+          width="auto"
+          data={data}
+        >
           Copy JSON
-        </Button>
+        </CopyButton>
       </TitleContainer>
 
       <Flex direction="column" gap="8px">
-        {data.map(renderDataField)}
+        {Object.keys(data).map((key, i) => renderDataField(key, data[key], i))}
       </Flex>
 
       {bottomSlot}

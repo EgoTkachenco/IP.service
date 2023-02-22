@@ -2,15 +2,22 @@ import styled from 'styled-components'
 import { Flex } from '@/core'
 import SearchResult from '@/components/reusable/search/SearchResult'
 import SearchTop from '@/components/reusable/search/SearchTop'
+import { observer } from 'mobx-react-lite'
+import SearchStore from '@/store/SearchStore'
+import { useEffect } from 'react'
 
-const Search = () => {
+const Search = observer(() => {
+  const { ip, result, getIpInfo } = SearchStore
+  useEffect(() => {
+    if (!result) getIpInfo()
+  }, [])
   return (
     <Wrapper>
-      <SearchTop />
-      <SearchResult />
+      <SearchTop ip={ip} result={result} />
+      <SearchResult result={result} />
     </Wrapper>
   )
-}
+})
 
 export default Search
 

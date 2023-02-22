@@ -51,7 +51,11 @@ const LightWrapper = styled(Wrapper)`
 
   background: #f9fafc;
   border: 1px solid
-    ${({ focused, theme }) => (focused ? theme.colors.primary : '#f9fafc')};
+    ${({ error, focused, theme }) => {
+      if (focused) return theme.colors.primary
+      if (error) return theme.colors.danger
+      return '#f9fafc'
+    }};
   input,
   textarea {
     font-weight: 700;
@@ -87,6 +91,7 @@ const TextField = ({
   rightSlot,
   children,
   focused = false,
+  error = false,
   onClick = () => {},
   textarea = false,
 }) => {
@@ -106,6 +111,7 @@ const TextField = ({
     <Wrapper
       as={textFieldVariant}
       focused={focused}
+      error={error}
       onClick={onClick}
       isTextarea={textarea}
     >

@@ -4,8 +4,47 @@ import Link from 'next/link'
 import { Flex, H6, Input, Icon, Chip } from '@/core'
 import MobileMenu from './MobileMenu'
 import Menu from './Menu'
+import SearchStore from '@/store/SearchStore'
+import { observer } from 'mobx-react-lite'
+import { useForm } from '@mantine/form'
+import { useRouter } from 'next/router'
 
-const Header = ({ isMobile }) => {
+const Header = observer(({ isMobile }) => {
+  const router = useRouter()
+  const form = useForm({
+    initialValues: {
+      search: '',
+    },
+
+    validate: {
+      search: (value) => {
+        if (!value) return 'Required'
+        if (
+          !/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi.test(
+            value
+          )
+        )
+          return 'Invalid IP'
+        return null
+      },
+    },
+  })
+  const onSubmit = form.onSubmit((values) => {
+    SearchStore.getIpInfo(values.search)
+      .then(handleRedirect)
+      .catch((error) => {
+        if (error.errors) form.setErrors(error.errors)
+        else form.setErrors('search', error.message)
+      })
+  })
+  const getInfo = (ip) => SearchStore.getIpInfo(ip).then(handleRedirect)
+
+  const handleRedirect = () => {
+    if (router.pathname.search('search') === -1) {
+      router.push('/app/search')
+    }
+  }
+
   return (
     <Wrapper>
       <Link href="/app">
@@ -17,32 +56,41 @@ const Header = ({ isMobile }) => {
 
       {isMobile ? (
         <MobileMenu>
-          <IPsList />
+          <IPsList onClick={(ip) => SearchStore.getIpInfo(ip)} />
           <Menu />
         </MobileMenu>
       ) : (
         <>
-          <SearchWrapper>
+          <SearchWrapper onSubmit={onSubmit}>
             <Input
               variant="light"
               placeholder="Search..."
-              rightSlot={<Icon icon="search" size="18px" color="text" />}
+              noErrorMessage={true}
+              {...form.getInputProps('search')}
+              rightSlot={
+                <Icon
+                  icon="search"
+                  size="18px"
+                  color="text"
+                  onClick={onSubmit}
+                />
+              }
             />
           </SearchWrapper>
-          <IPsList />
+          <IPsList onClick={(ip) => getInfo(ip)} />
         </>
       )}
     </Wrapper>
   )
-}
+})
 
 export default Header
 
-const IPsList = () => (
+const IPsList = ({ onClick }) => (
   <ChipsContainer align="center" gap="16px">
-    <Chip>Your IP</Chip>
-    <Chip>8.8.8.8</Chip>
-    <Chip>1.1.1.1</Chip>
+    <Chip onClick={() => onClick('')}>Your IP</Chip>
+    <Chip onClick={() => onClick('8.8.8.8')}>8.8.8.8</Chip>
+    <Chip onClick={() => onClick('1.1.1.1')}>1.1.1.1</Chip>
   </ChipsContainer>
 )
 
@@ -72,7 +120,7 @@ const LogoContainer = styled(Flex)`
   }
 `
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.form`
   padding: 0 50px;
   width: 500px;
 `

@@ -18,6 +18,7 @@ export default function Input({
   readOnly = false,
   variant,
   width = '100%',
+  noErrorMessage = false,
 }) {
   const [state, setState] = useState('')
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function Input({
         focused={focused}
         leftSlot={leftSlot}
         rightSlot={rightSlot}
+        error={!!error}
       >
         <InputField
           id={id}
@@ -54,8 +56,8 @@ export default function Input({
           onBlur={onBlur}
         />
       </TextField>
-      <InputError color="danger" show={!!error}>
-        {error || ' '}
+      <InputError color="danger" show={!noErrorMessage && !!error}>
+        {!noErrorMessage && (error || ' ')}
       </InputError>
     </Flex>
   )

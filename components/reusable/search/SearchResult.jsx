@@ -3,28 +3,33 @@ import { Card, Chip, Flex } from '@/core'
 import JSONPreview from './JSONPreview'
 import PlanCard from './PlanCard'
 
-const Result = () => {
+const Result = ({ result }) => {
+  if (!result) return ''
+
   return (
     <WrapperCard color="white">
       <ChipContainer gap="10px">
         <Chip type="success">Basic</Chip>
       </ChipContainer>
-      <JSONPreview title="Geolocation" data={Geolocation_basic} />
+      <JSONPreview title="Abuse" data={result.abuse} />
+      <Divider />
+      <JSONPreview title="Company" data={result.company} />
       <Divider />
       <JSONPreview
         title="ASN"
-        data={ASN_basic}
+        data={result.asn}
         bottomSlot={
           <PlanCard
             name="Basic"
             buttonColor="success"
             buttonText="Buy for $99.00/mo"
             onClick={() => {}}
+            marginBottom={false}
           />
         }
       />
 
-      <ChipContainer gap="10px">
+      {/* <ChipContainer gap="10px">
         <Chip type="success">Basic</Chip>
         <Chip type="secondary">Standart</Chip>
       </ChipContainer>
@@ -60,7 +65,7 @@ const Result = () => {
             marginBottom={false}
           />
         }
-      />
+      /> */}
     </WrapperCard>
   )
 }

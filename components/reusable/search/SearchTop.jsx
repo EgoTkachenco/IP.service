@@ -1,17 +1,22 @@
 import styled from 'styled-components'
-import { Flex, Text, Button } from '@/core'
+import { Flex, Text } from '@/core'
+import CopyButton from '@/components/reusable/CopyButton'
 
-const SearchTop = () => {
+const SearchTop = ({ ip, result }) => {
+  if (!ip) return ''
+
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}?ip=${ip}`
+
   return (
     <Wrapper>
-      <Text weight="600">Showing results for 8.8.8.8</Text>
+      <Text weight="600">Showing results for {ip}</Text>
       <SearchTopButtons gap="16px">
-        <Button outline color="dark" size="small-text">
+        <CopyButton outline color="dark" size="small-text" data={apiUrl}>
           Copy API link
-        </Button>
-        <Button outline color="dark" size="small-text">
+        </CopyButton>
+        <CopyButton outline color="dark" size="small-text" data={result}>
           Copy complete JSON
-        </Button>
+        </CopyButton>
       </SearchTopButtons>
     </Wrapper>
   )
