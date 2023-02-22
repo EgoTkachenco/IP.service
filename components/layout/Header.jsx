@@ -8,6 +8,7 @@ import SearchStore from '@/store/SearchStore'
 import { observer } from 'mobx-react-lite'
 import { useForm } from '@mantine/form'
 import { useRouter } from 'next/router'
+import { useRequest } from '@/hooks'
 
 const Header = observer(({ isMobile }) => {
   const router = useRouter()
@@ -30,19 +31,16 @@ const Header = observer(({ isMobile }) => {
     },
   })
   const onSubmit = form.onSubmit((values) => {
-    SearchStore.getIpInfo(values.search)
-      .then(handleRedirect)
-      .catch((error) => {
-        if (error.errors) form.setErrors(error.errors)
-        else form.setErrors('search', error.message)
-      })
+    getInfo(values).catch((error) => {
+      if (error.errors) form.setErrors(error.errors)
+      else form.setErrors('search', error.message)
+    })
   })
   const getInfo = (ip) => SearchStore.getIpInfo(ip).then(handleRedirect)
 
   const handleRedirect = () => {
-    if (router.pathname.search('search') === -1) {
-      router.push('/app/search')
-    }
+    // Redirect to search page to see result
+    if (router.pathname.search('search') === -1) router.push('/app/search')
   }
 
   return (

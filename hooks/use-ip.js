@@ -5,11 +5,11 @@ import { getIp } from '@/utils/api'
 export const useIP = (initialIp) => {
   const [ip, setIp] = useState(initialIp)
   const [data, setData] = useState(null)
-  const { apiCall, isFetch } = useRequest(getIp)
+  const { action, isFetch } = useRequest(getIp)
   useEffect(() => {
     if (ip !== null) {
       setData(null)
-      apiCall(ip)
+      action(ip)
         // for test
         .catch((error) => ({
           ip: '176.100.24.58',

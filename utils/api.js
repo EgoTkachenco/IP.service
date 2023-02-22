@@ -26,3 +26,9 @@ export const logout = () => axios.get('/api/v1/logout')
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))
 
 export const getPlansList = () => axios.get('/api/v1/public/plans/list')
+
+export const getToken = () =>
+  axios.get('/api/v1/account/token', securedFetchOptions())
+
+export const updateWhitelist = (data) =>
+  axios.post('/api/v1/account/token/white-lists', data, securedFetchOptions())

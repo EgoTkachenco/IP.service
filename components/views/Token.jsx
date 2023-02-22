@@ -1,30 +1,45 @@
-import { H1, H4, Flex, Card, Icon, Caption, Spacer } from '@/core'
+import { useEffect } from 'react'
+import { H1, H4, Flex, Card, Icon, Caption } from '@/core'
 import styled from 'styled-components'
 import Whitelists from '@/components/reusable/Whitelists'
+import { observer } from 'mobx-react-lite'
+import TokenStore from '@/store/TokenStore'
+import TokenPreview from '../reusable/TokenPreview'
 
-const Token = () => {
+const Token = observer(() => {
+  const {
+    token,
+    white_domain_list,
+    white_ip_list,
+    isFetch,
+    loadToken,
+    updateWhitelist,
+  } = TokenStore
+
+  useEffect(() => {
+    if (!token) loadToken()
+  }, [])
+
+  if (!token) return ''
+
   return (
     <>
       <Flex direction="column" gap="10px">
         <Title color="dark">Access Token</Title>
-        <Card
-          color="white"
-          gap="21px"
-          direction="row"
-          px="24px"
-          py="16px"
-          align="center"
-        >
-          <H1>dbaf59e6154d0d</H1>
-          <Icon icon="copy" size="40px" color="primary" onClick={() => {}} />
-        </Card>
+        <TokenPreview token={token} />
         <Caption>is your access token</Caption>
       </Flex>
       <SecondTitle color="dark">Token Security</SecondTitle>
-      <Whitelists />
+      <Whitelists
+        white_domain_list={white_domain_list}
+        white_ip_list={white_ip_list}
+        onChange={(white_domain_list, white_ip_list) =>
+          updateWhitelist(white_domain_list, white_ip_list)
+        }
+      />
     </>
   )
-}
+})
 
 export default Token
 

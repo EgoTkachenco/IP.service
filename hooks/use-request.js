@@ -1,13 +1,13 @@
 import { useState, useCallback } from 'react'
 
-export function useRequest(apiRequest = () => {}) {
+export function useRequest(asyncAction = () => {}) {
   const [isFetch, setIsFetch] = useState(false)
-  const apiCall = useCallback(
-    (data) => {
+  const action = useCallback(
+    function () {
       setIsFetch(true)
-      return apiRequest(data).finally(() => setIsFetch(false))
+      return asyncAction(...arguments).finally(() => setIsFetch(false))
     },
-    [apiRequest]
+    [asyncAction]
   )
-  return { apiCall, isFetch }
+  return { isFetch, action }
 }
