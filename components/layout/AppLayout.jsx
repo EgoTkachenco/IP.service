@@ -4,22 +4,25 @@ import styled from 'styled-components'
 import Header from './Header'
 import Menu from './Menu'
 import { observer } from 'mobx-react-lite'
-import store from '@/store/AuthStore'
+import AuthStore from '@/store/AuthStore'
+import TokenStore from '@/store/TokenStore'
+import SearchStore from '@/store/SearchStore'
 import { gradient } from '@/styles/animations'
 import { useRouter } from 'next/router'
 
 const Layout = observer(({ children }) => {
-  const [isLogged, setIsLogged] = useState(!!store.user)
+  const { user, relog } = AuthStore
+  const [isLogged, setIsLogged] = useState(!!user)
   const router = useRouter()
   useEffect(() => {
-    if (!store.user)
-      store
-        .relog()
+    if (!user)
+      relog()
         .then(() => setIsLogged(true))
         .catch(() => router.push('/'))
     else if (!isLogged) setIsLogged(true)
   }, [])
   const isMobile = useMediaQuery('(max-width: 1140px)')
+  const isFetch = AuthStore.isFetch || TokenStore.isFetch || SearchStore.isFetch
 
   return (
     <Wrapper blur={!isLogged}>
@@ -28,7 +31,7 @@ const Layout = observer(({ children }) => {
           <Header isMobile={isMobile} />
           <Inner>
             {!isMobile && <Menu />}
-            <Content>{children}</Content>
+            <Content isFetch={isFetch}>{children}</Content>
           </Inner>
         </>
       )}
@@ -48,8 +51,6 @@ const Wrapper = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    background: ${({ blur }) =>
-      blur ? 'rgba(7, 22, 37, 0.05)' : 'transparent'};
     backdrop-filter: blur(10px);
     height: ${({ blur }) => (blur ? '100%' : 0)};
     opacity: ${({ blur }) => (blur ? 1 : 0)};
@@ -70,6 +71,7 @@ const Inner = styled.div`
 `
 
 const Content = styled.div`
+  position: relative;
   flex-grow: 1;
   max-height: calc(100vh - 90px);
   overflow: auto;
@@ -79,5 +81,20 @@ const Content = styled.div`
   @media (max-width: 1140px) {
     padding: 48px 24px;
     max-height: calc(100vh - 56px);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ${({ isFetch }) => (isFetch ? '6px' : 0)};
+    transition: all 0.3s ease-in;
+    background: ${({ theme }) =>
+      `linear-gradient(-45deg, ${theme.colors.primary}, ${theme.colors.success})`};
+    background-size: 200% 200%;
+    animation: ${gradient} ${({ isFetch }) => (isFetch ? '5s' : '0')} ease
+      infinite;
   }
 `
