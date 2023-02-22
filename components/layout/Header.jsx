@@ -26,12 +26,17 @@ const Header = observer(({ isMobile }) => {
     },
   })
   const onSubmit = form.onSubmit((values) => {
-    getInfo(values.search).catch((error) => {
-      if (error.errors) form.setErrors(error.errors)
-      else form.setErrors('search', error.message)
-    })
+    SearchStore.getIpInfo(values.search)
+      .then(handleRedirect)
+      .catch((error) => {
+        if (error.errors) form.setErrors(error.errors)
+        else form.setErrors('search', error.message)
+      })
   })
-  const getInfo = (ip) => SearchStore.getIpInfo(ip).then(handleRedirect)
+  const getInfo = (ip) =>
+    SearchStore.getIpInfo(ip)
+      .then(handleRedirect)
+      .then(() => form.setFieldValue('search', ''))
 
   const handleRedirect = () => {
     // Redirect to search page to see result
@@ -49,7 +54,7 @@ const Header = observer(({ isMobile }) => {
 
       {isMobile ? (
         <MobileMenu>
-          <IPsList onClick={(ip) => SearchStore.getIpInfo(ip)} />
+          <IPsList onClick={(ip) => getInfo(ip)} />
           <Menu />
         </MobileMenu>
       ) : (
