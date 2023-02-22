@@ -21,7 +21,7 @@ const UpgradePlanCard = ({
           <PlanCardPrice color="dark">${price.toFixed(0)}</PlanCardPrice>
           <Caption>/{priceType}</Caption>
         </Flex>
-        <Caption>{description}</Caption>
+        <PlanDescription>{description}</PlanDescription>
       </Flex>
       <PriceCardLabel>
         <Caption color="white" weight="700">
@@ -101,4 +101,12 @@ const PriceCardDelimiter = styled.div`
   height: 1px;
   background: #f1f4f9;
   width: 100%;
+`
+
+const PlanDescription = styled(Caption)`
+  height: 45px;
+
+  @media (max-width: 1140px) {
+    height: auto;
+  }
 `

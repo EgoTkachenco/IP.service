@@ -46,7 +46,7 @@ const PlanCard = ({
         <PriceCardDelimiter />
         <Button>Subscribe</Button>
       </PlanCardWrapper>
-      <PlanCaption>{description}</PlanCaption>
+      <PlanCaption>*{description}</PlanCaption>
     </Flex>
   )
 }
