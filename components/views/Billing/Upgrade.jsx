@@ -3,10 +3,12 @@ import { Flex, H4 } from '@/core'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
 import PlanCard from '@/components/reusable/UpgradePlanCard'
+import PlansStore from '@/store/PlansStore'
+import { observer } from 'mobx-react-lite'
 
-const Upgrade = () => {
+const Upgrade = observer(() => {
+  const { plans } = PlansStore
   const [period, setPeriod] = useState('monthly')
-
   return (
     <Flex direction="column" gap="30px" width="100%">
       <TitleContainer>
@@ -20,42 +22,22 @@ const Upgrade = () => {
       </TitleContainer>
 
       <CardsContainer flex="1 1">
-        <PlanCard
-          name="Basic"
-          priceType={period}
-          price={99}
-          description={
-            'For teams developers and hobbbyists\n that just need basic geolocation data'
-          }
-          labelTitle="150k lookups per month"
-          labelDescription="$20 per additional 10k lookups"
-          features={features}
-        />
-        <PlanCard
-          name="Standart"
-          priceType={period}
-          price={249}
-          description={
-            'Ideal for growning startup,\n business and/or professionals'
-          }
-          labelTitle="250k lookups per month"
-          labelDescription="$30 per additional 25k lookups"
-          features={features}
-          isCurrent={true}
-        />
-        <PlanCard
-          name="Business"
-          priceType={period}
-          price={499}
-          description={'For businesses who needs \n extensive API data'}
-          labelTitle="500k lookups per month"
-          labelDescription="$60 per additional 50k lookups"
-          features={features}
-        />
+        {plans.map((plan) => (
+          <PlanCard
+            name={plan.name}
+            key={plan.name}
+            priceType={period}
+            price={period === 'yearly' ? plan.price * 12 : plan.price}
+            description={plan.description}
+            labelTitle="150k lookups per month"
+            labelDescription="$20 per additional 10k lookups"
+            options={plan.options}
+          />
+        ))}
       </CardsContainer>
     </Flex>
   )
-}
+})
 
 export default Upgrade
 
@@ -82,20 +64,3 @@ const CardsContainer = styled(Flex)`
     flex-direction: column;
   }
 `
-
-const features = [
-  { name: 'Priority support', isActive: true },
-  { name: 'Geolocation', isActive: true },
-  { name: 'ASN', isActive: true },
-  { name: 'Privacy Detection', isActive: true },
-  { name: 'Abuse', isActive: false },
-  { name: 'Carrier', isActive: false },
-  { name: 'Company', isActive: false },
-  { name: 'IP Whois', isActive: false },
-  { name: 'IP Rangers', isActive: false },
-  { name: 'IP Actiity', isActive: false },
-  { name: 'Support SLA', isActive: false },
-  { name: 'Invoiced  Payments', isActive: false },
-  { name: 'Live Onboarding', isActive: false },
-  { name: 'Account Manager', isActive: false },
-]

@@ -9,7 +9,7 @@ const PlanCard = ({
   types,
   labelTitle,
   labelDescription,
-  features,
+  options,
 }) => {
   return (
     <Flex direction="column" gap="10px" width="100%">
@@ -34,11 +34,11 @@ const PlanCard = ({
         </TypesContainer>
 
         <FeaturesContainer direction="column" gap="25px">
-          {features.map((feature, i) => (
+          {options.map((option, i) => (
             <Flex gap="8px" align="center" key={i}>
               <Icon icon="checkmark" size="16px" color="dark" />
               <Caption weight="400" color="text">
-                {feature}
+                {option.name}
               </Caption>
             </Flex>
           ))}
@@ -56,8 +56,8 @@ export default PlanCard
 const PlanCardWrapper = styled(Card)`
   position: relative;
   padding: 20px;
-  height: 592px;
   width: 100%;
+  flex-grow: 1;
 `
 
 const FeaturesContainer = styled(Flex)`
@@ -129,4 +129,5 @@ const PriceCardDelimiter = styled.div`
 
 const PlanCaption = styled(Caption)`
   font-size: 12px;
+  height: 24px;
 `

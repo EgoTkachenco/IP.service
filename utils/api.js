@@ -16,4 +16,8 @@ export const register = ({
     accept,
   })
 
+export const logout = () => axios.get('/api/v1/logout')
+
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))
+
+export const getPlansList = () => axios.get('/api/v1/public/plans/list')

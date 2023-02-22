@@ -45,7 +45,7 @@ const SignUpModal = observer(({ onLogin, onClose }) => {
   const onSubmit = form.onSubmit((values) => {
     signUp(values)
       .then(() => {
-        // router.push('/app')
+        router.push('/app')
         onClose()
       })
       .catch((error) => {

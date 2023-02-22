@@ -8,7 +8,7 @@ const UpgradePlanCard = ({
   description,
   labelTitle,
   labelDescription,
-  features,
+  options,
   isCurrent,
 }) => {
   return (
@@ -33,20 +33,20 @@ const UpgradePlanCard = ({
       </PriceCardLabel>
 
       <Flex direction="column" gap="25px">
-        {features.map((feature, i) => (
+        {options.map((option, i) => (
           <Flex
             gap="8px"
             align="center"
             key={i}
-            style={{ opacity: feature.isActive ? 1 : 0.5 }}
+            style={{ opacity: option.included ? 1 : 0.5 }}
           >
             <Icon
-              icon={feature.isActive ? 'checkmark' : 'closemark'}
+              icon={option.included ? 'checkmark' : 'closemark'}
               size="16px"
-              color={feature.isActive ? 'primary' : 'grey'}
+              color={option.included ? 'primary' : 'grey'}
             />
-            <Caption weight="400" color={feature.isActive ? 'text' : 'grey'}>
-              {feature.name}
+            <Caption weight="400" color={option.included ? 'text' : 'grey'}>
+              {option.name}
             </Caption>
           </Flex>
         ))}

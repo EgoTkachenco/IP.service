@@ -1,59 +1,34 @@
 import styled from 'styled-components'
-import { Flex, H3, Caption, Card, Icon, Button } from '@/core'
+import { Flex } from '@/core'
 import SubscriptionsTable from '@/components/reusable/SubscriptionsTable'
 import PlanCard from '@/components/reusable/PricingPlanCard'
+import { observer } from 'mobx-react-lite'
+import PlansStore from '@/store/PlansStore'
 
-const APIAccess = ({ period }) => {
+const APIAccess = observer(({ period }) => {
+  const { plans } = PlansStore
   return (
     <Container direction="column" gap="168px" width="100%">
       <CardsContainer flex="1 1">
-        <PlanCard
-          name="Basic"
-          priceType={period}
-          price={99}
-          description="*For teams and developers"
-          labelTitle="150k lookups per month"
-          labelDescription="$20 per additional 10k lookups"
-          features={['Basic support', 'Geolocation', 'ASN']}
-          types={2}
-        />
-        <PlanCard
-          name="Standart"
-          priceType={period}
-          price={249}
-          description="*For growing startups and businesses"
-          labelTitle="250k lookups per month"
-          labelDescription="$30 per additional 25k lookups"
-          features={[
-            'Geolocation',
-            'ASN',
-            'Privacy Detection',
-            'Priority Support',
-          ]}
-          types={3}
-        />
-        <PlanCard
-          name="Business"
-          priceType={period}
-          price={499}
-          description="*For businesses who needs extensive API data"
-          labelTitle="500k lookups per month"
-          labelDescription="$60 per additional 50k lookups"
-          features={[
-            'Abuse',
-            'Carrier',
-            'Company',
-            'Hosted Domains',
-            'Priority Support',
-          ]}
-          types={7}
-        />
+        {plans.map((plan, i) => (
+          <PlanCard
+            name={plan.name}
+            key={plan.name}
+            priceType={period}
+            price={period === 'yearly' ? plan.price * 12 : plan.price}
+            description={plan.description}
+            labelTitle="150k lookups per month"
+            labelDescription="$20 per additional 10k lookups"
+            options={plan.options.filter((option) => option.included)}
+            types={(i + 1) * 2 + 1}
+          />
+        ))}
       </CardsContainer>
 
       <SubscriptionsTable />
     </Container>
   )
-}
+})
 
 export default APIAccess
 
@@ -70,7 +45,7 @@ const Container = styled(Flex)`
 
 const CardsContainer = styled(Flex)`
   gap: 24px;
-  align-items: strench;
+  align-items: stretch;
   width: 100%;
 
   @media (max-width: 1140px) {
