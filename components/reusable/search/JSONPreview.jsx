@@ -40,7 +40,13 @@ const JSONPreview = ({ title, data = {}, bottomSlot = '' }) => {
       </TitleContainer>
 
       <Flex direction="column" gap="8px">
-        {Object.keys(data).map((key, i) => renderDataField(key, data[key], i))}
+        {Object.keys(data).length > 0 ? (
+          Object.keys(data).map((key, i) => renderDataField(key, data[key], i))
+        ) : (
+          <Text weight="400" font="monospace" color="text" align="center">
+            No data available
+          </Text>
+        )}
       </Flex>
 
       {bottomSlot}

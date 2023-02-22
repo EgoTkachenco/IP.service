@@ -4,12 +4,14 @@ import styled from 'styled-components'
 
 const CopyButton = (props) => {
   const clipboard = useClipboard({ timeout: 1000 })
-
   return (
     <Button
       {...props}
       color={clipboard.copied ? 'success' : props.color}
-      onClick={() => clipboard.copy(JSON.stringify(props.data))}
+      onClick={() =>
+        Object.keys(props.data).length > 0 &&
+        clipboard.copy(JSON.stringify(props.data))
+      }
     >
       {props.children}
       {clipboard.copied && <CopiedLabel color="white">Copied</CopiedLabel>}
