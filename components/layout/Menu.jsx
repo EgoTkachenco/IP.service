@@ -3,9 +3,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Caption, Icon, Flex } from '@/core'
 import APP_LINKS from '@/constants/app-routes.json'
+import { observer } from 'mobx-react-lite'
+import AuthStore from '@/store/AuthStore'
 
-const Menu = () => {
+const Menu = observer(() => {
   const router = useRouter()
+  const { logout } = AuthStore
+  const handleLogout = () => logout().then(() => router.push('/'))
   return (
     <Wrapper>
       {APP_LINKS.map((link) => (
@@ -18,10 +22,10 @@ const Menu = () => {
         />
       ))}
       <Divider />
-      <MenuLink name="Log out" icon="enter" onClick={() => router.push('/')} />
+      <MenuLink name="Log out" icon="enter" onClick={handleLogout} />
     </Wrapper>
   )
-}
+})
 
 export default Menu
 

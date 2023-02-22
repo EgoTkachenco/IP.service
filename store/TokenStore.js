@@ -26,16 +26,14 @@ class TokenStore {
 
   updateWhitelist = async (data) => {
     this.isFetch = true
-    try {
-      debugger
-      const response = await updateWhitelist(data)
-      debugger
-      this.white_domain_list = response.white_domain_list
-      this.white_ip_list = response.white_ip_list
-    } catch (error) {
-      console.log(error.message)
-    }
-    this.isFetch = false
+    return updateWhitelist(data)
+      .then((response) => {
+        this.white_domain_list = response.white_domain_list
+        this.white_ip_list = response.white_ip_list
+      })
+      .finally(() => {
+        this.isFetch = false
+      })
   }
 }
 

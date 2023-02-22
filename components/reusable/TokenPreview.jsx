@@ -13,7 +13,7 @@ const TokenPreview = ({ token }) => {
         color="primary"
         onClick={() => clipboard.copy(token)}
       />
-      {clipboard.copied && <CopiedMessage>Copied</CopiedMessage>}
+      {clipboard.copied && <CopiedMessage color="dark">Copied</CopiedMessage>}
     </TokenCard>
   )
 }

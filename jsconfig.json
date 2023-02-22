@@ -7,6 +7,7 @@
       "@/core/*": ["components/core/*"],
       "@/components/*": ["components/*"],
       "@/styles/*": ["styles/*"],
+      "@/utils": ["utils/index.js"],
       "@/utils/*": ["utils/*"],
       "@/hooks": ["hooks/index.js"],
       "@/store": ["store/index.js"],

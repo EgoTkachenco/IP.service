@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 import { Flex, Card, H6, Caption, Textarea, Button } from '@/core'
 import { useForm } from '@mantine/form'
+import { validateIP } from '@/utils'
 
-const Whitelists = ({ white_domain_list, white_ip_list, onChange }) => {
-  console.log(white_domain_list, white_ip_list)
+const Whitelists = ({
+  white_domain_list,
+  white_ip_list,
+  onChange,
+  disabled,
+}) => {
   const form = useForm({
     initialValues: {
       white_domain_list: white_domain_list.join('\n'),
@@ -12,7 +17,14 @@ const Whitelists = ({ white_domain_list, white_ip_list, onChange }) => {
 
     validate: {
       white_domain_list: (value) => null,
-      white_ip_list: (value) => null,
+      white_ip_list: (value) => {
+        const isAllIPValid = value
+          .split('\n')
+          .filter((el) => !!el)
+          .reduce((acc, ip) => (!acc ? acc : validateIP(ip)), true)
+        if (!isAllIPValid) return 'Invalid ip'
+        return null
+      },
     },
   })
   const onSubmit = form.onSubmit((values) => {
@@ -32,7 +44,10 @@ const Whitelists = ({ white_domain_list, white_ip_list, onChange }) => {
         <Flex gap="45px" align="stretch" flex="1 1">
           <DomainsWhitelist {...form.getInputProps('white_domain_list')} />
           <Divider />
-          <IpsWhitelist {...form.getInputProps('white_ip_list')} />
+          <IpsWhitelist
+            {...form.getInputProps('white_ip_list')}
+            disabled={disabled}
+          />
         </Flex>
       </form>
     </Card>
@@ -70,7 +85,7 @@ const DomainsWhitelist = ({ value, onChange, error }) => {
   )
 }
 
-const IpsWhitelist = ({ value, onChange, error }) => {
+const IpsWhitelist = ({ value, onChange, error, disabled }) => {
   return (
     <Flex direction="column" gap="30px">
       <H6 color="white">Whitelist Requesting IPs</H6>
@@ -87,7 +102,9 @@ const IpsWhitelist = ({ value, onChange, error }) => {
         onChange={onChange}
         error={error}
       />
-      <Button type="submit">Save</Button>
+      <Button type="submit" disabled={disabled}>
+        Save
+      </Button>
     </Flex>
   )
 }

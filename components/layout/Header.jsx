@@ -8,7 +8,7 @@ import SearchStore from '@/store/SearchStore'
 import { observer } from 'mobx-react-lite'
 import { useForm } from '@mantine/form'
 import { useRouter } from 'next/router'
-import { useRequest } from '@/hooks'
+import { validateIP } from '@/utils'
 
 const Header = observer(({ isMobile }) => {
   const router = useRouter()
@@ -20,18 +20,13 @@ const Header = observer(({ isMobile }) => {
     validate: {
       search: (value) => {
         if (!value) return 'Required'
-        if (
-          !/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi.test(
-            value
-          )
-        )
-          return 'Invalid IP'
+        if (!validateIP(value)) return 'Invalid IP'
         return null
       },
     },
   })
   const onSubmit = form.onSubmit((values) => {
-    getInfo(values).catch((error) => {
+    getInfo(values.search).catch((error) => {
       if (error.errors) form.setErrors(error.errors)
       else form.setErrors('search', error.message)
     })

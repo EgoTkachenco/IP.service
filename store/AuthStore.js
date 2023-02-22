@@ -1,6 +1,12 @@
 const { makeAutoObservable } = require('mobx')
-import { login, register, forgetPassword, logout } from '@/utils/api'
-import { setToken, USER_STORE_NAME } from '@/utils/axios'
+import {
+  login,
+  register,
+  forgetPassword,
+  logout,
+  updateProfile,
+} from '@/utils/api'
+import { eraseToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 
 class AuthStore {
   isFetch = false
@@ -46,15 +52,35 @@ class AuthStore {
     return Promise.reject()
   }
 
-  forgetPassword = async (data) => {
+  forgetPassword = (data) => {
     this.isFetch = true
     return forgetPassword(data).finally(() => {
       this.isFetch = false
     })
   }
 
-  logout = async () => {
-    this.user = null
+  logout = () => {
+    return logout()
+      .then(() => {
+        this.user = null
+        localStorage.removeItem(USER_STORE_NAME)
+        eraseToken()
+      })
+      .catch(() => {
+        console.log('error')
+      })
+  }
+
+  updateProfile = (data) => {
+    this.isFetch = true
+    return updateProfile(data)
+      .then((user) => {
+        this.user = user
+        localStorage.setItem(USER_STORE_NAME, JSON.stringify(user))
+      })
+      .finally(() => {
+        this.isFetch = false
+      })
   }
 }
 

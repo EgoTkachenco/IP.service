@@ -36,6 +36,7 @@ const Token = observer(() => {
         onChange={(white_domain_list, white_ip_list) =>
           updateWhitelist(white_domain_list, white_ip_list)
         }
+        disabled={isFetch}
       />
     </>
   )

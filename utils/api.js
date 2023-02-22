@@ -21,7 +21,7 @@ export const forgetPassword = ({ identifier }) =>
     identifier,
   })
 
-export const logout = () => axios.get('/api/v1/logout')
+export const logout = () => axios.get('/api/v1/logout', securedFetchOptions())
 
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))
 
@@ -32,3 +32,6 @@ export const getToken = () =>
 
 export const updateWhitelist = (data) =>
   axios.post('/api/v1/account/token/white-lists', data, securedFetchOptions())
+
+export const updateProfile = (data) =>
+  axios.put('/api/v1/account/profile', data, securedFetchOptions())
