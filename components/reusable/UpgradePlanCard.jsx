@@ -6,8 +6,7 @@ const UpgradePlanCard = ({
   price,
   priceType,
   description,
-  labelTitle,
-  labelDescription,
+  additional_description,
   options,
   isCurrent,
 }) => {
@@ -18,17 +17,13 @@ const UpgradePlanCard = ({
       </PlanCardName>
       <Flex direction="column" gap="16px" width="100%" align="stretch">
         <Flex align="flex-end" pt="10px">
-          <PlanCardPrice color="dark">${price.toFixed(0)}</PlanCardPrice>
+          <PlanCardPrice color="dark">${price?.toFixed(0)}</PlanCardPrice>
           <Caption>/{priceType}</Caption>
         </Flex>
-        <PlanDescription>{description}</PlanDescription>
+        <PlanDescription dangerouslySetInnerHTML={{ __html: description }} />
       </Flex>
       <PriceCardLabel>
-        <Caption color="white" weight="700">
-          {labelTitle}
-        </Caption>
-        <Caption>{labelDescription}</Caption>
-
+        <p dangerouslySetInnerHTML={{ __html: additional_description }} />
         <PriceCardLabelIllustration src="/building.svg" />
       </PriceCardLabel>
 
@@ -86,9 +81,19 @@ const PriceCardLabel = styled.div`
   border-radius: 10px;
   width: 100%;
   padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.grey};
+  line-height: 160%;
+  letter-spacing: 0.01em;
+
+  b {
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.white};
+
+    @media (max-width: 1140px) {
+      font-size: 12px;
+    }
+  }
 `
 
 const PriceCardLabelIllustration = styled.img`

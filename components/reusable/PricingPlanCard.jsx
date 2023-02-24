@@ -7,8 +7,7 @@ const PlanCard = ({
   description,
   priceType,
   types,
-  labelTitle,
-  labelDescription,
+  additional_description,
   options,
 }) => {
   return (
@@ -21,12 +20,9 @@ const PlanCard = ({
           <PlanCardPrice color="dark">${price}</PlanCardPrice>
           <Caption>/{priceType}</Caption>
         </Flex>
-        <PriceCardLabel>
-          <Caption color="dark" weight="700">
-            {labelTitle}
-          </Caption>
-          <Caption color="grey">{labelDescription}</Caption>
-        </PriceCardLabel>
+        <PriceCardLabel
+          dangerouslySetInnerHTML={{ __html: additional_description }}
+        ></PriceCardLabel>
 
         <TypesContainer>
           <Caption weight="700">{types} data types</Caption>
@@ -46,7 +42,7 @@ const PlanCard = ({
         <PriceCardDelimiter />
         <Button>Subscribe</Button>
       </PlanCardWrapper>
-      <PlanCaption>*{description}</PlanCaption>
+      <PlanCaption dangerouslySetInnerHTML={{ __html: description }} />
     </Flex>
   )
 }
@@ -112,11 +108,13 @@ const PriceCardLabel = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
   margin: 20px 0 30px;
-
-  ${Caption} {
-    font-size: 12px;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.grey};
+  line-height: 160%;
+  letter-spacing: 0.01em;
+  b {
+    color: ${({ theme }) => theme.colors.dark};
   }
 `
 

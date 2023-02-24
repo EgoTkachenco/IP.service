@@ -32,10 +32,11 @@ const Upgrade = observer(() => {
               name={plan.name}
               key={plan.name}
               priceType={period}
-              price={period === 'yearly' ? plan.price * 12 : plan.price}
+              price={
+                period === 'yearly' ? plan.year_price * 12 : plan.month_price
+              }
               description={plan.description}
-              labelTitle="150k lookups per month"
-              labelDescription="$20 per additional 10k lookups"
+              additional_description={plan.additional_description}
               options={plan.options}
             />
           ))}
