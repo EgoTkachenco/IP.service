@@ -35,22 +35,16 @@ const Whitelists = ({
       white_ip_list: values.white_ip_list.split('\n').filter((el) => !!el),
     }).catch((error) => {
       if (error.errors) form.setErrors(error.errors)
-      // else form.setErrors('identifier', error.message)
     })
   })
   return (
-    <Card color="dark" width="100%">
-      <form onSubmit={onSubmit}>
-        <Flex gap="45px" align="stretch" flex="1 1">
-          <DomainsWhitelist {...form.getInputProps('white_domain_list')} />
-          <Divider />
-          <IpsWhitelist
-            {...form.getInputProps('white_ip_list')}
-            disabled={disabled}
-          />
-        </Flex>
-      </form>
-    </Card>
+    <CardContainer onSubmit={onSubmit}>
+      <DomainsWhitelist {...form.getInputProps('white_domain_list')} />
+      <IpsWhitelist
+        {...form.getInputProps('white_ip_list')}
+        disabled={disabled}
+      />
+    </CardContainer>
   )
 }
 
@@ -58,7 +52,7 @@ export default Whitelists
 
 const DomainsWhitelist = ({ value, onChange, error }) => {
   return (
-    <Flex direction="column" gap="30px">
+    <DomainCard color="dark">
       <H6 color="white">Whitelist Referring Domains</H6>
       <Info>
         If you're using IPInfo on your website, you can use this feature to only
@@ -81,13 +75,13 @@ const DomainsWhitelist = ({ value, onChange, error }) => {
         IPInfo uses Referer header to determine where the request is coming
         from.
       </Caption>
-    </Flex>
+    </DomainCard>
   )
 }
 
 const IpsWhitelist = ({ value, onChange, error, disabled }) => {
   return (
-    <Flex direction="column" gap="30px">
+    <IPCard color="dark">
       <H6 color="white">Whitelist Requesting IPs</H6>
       <Info>
         You can also whitelist requesting IPs. We will block the requests if the
@@ -105,16 +99,59 @@ const IpsWhitelist = ({ value, onChange, error, disabled }) => {
       <Button type="submit" disabled={disabled}>
         Save
       </Button>
-    </Flex>
+    </IPCard>
   )
 }
 
-const Divider = styled.div`
-  width: 1px;
-  max-width: 1px;
-  background: rgba(255, 255, 255, 0.05);
+const CardContainer = styled.form`
+  display: flex;
+  & > div {
+    flex: 1;
+  }
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+`
+
+const DomainCard = styled(Card)`
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  gap: 30px;
+
+  @media (max-width: 1140px) {
+    border-radius: 8px;
+    gap: 16px;
+  }
+`
+const IPCard = styled(Card)`
+  position: relative;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  gap: 30px;
+
+  @media (max-width: 1140px) {
+    border-radius: 8px;
+    gap: 16px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 1px;
+    height: calc(100% - 60px);
+    max-width: 1px;
+    background: rgba(255, 255, 255, 0.05);
+  }
 `
 
 const Info = styled(Caption)`
   height: 84px;
+
+  @media (max-width: 1140px) {
+    height: auto;
+  }
 `

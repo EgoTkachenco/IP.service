@@ -1,7 +1,8 @@
 import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
+import PlansStore from '@/store/PlansStore'
 
-export default function PricingPage() {
+export default function PricingPage({ plans }) {
   const renderMetadata = useMetadataRenderer()
 
   return (
@@ -10,7 +11,14 @@ export default function PricingPage() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Pricing />
+      <Pricing plans={plans} />
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const plans = await PlansStore.loadPlans()
+  return {
+    props: { plans },
+  }
 }

@@ -19,6 +19,7 @@ const Card = styled(Flex).attrs(({ p, direction, theme }) => ({
 
   @media (max-width: 1140px) {
     padding: 24px;
+    border-radius: 8px;
   }
 `
 

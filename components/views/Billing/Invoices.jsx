@@ -23,10 +23,8 @@ const Invoices = () => {
         </Column_1>
         <CardDetails />
       </Row_2>
-      <Row_3>
-        <OrderHistory />
-        <CancelSubscription />
-      </Row_3>
+      <OrderHistory />
+      <CancelSubscription />
     </Flex>
   )
 }
@@ -68,20 +66,4 @@ const Column_1 = styled(Flex)`
   flex-direction: column;
   align-items: stretch;
   gap: 30px;
-`
-
-const Row_3 = styled(Flex)`
-  align-items: center;
-  gap: 30px;
-  width: 100%;
-  & > div {
-    width: calc((100% - 30px) / 2);
-  }
-  @media (max-width: 1140px) {
-    flex-direction: column;
-
-    & > div {
-      width: 100%;
-    }
-  }
 `

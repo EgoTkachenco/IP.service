@@ -27,7 +27,6 @@ const Token = observer(() => {
       <Flex direction="column" gap="10px">
         <Title color="dark">Access Token</Title>
         <TokenPreview token={token} />
-        <Caption>is your access token</Caption>
       </Flex>
       <SecondTitle color="dark">Token Security</SecondTitle>
       <Whitelists

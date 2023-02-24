@@ -1,11 +1,11 @@
 import UserPlan from '@/components/reusable/UserPlan'
-import UserDataDownloads from '@/components/reusable/UserDataDownloads'
+// import UserDataDownloads from '@/components/reusable/UserDataDownloads'
 
 const Subscription = () => {
   return (
     <>
       <UserPlan />
-      <UserDataDownloads />
+      {/* <UserDataDownloads /> */}
     </>
   )
 }

@@ -5,9 +5,9 @@ const CancelSubscription = () => {
     <Flex direction="column" gap="15px">
       <H4 color="dark">Cancel subscription (Danger zone)</H4>
       <Text>
-        Please proceed with caution. Cancelling your subscription may break your
-        app. We recommend to make sure your app is not using our API anymore
-        before you proceed.
+        {
+          'Please proceed with caution. Cancelling your subscription may break your app. We recommend \n to make sure your app is not using our API anymore before you proceed.'
+        }
       </Text>
       <div />
       <Button width="260px">Reactivate Subscribtion</Button>

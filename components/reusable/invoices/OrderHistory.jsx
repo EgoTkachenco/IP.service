@@ -4,14 +4,14 @@ import { CardBottom } from '@/components/reusable/styled.jsx'
 
 const OrderHistory = () => {
   return (
-    <Card color="white">
+    <Card color="white" width="100%">
       <H6>ORDER HISTORY</H6>
       <Row>
         <Column>
           <Text color="dark" weight={700}>
             Amount
           </Text>
-          <Text color="dark" weight={400}>
+          <Text color="grey" weight={400}>
             $499.00
           </Text>
         </Column>
@@ -19,17 +19,15 @@ const OrderHistory = () => {
           <Text color="dark" weight={700}>
             Date
           </Text>
-          <Text color="dark" weight={400}>
+          <Text color="grey" weight={400}>
             Paid
           </Text>
         </Column>
-      </Row>
-      <Row>
         <Column>
           <Text color="dark" weight={700}>
             Status
           </Text>
-          <Text color="dark" weight={400}>
+          <Text color="grey" weight={400}>
             Paid
           </Text>
         </Column>
@@ -38,10 +36,10 @@ const OrderHistory = () => {
             Action
           </Text>
           <Flex gap="8px">
-            <Button variant="primary-transparent" width="90px">
+            <Button variant="primary-transparent" width="90px" size="small">
               View
             </Button>
-            <Button width="45px">
+            <Button width="45px" size="small">
               <Icon icon="export" size="19px" />
             </Button>
           </Flex>

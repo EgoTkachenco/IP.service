@@ -7,7 +7,7 @@ import DataDownload from './blocks/DataDownload'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
 
-const Pricing = () => {
+const Pricing = ({ plans }) => {
   const [activeBlock, setActiveBlock] = useState('api')
   const [period, setPeriod] = useState('monthly')
 
@@ -51,7 +51,7 @@ const Pricing = () => {
           )}
         </BottomContainer>
 
-        {activeBlock === 'api' && <APIAccess period={period} />}
+        {activeBlock === 'api' && <APIAccess period={period} plans={plans} />}
         {activeBlock === 'data' && <DataDownload />}
       </BlockInner>
     </Layout>

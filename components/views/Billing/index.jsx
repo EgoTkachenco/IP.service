@@ -12,7 +12,6 @@ const TABS = [
 
 const Billing = ({ children }) => {
   const router = useRouter()
-  console.log()
   return (
     <Flex direction="column" gap="50px" width="100%">
       <TabsList>

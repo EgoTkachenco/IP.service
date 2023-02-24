@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 import { Flex, H4 } from '@/core'
 import Switch from '@/components/reusable/Switch'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PlanCard from '@/components/reusable/UpgradePlanCard'
 import PlansStore from '@/store/PlansStore'
 import { observer } from 'mobx-react-lite'
 
 const Upgrade = observer(() => {
-  const { plans } = PlansStore
+  const { plans, loadPlans } = PlansStore
   const [period, setPeriod] = useState('monthly')
+  useEffect(() => {
+    if (!plans) loadPlans()
+  })
+
   return (
     <Flex direction="column" gap="30px" width="100%">
       <TitleContainer>
@@ -22,18 +26,19 @@ const Upgrade = observer(() => {
       </TitleContainer>
 
       <CardsContainer flex="1 1">
-        {plans.map((plan) => (
-          <PlanCard
-            name={plan.name}
-            key={plan.name}
-            priceType={period}
-            price={period === 'yearly' ? plan.price * 12 : plan.price}
-            description={plan.description}
-            labelTitle="150k lookups per month"
-            labelDescription="$20 per additional 10k lookups"
-            options={plan.options}
-          />
-        ))}
+        {plans &&
+          plans.map((plan) => (
+            <PlanCard
+              name={plan.name}
+              key={plan.name}
+              priceType={period}
+              price={period === 'yearly' ? plan.price * 12 : plan.price}
+              description={plan.description}
+              labelTitle="150k lookups per month"
+              labelDescription="$20 per additional 10k lookups"
+              options={plan.options}
+            />
+          ))}
       </CardsContainer>
     </Flex>
   )

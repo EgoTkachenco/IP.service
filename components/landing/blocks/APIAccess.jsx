@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { Flex } from '@/core'
 import SubscriptionsTable from '@/components/reusable/SubscriptionsTable'
 import PlanCard from '@/components/reusable/PricingPlanCard'
-import { observer } from 'mobx-react-lite'
-import PlansStore from '@/store/PlansStore'
+// import { observer } from 'mobx-react-lite'
+// import PlansStore from '@/store/PlansStore'
 
-const APIAccess = observer(({ period }) => {
-  const { plans } = PlansStore
+const APIAccess = ({ period, plans }) => {
+  // const { plans } = PlansStore
   return (
     <Container direction="column" gap="168px" width="100%">
       <CardsContainer flex="1 1">
@@ -28,7 +28,7 @@ const APIAccess = observer(({ period }) => {
       <SubscriptionsTable />
     </Container>
   )
-})
+}
 
 export default APIAccess
 
