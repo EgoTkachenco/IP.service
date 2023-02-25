@@ -88,7 +88,7 @@ const TitlesList = ({ activeBlock }) => {
 const TitlesListWrapper = styled.div`
   position: sticky;
   margin-top: 253px;
-  top: 250px;
+  top: 125px;
   left: 0;
   display: flex;
   flex-direction: column;

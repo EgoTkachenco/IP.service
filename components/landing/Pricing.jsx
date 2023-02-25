@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Layout from './layout/Layout'
-import { Flex, Button, Text, Icon, Card, Input, Chip, H1, H6 } from '@/core'
+import { Flex, Button, H1, H6 } from '@/core'
 import { BlockInner } from './blocks/Block'
 import APIAccess from './blocks/APIAccess'
 import DataDownload from './blocks/DataDownload'

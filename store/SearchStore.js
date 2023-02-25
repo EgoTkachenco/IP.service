@@ -1,5 +1,5 @@
 const { makeAutoObservable } = require('mobx')
-import { getIp } from '@/utils/api'
+import { searchIp, getIp } from '@/utils/api'
 
 class SearchStore {
   ip = ''

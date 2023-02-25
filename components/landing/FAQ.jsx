@@ -5,7 +5,7 @@ import { BlockInner } from './blocks/Block'
 import FAQList from '@/components/reusable/FAQList'
 import FAQ_QUESTIONS from '@/constants/faq.json'
 import { useState } from 'react'
-import { useMediaQuery, useQueue } from '@mantine/hooks'
+import { useMediaQuery } from '@mantine/hooks'
 
 const FAQ = () => {
   const [activeBlock, setActiveBlock] = useState(0)
@@ -17,6 +17,7 @@ const FAQ = () => {
     setActiveBlock(topic)
     setActiveQuestion(null)
   }
+
   return (
     <Layout>
       <SearchBlock>
@@ -32,7 +33,7 @@ const FAQ = () => {
         {isMobile ? (
           <Flex direction="column" gap="24px" width="100%">
             {FAQ_QUESTIONS.map((topic, i) => (
-              <Flex direction="column" gap="24px" width="100%">
+              <Flex direction="column" gap="24px" width="100%" key={i}>
                 <TopicItemMobile key={i} active={activeBlock === i}>
                   <Text
                     weight={700}

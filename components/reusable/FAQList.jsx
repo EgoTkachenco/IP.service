@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Icon, H6 } from '@/core'
 
-const FAQList = ({ questions, active = null, onChange }) => {
+const FAQList = ({ questions, active = null, onChange = () => {} }) => {
   const [activeQuestion, setActiveQuestion] = useState(active)
   const handleClick = (i) => {
     const newActiveQuestion = activeQuestion === i ? null : i
@@ -56,6 +56,7 @@ const List = styled.div`
   @media (max-width: 1140px) {
     width: 100%;
     gap: 20px;
+    background: none;
   }
 `
 

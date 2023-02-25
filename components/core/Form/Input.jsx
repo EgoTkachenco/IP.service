@@ -79,4 +79,11 @@ export const InputField = styled.input`
   &:focus {
     outline: none;
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    /* transition: background-color 5000s ease-in-out 0s; */
+    background-color: red !important;
+  }
 `

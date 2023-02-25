@@ -9,8 +9,11 @@ class PlansStore {
 
   loadPlans = async () => {
     const plans = await getPlansList()
-    this.plans = plans
+    this.savePlans(plans)
     return plans
+  }
+  savePlans = (plans) => {
+    this.plans = plans
   }
 }
 

@@ -2,11 +2,8 @@ import styled from 'styled-components'
 import { Flex } from '@/core'
 import SubscriptionsTable from '@/components/reusable/SubscriptionsTable'
 import PlanCard from '@/components/reusable/PricingPlanCard'
-// import { observer } from 'mobx-react-lite'
-// import PlansStore from '@/store/PlansStore'
 
 const APIAccess = ({ period, plans }) => {
-  // const { plans } = PlansStore
   return (
     <Container direction="column" gap="168px" width="100%">
       <CardsContainer flex="1 1">
@@ -20,8 +17,6 @@ const APIAccess = ({ period, plans }) => {
             }
             description={plan.description}
             additional_description={plan.additional_description}
-            // labelTitle="150k lookups per month"
-            // labelDescription="$20 per additional 10k lookups"
             options={plan.options.filter((option) => option.included)}
             types={(i + 1) * 2 + 1}
           />
