@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import Icon from '../Icon'
 import { useMediaQuery } from '@mantine/hooks'
-import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
+import Animation from '@/components/reusable/Animation'
 
 const Modal = ({ children, onClose, isIllustration = false }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <ModalWrapper>
-      <PageChangeAnimation width={isMobile ? null : 'auto'}>
+      <Animation width={isMobile ? null : 'auto'}>
         <ModalContent>
           <Icon
             icon="close"
@@ -35,7 +35,7 @@ const Modal = ({ children, onClose, isIllustration = false }) => {
             </ModalIllustration>
           )}
         </ModalContent>
-      </PageChangeAnimation>
+      </Animation>
     </ModalWrapper>
   )
 }

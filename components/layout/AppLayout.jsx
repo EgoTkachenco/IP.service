@@ -7,13 +7,14 @@ import { observer } from 'mobx-react-lite'
 import AuthStore from '@/store/AuthStore'
 import TokenStore from '@/store/TokenStore'
 import SearchStore from '@/store/SearchStore'
-import { gradient } from '@/styles/animations'
+import { app_load, gradient } from '@/styles/animations'
 import { useRouter } from 'next/router'
 
 const Layout = observer(({ children }) => {
   const { user, relog } = AuthStore
   const [isLogged, setIsLogged] = useState(!!user)
   const router = useRouter()
+
   useEffect(() => {
     if (!user)
       relog()
@@ -21,6 +22,7 @@ const Layout = observer(({ children }) => {
         .catch(() => router.push('/'))
     else if (!isLogged) setIsLogged(true)
   }, [])
+
   const isMobile = useMediaQuery('(max-width: 1140px)')
   const isFetch = AuthStore.isFetch || TokenStore.isFetch || SearchStore.isFetch
 
@@ -51,18 +53,10 @@ const Wrapper = styled.div`
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     backdrop-filter: blur(10px);
-    height: ${({ blur }) => (blur ? '100%' : 0)};
-    opacity: ${({ blur }) => (blur ? 1 : 0)};
     transition: all 0.3s ease-in;
-    background: linear-gradient(
-      -45deg,
-      rgba(7, 22, 37, 0.05),
-      rgba(7, 22, 37, 0.2),
-      rgba(7, 22, 37, 0.05)
-    );
-    background-size: 400% 400%;
-    animation: ${gradient} 10s ease infinite;
+    animation: ${({ blur }) => app_load(blur)} 1s forwards;
   }
 `
 

@@ -8,6 +8,8 @@ import { AnimatePresence } from 'framer-motion'
 
 export default function App({ Component, pageProps, router }) {
   const [modal, setModal] = useState(null)
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout || ((page) => page)
 
   return (
     <ThemeProvider theme={theme}>
@@ -17,7 +19,7 @@ export default function App({ Component, pageProps, router }) {
           mode="wait"
           onExitComplete={() => window.scrollTo(0, 0)}
         >
-          <Component {...pageProps} key={router.asPath} />
+          {getLayout(<Component {...pageProps} key={router.asPath} />)}
         </AnimatePresence>
         <Modals />
       </ModalContext.Provider>

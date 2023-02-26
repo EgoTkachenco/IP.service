@@ -1,5 +1,5 @@
 import Layout from '@/components/layout/AppLayout'
-import BillingView from '@/components/views/Billing'
+import BillingLayout from '@/components/views/Billing/Layout'
 import BillingUpgrade from '@/components/views/Billing/Upgrade'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -12,11 +12,13 @@ export default function Upgrade() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Layout>
-        <BillingView>
-            <BillingUpgrade />
-        </BillingView>
-      </Layout>
+      <BillingUpgrade />
     </>
   )
 }
+
+Upgrade.getLayout = (page) => (
+  <Layout>
+    <BillingLayout>{page}</BillingLayout>
+  </Layout>
+)

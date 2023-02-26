@@ -1,5 +1,5 @@
 import Layout from '@/components/layout/AppLayout'
-import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
+import Animation from '@/components/reusable/Animation'
 import SearchView from '@/components/views/Search'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -12,11 +12,13 @@ export default function Search() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Layout>
-        <PageChangeAnimation>
-          <SearchView />
-        </PageChangeAnimation>
-      </Layout>
+      <SearchView />
     </>
   )
 }
+
+Search.getLayout = (page) => (
+  <Layout>
+    <Animation key="search">{page}</Animation>
+  </Layout>
+)

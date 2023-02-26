@@ -6,6 +6,8 @@ import APIAccess from './blocks/APIAccess'
 import DataDownload from './blocks/DataDownload'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
+import Animation from '@/components/reusable/Animation'
+import { AnimatePresence } from 'framer-motion'
 
 const Pricing = ({ plans }) => {
   const [activeBlock, setActiveBlock] = useState('api')

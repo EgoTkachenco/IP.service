@@ -1,5 +1,5 @@
 import Layout from '@/components/layout/AppLayout'
-import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
+import Animation from '@/components/reusable/Animation'
 import ProfileView from '@/components/views/Profile'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -12,11 +12,13 @@ export default function Profile() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Layout>
-        <PageChangeAnimation>
-          <ProfileView />
-        </PageChangeAnimation>
-      </Layout>
+      <ProfileView />
     </>
   )
 }
+
+Profile.getLayout = (page) => (
+  <Layout>
+    <Animation key="profile">{page}</Animation>
+  </Layout>
+)

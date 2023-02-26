@@ -20,3 +20,17 @@ export const gradient = keyframes`
 		background-position: 0% 50%;
 	}
 `
+
+export const app_load = (blur = false) => keyframes`
+	0% {
+		opacity: 1;
+		height: 100%;
+	}
+	99% {
+		opacity: ${blur ? 1 : 0};
+		height: 100%;
+	}
+	100% {
+		height: ${blur ? '100%' : 0};
+	}
+`

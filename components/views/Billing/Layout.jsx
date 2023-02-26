@@ -1,4 +1,4 @@
-import PageChangeAnimation from '@/components/reusable/PageChangeAnimation'
+import Animation from '@/components/reusable/Animation'
 import { Flex, Chip } from '@/core'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,7 +10,7 @@ const TABS = [
   { name: 'Billing & Invoices', path: '/app/billing/invoices' },
 ]
 
-const Billing = ({ children }) => {
+const BillingLayout = ({ children }) => {
   const router = useRouter()
   return (
     <Flex direction="column" gap="50px" width="100%">
@@ -29,12 +29,12 @@ const Billing = ({ children }) => {
           )
         })}
       </TabsList>
-      <PageChangeAnimation>{children}</PageChangeAnimation>
+      <Animation key={router.pathname}>{children}</Animation>
     </Flex>
   )
 }
 
-export default Billing
+export default BillingLayout
 
 const TabsList = styled(Flex)`
   gap: 10px;
