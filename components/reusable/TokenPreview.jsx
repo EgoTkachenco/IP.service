@@ -1,15 +1,24 @@
 import styled from 'styled-components'
 import { Card, H1, Icon } from '@/core'
-import { useClipboard } from '@mantine/hooks'
+import { useClipboard, useMediaQuery } from '@mantine/hooks'
 
-const TokenPreview = ({ token }) => {
+const TokenPreview = ({
+  token,
+  color = 'white',
+  small = false,
+  iconSize = '40px',
+  textColor = 'text',
+  p = '16px 24px',
+}) => {
   const clipboard = useClipboard({ timeout: 1000 })
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+  const icon_size = isMobile ? '24px' : iconSize
   return (
-    <TokenCard color="white">
-      <H1>{token}</H1>
+    <TokenCard color={color} p={p} small={small}>
+      <H1 color={textColor}>{token}</H1>
       <Icon
         icon="copy"
-        size="40px"
+        size={icon_size}
         color="primary"
         onClick={() => clipboard.copy(token)}
       />
@@ -22,10 +31,27 @@ export default TokenPreview
 
 const TokenCard = styled(Card)`
   position: relative;
-  padding: 16px 24px;
+  padding: ${({ p }) => p};
   flex-direction: row;
   align-items: center;
   gap: 21px;
+
+  ${H1} {
+    ${({ small }) =>
+      small &&
+      `
+				font-size: 36px;
+				line-height: 45px;
+		`}
+    @media (max-width: 1140px) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+
+  @media (max-width: 1140px) {
+    gap: 16px;
+  }
 `
 
 const CopiedMessage = styled(H1)`

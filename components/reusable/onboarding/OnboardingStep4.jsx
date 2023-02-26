@@ -44,7 +44,7 @@ export default OnboardingStep4
 const ListItem = ({ children }) => (
   <Flex gap="8px" align="center">
     <Icon icon="done" size="20px" color="primary" />
-    {children}
+    <Caption>{children}</Caption>
   </Flex>
 )
 

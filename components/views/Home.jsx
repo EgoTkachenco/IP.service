@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useEffect } from 'react'
 import { Flex } from '@/core'
 import OnboardingStep1 from '@/components/reusable/onboarding/OnboardingStep1'
 import OnboardingStep2 from '@/components/reusable/onboarding/OnboardingStep2'
@@ -10,13 +11,19 @@ import UpcomingBill from '@/components/reusable/analytics/UpcomingBill'
 import MonthUsage from '@/components/reusable/analytics/MonthUsage'
 import AccessToken from '@/components/reusable/analytics/AccessToken'
 import UsageChart from '@/components/reusable/analytics/UsageChart'
+import { observer } from 'mobx-react-lite'
+import TokenStore from '@/store/TokenStore'
 
-const Home = () => {
+const Home = observer(() => {
+  const { token, loadToken } = TokenStore
+  useEffect(() => {
+    if (!token) loadToken()
+  }, [])
   return (
     <Flex direction="column" gap="50px">
       <OnboardingStep1 />
       <OnboardingStep2 />
-      <OnboardingStep3 />
+      <OnboardingStep3 token={token} />
       <OnboardingStep4 />
 
       <AnalyticsContent_1 flex="1">
@@ -26,13 +33,13 @@ const Home = () => {
 
       <AnalyticsContent_2 flex="1">
         <MonthUsage />
-        <AccessToken />
+        <AccessToken token={token} />
       </AnalyticsContent_2>
 
       <UsageChart />
     </Flex>
   )
-}
+})
 
 export default Home
 

@@ -2,16 +2,82 @@ import styled from 'styled-components'
 import { Card, Chip, Flex } from '@/core'
 import JSONPreview from './JSONPreview'
 import PlanCard from './PlanCard'
+import { Fragment } from 'react'
 
 const Result = ({ result }) => {
   if (!result) return ''
+
+  const result_by_plan = result.reduce((acc, el) => {
+    const plan_key = el.plan.name.toLowerCase()
+    const data = el.data.reduce((acc, el) => {
+      acc[el.parameter] = el.value
+      return acc
+    }, {})
+    if (!acc[plan_key]) acc[plan_key] = []
+
+    acc[plan_key].push({ name: el.name, data })
+    return acc
+  }, {})
+
+  const renderPlan = (plan_data, bottomSlot) => {
+    const last_element = plan_data.length - 1
+    return plan_data.map((block, i) => (
+      <Fragment key={i}>
+        <JSONPreview
+          title={block.name}
+          data={block.data}
+          bottomSlot={i === last_element && bottomSlot}
+        />
+        {i !== last_element && <Divider />}
+      </Fragment>
+    ))
+  }
 
   return (
     <WrapperCard color="white">
       <ChipContainer gap="10px">
         <Chip type="success">Basic</Chip>
       </ChipContainer>
-      <JSONPreview title="Abuse" data={result.abuse} />
+      {renderPlan(
+        result_by_plan['basic'],
+        <PlanCard
+          name="Basic"
+          buttonColor="success"
+          buttonText="Buy for $99.00/mo"
+          onClick={() => {}}
+        />
+      )}
+
+      <ChipContainer gap="10px">
+        <Chip type="success">Basic</Chip>
+        <Chip type="secondary">Standart</Chip>
+      </ChipContainer>
+      {renderPlan(
+        result_by_plan['standard'],
+        <PlanCard
+          name="Standart"
+          buttonColor="secondary"
+          buttonText="Buy for $249.00/mo"
+          onClick={() => {}}
+        />
+      )}
+
+      <ChipContainer gap="10px">
+        <Chip type="success">Basic</Chip>
+        <Chip type="secondary">Standart</Chip>
+        <Chip type="primary">Business</Chip>
+      </ChipContainer>
+      {renderPlan(
+        result_by_plan['business'],
+        <PlanCard
+          name="Business"
+          buttonColor="primary"
+          buttonText="Buy for $499.00/mo"
+          onClick={() => {}}
+          marginBottom={false}
+        />
+      )}
+      {/* <JSONPreview title="Abuse" data={result.abuse} />
       <Divider />
       <JSONPreview title="Company" data={result.company} />
       <Divider />
@@ -27,7 +93,7 @@ const Result = ({ result }) => {
             marginBottom={false}
           />
         }
-      />
+      /> */}
 
       {/* <ChipContainer gap="10px">
         <Chip type="success">Basic</Chip>

@@ -13,7 +13,8 @@ class SearchStore {
   getIpInfo = async (ip) => {
     this.isFetch = true
     try {
-      const result = await getIp(ip)
+      // const result = await getIp(ip)
+      const result = await searchIp(ip)
       this.ip = result.ip
       this.result = result
     } catch (error) {

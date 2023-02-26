@@ -6,22 +6,32 @@ import {
   TokenQuery,
 } from '@/components/reusable/styled.jsx'
 import styled from 'styled-components'
+import CopyButton from '@/components/reusable/CopyButton'
+import TokenPreview from '@/components/reusable/TokenPreview'
 
-const AccessToken = () => {
+const AccessToken = ({ token }) => {
   return (
     <Card color="white">
-      <CardTitle>
+      <CardTitle align="center">
         <H6>ACCESS TOKEN</H6>
-        <Chip type="grey-outline">Copy to Clipboard</Chip>
+        <CopyButton color="dark" width="auto" outline size="small" data={token}>
+          Copy to Clipboard
+        </CopyButton>
       </CardTitle>
-      <CardContent justify="center" align="center">
-        <Text color="light-grey">No requests this week</Text>
+      <CardContent align="center">
+        <TokenPreview
+          token={token}
+          p="0"
+          textColor="dark"
+          iconSize="30px"
+          small
+        />
       </CardContent>
       <CardBottom>
         <Text weight={700} color="dark">
           How to use
         </Text>
-        <TokenQuery token={123123} />
+        <TokenQuery token={token} />
       </CardBottom>
     </Card>
   )

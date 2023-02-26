@@ -1,4 +1,4 @@
-import { Flex, Caption, Button, Icon } from '@/core'
+import { Flex, Caption, Button } from '@/core'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 
 const OnboardingStep2 = () => {

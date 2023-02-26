@@ -48,6 +48,12 @@ const StepNumber = styled.div`
   justify-content: center;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: 1140px) {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
 `
 
 export const OnboardingCardContent = styled(Flex)`

@@ -14,12 +14,11 @@ const OnboardingStep1 = () => {
         <Caption>Copy and run this cURL request in your terminal:</Caption>
       }
     >
-      <Card
+      <DetailsCard
         color="dark"
         direction="row"
         align="center"
         justify="space-between"
-        width="100%"
         py="20px"
         gap="8px"
       >
@@ -32,7 +31,7 @@ const OnboardingStep1 = () => {
           color="primary"
           onClick={() => {}}
         />
-      </Card>
+      </DetailsCard>
 
       <Details />
 
@@ -49,8 +48,8 @@ const Details = () => {
   const [activeTab, setActiveTab] = useState('Free')
   const tabs = ['Free', 'Basic', 'Standart', 'Bussiness']
   return (
-    <DetailsCard color="dark" width="100%" gap="20px">
-      <Flex align="center" justify="space-between" width="100%">
+    <DetailsCard color="dark" gap="20px">
+      <DetailsCardTop justify="space-between">
         <Points>
           <span />
           <span />
@@ -69,7 +68,7 @@ const Details = () => {
             </TabText>
           ))}
         </Caption>
-      </Flex>
+      </DetailsCardTop>
       <Text color="white" font="monospace" weight="400">
         # Get details for 46.172.142.181
       </Text>
@@ -101,7 +100,33 @@ const DETAILS = [
   { name: 'timezone', value: 'America/Los_Angeles' },
 ]
 
-const DetailsCard = styled(Card)``
+const DetailsCard = styled(Card)`
+  width: 100%;
+
+  @media (max-width: 1140px) {
+    padding: 16px;
+    gap: 16px;
+
+    ${Text} {
+      font-size: 12px;
+      line-height: 150%;
+    }
+
+    ${Caption} {
+      font-size: 10px;
+      line-height: 150%;
+    }
+  }
+`
+
+const DetailsCardTop = styled(Flex)`
+  width: 100%;
+  align-items: center;
+  @media (max-width: 1140px) {
+    align-items: flex-start;
+    gap: 64px;
+  }
+`
 
 const Points = styled(Flex)`
   gap: 10px;
@@ -109,6 +134,11 @@ const Points = styled(Flex)`
     width: 10px;
     height: 10px;
     border-radius: 50%;
+
+    @media (max-width: 1140px) {
+      width: 6px;
+      height: 6px;
+    }
   }
   & :nth-child(1) {
     background: ${({ theme }) => theme.colors.primary};

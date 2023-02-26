@@ -26,7 +26,7 @@ export const logout = () => axios.get('/api/v1/logout', securedFetchOptions())
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))
 
 export const searchIp = (ip) =>
-  axios.get('/api/v1/account/search', {
+  axios.get('/api/v1/account/data/search', {
     params: { query: ip },
     ...securedFetchOptions(),
   })

@@ -31,6 +31,8 @@ const ButtonCore = styled.button`
   @media (max-width: 1140px) {
     font-size: 12px;
     line-height: 160%;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   svg:not(.stroke) {

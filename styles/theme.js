@@ -23,6 +23,7 @@ module.exports = {
     success: '#22B882',
     white: '#FFFFFF',
     grey: '#667080',
+    silvery: '#F9FAFC',
     'light-grey': 'rgba(102, 112, 128, 0.5)',
     danger: '#EE2354',
   },
