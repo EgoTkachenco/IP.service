@@ -10,6 +10,7 @@ import { eraseToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 
 class AuthStore {
   isFetch = false
+  user = null
   constructor() {
     makeAutoObservable(this)
   }
@@ -18,6 +19,7 @@ class AuthStore {
     this.isFetch = true
     return login(data)
       .then((data) => {
+        eraseToken()
         setToken(data.token)
         delete data.token
         localStorage.setItem(USER_STORE_NAME, JSON.stringify(data))
@@ -30,6 +32,7 @@ class AuthStore {
 
   signUp = (data) => {
     this.isFetch = true
+    eraseToken()
     return register(data)
       .then((data) => {
         setToken(data.token)
@@ -60,15 +63,12 @@ class AuthStore {
   }
 
   logout = () => {
-    return logout()
-      .then(() => {
-        this.user = null
-        localStorage.removeItem(USER_STORE_NAME)
-        eraseToken()
-      })
-      .catch(() => {
-        console.log('error')
-      })
+    this.user = null
+    localStorage.removeItem(USER_STORE_NAME)
+    eraseToken()
+    return logout().catch(() => {
+      console.log('error')
+    })
   }
 
   updateProfile = (data) => {

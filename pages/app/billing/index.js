@@ -12,13 +12,11 @@ export default function Billing() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <BillingSubscription />
+      <Layout>
+        <BillingLayout>
+          <BillingSubscription />
+        </BillingLayout>
+      </Layout>
     </>
   )
 }
-
-Billing.getLayout = (page) => (
-  <Layout>
-    <BillingLayout>{page}</BillingLayout>
-  </Layout>
-)

@@ -29,7 +29,8 @@ const BillingLayout = ({ children }) => {
           )
         })}
       </TabsList>
-      <Animation key={router.pathname}>{children}</Animation>
+      {/* <Animation key={router.asPath}>{children}</Animation> */}
+      {children}
     </Flex>
   )
 }

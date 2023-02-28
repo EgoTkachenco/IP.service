@@ -12,13 +12,11 @@ export default function Home() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <HomeView />
+      <Layout>
+        <Animation key="home">
+          <HomeView />
+        </Animation>
+      </Layout>
     </>
   )
 }
-
-Home.getLayout = (page) => (
-  <Layout>
-    <Animation key="home">{page}</Animation>
-  </Layout>
-)

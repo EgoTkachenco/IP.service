@@ -106,6 +106,7 @@ export const Caption = styled.div.attrs(defaultProps)`
   ${(props) => variantStyles(props, 'caption')}
   display: ${({ inline }) => (inline ? 'inline' : 'block')};
   letter-spacing: 0.01em;
+  ${({ onClick }) => (onClick ? 'cursor: pointer;' : '')}
 
   @media (max-width: 1140px) {
     font-size: 12px;

@@ -9,10 +9,11 @@ const Result = ({ result }) => {
 
   const result_by_plan = result.reduce((acc, el) => {
     const plan_key = el.plan.name.toLowerCase()
-    const data = el.data.reduce((acc, el) => {
-      acc[el.parameter] = el.value
-      return acc
-    }, {})
+    const data = el.data
+    // 	.reduce((acc, el) => {
+    //   acc[el.parameter] = el.value
+    //   return acc
+    // }, {})
     if (!acc[plan_key]) acc[plan_key] = []
 
     acc[plan_key].push({ name: el.name, data })
@@ -20,6 +21,7 @@ const Result = ({ result }) => {
   }, {})
 
   const renderPlan = (plan_data, bottomSlot) => {
+    if (!plan_data) return ''
     const last_element = plan_data.length - 1
     return plan_data.map((block, i) => (
       <Fragment key={i}>

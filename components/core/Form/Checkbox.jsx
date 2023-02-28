@@ -60,4 +60,5 @@ const Value = styled.div`
 
 const Label = styled(Caption)`
   line-height: 100%;
+  cursor: pointer;
 `

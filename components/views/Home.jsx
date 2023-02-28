@@ -4,7 +4,6 @@ import { Flex } from '@/core'
 import OnboardingStep1 from '@/components/reusable/onboarding/OnboardingStep1'
 import OnboardingStep2 from '@/components/reusable/onboarding/OnboardingStep2'
 import OnboardingStep3 from '@/components/reusable/onboarding/OnboardingStep3'
-import OnboardingStep4 from '@/components/reusable/onboarding/OnboardingStep4'
 
 import LastDaysUsage from '@/components/reusable/analytics/LastDaysUsage'
 import UpcomingBill from '@/components/reusable/analytics/UpcomingBill'
@@ -22,9 +21,8 @@ const Home = observer(() => {
   return (
     <Flex direction="column" gap="50px">
       <OnboardingStep1 />
-      <OnboardingStep2 />
-      <OnboardingStep3 token={token} />
-      <OnboardingStep4 />
+      <OnboardingStep2 token={token} />
+      <OnboardingStep3 />
 
       <AnalyticsContent_1 flex="1">
         <LastDaysUsage />

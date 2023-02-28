@@ -12,13 +12,11 @@ export default function Search() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <SearchView />
+      <Layout>
+        <Animation key="search">
+          <SearchView />
+        </Animation>
+      </Layout>
     </>
   )
 }
-
-Search.getLayout = (page) => (
-  <Layout>
-    <Animation key="search">{page}</Animation>
-  </Layout>
-)

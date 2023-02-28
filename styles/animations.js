@@ -23,7 +23,7 @@ export const gradient = keyframes`
 
 export const app_load = (blur = false) => keyframes`
 	0% {
-		opacity: 1;
+		opacity: ${blur ? 1 : 0};
 		height: 100%;
 	}
 	99% {

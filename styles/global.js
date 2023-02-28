@@ -12,8 +12,11 @@ export default createGlobalStyle`
 		scroll-behavior: smooth;
 
 		&.no-scroll {
-			max-height: 100vh;
-			overflow: hidden;
+			/* overflow-y: scroll; */
+			#__next {
+				/* max-height: 100vh; */
+				/* overflow: hidden; */
+			}
 			/* & > div {
 				overflow-y: scroll;
 			} */

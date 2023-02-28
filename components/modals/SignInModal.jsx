@@ -81,4 +81,5 @@ export default SignInModal
 
 const ForgotPassword = styled(Caption)`
   margin: -10px 0 10px;
+  cursor: pointer;
 `

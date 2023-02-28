@@ -21,8 +21,6 @@ const SlideDown = ({ children, width, delay, style = {} }) => (
 const Animation = ({ type = 'slide-down', ...props }) => {
   if ((type = 'slide-down')) return <SlideDown {...props} />
 
-  if ((type = 'slide-down')) return <SlideDown {...props} />
-
   return <SlideDown {...props} />
 }
 

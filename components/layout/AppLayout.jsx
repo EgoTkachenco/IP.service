@@ -14,14 +14,13 @@ const Layout = observer(({ children }) => {
   const { user, relog } = AuthStore
   const [isLogged, setIsLogged] = useState(!!user)
   const router = useRouter()
-
   useEffect(() => {
     if (!user)
       relog()
         .then(() => setIsLogged(true))
         .catch(() => router.push('/'))
     else if (!isLogged) setIsLogged(true)
-  }, [])
+  }, [user])
 
   const isMobile = useMediaQuery('(max-width: 1140px)')
   const isFetch = AuthStore.isFetch || TokenStore.isFetch || SearchStore.isFetch
@@ -56,7 +55,7 @@ const Wrapper = styled.div`
     height: 100%;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease-in;
-    animation: ${({ blur }) => app_load(blur)} 1s forwards;
+    animation: ${({ blur }) => app_load(blur)} 0.3s forwards;
   }
 `
 

@@ -12,13 +12,11 @@ export default function Token() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <TokenView />
+      <Layout>
+        <Animation key="token">
+          <TokenView />
+        </Animation>
+      </Layout>
     </>
   )
 }
-
-Token.getLayout = (page) => (
-  <Layout>
-    <Animation key="token">{page}</Animation>
-  </Layout>
-)

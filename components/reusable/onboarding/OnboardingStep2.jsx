@@ -1,27 +1,22 @@
-import { Flex, Caption, Button } from '@/core'
+import { Card, H2, Caption, Flex, Icon } from '@/core'
+import styled from 'styled-components'
+import TokenPreview from '@/components/reusable/TokenPreview'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
+import { TokenQuery } from '@/components/reusable/styled.jsx'
 
-const OnboardingStep2 = () => {
+const OnboardingStep3 = ({ token }) => {
   return (
     <OnboardingCard
-      step="2"
+      step="3"
       title="Get your token"
-      subtitle={
-        <Caption inline>
-          Visit our documentation and get started with our libraries for
-          <Caption weight="700" inline>
-            {
-              ' Python, Django, Java, C#,\n NodeJS, PHP, Laravel, Go, Ruby, Ruby on Rails, Rust, Perl.'
-            }
-          </Caption>
-        </Caption>
-      }
+      subtitle={<TokenQuery token={token} />}
     >
-      <OnboardingCardContent>
-        <Button size="small">Go to Docs</Button>
+      <OnboardingCardContent direction="column" gap="8px">
+        <TokenPreview token={token} color="silvery" iconSize="30px" small />
+        <Caption>Include your access token in all requests.</Caption>
       </OnboardingCardContent>
     </OnboardingCard>
   )
 }
 
-export default OnboardingStep2
+export default OnboardingStep3

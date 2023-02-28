@@ -12,13 +12,11 @@ export default function Profile() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <ProfileView />
+      <Layout>
+        <Animation key="profile">
+          <ProfileView />
+        </Animation>
+      </Layout>
     </>
   )
 }
-
-Profile.getLayout = (page) => (
-  <Layout>
-    <Animation key="profile">{page}</Animation>
-  </Layout>
-)

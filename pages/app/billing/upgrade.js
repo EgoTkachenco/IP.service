@@ -12,13 +12,11 @@ export default function Upgrade() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <BillingUpgrade />
+      <Layout>
+        <BillingLayout>
+          <BillingUpgrade />
+        </BillingLayout>
+      </Layout>
     </>
   )
 }
-
-Upgrade.getLayout = (page) => (
-  <Layout>
-    <BillingLayout>{page}</BillingLayout>
-  </Layout>
-)
