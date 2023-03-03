@@ -7,7 +7,7 @@ import { TokenQuery } from '@/components/reusable/styled.jsx'
 const OnboardingStep3 = ({ token }) => {
   return (
     <OnboardingCard
-      step="3"
+      step="2"
       title="Get your token"
       subtitle={<TokenQuery token={token} />}
     >

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import ModalContext from '@/utils/modalContext'
-import { H4, Flex, Card, Input, Label, Button, Link } from '@/core'
+import ModalContext from '@/utils/ModalContext'
+import { H4, Flex, Card, Button, Link } from '@/core'
 import styled from 'styled-components'
 import { TextField } from '@/components/reusable/FormFields'
 import { observer } from 'mobx-react-lite'

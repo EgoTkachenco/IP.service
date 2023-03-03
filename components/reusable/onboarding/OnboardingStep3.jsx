@@ -5,7 +5,7 @@ import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 const OnboardingStep4 = () => {
   return (
     <OnboardingCard
-      step="4"
+      step="3"
       title="Start your 7 days trial"
       subtitle={
         <Caption>

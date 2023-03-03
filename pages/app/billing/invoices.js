@@ -2,6 +2,7 @@ import Layout from '@/components/layout/AppLayout'
 import BillingLayout from '@/components/views/Billing/Layout'
 import BillingInvoices from '@/components/views/Billing/Invoices'
 import { useMetadataRenderer } from '@/hooks'
+import { serverSideSecuredRoute } from '@/utils'
 
 export default function Invoices() {
   const renderMetadata = useMetadataRenderer()
@@ -20,3 +21,5 @@ export default function Invoices() {
     </>
   )
 }
+
+export const getServerSideProps = serverSideSecuredRoute

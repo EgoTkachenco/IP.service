@@ -1,5 +1,5 @@
-import { useEffect, useContext } from 'react'
-import ModalContext from '@/utils/modalContext'
+import { useContext } from 'react'
+import ModalContext from '@/utils/ModalContext'
 import SignInModal from './SignInModal'
 import SignUpModal from './SignUpModal'
 import ForgetPasswordModal from './ForgetPasswordModal'

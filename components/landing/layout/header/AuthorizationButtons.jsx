@@ -1,10 +1,24 @@
 import { useContext } from 'react'
-import ModalContext from '@/utils/modalContext'
+import ModalContext from '@/utils/ModalContext'
 import { Flex, Button } from '@/core'
 import styled from 'styled-components'
+import Link from 'next/link'
+import AuthContext from '@/utils/AuthContext'
 
 const AuthorizationButtons = () => {
   const { openModal } = useContext(ModalContext)
+  const { isLogged } = useContext(AuthContext)
+
+  if (isLogged)
+    return (
+      <Wrapper>
+        <Link href="/app">
+          <Button size="medium" onClick={() => {}}>
+            Dashboard
+          </Button>
+        </Link>
+      </Wrapper>
+    )
   return (
     <Wrapper>
       <Button size="medium" onClick={() => openModal('sign-up')}>

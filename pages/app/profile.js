@@ -2,6 +2,7 @@ import Layout from '@/components/layout/AppLayout'
 import Animation from '@/components/reusable/Animation'
 import ProfileView from '@/components/views/Profile'
 import { useMetadataRenderer } from '@/hooks'
+import { serverSideSecuredRoute } from '@/utils'
 
 export default function Profile() {
   const renderMetadata = useMetadataRenderer()
@@ -20,3 +21,5 @@ export default function Profile() {
     </>
   )
 }
+
+export const getServerSideProps = serverSideSecuredRoute

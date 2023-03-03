@@ -2,6 +2,7 @@ import Layout from '@/components/layout/AppLayout'
 import Animation from '@/components/reusable/Animation'
 import TokenView from '@/components/views/Token'
 import { useMetadataRenderer } from '@/hooks'
+import { serverSideSecuredRoute } from '@/utils'
 
 export default function Token() {
   const renderMetadata = useMetadataRenderer()
@@ -20,3 +21,5 @@ export default function Token() {
     </>
   )
 }
+
+export const getServerSideProps = serverSideSecuredRoute

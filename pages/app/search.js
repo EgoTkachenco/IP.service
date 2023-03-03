@@ -2,6 +2,7 @@ import Layout from '@/components/layout/AppLayout'
 import Animation from '@/components/reusable/Animation'
 import SearchView from '@/components/views/Search'
 import { useMetadataRenderer } from '@/hooks'
+import { serverSideSecuredRoute } from '@/utils'
 
 export default function Search() {
   const renderMetadata = useMetadataRenderer()
@@ -20,3 +21,5 @@ export default function Search() {
     </>
   )
 }
+
+export const getServerSideProps = serverSideSecuredRoute
