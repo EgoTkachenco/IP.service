@@ -1,5 +1,4 @@
 import Main from './Main'
-import ApiPreview from './ApiPreview'
 import Feedback from './Feedback'
 import Advantages from './Advantages'
 import WaysToUse from './WaysToUse'
@@ -7,10 +6,12 @@ import Slogan from './Slogan'
 import FAQ from './FAQ'
 import Partners from './Partners'
 import GetStarted from './GetStarted'
+import Products from './Products'
+import GeolocationStats from './GeolocationStats'
+import Contact from './Contact'
 
 export {
   Main,
-  ApiPreview,
   Feedback,
   Advantages,
   WaysToUse,
@@ -18,4 +19,7 @@ export {
   FAQ,
   Partners,
   GetStarted,
+  Products,
+  GeolocationStats,
+  Contact,
 }

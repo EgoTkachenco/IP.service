@@ -788,7 +788,41 @@ const ICONS = {
       />
     </svg>
   ),
+  'carousel-left': () => (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="stroke"
+    >
+      <path
+        d="M14.6667 12L10.6667 16M10.6667 16L14.6667 20M10.6667 16H21.3333M4 16C4 22.6274 9.37258 28 16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
 
+  'carousel-right': () => (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="stroke"
+    >
+      <path
+        d="M17.3333 20L21.3333 16M21.3333 16L17.3333 12M21.3333 16H10.6667M4 16C4 22.6274 9.37258 28 16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
   default: () => (
     <svg
       width="14"

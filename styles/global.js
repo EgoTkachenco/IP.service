@@ -26,4 +26,23 @@ export default createGlobalStyle`
 		text-decoration: none;
 		margin: 0;
 	}
+
+	/* mantine carousel */
+	
+
+	@media (min-width: 1140px) {
+    .mantine-Carousel-controls {
+			width: calc(100% + 112px);
+			left: -56px;
+		}
+		.mantine-Carousel-control {
+			background: transparent !important;
+			box-shadow: unset;
+			border: none;
+
+			&[data-inactive=true] {
+				opacity: 0.25;
+			}
+		}
+  }
 `

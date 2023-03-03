@@ -22,6 +22,9 @@ const Chip = ({ type, children, onClick }) => {
     case 'primary-transparent':
       ChipComponent = PrimaryTransparentChip
       break
+    case 'primary-flat':
+      ChipComponent = PrimaryFlatChip
+      break
     case 'dark':
       ChipComponent = DarkChip
       break
@@ -43,6 +46,7 @@ const DefaultChip = styled.div`
   letter-spacing: 0.01em;
   border-radius: 6px;
   color: #fff;
+  text-align: center;
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
 
   @media (max-width: 1140px) {
@@ -98,8 +102,14 @@ const GreyChip = styled(DefaultChip)`
   color: ${({ theme }) => theme.colors.text};
 `
 
+const PrimaryFlatChip = styled(DefaultChip)`
+  background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid transparent;
+`
+
 const DarkChip = styled(DefaultChip)`
-  background: rgba(255, 255, 255, 0.05);
+  background: ${({ theme }) => theme.colors.dark};
+  border: 1px solid rgba(7, 22, 37, 0.1);
   color: ${({ theme }) => theme.colors.text};
   transition: all 0.3s;
   &:hover {

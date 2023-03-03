@@ -1,26 +1,28 @@
 import Layout from './layout/Layout'
 import {
   Main,
-  ApiPreview,
   Feedback,
   Advantages,
   WaysToUse,
-  Slogan,
+  Contact,
   FAQ,
   Partners,
   GetStarted,
+  Products,
+  GeolocationStats,
 } from './blocks'
 
 const Landing = () => {
   return (
     <Layout>
       <Main />
-      <ApiPreview />
       <Feedback />
+      <GeolocationStats />
+      <Products />
       <Advantages />
       <WaysToUse />
-      <Slogan />
       <FAQ />
+      <Contact />
       <Partners />
       <GetStarted />
     </Layout>

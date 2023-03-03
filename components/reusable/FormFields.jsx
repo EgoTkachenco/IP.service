@@ -19,10 +19,11 @@ export const TextareaField = ({
   label,
   labelColor = 'light-grey',
   name,
+  gap = '3px',
   ...props
 }) => {
   return (
-    <Flex direction="column" gap="3px" width="100%">
+    <Flex direction="column" gap={gap} width="100%">
       <Label htmlFor={name} color={labelColor} caption>
         {label}
       </Label>

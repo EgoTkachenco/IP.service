@@ -32,16 +32,16 @@ export default FAQList
 const FAQItem = ({ question, answer, onClick, isOpen }) => {
   return (
     <FAQItemWrapper isOpen={isOpen}>
-      <Flex gap="13px">
+      <FAQItemQuestion onClick={onClick}>
         <H6 color={isOpen ? 'primary' : 'text'}>{question}</H6>
         <Icon
           icon="chevron-outline"
           size="24px"
           color={isOpen ? 'primary' : 'text'}
           style={{ transform: `rotate(${isOpen ? '180deg' : '0'})` }}
-          onClick={onClick}
+          onClick={() => {}}
         />
-      </Flex>
+      </FAQItemQuestion>
       <FAQItemAnswer isOpen={isOpen}>{answer}</FAQItemAnswer>
     </FAQItemWrapper>
   )
@@ -82,6 +82,11 @@ const FAQItemWrapper = styled.div`
   }
 `
 
+const FAQItemQuestion = styled(Flex)`
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+`
 const FAQItemAnswer = styled(Text)`
   overflow: hidden;
   transition: all 0.3s;
