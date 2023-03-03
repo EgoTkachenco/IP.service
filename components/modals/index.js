@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import ModalContext from '@/utils/ModalContext'
+import ModalContext from '@/utils/modalContext'
 import SignInModal from './SignInModal'
 import SignUpModal from './SignUpModal'
 import ForgetPasswordModal from './ForgetPasswordModal'

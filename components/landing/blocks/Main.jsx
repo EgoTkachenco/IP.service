@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { Flex, H2, Text, Button, Icon } from '@/core'
 import { BlockInner } from './Block'
-import ModalContext from '@/utils/ModalContext'
+import ModalContext from '@/utils/modalContext'
 import Link from 'next/link'
 
 const Main = () => {

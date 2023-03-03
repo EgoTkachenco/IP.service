@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import ModalContext from '@/utils/ModalContext'
+import ModalContext from '@/utils/modalContext'
 import { Flex, Button } from '@/core'
 import styled from 'styled-components'
 import Link from 'next/link'
-import AuthContext from '@/utils/AuthContext'
+import AuthContext from '@/utils/authContext'
 
 const AuthorizationButtons = () => {
   const { openModal } = useContext(ModalContext)

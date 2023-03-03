@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Flex, Card, H2, H6, Button, Icon } from '@/core'
 import { Block, BlockInner } from './Block'
 import { useContext } from 'react'
-import ModalContext from '@/utils/ModalContext'
+import ModalContext from '@/utils/modalContext'
 import Link from 'next/link'
 
 const GetStarted = () => {
