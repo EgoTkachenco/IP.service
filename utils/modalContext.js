@@ -1,8 +1,8 @@
 import { createContext } from 'react'
 
-const modalContext = createContext({
+const ModalContext = createContext({
   modal: null,
   openModal: (modal) => {},
 })
 
-export default modalContext
+export default ModalContext
