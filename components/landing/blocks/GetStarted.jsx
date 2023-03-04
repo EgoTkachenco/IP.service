@@ -11,14 +11,7 @@ const GetStarted = () => {
   return (
     <Block>
       <Wrapper>
-        <Card
-          color="dark"
-          direction="row"
-          p="75px"
-          justify="space-between"
-          align="center"
-          width="100%"
-        >
+        <GetStartedCard color="dark">
           <Flex direction="column" gap="40px">
             <H2 color="white">Get started for free</H2>
             <H6 color="white" weight="500">
@@ -42,7 +35,7 @@ const GetStarted = () => {
               </Button>
             </Link>
           </Flex>
-        </Card>
+        </GetStartedCard>
       </Wrapper>
     </Block>
   )
@@ -54,4 +47,18 @@ const Wrapper = styled(BlockInner)`
   flex-direction: column;
   display: flex;
   align-items: center;
+`
+
+const GetStartedCard = styled(Card)`
+  flex-direction: row;
+  padding: 75px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    padding: 32px;
+    gap: 32px;
+  }
 `

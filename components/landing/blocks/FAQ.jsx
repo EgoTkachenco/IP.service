@@ -23,4 +23,9 @@ export default FAQ
 const Content = styled.div`
   width: calc(100% - ((100% - 1140px) / 2));
   margin: 60px 0 0 auto;
+
+  @media (max-width: 1140px) {
+    width: 100%;
+    padding: 24px;
+  }
 `

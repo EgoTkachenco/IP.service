@@ -9,14 +9,14 @@ const WaysToUse = () => {
         <H2 color="dark" align="center">
           {'Ways to use our \n IP Geolocation API'}
         </H2>
-        <Flex flex="1 1 calc((100% - 62px) / 3)" gap="31px" fwrap>
-          <UseCaseCard text="Optimize web personalization" />
-          <UseCaseCard text={'Pre-populate \n sign-up forms'} />
-          <UseCaseCard text="Personalize content based on location" />
-          <UseCaseCard text="Localize language, pricing, and currency" />
-          <UseCaseCard text="Gather statistics and demographics" />
-          <UseCaseCard text="Enforce IP-based restrictions" />
-        </Flex>
+        <Container flex="1 1 calc((100% - 62px) / 3)" gap="31px" fwrap>
+          <UseCase text="Optimize web personalization" />
+          <UseCase text={'Pre-populate \n sign-up forms'} />
+          <UseCase text="Personalize content based on location" />
+          <UseCase text="Localize language, pricing, and currency" />
+          <UseCase text="Gather statistics and demographics" />
+          <UseCase text="Enforce IP-based restrictions" />
+        </Container>
       </Content>
     </Block>
   )
@@ -24,18 +24,11 @@ const WaysToUse = () => {
 
 export default WaysToUse
 
-const UseCaseCard = ({ text }) => (
-  <Card
-    color="white"
-    px="72px"
-    py="47px"
-    align="center"
-    justify="center"
-    gap="15px"
-  >
+const UseCase = ({ text }) => (
+  <UseCaseCard color="white">
     <Icon icon="use-case" size="50px" color="primary" />
     <H5 align="center">{text}</H5>
-  </Card>
+  </UseCaseCard>
 )
 
 const Content = styled(BlockInner)`
@@ -43,4 +36,25 @@ const Content = styled(BlockInner)`
   display: flex;
   align-items: center;
   gap: 60px;
+`
+
+const Container = styled(Flex)`
+  flex-wrap: wrap;
+  gap: 32px;
+`
+
+const UseCaseCard = styled(Card)`
+  padding: 47px 72px;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 calc((100% - 64px) / 3);
+
+  @media (max-width: 1140px) {
+    flex: 1 1 calc((100% - 32px) / 2);
+  }
+
+  @media (max-width: 700px) {
+    flex: 1 1 100%;
+  }
 `

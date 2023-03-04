@@ -74,6 +74,11 @@ const Content = styled(BlockInner)`
   flex-direction: column;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1140px) {
+    max-width: 100%;
+    overflow: hidden;
+  }
 `
 
 const AdvantagesText = styled(Text)`

@@ -29,7 +29,8 @@ axios.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         localStorage.removeItem(USER_STORE_NAME)
-        // window.location.pathname = '/'
+        eraseToken()
+        window.location.pathname = '/'
       } else if (error.response.status === 500) {
         // window.location.pathname = '/error-500'
       } else {

@@ -38,6 +38,11 @@ const Content = styled(BlockInner)`
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `
 
 const StatCard = styled(Card)`
@@ -48,5 +53,10 @@ const StatCard = styled(Card)`
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media (max-width: 1140px) {
+    width: 100%;
+    max-width: 250px;
   }
 `

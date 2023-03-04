@@ -12,10 +12,10 @@ export default createGlobalStyle`
 		scroll-behavior: smooth;
 
 		&.no-scroll {
-			/* overflow-y: scroll; */
+			overflow-y: scroll;
 			#__next {
-				/* max-height: 100vh; */
-				/* overflow: hidden; */
+				max-height: 100vh;
+				overflow: hidden;
 			}
 			/* & > div {
 				overflow-y: scroll;
@@ -30,19 +30,22 @@ export default createGlobalStyle`
 	/* mantine carousel */
 	
 
-	@media (min-width: 1140px) {
-    .mantine-Carousel-controls {
-			width: calc(100% + 112px);
-			left: -56px;
+	.mantine-Carousel-controls {
+		width: calc(100% + 112px);
+		left: -56px;
+		@media (max-width: 1140px) {
+			width: calc(100% + (48px * 2));
+			left: -48px;
 		}
-		.mantine-Carousel-control {
-			background: transparent !important;
-			box-shadow: unset;
-			border: none;
+	}
+	.mantine-Carousel-control {
+		background: transparent !important;
+		box-shadow: unset;
+		border: none;
 
-			&[data-inactive=true] {
-				opacity: 0.25;
-			}
+		&[data-inactive=true] {
+			opacity: 0.25;
 		}
-  }
+	}
+	
 `

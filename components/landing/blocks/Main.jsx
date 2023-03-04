@@ -28,21 +28,17 @@ const Main = () => {
           better conversion rates, improved customer satisfaction, and much more
           with our API that's built for low latency responses.
         </Subtitle>
-        <Flex gap="20px">
-          <Button
-            width="211px"
-            height="55px"
-            onClick={() => openModal('sign-up')}
-          >
+        <ButtonsContainer>
+          <Button onClick={() => openModal('sign-up')}>
             Sign up for free <Icon icon="user-add" color="white" size="20" />
           </Button>
           <Link href="/contact">
-            <Button color="dark" outline width="211px" height="55px">
+            <Button color="dark" outline>
               Contact Us
               <Icon icon="phone" size="20" />
             </Button>
           </Link>
-        </Flex>
+        </ButtonsContainer>
       </Content>
 
       <APIPreview />
@@ -60,14 +56,46 @@ const Wrapper = styled(BlockInner)`
   & > :nth-child(2) {
     flex-grow: 1;
   }
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    align-items: center;
+
+    & > :nth-child(2) {
+      max-width: 500px;
+      width: 100%;
+    }
+  }
 `
 
 const Content = styled(Flex)`
   flex-direction: column;
   max-width: 485px;
+  @media (max-width: 1140px) {
+    align-items: center;
+  }
 `
 
 const Subtitle = styled(Text)`
   width: 85%;
   margin: 40px 0 60px;
+
+  @media (max-width: 1140px) {
+    text-align: center;
+  }
+`
+
+const ButtonsContainer = styled(Flex)`
+  gap: 20px;
+  button {
+    width: 211px;
+    height: 55px;
+  }
+
+  @media (max-width: 1140px) {
+    button {
+      height: 50px;
+      width: auto;
+    }
+  }
 `

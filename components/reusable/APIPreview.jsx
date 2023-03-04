@@ -8,7 +8,6 @@ const example_list = ['', '215.204.222.212', '247.193.70.173', '66.131.120.255']
 
 const APIPreview = () => {
   const { ip, setIp, data, isFetch } = useIP('')
-  console.log('DATA: ', data)
   const [country, city, postal, address] = data?.address
     ? data.address.split(', ')
     : []
@@ -53,6 +52,7 @@ const APIPreview = () => {
       <ChipContainer flex="1">
         {example_list.map((example, i) => (
           <Chip
+            key={i}
             type={example === ip ? 'primary-flat' : 'dark'}
             onClick={() => setIp(example)}
           >
@@ -76,6 +76,11 @@ const ContentCard = styled(Card)`
 const ChipContainer = styled(Flex)`
   width: 100%;
   gap: 4px;
+  max-width: 100%;
+  overflow: auto;
+  & > * {
+    min-width: 120px;
+  }
 `
 
 const IconContainer = styled.div`

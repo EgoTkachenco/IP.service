@@ -75,9 +75,22 @@ const ContactCard = styled(Card)`
     left: 0;
     bottom: 0;
     height: 100%;
+    @media (max-width: 1140px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    padding: 24px;
+    height: auto;
   }
 `
 
 const ContactCardTitle = styled(H1)`
   margin: 25px 0 0 25px;
+
+  @media (max-width: 1140px) {
+    margin: 0;
+  }
 `

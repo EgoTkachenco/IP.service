@@ -16,6 +16,10 @@ const Products = () => {
             slideGap="20px"
             align="start"
             loop
+            breakpoints={[
+              { maxWidth: 'md', slideSize: '50%' },
+              { maxWidth: 'sm', slideSize: '100%' },
+            ]}
             nextControlIcon={
               <Icon icon="carousel-right" color="dark" size="32px" />
             }
@@ -120,6 +124,10 @@ const CarouselContainer = styled.div`
   width: 100%;
   margin-top: 40px;
   position: relative;
+
+  @media (max-width: 1140px) {
+    width: calc(100% - (24px * 2));
+  }
 `
 
 const Slide = styled(Flex)`
