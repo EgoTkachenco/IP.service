@@ -58,9 +58,9 @@ export default [
       },
     ],
   },
-  { name: 'Solutions', link: '/' },
-  { name: 'Why IPservice', link: '/' },
-  { name: 'Resources', link: '/' },
+  // { name: 'Solutions', link: '/' },
+  // { name: 'Why IPservice', link: '/' },
+  // { name: 'Resources', link: '/' },
   { name: 'Pricing', link: '/pricing' },
-  { name: 'Docs', link: '/' },
+  // { name: 'Docs', link: '/' },
 ]
