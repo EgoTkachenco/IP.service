@@ -7,7 +7,7 @@ const JSONPreview = ({ data = {} }) => {
     const type = getDataType(value)
     switch (type) {
       case 'string':
-        return <ObjectJSON key={key} name={field} value={String(value)} />
+        return <StringJSON key={key} name={field} value={String(value)} />
       case 'number':
         return <NumberJSON key={key} name={field} value={value} />
       case 'array':
@@ -37,7 +37,7 @@ const JSONPreview = ({ data = {} }) => {
           </Fragment>
         )
       default:
-        return <ObjectJSON key={key} name={field} value={value} />
+        return <StringJSON key={key} name={field} value={value} />
     }
   }
 
@@ -72,6 +72,17 @@ const getDataType = (data) => {
 
   return 'string'
 }
+
+export const StringJSON = ({ name, value, textColor }) => (
+  <DataJSON
+    icon="json-string"
+    valueColor="primary"
+    name={name}
+    value={value}
+    textColor={textColor}
+    isString
+  />
+)
 
 export const ObjectJSON = ({ name, value, textColor }) => (
   <DataJSON
