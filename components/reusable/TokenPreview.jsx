@@ -35,6 +35,7 @@ const TokenCard = styled(Card)`
   flex-direction: row;
   align-items: center;
   gap: 21px;
+  border-radius: ${({ p }) => (p !== '0' ? '20px' : 0)};
 
   ${H1} {
     ${({ small }) =>
