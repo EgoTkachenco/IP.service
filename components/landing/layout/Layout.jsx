@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Header from './header/Header'
-import Footer from './Footer'
+// import Footer from './Footer'
+import Footer from './NewFooter'
 import Animation from '@/components/reusable/Animation'
 
 const Layout = ({ children, animation = true }) => {
