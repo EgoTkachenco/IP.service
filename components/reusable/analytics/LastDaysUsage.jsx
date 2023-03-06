@@ -1,15 +1,15 @@
-import { Card, H6, Text, Chip } from '@/core'
+import { Card, H6, H1, Chip } from '@/core'
 import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
 
-const LastDaysUsage = () => {
+const LastDaysUsage = ({ value, today }) => {
   return (
     <Card color="white">
       <CardTitle>
         <H6>Last 7 days</H6>
-        <Chip type="primary-transparent">Requests today: 0</Chip>
+        <Chip type="primary-transparent">Requests today: {today}</Chip>
       </CardTitle>
       <CardContent justify="center" align="center">
-        <Text color="light-grey">No requests this week</Text>
+        <H1 color="dark">{value}</H1>
       </CardContent>
     </Card>
   )

@@ -28,8 +28,6 @@ export default createGlobalStyle`
 	}
 
 	/* mantine carousel */
-	
-
 	.mantine-Carousel-controls {
 		width: calc(100% + 112px);
 		left: -56px;

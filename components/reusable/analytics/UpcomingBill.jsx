@@ -7,7 +7,7 @@ import {
   Price,
 } from '@/components/reusable/styled.jsx'
 
-const UpcomingBill = () => {
+const UpcomingBill = ({ planName, price }) => {
   return (
     <Card color="white">
       <CardTitle>
@@ -16,12 +16,12 @@ const UpcomingBill = () => {
       </CardTitle>
 
       <CardContent>
-        <Price value="99" fixed="2" />
+        <Price value={price} fixed="2" />
       </CardContent>
 
       <CardBottom>
-        <Text>Subscribtion Plan (Bussiness)</Text>
-        <Price color="text" value="99" variant="small" fixed="2" />
+        <Text>Subscribtion Plan ({planName})</Text>
+        <Price color="text" value={price} variant="small" fixed="2" />
       </CardBottom>
     </Card>
   )

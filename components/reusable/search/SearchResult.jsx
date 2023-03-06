@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import { Card, Chip, Flex } from '@/core'
+import { Card, Chip, Flex, H6 } from '@/core'
 import JSONPreview from './JSONPreview'
 import PlanCard from './PlanCard'
 import { Fragment } from 'react'
+import CopyButton from '@/components/reusable/CopyButton'
 
 const Result = ({ result }) => {
   if (!result) return ''
@@ -12,7 +13,7 @@ const Result = ({ result }) => {
     const last_element = plan_data.length - 1
     return plan_data.map((block, i) => (
       <Fragment key={i}>
-        <JSONPreview
+        <DataPreviewBlock
           title={block.name}
           data={block.data}
           bottomSlot={i === last_element && bottomSlot}
@@ -43,6 +44,29 @@ const Result = ({ result }) => {
 }
 
 export default Result
+
+const DataPreviewBlock = ({ title, data, bottomSlot }) => {
+  return (
+    <Flex direction="column" width="100%">
+      <TitleContainer justify="space-between" align="center" width="100%">
+        <H6>{title}</H6>
+        <CopyButton
+          outline
+          color="dark"
+          size="small-text"
+          width="auto"
+          data={data}
+        >
+          Copy JSON
+        </CopyButton>
+      </TitleContainer>
+
+      <JSONPreview data={data} />
+
+      {bottomSlot}
+    </Flex>
+  )
+}
 
 const PlanLabels = ({ plan }) => {
   const plans = ['Basic', 'Standard', 'Business']
@@ -85,4 +109,8 @@ const Divider = styled.div`
   @media (max-width: 1140px) {
     margin: 24px 0;
   }
+`
+
+const TitleContainer = styled(Flex)`
+  margin-bottom: 10px;
 `

@@ -1,60 +1,77 @@
 import styled from 'styled-components'
-import { Flex, H6, Button, Icon, Text } from '@/core'
-import CopyButton from '../CopyButton'
+import { Flex, Icon, Text } from '@/core'
+import { Fragment } from 'react'
 
-const JSONPreview = ({ title, data = {}, bottomSlot = '' }) => {
+const JSONPreview = ({ data = {} }) => {
   const renderDataField = (field, value, key) => {
-    if (typeof value === 'number')
-      return <NumberJSON key={key} name={field} value={value} />
+    const type = getDataType(value)
+    switch (type) {
+      case 'string':
+        return <ObjectJSON key={key} name={field} value={String(value)} />
+      case 'number':
+        return <NumberJSON key={key} name={field} value={value} />
+      case 'array':
+        return (
+          <Fragment key={key}>
+            <ArrayJSON name={field} />
+            <OffsetContent direction="column" gap="8px">
+              <Text font="monospace" weight="400">
+                Array
+              </Text>
+              {JSON.parse(value).map((item, j) => (
+                <ObjectJSON key={j} value={item} />
+              ))}
+            </OffsetContent>
+          </Fragment>
+        )
 
-    // if (typeof value === 'array')
-    //   return (
-    //     <Flex direction="column" gap="8px">
-    //       <ArrayJSON key={i} name={field} value={value} />
-    //       <OffsetContent direction="column" gap="8px">
-    //         <Text font="monospace" weight="400">
-    //           Array
-    //         </Text>
-    //         {field.children.map((item, j) => (
-    //           <ObjectJSON key={j} value={item} />
-    //         ))}
-    //       </OffsetContent>
-    //     </Flex>
-    //   )
-
-    return <ObjectJSON key={key} name={field} value={value} />
+      case 'object':
+        return (
+          <Fragment key={key}>
+            <ObjectJSON name={field} />
+            <OffsetContent direction="column" gap="8px">
+              {Object.keys(value).map((key, j) =>
+                renderDataField(key, value[key], j)
+              )}
+            </OffsetContent>
+          </Fragment>
+        )
+      default:
+        return <ObjectJSON key={key} name={field} value={value} />
+    }
   }
+
+  const isData = Object.keys(data).length > 0
+
+  if (!isData)
+    return (
+      <NoDataText font="monospace" color="text">
+        No data available
+      </NoDataText>
+    )
+
   return (
-    <Flex direction="column" width="100%">
-      <TitleContainer justify="space-between" align="center" width="100%">
-        <H6>{title}</H6>
-        <CopyButton
-          outline
-          color="dark"
-          size="small-text"
-          width="auto"
-          data={data}
-        >
-          Copy JSON
-        </CopyButton>
-      </TitleContainer>
-
-      <Flex direction="column" gap="8px">
-        {Object.keys(data).length > 0 ? (
-          Object.keys(data).map((key, i) => renderDataField(key, data[key], i))
-        ) : (
-          <Text weight="400" font="monospace" color="text" align="center">
-            No data available
-          </Text>
-        )}
-      </Flex>
-
-      {bottomSlot}
+    <Flex direction="column" gap="8px">
+      {Object.keys(data).map((key, i) => renderDataField(key, data[key], i))}
     </Flex>
   )
 }
 
 export default JSONPreview
+
+const getDataType = (data) => {
+  if (data === null) return 'string'
+  if (!isNaN(Number(data))) return 'number'
+  if (typeof data === 'boolean' || data === 'false' || data === 'true')
+    return 'boolean'
+
+  try {
+    if (Array.isArray(JSON.parse(data))) return 'array'
+  } catch (error) {}
+  if (typeof data === 'object') return 'object'
+
+  return 'string'
+}
 
 export const ObjectJSON = ({ name, value, textColor }) => (
   <DataJSON
@@ -63,6 +80,7 @@ export const ObjectJSON = ({ name, value, textColor }) => (
     name={name}
     value={value}
     textColor={textColor}
+    isString
   />
 )
 
@@ -86,29 +104,37 @@ export const ArrayJSON = ({ name, value, textColor }) => (
   />
 )
 
-const DataJSON = ({ icon, valueColor, name, value, textColor = 'text' }) => (
+const DataJSON = ({
+  icon,
+  valueColor,
+  name,
+  value,
+  textColor = 'text',
+  isString,
+}) => (
   <Flex gap="10px" align="center">
     <Icon icon={icon} size="18px" />
     <Text weight="400" font="monospace" color={textColor} inline>
-      {name ? name + ':' : ''}"
+      {name}
+      {name && value !== null ? ': ' : ''}
+      {value && value !== null && isString ? '"' : ''}
       <Text color={valueColor} weight="400" font="monospace" inline>
         {value}
       </Text>
-      "
+      {value && value !== null && isString ? '"' : ''}
     </Text>
   </Flex>
 )
 
-const TitleContainer = styled(Flex)`
-  margin-bottom: 10px;
+const NoDataText = styled(Text)`
+  text-align: center;
+  width: 100%;
 `
 
 const OffsetContent = styled(Flex)`
   padding-left: 40px;
-  padding-top: 20px;
 
   @media (max-width: 1140px) {
     padding-left: 24px;
-    padding-top: 16px;
   }
 `

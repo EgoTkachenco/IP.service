@@ -4,7 +4,8 @@ import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
 import { useEffect, useState } from 'react'
 import { useWindowSize } from '@/hooks'
 
-const MonthUsage = () => {
+const MonthUsage = ({ limit = 0, value = 0 }) => {
+  const percent_value = getPercent(value, limit)
   return (
     <Card color="white">
       <CardTitle>
@@ -15,18 +16,26 @@ const MonthUsage = () => {
       <CardContent
         style={{ position: 'relative', width: 'auto', margin: 'auto' }}
       >
-        <Progress progress={12} />
+        <Progress progress={percent_value} />
 
         <ProgressContent>
-          <H5 color="dark">63 978</H5>
-          <Caption>435 022 request left</Caption>
+          <H5 color="dark">{value}</H5>
+          <Caption>{limit - value} request left</Caption>
         </ProgressContent>
         <ProgressLabel color="primary" weight="700">
-          12%
+          {percent_value}%
         </ProgressLabel>
       </CardContent>
     </Card>
   )
+}
+
+const getPercent = (value, max) => {
+  const result = (value * 100) / max
+
+  if (isNaN(result)) return 0
+
+  return Math.ceil(result * 10) / 10
 }
 
 export default MonthUsage

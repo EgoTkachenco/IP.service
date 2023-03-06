@@ -1,5 +1,5 @@
 import { Card, Flex, H6, Chip, Caption } from '@/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Area,
   AreaChart,
@@ -13,10 +13,27 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-const tabs = ['14 days', '30 days', '12 month']
+const tabs = [
+  { name: '14 days', value: 14 },
+  { name: '30 days', value: 30 },
+  { name: '12 month', value: 365 },
+]
 
-const UsageChart = () => {
-  const [activeTab, setActiveTab] = useState(tabs[0])
+const UsageChart = ({ data, duration, onDurationChange }) => {
+  const [state, setState] = useState([])
+  useEffect(() => {
+    let chartData = []
+    if (data) {
+      const keys = Object.keys(data.all)
+      chartData = keys.map((key) => ({
+        name: key,
+        all: data.all[key],
+        failed: data.failed[key],
+        successful: data.successful[key],
+      }))
+    }
+    setState(chartData)
+  }, [data])
   return (
     <Card width="100%" gap="64px" color="white">
       <Flex width="100%" justify="space-between">
@@ -24,15 +41,15 @@ const UsageChart = () => {
 
         <Flex gap="10px">
           {tabs.map((tab) => {
-            const isActive = activeTab === tab
+            const isActive = duration === tab.value
             return (
               <Chip
-                key={tab}
+                key={tab.name}
                 type={isActive ? 'primary' : 'grey-outline'}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => onDurationChange(tab.value)}
               >
                 <Caption color={isActive ? 'white' : 'text'} weight="600">
-                  {tab}
+                  {tab.name}
                 </Caption>
               </Chip>
             )
@@ -40,7 +57,7 @@ const UsageChart = () => {
         </Flex>
       </Flex>
       <ResponsiveContainer width="100%" aspect={10 / 3}>
-        <AreaChart data={data}>
+        <AreaChart data={state}>
           <defs>
             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="73.24%" stopColor="#0E5DF6" stopOpacity={0.08} />
@@ -54,26 +71,26 @@ const UsageChart = () => {
           {/* <Legend /> */}
           <Area
             type="monotone"
-            dataKey="pv"
+            dataKey="all"
             stroke="transparent"
             fill="url(#colorPv)"
           />
-          <Line
+          {/* <Line
             type="monotone"
             dataKey="pv"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
-          />
+          /> */}
           <Area
             type="monotone"
-            dataKey="uv"
+            dataKey="failed"
             stroke="#EE2354"
             fill="transparent"
             strokeWidth="2"
           />
           <Area
             type="monotone"
-            dataKey="amt"
+            dataKey="successful"
             stroke="#0E5DF6"
             fill="transparent"
             strokeWidth="2"

@@ -41,3 +41,9 @@ export const updateWhitelist = (data) =>
 
 export const updateProfile = (data) =>
   axios.put('/api/v1/account/profile', data, securedFetchOptions())
+
+export const getAnalytics = (duration = 7) =>
+  axios.get('/api/v1/account/data/analytics', {
+    ...securedFetchOptions(),
+    params: { duration },
+  })

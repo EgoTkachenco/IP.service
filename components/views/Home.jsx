@@ -11,30 +11,39 @@ import MonthUsage from '@/components/reusable/analytics/MonthUsage'
 import AccessToken from '@/components/reusable/analytics/AccessToken'
 import UsageChart from '@/components/reusable/analytics/UsageChart'
 import { observer } from 'mobx-react-lite'
-import TokenStore from '@/store/TokenStore'
+import AnalyticsStore from '@/store/AnalyticsStore'
 
 const Home = observer(() => {
-  const { token, loadToken } = TokenStore
+  const { analytics, usage, duration, loadAnalytics, changeDuration } =
+    AnalyticsStore
   useEffect(() => {
-    if (!token) loadToken()
+    loadAnalytics()
   }, [])
+
   return (
     <Flex direction="column" gap="50px">
       <OnboardingStep1 />
-      <OnboardingStep2 token={token} />
+      <OnboardingStep2 token={analytics?.token} />
       <OnboardingStep3 />
 
       <AnalyticsContent_1 flex="1">
-        <LastDaysUsage />
-        <UpcomingBill />
+        <LastDaysUsage value={analytics?.weekUsage} today={analytics?.today} />
+        <UpcomingBill planName={analytics?.billing.plan.name} price={0} />
       </AnalyticsContent_1>
 
       <AnalyticsContent_2 flex="1">
-        <MonthUsage />
-        <AccessToken token={token} />
+        <MonthUsage
+          limit={analytics?.billing.data.limit || 0}
+          value={analytics?.billing.data.requests || 0}
+        />
+        <AccessToken token={analytics?.token} />
       </AnalyticsContent_2>
 
-      <UsageChart />
+      <UsageChart
+        data={usage}
+        duration={duration}
+        onDurationChange={changeDuration}
+      />
     </Flex>
   )
 })
