@@ -45,7 +45,7 @@ const Header = observer(({ isMobile }) => {
 
   return (
     <Wrapper>
-      <Link href="/app">
+      <Link href="/">
         <LogoContainer gap="8px" align="center">
           <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
           <H6 color="dark">IP.Service</H6>
