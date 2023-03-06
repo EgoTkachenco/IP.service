@@ -823,6 +823,22 @@ const ICONS = {
       />
     </svg>
   ),
+  'arrow-up': () => (
+    <svg
+      width="10"
+      height="18"
+      viewBox="0 0 10 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="stroke"
+    >
+      <path
+        d="M5 1.75V16.25M5 1.75L1 5.75M5 1.75L9 5.75"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  ),
   default: () => (
     <svg
       width="14"
