@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Flex, Text, Icon, Card, Input, Chip } from '@/core'
 import JSONPreview from '@/components/reusable/search/JSONPreview'
 import { useIP } from '@/hooks'
 import styled from 'styled-components'
 import { validateIP } from '@/utils'
 import { useForm } from '@mantine/form'
-import Search from '@/pages/app/search'
+import { gradient } from '@/styles/animations'
 
 const example_list = ['', '215.204.222.212', '247.193.70.173', '66.131.120.255']
 
@@ -24,7 +24,7 @@ const APIPreview = () => {
       },
     },
   })
-  const onSubmit = form.onSubmit((values) => setIp(values.search))
+  const onSubmit = form.onSubmit((values) => !isFetch && setIp(values.search))
   return (
     <Flex direction="column">
       <SearchForm onSubmit={onSubmit}>
@@ -38,15 +38,17 @@ const APIPreview = () => {
         />
       </SearchForm>
 
-      <ContentCard color="dark">
-        <JSONPreview data={data || {}} />
+      <ContentCard color="dark" isFetch={isFetch}>
+        <ContentCardInner className="custom-scroll">
+          {!isFetch ? <JSONPreview data={data || {}} /> : <LoadingText />}
+        </ContentCardInner>
       </ContentCard>
       <ChipContainer flex="1">
         {example_list.map((example, i) => (
           <Chip
             key={i}
             type={example === ip ? 'primary-flat' : 'dark'}
-            onClick={() => setIp(example)}
+            onClick={() => !isFetch && setIp(example)}
           >
             {example ? example : 'Your IP'}
           </Chip>
@@ -58,11 +60,48 @@ const APIPreview = () => {
 
 export default APIPreview
 
+const LoadingText = () => {
+  const [count, setCount] = useState(1)
+  useEffect(() => {
+    const interval = setInterval(
+      () => setCount((count) => (count === 3 ? 1 : count + 1)),
+      300
+    )
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+  const dots = new Array(count).fill('.').join('')
+  return <Text>Loading {dots}</Text>
+}
+
 const ContentCard = styled(Card)`
+  position: relative;
   width: 100%;
   margin: 16px 0 4px;
   flex-grow: 1;
   border-radius: 8px;
+  max-height: 385px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ${({ isFetch }) => (isFetch ? '6px' : 0)};
+    transition: all 0.3s ease-in;
+    background: ${({ theme }) =>
+      `linear-gradient(-45deg, ${theme.colors.primary}, ${theme.colors.success})`};
+    background-size: 200% 200%;
+    animation: ${gradient} ${({ isFetch }) => (isFetch ? '5s' : '0')} ease
+      infinite;
+  }
+`
+
+const ContentCardInner = styled.div`
+  overflow: auto;
+  width: 100%;
 `
 
 const ChipContainer = styled(Flex)`

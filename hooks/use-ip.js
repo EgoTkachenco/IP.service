@@ -8,17 +8,24 @@ export const useIP = (initialIp) => {
   const { action, isFetch } = useRequest(getIp)
 
   const handleData = (newData) => {
-    if (typeof newData === 'string') return setData({ ip: newData })
+    if (typeof newData === 'string') return fetchInfo(newData)
     setData(newData)
+  }
+
+  const fetchInfo = async (ip) => {
+    setData(null)
+    return (
+      action(ip)
+        // for test
+        .catch((error) => console.log(error))
+        .then((data) => data && handleData(data))
+    )
   }
 
   useEffect(() => {
     if (ip !== null) {
       setData(null)
-      action(ip)
-        // for test
-        .catch((error) => console.log(error))
-        .then((data) => data && handleData(data))
+      fetchInfo(ip)
     }
   }, [ip])
   return { ip, setIp, data, isFetch }

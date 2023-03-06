@@ -27,6 +27,27 @@ export default createGlobalStyle`
 		margin: 0;
 	}
 
+	/* width */
+	.custom-scroll::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	/* Track */
+	.custom-scroll::-webkit-scrollbar-track {
+		background: transparent; 
+	}
+	
+	/* Handle */
+	.custom-scroll::-webkit-scrollbar-thumb {
+		background: #1F2D3A;
+		border-radius: 10px;;
+	}
+
+	/* Handle on hover */
+	.custom-scroll::-webkit-scrollbar-thumb:hover {
+		/* background: rgba(255, 255, 255, 0.25); */
+	}
+
 	/* mantine carousel */
 	.mantine-Carousel-controls {
 		width: calc(100% + 112px);
