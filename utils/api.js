@@ -48,6 +48,9 @@ export const getAnalytics = (duration = 7) =>
     params: { duration },
   })
 
+export const sendFeedback = (form) =>
+  axios.post('/api/v1/public/feedback/contact-form', form)
+
 export const geolocationService = (ip) =>
   axios.get('/api/v1/public/services/geolocation' + (ip ? `?ip=${ip}` : ''))
 

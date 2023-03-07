@@ -10,7 +10,7 @@ const APIAccess = ({ period, plans }) => {
     <Container direction="column" gap="168px" width="100%">
       <CardsContainer flex="1 1">
         <AnimatePresence mode="wait">
-          {plans.map((plan, i) => (
+          {plans?.map((plan, i) => (
             <Animation
               style={{ display: 'flex' }}
               key={plan.name}

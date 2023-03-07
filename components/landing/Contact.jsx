@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 import Layout from './layout/Layout'
-import { Flex, H1, H6 } from '@/core'
+import { Flex, H1, H6, Card } from '@/core'
 import { BlockInner } from './blocks/Block'
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import ContactForm from '@/components/reusable/ContactForm'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Contact = () => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+
   return (
     <Layout>
       <Block>
@@ -16,7 +19,9 @@ const Contact = () => {
             form, and we'll be in touch within 1-2 business days.
           </Subtitle>
         </ContactTop>
-        <ContactForm />
+        <ContactCard color="dark">
+          <ContactForm isDark={!isMobile} />
+        </ContactCard>
       </Block>
 
       <JoinBlock>
@@ -65,6 +70,24 @@ const Subtitle = styled(H6)`
 
   @media (max-width: 1140px) {
     margin-bottom: 48px;
+  }
+`
+
+const ContactCard = styled(Card)`
+  position: relative;
+  z-index: 10;
+  width: 500px;
+  gap: 30px;
+  margin-bottom: -210px;
+  padding: 40px;
+
+  @media (max-width: 1140px) {
+    margin-bottom: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    width: 100%;
+    max-width: 500px;
   }
 `
 
