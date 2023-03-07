@@ -63,10 +63,12 @@ const Dropdown = ({ name, links }) => {
       </Flex>
       <DropdownContent show={isOpen}>
         {links.map((link, i) => (
-          <Flex key={i} gap="8px" align="center">
-            <Icon icon={link.icon} size="20px" color="primary" />
-            <Caption weight="700">{link.name}</Caption>
-          </Flex>
+          <Link key={i} href={link.link}>
+            <Flex gap="8px" align="center">
+              <Icon icon={link.icon} size="20px" color="primary" />
+              <Caption weight="700">{link.name}</Caption>
+            </Flex>
+          </Link>
         ))}
       </DropdownContent>
     </div>
