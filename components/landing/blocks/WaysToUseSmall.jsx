@@ -49,5 +49,9 @@ const LeftContainer = styled(Flex)`
     gap: 32px;
     align-items: stretch;
     min-width: unset;
+
+    ${H3} {
+      text-align: center;
+    }
   }
 `

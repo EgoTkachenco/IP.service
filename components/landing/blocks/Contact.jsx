@@ -5,7 +5,7 @@ import { TextField, TextareaField } from '@/components/reusable/FormFields'
 
 const Contact = () => {
   return (
-    <Wrapper>
+    <Block>
       <Content flex="1">
         <ContactCard color="dark">
           <img src="/contact-illustration.png" />
@@ -46,15 +46,11 @@ const Contact = () => {
           </Flex>
         </ContactCard>
       </Content>
-    </Wrapper>
+    </Block>
   )
 }
 
 export default Contact
-
-const Wrapper = styled(Block)`
-  margin: 150px 0;
-`
 
 const Content = styled(BlockInner)`
   display: flex;
