@@ -1,7 +1,7 @@
 import { axios, securedFetchOptions } from './axios'
 
-export const login = ({ identifier, password }) =>
-  axios.post('/api/v1/login', { identifier, password })
+export const login = ({ email, password }) =>
+  axios.post('/api/v1/login', { identifier: email, password })
 
 export const register = ({
   identifier,

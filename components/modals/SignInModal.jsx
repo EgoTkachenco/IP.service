@@ -16,12 +16,12 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
   const router = useRouter()
   const form = useForm({
     initialValues: {
-      identifier: '',
+      email: '',
       password: '',
     },
 
     validate: {
-      identifier: (value) => {
+      email: (value) => {
         if (!value) return 'Email required'
         if (!/^\S+@\S+$/.test(value)) return 'Invalid email'
         return null
@@ -41,7 +41,7 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
       })
       .catch((error) => {
         if (error.errors) form.setErrors(error.errors)
-        else form.setErrors('identifier', error.message)
+        else form.setErrors('email', error.message)
       })
   })
 
@@ -59,7 +59,7 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         <TextInput
           label="Email"
           name="email"
-          {...form.getInputProps('identifier')}
+          {...form.getInputProps('email')}
         />
         <PasswordInput
           label="Password"
