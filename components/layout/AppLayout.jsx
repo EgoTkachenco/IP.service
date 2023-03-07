@@ -9,7 +9,7 @@ import SearchStore from '@/store/SearchStore'
 import { gradient } from '@/styles/animations'
 
 const Layout = observer(({ children }) => {
-  const isMobile = useMediaQuery('(max-width: 1140px)')
+  const isMobile = useMediaQuery('(max-width: 1140px)', true)
   const isFetch = AuthStore.isFetch || TokenStore.isFetch || SearchStore.isFetch
 
   return (

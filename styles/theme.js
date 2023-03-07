@@ -1,8 +1,22 @@
+import { Plus_Jakarta_Sans, Roboto_Mono } from '@next/font/google'
+
+const primaryFont = Plus_Jakarta_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin', 'latin-ext', 'cyrillic-ext', 'vietnamese'],
+  display: 'swap',
+})
+
+const monoFont = Roboto_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 module.exports = {
   fonts: {
-    primary: 'Plus Jakarta Sans',
-    secondary: 'Plus Jakarta Sans',
-    monospace: 'Roboto Mono',
+    primary: primaryFont.style.fontFamily,
+    secondary: primaryFont.style.fontFamily,
+    monospace: monoFont.style.fontFamily,
   },
   typographic: {
     h1: { size: '42px', height: '140%', weight: '700' },

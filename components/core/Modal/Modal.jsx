@@ -70,7 +70,7 @@ const ModalContent = styled.div`
     width: 90%;
     max-width: 375px;
     margin: auto;
-    max-height: 90vh;
+    max-height: calc((var(--vh, 1vh) * 100) - 16px);
   }
 `
 const ModalContentInner = styled.div`

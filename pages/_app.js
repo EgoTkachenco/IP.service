@@ -29,7 +29,7 @@ const App = observer(({ Component, pageProps, router }) => {
           <GlobalStyles />
           <AnimatePresence
             mode="wait"
-            onExitComplete={() => window.scrollTo(0, 0)}
+            // onExitComplete={() => window.scrollTo(0, 0)}
           >
             <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>
