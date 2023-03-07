@@ -22,7 +22,7 @@ export const Block = styled.div`
   margin: 150px 0;
 
   @media (max-width: 1140px) {
-    margin: 120px 0;
+    margin: 100px 0;
   }
 `
 

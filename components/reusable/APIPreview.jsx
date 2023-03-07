@@ -119,6 +119,8 @@ const ChipContainer = styled(Flex)`
   gap: 4px;
   max-width: 100%;
   overflow: auto;
+  padding-bottom: 16px;
+  margin-bottom: -16px;
   & > * {
     min-width: 120px;
   }
