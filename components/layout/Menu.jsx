@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { Caption, Icon, Flex } from '@/core'
-import APP_LINKS from '@/constants/app-routes.json'
 import { observer } from 'mobx-react-lite'
 import AuthStore from '@/store/AuthStore'
+import routes from '@/constants/routes'
 
 const Menu = observer(() => {
   const router = useRouter()
@@ -13,13 +14,13 @@ const Menu = observer(() => {
   return (
     <Wrapper>
       {APP_LINKS.map((link) => (
-        <MenuLink
-          key={link.name}
-          name={link.name}
-          icon={link.icon}
-          onClick={() => router.push(link.pathname)}
-          isActive={router.pathname === link.pathname}
-        />
+        <Link href={link.pathname} key={link.name}>
+          <MenuLink
+            name={link.name}
+            icon={link.icon}
+            isActive={router.pathname === link.pathname}
+          />
+        </Link>
       ))}
       <Divider />
       <MenuLink name="Log out" icon="enter" onClick={handleLogout} />
@@ -28,6 +29,14 @@ const Menu = observer(() => {
 })
 
 export default Menu
+
+const APP_LINKS = [
+  { pathname: routes.app, name: 'Home', icon: 'home' },
+  { pathname: routes.search, name: 'Search', icon: 'search-fill' },
+  { pathname: routes.billing, name: 'Billing', icon: 'document' },
+  { pathname: routes.profile, name: 'Profile', icon: 'person' },
+  { pathname: routes.token, name: 'Token', icon: 'lock-closed' },
+]
 
 const Wrapper = styled.div`
   width: 260px;

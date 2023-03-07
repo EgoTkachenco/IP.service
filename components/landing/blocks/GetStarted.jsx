@@ -1,13 +1,9 @@
 import styled from 'styled-components'
-import { Flex, Card, H2, H6, Button, Icon } from '@/core'
+import { Flex, Card, H2, H6 } from '@/core'
 import { Block, BlockInner } from './Block'
-import { useContext } from 'react'
-import ModalContext from '@/utils/modalContext'
-import Link from 'next/link'
+import { SignInContactButtons } from './styled'
 
 const GetStarted = () => {
-  const { openModal } = useContext(ModalContext)
-
   return (
     <Block>
       <Wrapper>
@@ -20,21 +16,7 @@ const GetStarted = () => {
               }
             </H6>
           </Flex>
-          <Flex direction="column" gap="20px">
-            <Button
-              width="211px"
-              height="55px"
-              onClick={() => openModal('sign-up')}
-            >
-              Sign up for free <Icon icon="user-add" color="white" size="20" />
-            </Button>
-            <Link href="/contact">
-              <Button color="white" outline width="211px" height="55px">
-                Contact Us
-                <Icon icon="phone" size="20" />
-              </Button>
-            </Link>
-          </Flex>
+          <SignInContactButtons direction="column" contactColor="white" />
         </GetStartedCard>
       </Wrapper>
     </Block>

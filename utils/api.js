@@ -47,3 +47,9 @@ export const getAnalytics = (duration = 7) =>
     ...securedFetchOptions(),
     params: { duration },
   })
+
+export const geolocationService = (ip) =>
+  axios.get('/api/v1/public/services/geolocation' + (ip ? `?ip=${ip}` : ''))
+
+export const companyService = (ip) =>
+  axios.get('/api/v1/public/services/company' + (ip ? `?ip=${ip}` : ''))

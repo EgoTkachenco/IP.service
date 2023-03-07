@@ -7,8 +7,11 @@ import FAQ from './FAQ'
 import Partners from './Partners'
 import GetStarted from './GetStarted'
 import Products from './Products'
-import GeolocationStats from './GeolocationStats'
+import GeolocationStatistic from './GeolocationStatistic'
 import Contact from './Contact'
+import BussinessMap from './BussinessMap'
+import AdvantagesSmall from './AdvantagesSmall'
+import WaysToUseSmall from './WaysToUseSmall'
 
 export {
   Main,
@@ -20,6 +23,9 @@ export {
   Partners,
   GetStarted,
   Products,
-  GeolocationStats,
+  GeolocationStatistic,
   Contact,
+  BussinessMap,
+  AdvantagesSmall,
+  WaysToUseSmall,
 }

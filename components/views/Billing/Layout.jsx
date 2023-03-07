@@ -1,13 +1,14 @@
 import Animation from '@/components/reusable/Animation'
+import routes from '@/constants/routes'
 import { Flex, Chip } from '@/core'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 const TABS = [
-  { name: 'Your subscriptions', path: '/app/billing' },
-  { name: 'Upgrade', path: '/app/billing/upgrade' },
-  { name: 'Billing & Invoices', path: '/app/billing/invoices' },
+  { name: 'Your subscriptions', path: routes.billing },
+  { name: 'Upgrade', path: routes.upgrade },
+  { name: 'Billing & Invoices', path: routes.invoices },
 ]
 
 const BillingLayout = ({ children }) => {

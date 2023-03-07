@@ -4,6 +4,7 @@ import { Flex, H6, Text, Caption, Button, Icon } from '@/core'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMediaQuery } from '@mantine/hooks'
+import routes from '@/constants/routes'
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
         <FooterLinks>
           {footer_links.map((column, i) => (
             <Flex direction="column" gap="10px" key={i}>
-              {column.links.map((link, j) => (
+              {column.map((link, j) => (
                 <Link href={link.href} key={j}>
                   <LinkText>{link.name}</LinkText>
                 </Link>
@@ -25,7 +26,7 @@ const Footer = () => {
           ))}
         </FooterLinks>
         <FooterButtons>
-          <Link href="/contact">
+          <Link href={routes.contact}>
             <Button color="primary" size="medium">
               Contact Us
               <Icon icon="phone" size="16" />
@@ -42,26 +43,20 @@ const Footer = () => {
 }
 
 const footer_links = [
-  {
-    title: 'Products',
-    links: [
-      { name: 'IP Geolocation API', href: '' },
-      { name: 'IP to Company', href: '' },
-      { name: 'Abuse Contact API', href: '' },
-      { name: 'Privacy Detection API', href: '' },
-      { name: 'IP Database Download', href: '' },
-    ],
-  },
-  {
-    title: ' ',
-    links: [
-      { name: 'IP Ranges API', href: '' },
-      { name: 'IP to Mobile Carrier', href: '' },
-      { name: 'ASN API', href: '' },
-      { name: 'Hosted Domains API', href: '' },
-      { name: 'IP WHOIS Down', href: '' },
-    ],
-  },
+  [
+    { name: 'IP Geolocation API', href: '' },
+    { name: 'IP to Company', href: routes['company-api'] },
+    { name: 'Abuse Contact API', href: '' },
+    { name: 'Privacy Detection API', href: '' },
+    { name: 'IP Database Download', href: '' },
+  ],
+  [
+    { name: 'IP Ranges API', href: '' },
+    { name: 'IP to Mobile Carrier', href: '' },
+    { name: 'ASN API', href: '' },
+    { name: 'Hosted Domains API', href: '' },
+    { name: 'IP WHOIS Down', href: '' },
+  ],
 ]
 
 export default Footer

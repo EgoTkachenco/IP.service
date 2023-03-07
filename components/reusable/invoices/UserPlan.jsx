@@ -1,4 +1,4 @@
-import { Card, H6, Text, Chip, Caption, Button, Link } from '@/core'
+import { Card, H6, Chip, Caption, Button, Link } from '@/core'
 import {
   CardTitle,
   CardContent,

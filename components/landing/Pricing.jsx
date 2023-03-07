@@ -27,7 +27,7 @@ const Pricing = ({ plans }) => {
 
         <BottomContainer>
           <ButtonsContainer>
-            <Button
+            {/* <Button
               color={activeBlock === 'api' ? 'primary' : 'dark'}
               outline={activeBlock !== 'api'}
               onClick={() => setActiveBlock('api')}
@@ -40,7 +40,7 @@ const Pricing = ({ plans }) => {
               onClick={() => setActiveBlock('data')}
             >
               Data Download
-            </Button>
+            </Button> */}
           </ButtonsContainer>
 
           {activeBlock === 'api' && (
@@ -54,7 +54,7 @@ const Pricing = ({ plans }) => {
         </BottomContainer>
 
         {activeBlock === 'api' && <APIAccess period={period} plans={plans} />}
-        {activeBlock === 'data' && <DataDownload />}
+        {/* {activeBlock === 'data' && <DataDownload />} */}
       </BlockInner>
     </Layout>
   )

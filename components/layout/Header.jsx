@@ -9,12 +9,15 @@ import { observer } from 'mobx-react-lite'
 import { useForm } from '@mantine/form'
 import { useRouter } from 'next/router'
 import { validateIP } from '@/utils'
+import { useEffect } from 'react'
+import routes from '@/constants/routes'
 
 const Header = observer(({ isMobile }) => {
   const router = useRouter()
+  const { ip, isUserIp, getIpInfo } = SearchStore
   const form = useForm({
     initialValues: {
-      search: '',
+      search: ip,
     },
 
     validate: {
@@ -26,17 +29,19 @@ const Header = observer(({ isMobile }) => {
     },
   })
   const onSubmit = form.onSubmit((values) => {
-    SearchStore.getIpInfo(values.search)
+    getIpInfo(values.search)
       .then(handleRedirect)
       .catch((error) => {
         if (error.errors) form.setErrors(error.errors)
         else form.setErrors('search', error.message)
       })
   })
-  const getInfo = (ip) =>
-    SearchStore.getIpInfo(ip)
-      .then(handleRedirect)
-      .then(() => form.setFieldValue('search', ''))
+
+  useEffect(() => {
+    form.setFieldValue('search', ip)
+  }, [ip])
+
+  const getInfo = (ip) => getIpInfo(ip).then(handleRedirect)
 
   const handleRedirect = () => {
     // Redirect to search page to see result
@@ -45,7 +50,7 @@ const Header = observer(({ isMobile }) => {
 
   return (
     <Wrapper>
-      <Link href="/">
+      <Link href={routes.home}>
         <LogoContainer gap="8px" align="center">
           <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
           <H6 color="dark">IP.Service</H6>
@@ -75,7 +80,7 @@ const Header = observer(({ isMobile }) => {
               }
             />
           </SearchWrapper>
-          <IPsList onClick={(ip) => getInfo(ip)} />
+          <IPsList ip={ip} isUserIp={isUserIp} onClick={(ip) => getInfo(ip)} />
         </>
       )}
     </Wrapper>
@@ -84,11 +89,19 @@ const Header = observer(({ isMobile }) => {
 
 export default Header
 
-const IPsList = ({ onClick }) => (
+const example_list = ['', '8.8.8.8', '1.1.1.1']
+
+const IPsList = ({ ip, isUserIp, onClick }) => (
   <ChipsContainer align="center" gap="16px">
-    <Chip onClick={() => onClick('')}>Your IP</Chip>
-    <Chip onClick={() => onClick('8.8.8.8')}>8.8.8.8</Chip>
-    <Chip onClick={() => onClick('1.1.1.1')}>1.1.1.1</Chip>
+    {example_list.map((example) => (
+      <Chip
+        key={example}
+        onClick={() => onClick(example)}
+        type={(example ? ip === example : isUserIp) ? 'primary-flat' : ''}
+      >
+        {example ? example : 'Your IP'}
+      </Chip>
+    ))}
   </ChipsContainer>
 )
 

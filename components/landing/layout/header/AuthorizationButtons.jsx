@@ -4,6 +4,7 @@ import { Flex, Button } from '@/core'
 import styled from 'styled-components'
 import Link from 'next/link'
 import AuthContext from '@/utils/authContext'
+import routes from '@/constants/routes'
 
 const AuthorizationButtons = () => {
   const { openModal } = useContext(ModalContext)
@@ -12,7 +13,7 @@ const AuthorizationButtons = () => {
   if (isLogged)
     return (
       <Wrapper>
-        <Link href="/app">
+        <Link href={routes.app}>
           <Button size="medium" onClick={() => {}}>
             Dashboard
           </Button>

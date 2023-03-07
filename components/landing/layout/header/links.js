@@ -1,3 +1,5 @@
+import routes from '@/constants/routes'
+
 export default [
   {
     name: 'Products',
@@ -24,7 +26,7 @@ export default [
         name: 'IP to Company API',
         description: 'Leverage anonymus leads',
         icon: 'building',
-        link: '/',
+        link: routes['company-api'],
       },
       {
         name: 'ASN API',
@@ -58,9 +60,5 @@ export default [
       },
     ],
   },
-  // { name: 'Solutions', link: '/' },
-  // { name: 'Why IPservice', link: '/' },
-  // { name: 'Resources', link: '/' },
-  { name: 'Pricing', link: '/pricing' },
-  // { name: 'Docs', link: '/' },
+  { name: 'Pricing', link: routes.pricing },
 ]

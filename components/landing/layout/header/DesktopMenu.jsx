@@ -74,17 +74,19 @@ const ProductDropdown = ({ links }) => {
   return (
     <Flex gap="10px" width="calc(320px *3 + 20px)" fwrap>
       {links.map((link, i) => (
-        <MenuCard key={i}>
-          <MenuCardIcon>
-            <Icon icon={link.icon} size="20px" color="white" />
-          </MenuCardIcon>
-          <Flex direction="column" gap="2px">
-            <Text color="dark" weight="700">
-              {link.name}
-            </Text>
-            <Caption>{link.description}</Caption>
-          </Flex>
-        </MenuCard>
+        <Link href={link.link} key={i}>
+          <MenuCard>
+            <MenuCardIcon>
+              <Icon icon={link.icon} size="20px" color="white" />
+            </MenuCardIcon>
+            <Flex direction="column" gap="2px">
+              <Text color="dark" weight="700">
+                {link.name}
+              </Text>
+              <Caption>{link.description}</Caption>
+            </Flex>
+          </MenuCard>
+        </Link>
       ))}
     </Flex>
   )
@@ -99,6 +101,7 @@ const MenuCard = styled.div`
   align-items: center;
   gap: 18px;
   padding: 0 35px;
+  cursor: pointer;
 `
 
 const MenuCardIcon = styled.div`

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Flex, Text, Icon, Card, Input, Chip } from '@/core'
 import JSONPreview from '@/components/reusable/search/JSONPreview'
-import { useIP } from '@/hooks'
+import { useService } from '@/hooks'
 import styled from 'styled-components'
 import { validateIP } from '@/utils'
 import { useForm } from '@mantine/form'
@@ -9,8 +9,8 @@ import { gradient } from '@/styles/animations'
 
 const example_list = ['', '215.204.222.212', '247.193.70.173', '66.131.120.255']
 
-const APIPreview = () => {
-  const { ip, setIp, data, isFetch } = useIP('')
+const APIPreview = ({ service }) => {
+  const { ip, setIp, data, isFetch, userIP } = useService('', service)
   const form = useForm({
     initialValues: {
       search: ip,
@@ -24,7 +24,13 @@ const APIPreview = () => {
       },
     },
   })
+
   const onSubmit = form.onSubmit((values) => !isFetch && setIp(values.search))
+
+  useEffect(() => {
+    form.setFieldValue('search', ip)
+  }, [ip])
+
   return (
     <Flex direction="column">
       <SearchForm onSubmit={onSubmit}>
@@ -47,7 +53,11 @@ const APIPreview = () => {
         {example_list.map((example, i) => (
           <Chip
             key={i}
-            type={example === ip ? 'primary-flat' : 'dark'}
+            type={
+              (example ? example === ip : userIP === ip)
+                ? 'primary-flat'
+                : 'dark'
+            }
             onClick={() => !isFetch && setIp(example)}
           >
             {example ? example : 'Your IP'}

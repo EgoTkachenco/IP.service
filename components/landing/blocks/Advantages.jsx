@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import Image from 'next/image'
-import { Flex, H2, Text, Icon } from '@/core'
+import { Flex, H2, Text } from '@/core'
 import { Block, BlockInner } from './Block'
+import { AdvantagesItem, AdvantagesIllustration } from './styled'
 
 const Advantages = () => {
   return (
@@ -28,23 +28,7 @@ const Advantages = () => {
             <AdvantagesItem icon="communicate" text="Postal/zip code" />
             <AdvantagesItem icon="navigation" text="Region" />
           </Flex>
-          <AdvantagesImage>
-            <Image
-              src="/advantages_bg.png"
-              alt="advantages back"
-              className="advantages-image__back"
-              fill
-            />
-            <Image
-              src="/requests-count.svg"
-              alt="requests-count"
-              width={255}
-              height={172}
-            />
-            <AdvantagesImageText color="white">
-              Billion API requests last month
-            </AdvantagesImageText>
-          </AdvantagesImage>
+          <AdvantagesIllustration count="68" />
           <Flex
             direction="column"
             align="flex-start"
@@ -63,13 +47,6 @@ const Advantages = () => {
 
 export default Advantages
 
-const AdvantagesItem = ({ icon, text }) => (
-  <Flex gap="10px">
-    <Icon icon={icon} color="primary" size="24px" />
-    <Text weight={700}>{text}</Text>
-  </Flex>
-)
-
 const Content = styled(BlockInner)`
   flex-direction: column;
   display: flex;
@@ -85,42 +62,4 @@ const AdvantagesText = styled(Text)`
   width: 59%;
   margin: 40px 0 72px;
   text-align: center;
-`
-
-const AdvantagesImage = styled.div`
-  position: relative;
-  width: 450px;
-  height: 450px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 22px;
-  border-radius: 50%;
-  overflow: hidden;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(15.0667px);
-  }
-
-  & > * {
-    position: relative;
-    z-index: 10;
-  }
-
-  .advantages-image__back {
-    z-index: 0;
-  }
-`
-
-const AdvantagesImageText = styled(Text)`
-  margin-bottom: -6px;
 `
