@@ -17,7 +17,7 @@ const DarkWrapper = styled(Wrapper)`
   ${({ isTextarea }) =>
     isTextarea
       ? `
-		padding: 16px;
+		padding: 8px 16px;
 		height: auto;
 		`
       : `
@@ -41,7 +41,7 @@ const LightWrapper = styled(Wrapper)`
   ${({ isTextarea }) =>
     isTextarea
       ? `
-		padding: 16px;
+		padding: 8px 16px;
 		height: auto;
 		`
       : `
@@ -70,7 +70,7 @@ const DefaultWrapper = styled(Wrapper)`
   ${({ isTextarea }) =>
     isTextarea
       ? `
-		padding: 14px;
+		padding: 7px 14px;
 		height: auto;
 		`
       : `
@@ -78,7 +78,6 @@ const DefaultWrapper = styled(Wrapper)`
 		height: 50px;
 	`}
   border-radius: 6px;
-  padding: 0 14px;
   /* background: ${({ theme }) => theme.colors.white}; */
   border: 1px solid
     ${({ focused, theme }) =>
