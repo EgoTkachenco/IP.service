@@ -28,16 +28,21 @@ export default Layout
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
 `
 
 const Inner = styled.div`
   display: flex;
+  flex-grow: 1;
 `
 
 const Content = styled.div`
   position: relative;
   flex-grow: 1;
   max-height: calc(100vh - 90px);
+  max-height: calc((var(--vh, 1vh) * 100) - 90px);
   overflow: auto;
   background: #f9fafc;
   padding: 50px;
@@ -45,6 +50,7 @@ const Content = styled.div`
   @media (max-width: 1140px) {
     padding: 48px 24px;
     max-height: calc(100vh - 56px);
+    max-height: calc((var(--vh, 1vh) * 100) - 56px);
   }
 
   &:after {
