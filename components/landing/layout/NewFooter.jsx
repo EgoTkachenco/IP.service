@@ -29,12 +29,12 @@ const Footer = () => {
           <Link href={routes.contact}>
             <Button color="primary" size="medium">
               Contact Us
-              <Icon icon="phone" size="16" />
+              <Icon icon="phone" size="16px" />
             </Button>
           </Link>
           <Button color="dark" outline size="medium">
             Help Center
-            <Icon icon="help" size="16" />
+            <Icon icon="help" size="16px" />
           </Button>
         </FooterButtons>
       </Wrapper>
