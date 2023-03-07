@@ -131,12 +131,12 @@ export const SignInContactButtons = ({
   return (
     <ButtonsContainer direction={direction}>
       <Button onClick={() => openModal('sign-up')}>
-        Sign up for free <Icon icon="user-add" color="white" size="20" />
+        Sign up for free <Icon icon="user-add" color="white" size="20px" />
       </Button>
       <Link href={routes.contact}>
         <Button color={contactColor} outline>
           Contact Us
-          <Icon icon="phone" size="20" />
+          <Icon icon="phone" size="20px" />
         </Button>
       </Link>
     </ButtonsContainer>
