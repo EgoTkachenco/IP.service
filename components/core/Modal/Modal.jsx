@@ -70,6 +70,7 @@ const ModalContent = styled.div`
     width: 90%;
     max-width: 375px;
     margin: auto;
+    max-height: 95vh;
   }
 `
 const ModalContentInner = styled.div`
@@ -79,6 +80,7 @@ const ModalContentInner = styled.div`
   @media (max-width: 1140px) {
     padding: 24px;
     width: 100%;
+    overflow: auto;
   }
 `
 
@@ -99,6 +101,6 @@ const ModalIllustration = styled.div`
   @media (max-width: 1140px) {
     width: 100%;
     height: 140px;
-    min-height: unset;
+    min-height: 140px;
   }
 `
