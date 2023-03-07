@@ -57,6 +57,10 @@ const AdvantagesImage = styled.div`
     z-index: 10;
   }
 
+  @media (max-width: 1140px) {
+    width: 100%;
+  }
+
   .advantages-image__back {
     z-index: 0;
   }
@@ -140,6 +144,7 @@ export const SignInContactButtons = ({
 }
 
 const ButtonsContainer = styled(Flex)`
+  align-items: stretch;
   gap: 20px;
   button {
     width: 211px;
@@ -149,7 +154,7 @@ const ButtonsContainer = styled(Flex)`
   @media (max-width: 1140px) {
     button {
       height: 50px;
-      width: auto;
+      width: ${({ direction }) => (direction === 'column' ? '100%' : 'auto')};
     }
   }
 `

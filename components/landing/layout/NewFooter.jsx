@@ -75,7 +75,10 @@ const Wrapper = styled.footer`
   display: flex;
 
   @media (max-width: 1140px) {
+    flex-direction: column;
     padding: 32px 0;
+    gap: 32px;
+    margin-top: 32px;
   }
 `
 
@@ -84,10 +87,9 @@ const FooterLinks = styled(Flex)`
   gap: 100px;
 
   @media (max-width: 1140px) {
-    flex-wrap: wrap;
-    & > div {
-      flex: 1 1 calc((100% - 75px) / 2);
-    }
+    margin-left: 0;
+    flex-direction: column;
+    gap: 32px;
   }
 `
 
@@ -97,6 +99,10 @@ const FooterButtons = styled(Flex)`
   margin-left: auto;
   width: 170px;
   align-items: stretch;
+
+  @media (max-width: 1140px) {
+    margin: auto;
+  }
 `
 
 const LinkText = styled(Caption)`

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, H2, Text } from '@/core'
+import { Flex, H2 } from '@/core'
 import { Block, BlockInner } from './Block'
 import GlobeMapSvg from '@/components/reusable/GlobeMapSvg'
 
@@ -10,7 +10,9 @@ const BussinessMap = () => {
         <H2 color="dark" align="center">
           Bussiness across the globe use IP.Service
         </H2>
-        <GlobeMapSvg />
+        <MapContainer>
+          <GlobeMapSvg />
+        </MapContainer>
       </Content>
     </Block>
   )
@@ -26,5 +28,13 @@ const Content = styled(BlockInner)`
 
   @media (max-width: 1140px) {
     width: 100%;
+  }
+`
+
+const MapContainer = styled(Flex)`
+  justify-content: center;
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 `

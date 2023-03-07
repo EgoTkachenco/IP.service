@@ -20,6 +20,10 @@ import { Flex } from '@/core'
 
 export const Block = styled.div`
   margin: 150px 0;
+
+  @media (max-width: 1140px) {
+    margin: 120px 0;
+  }
 `
 
 export const BlockInner = styled(Flex)`

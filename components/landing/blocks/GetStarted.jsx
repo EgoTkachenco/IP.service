@@ -42,5 +42,6 @@ const GetStartedCard = styled(Card)`
     flex-direction: column;
     padding: 32px;
     gap: 32px;
+    align-items: stretch;
   }
 `

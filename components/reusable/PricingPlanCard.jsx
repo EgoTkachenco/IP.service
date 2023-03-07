@@ -128,4 +128,8 @@ const PriceCardDelimiter = styled.div`
 const PlanCaption = styled(Caption)`
   font-size: 12px;
   height: 24px;
+
+  @media (max-width: 1140px) {
+    height: auto;
+  }
 `

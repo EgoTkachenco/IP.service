@@ -28,6 +28,10 @@ const Content = styled(BlockInner)`
   display: flex;
   align-items: stretch;
   gap: 100px;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+  }
 `
 
 const Container = styled(Flex)`
@@ -40,4 +44,10 @@ const LeftContainer = styled(Flex)`
   flex-direction: column;
   min-width: 300px;
   justify-content: space-between;
+
+  @media (max-width: 1140px) {
+    gap: 32px;
+    align-items: stretch;
+    min-width: unset;
+  }
 `

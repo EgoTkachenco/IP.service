@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { H2, H5, Flex, Button, Text, Icon } from '@/core'
 import { Block, BlockInner } from './Block'
 import { Carousel } from '@mantine/carousel'
+import routes from '@/constants/routes'
+import Link from 'next/link'
 
 const Products = () => {
   return (
@@ -35,7 +37,9 @@ const Products = () => {
                   </SlideIcon>
                   <H5 color="white">{slide.title}</H5>
                   <SlideDescription>{slide.description}</SlideDescription>
-                  <Button>Learn More </Button>
+                  <Link href={slide.href} style={{ width: '100%' }}>
+                    <Button>Learn More</Button>
+                  </Link>
                 </Slide>
               </Carousel.Slide>
             ))}
@@ -75,7 +79,7 @@ const SLIDES = [
     color: 'primary',
     title: 'IP to Company API',
     description: 'Leverage anonymus leads',
-    href: '',
+    href: routes['company-api'],
   },
   {
     icon: 'share',

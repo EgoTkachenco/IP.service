@@ -44,18 +44,26 @@ const Content = styled(BlockInner)`
   gap: 80px;
 
   @media (max-width: 1140px) {
-    max-width: 100%;
-    overflow: hidden;
+    flex-direction: column;
+    gap: 48px;
   }
 `
 
 const AdvantagesText = styled(Text)`
   margin: 40px 0 72px;
+
+  @media (max-width: 1140px) {
+    margin: 32px 0 0;
+  }
 `
 
 const TextContainer = styled(Flex)`
   flex-direction: column;
   width: 446px;
+
+  @media (max-width: 1140px) {
+    width: 100%;
+  }
 `
 
 const IllustrationContainer = styled(Flex)`
@@ -63,6 +71,10 @@ const IllustrationContainer = styled(Flex)`
   flex-grow: 1;
   gap: 48px;
   align-items: center;
+
+  @media (max-width: 1140px) {
+    flex-direction: column-reverse;
+  }
 `
 
 const AdvantagesIllustrationOptions = styled(Flex)`
