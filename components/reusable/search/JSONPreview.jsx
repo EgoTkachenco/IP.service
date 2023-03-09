@@ -2,14 +2,30 @@ import styled from 'styled-components'
 import { Flex, Icon, Text } from '@/core'
 import { Fragment } from 'react'
 
-const JSONPreview = ({ data = {} }) => {
+const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
   const renderDataField = (field, value, key) => {
     const type = getDataType(value)
     switch (type) {
       case 'string':
-        return <StringJSON key={key} name={field} value={String(value)} />
+        return (
+          <StringJSON
+            key={key}
+            name={field}
+            value={String(value)}
+            isIcon={icon}
+            textColor={color}
+          />
+        )
       case 'number':
-        return <NumberJSON key={key} name={field} value={value} />
+        return (
+          <NumberJSON
+            key={key}
+            name={field}
+            value={value}
+            isIcon={icon}
+            textColor={color}
+          />
+        )
       case 'array':
         return (
           <Fragment key={key}>
@@ -19,7 +35,12 @@ const JSONPreview = ({ data = {} }) => {
                 Array
               </Text>
               {JSON.parse(value).map((item, j) => (
-                <ObjectJSON key={j} value={item} />
+                <ObjectJSON
+                  key={j}
+                  value={item}
+                  isIcon={icon}
+                  textColor={color}
+                />
               ))}
             </OffsetContent>
           </Fragment>
@@ -28,7 +49,7 @@ const JSONPreview = ({ data = {} }) => {
       case 'object':
         return (
           <Fragment key={key}>
-            <ObjectJSON name={field} />
+            <ObjectJSON name={field} isIcon={icon} textColor={color} />
             <OffsetContent direction="column" gap="8px">
               {Object.keys(value).map((key, j) =>
                 renderDataField(key, value[key], j)
@@ -73,7 +94,7 @@ const getDataType = (data) => {
   return 'string'
 }
 
-export const StringJSON = ({ name, value, textColor }) => (
+export const StringJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-string"
     valueColor="primary"
@@ -81,10 +102,11 @@ export const StringJSON = ({ name, value, textColor }) => (
     value={value}
     textColor={textColor}
     isString
+    isIcon={isIcon}
   />
 )
 
-export const ObjectJSON = ({ name, value, textColor }) => (
+export const ObjectJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-object"
     valueColor="primary"
@@ -92,26 +114,29 @@ export const ObjectJSON = ({ name, value, textColor }) => (
     value={value}
     textColor={textColor}
     isString
+    isIcon={isIcon}
   />
 )
 
-export const NumberJSON = ({ name, value, textColor }) => (
+export const NumberJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-number"
     valueColor="success"
     name={name}
     value={value}
     textColor={textColor}
+    isIcon={isIcon}
   />
 )
 
-export const ArrayJSON = ({ name, value, textColor }) => (
+export const ArrayJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-array"
     valueColor="secondary"
     name={name}
     value={value}
     textColor={textColor}
+    isIcon={isIcon}
   />
 )
 
@@ -122,9 +147,10 @@ const DataJSON = ({
   value,
   textColor = 'text',
   isString,
+  isIcon,
 }) => (
   <Flex gap="10px" align="center">
-    <Icon icon={icon} size="18px" />
+    {isIcon ? <Icon icon={icon} size="18px" /> : null}
     <Text weight="400" font="monospace" color={textColor} inline>
       {name}
       {name && value !== null ? ': ' : ''}

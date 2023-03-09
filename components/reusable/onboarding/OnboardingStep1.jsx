@@ -1,8 +1,10 @@
 import { Card, Caption, Icon, Text, Button, Flex } from '@/core'
 import { useMediaQuery } from '@mantine/hooks'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import OnboardingCard from './OnboardingCard'
+import { getIp, searchIp } from '@/utils/api'
+import JSONPreview from '../search/JSONPreview'
 
 const OnboardingStep1 = ({ ip, token, url }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
@@ -47,7 +49,30 @@ export default OnboardingStep1
 
 const Details = ({ ip, url }) => {
   const [activeTab, setActiveTab] = useState('Free')
-  const tabs = ['Free', 'Basic', 'Standart', 'Bussiness']
+  const [data, setData] = useState(null)
+  const tabs = data ? Object.keys(data) : []
+
+  useEffect(() => {
+    if (ip) {
+      const promises = [getIp(ip), searchIp(ip)]
+      Promise.all(promises).then(([free_data, search_data]) => {
+        const plans_data = {}
+        search_data.reduce((acc, plan_data) => {
+          const data = plan_data.data_groups.reduce(
+            (group_data_acc, group_data) => {
+              group_data_acc[group_data.name.toLowerCase()] = group_data.data
+              return group_data_acc
+            },
+            {}
+          )
+          plans_data[plan_data.name] = { ...acc, ...data }
+          return { ...acc, ...data }
+        }, {})
+        setData({ Free: free_data, ...plans_data })
+      })
+    }
+  }, [ip])
+
   return (
     <DetailsCard color="dark" gap="20px">
       <DetailsCardTop justify="space-between">
@@ -77,7 +102,12 @@ const Details = ({ ip, url }) => {
         $ curl {url}
       </Text>
       <Flex direction="column" gap="8px">
-        {DETAILS.map(({ name, value }) => (
+        <JSONPreview
+          icon={false}
+          data={(data && data[activeTab]) || {}}
+          color="white"
+        />
+        {/* {DETAILS.map(({ name, value }) => (
           <Text key={name} color="white" font="monospace" weight="400" inline>
             {name}: "
             <Text color="primary" font="monospace" weight="400" inline>
@@ -85,21 +115,21 @@ const Details = ({ ip, url }) => {
             </Text>
             "
           </Text>
-        ))}
+        ))} */}
       </Flex>
     </DetailsCard>
   )
 }
 
-const DETAILS = [
-  { name: 'hostname', value: 'dns.google' },
-  { name: 'city', value: 'Mountain View' },
-  { name: 'region', value: 'California' },
-  { name: 'country', value: 'US' },
-  { name: 'loc', value: '37.3860,-122.0838' },
-  { name: 'postal', value: '94035' },
-  { name: 'timezone', value: 'America/Los_Angeles' },
-]
+// const DETAILS = [
+//   { name: 'hostname', value: 'dns.google' },
+//   { name: 'city', value: 'Mountain View' },
+//   { name: 'region', value: 'California' },
+//   { name: 'country', value: 'US' },
+//   { name: 'loc', value: '37.3860,-122.0838' },
+//   { name: 'postal', value: '94035' },
+//   { name: 'timezone', value: 'America/Los_Angeles' },
+// ]
 
 const DetailsCard = styled(Card)`
   width: 100%;
