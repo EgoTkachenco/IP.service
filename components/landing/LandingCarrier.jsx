@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic'
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
 
-const Advantages = dynamic(() => import('./blocks/Advantages'), {
+const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const WaysToUse = dynamic(() => import('./blocks/WaysToUse'), {
+const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -36,23 +36,27 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
+const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
+  loading: () => 'loading',
+})
+import { carrierService } from '@/utils/api'
 
-const Landing = () => {
+const LandingCarrier = () => {
   return (
     <>
       <Main
-        title="IP Geolocation"
-        description="Around the globe, industry-leading organizations use IPinfo's
-          geolocation data to create efficient, enjoyable, and secure online
-          experiences for their users. These IP geolocation insights lead to
-          better conversion rates, improved customer satisfaction, and much more
-          with our API that's built for low latency responses."
+        title="Carrier Detection"
+        secondTitle="Mobile"
+        reverseTitle
+        description="Through smartphones, tablets, and other portable devices, mobile has overtaken desktop as the leading source of internet traffic. IPinfo’s API allows resolution of IP address to carrier, and our database provides information on every mobile IP’s carrier name, country code, and network code."
+        service={carrierService}
       />
       <Feedback />
       <GeolocationStatistic />
+      <AdvantagesSmall />
+      <WaysToUseSmall />
+      <BussinessMap />
       <Products />
-      <Advantages />
-      <WaysToUse />
       <FAQ />
       <Contact />
       <Partners />
@@ -61,4 +65,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default LandingCarrier

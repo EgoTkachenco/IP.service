@@ -39,16 +39,15 @@ const GeolocationStatistic = dynamic(
 const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
   loading: () => 'loading',
 })
-import { companyService } from '@/utils/api'
+import { abuseService } from '@/utils/api'
 
-const LandingCompany = () => {
+const LandingAbuse = () => {
   return (
     <>
       <Main
-        title="IP to Company"
-        secondTitle="API"
-        description="View website traffic from a different point of view. Our API provides customers with firmographics data on the companies behind IP traffic."
-        service={companyService}
+        title="Abuse Contact Data for IP Addresses"
+        description="Our abuse contact API returns data containing information belonging to the abuse contact of every IP address on the Internet. Fields included in this response are the abuse contact's email address, postal/ZIP code, city, state, country, name, network, and phone number."
+        service={abuseService}
       />
       <Feedback />
       <GeolocationStatistic />
@@ -64,4 +63,4 @@ const LandingCompany = () => {
   )
 }
 
-export default LandingCompany
+export default LandingAbuse

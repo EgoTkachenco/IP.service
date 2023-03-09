@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import LandingGeolocation from '@/components/landing/LandingGeolocation'
+import LandingWhois from '@/components/landing/LandingWhois'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function WhoisService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'IP Whois API',
+        description: 'IP Whois API',
       })}
       <Layout>
-        <LandingGeolocation />
+        <LandingWhois />
       </Layout>
     </>
   )

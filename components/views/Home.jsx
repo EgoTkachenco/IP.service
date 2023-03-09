@@ -12,18 +12,23 @@ import AccessToken from '@/components/reusable/analytics/AccessToken'
 import UsageChart from '@/components/reusable/analytics/UsageChart'
 import { observer } from 'mobx-react-lite'
 import AnalyticsStore from '@/store/AnalyticsStore'
+import SearchStore from '@/store/SearchStore'
 
 const Home = observer(() => {
   const { analytics, usage, duration, loadAnalytics, changeDuration } =
     AnalyticsStore
+  const { userIp: ip, getIpInfo } = SearchStore
   useEffect(() => {
     loadAnalytics()
+    if (!ip) getIpInfo()
   }, [])
 
+  const host = 'https://spyskey.com'
+  const url = `${host}/${ip}?token=${analytics?.token}`
   return (
     <Flex direction="column" gap="50px">
-      <OnboardingStep1 />
-      <OnboardingStep2 token={analytics?.token} />
+      <OnboardingStep1 url={url} ip={ip} token={analytics?.token} />
+      <OnboardingStep2 host={host} token={analytics?.token} />
       <OnboardingStep3 />
 
       <AnalyticsContent_1 flex="1">
@@ -36,7 +41,7 @@ const Home = observer(() => {
           limit={analytics?.billing.data.limit || 0}
           value={analytics?.billing.data.requests || 0}
         />
-        <AccessToken token={analytics?.token} />
+        <AccessToken token={analytics?.token} host={host} />
       </AnalyticsContent_2>
 
       <UsageChart

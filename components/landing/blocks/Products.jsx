@@ -54,13 +54,6 @@ export default Products
 
 const SLIDES = [
   {
-    icon: 'navigation',
-    color: 'primary',
-    title: 'Data Downloads',
-    description: 'Customize user expiriences',
-    href: '',
-  },
-  {
     icon: 'move',
     color: 'success',
     title: 'IP Ranges API',
@@ -86,35 +79,35 @@ const SLIDES = [
     color: 'success',
     title: 'ASN API',
     description: 'Improve data enrichment',
-    href: '',
+    href: routes['asn-api'],
   },
   {
     icon: 'globe',
     color: 'secondary',
     title: 'Hosted domains API',
     description: 'Enchance lead generation',
-    href: '',
+    href: routes['reverse-api'],
   },
   {
     icon: 'wifi',
     color: 'primary',
     title: 'IP to Mobille Carrier API',
     description: 'Customize user expiriences',
-    href: '',
+    href: routes['carrier-api'],
   },
   {
     icon: 'flag',
     color: 'success',
     title: 'Abuse Contact API',
     description: 'Automate abusive IP reporting',
-    href: '',
+    href: routes['abuse-api'],
   },
   {
     icon: 'zoom-in',
     color: 'secondary',
     title: 'IP Whois API',
     description: 'Get more IP insights',
-    href: '',
+    href: routes['whois-api'],
   },
 ]
 

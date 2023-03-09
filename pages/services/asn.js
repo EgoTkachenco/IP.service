@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import LandingGeolocation from '@/components/landing/LandingGeolocation'
+import LandingASN from '@/components/landing/LandingASN'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function ASNService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'ASN API',
+        description: 'ASN API',
       })}
       <Layout>
-        <LandingGeolocation />
+        <LandingASN />
       </Layout>
     </>
   )

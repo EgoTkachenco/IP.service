@@ -56,3 +56,18 @@ export const geolocationService = (ip) =>
 
 export const companyService = (ip) =>
   axios.get('/api/v1/public/services/company' + (ip ? `?ip=${ip}` : ''))
+
+export const asnService = (ip) =>
+  axios.get('/api/v1/public/services/asn' + (ip ? `?ip=${ip}` : ''))
+
+export const abuseService = (ip) =>
+  axios.get('/api/v1/public/services/abuse' + (ip ? `?ip=${ip}` : ''))
+
+export const carrierService = (ip) =>
+  axios.get('/api/v1/public/services/carrier' + (ip ? `?ip=${ip}` : ''))
+
+export const reverseService = (ip) =>
+  axios.get('/api/v1/public/services/reverse' + (ip ? `?ip=${ip}` : ''))
+
+export const whoisService = (ip) =>
+  axios.get('/api/v1/public/services/whois' + (ip ? `?ip=${ip}` : ''))

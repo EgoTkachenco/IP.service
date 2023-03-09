@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic'
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
 
-const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
+const Advantages = dynamic(() => import('./blocks/Advantages'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
+const WaysToUse = dynamic(() => import('./blocks/WaysToUse'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -36,26 +36,27 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
-import { companyService } from '@/utils/api'
 
-const LandingCompany = () => {
+import { geolocationService } from '@/utils/api'
+
+const Landing = () => {
   return (
     <>
       <Main
-        title="IP to Company"
+        title="IP Geolocation"
         secondTitle="API"
-        description="View website traffic from a different point of view. Our API provides customers with firmographics data on the companies behind IP traffic."
-        service={companyService}
+        description="Around the globe, industry-leading organizations use IPinfo's
+          geolocation data to create efficient, enjoyable, and secure online
+          experiences for their users. These IP geolocation insights lead to
+          better conversion rates, improved customer satisfaction, and much more
+          with our API that's built for low latency responses."
+        service={geolocationService}
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
-      <BussinessMap />
       <Products />
+      <Advantages />
+      <WaysToUse />
       <FAQ />
       <Contact />
       <Partners />
@@ -64,4 +65,4 @@ const LandingCompany = () => {
   )
 }
 
-export default LandingCompany
+export default Landing

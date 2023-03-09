@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import dynamic from 'next/dynamic'
-import { Flex, H1, H6 } from '@/core'
+import { Flex, H1, H6, Button } from '@/core'
 import { BlockInner } from './blocks/Block'
 const APIAccess = dynamic(() => import('./blocks/APIAccess'), {
   loading: () => 'loading',
@@ -24,7 +24,9 @@ const Pricing = ({ plans }) => {
         </H6>
 
         <BottomContainer>
-          <ButtonsContainer></ButtonsContainer>
+          <ButtonsContainer>
+            <Button color="primary">API access</Button>
+          </ButtonsContainer>
 
           <Switch
             labelOff="Yearly"

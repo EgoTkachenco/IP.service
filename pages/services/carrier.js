@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import LandingGeolocation from '@/components/landing/LandingGeolocation'
+import LandingCarrier from '@/components/landing/LandingCarrier'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function CarrierService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Mobile Carrier Detection',
+        description: 'Mobile Carrier Detection',
       })}
       <Layout>
-        <LandingGeolocation />
+        <LandingCarrier />
       </Layout>
     </>
   )

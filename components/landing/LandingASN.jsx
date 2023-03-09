@@ -39,16 +39,15 @@ const GeolocationStatistic = dynamic(
 const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
   loading: () => 'loading',
 })
-import { companyService } from '@/utils/api'
+import { asnService } from '@/utils/api'
 
-const LandingCompany = () => {
+const LandingASN = () => {
   return (
     <>
       <Main
-        title="IP to Company"
-        secondTitle="API"
-        description="View website traffic from a different point of view. Our API provides customers with firmographics data on the companies behind IP traffic."
-        service={companyService}
+        title="ASN API"
+        description="IP to ASN mapping and ASN lookup are possible with IPinfo’s ASN API, giving our customers access to a database that includes ASN details for every IP address and every ASN’s related domains, allocation date, registry name, total number of IP addresses, and assigned prefixes."
+        service={asnService}
       />
       <Feedback />
       <GeolocationStatistic />
@@ -64,4 +63,4 @@ const LandingCompany = () => {
   )
 }
 
-export default LandingCompany
+export default LandingASN

@@ -4,12 +4,12 @@ import TokenPreview from '@/components/reusable/TokenPreview'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 import { TokenQuery } from '@/components/reusable/styled.jsx'
 
-const OnboardingStep3 = ({ token }) => {
+const OnboardingStep2 = ({ token, host }) => {
   return (
     <OnboardingCard
       step="2"
       title="Get your token"
-      subtitle={<TokenQuery token={token} />}
+      subtitle={<TokenQuery host={host} token={token} />}
     >
       <OnboardingCardContent direction="column" gap="8px">
         <TokenPreview token={token} color="silvery" iconSize="30px" small />
@@ -19,4 +19,4 @@ const OnboardingStep3 = ({ token }) => {
   )
 }
 
-export default OnboardingStep3
+export default OnboardingStep2

@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import LandingGeolocation from '@/components/landing/LandingGeolocation'
+import LandingReverse from '@/components/landing/LandingReverse'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function ReverseService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Reverse IP API',
+        description: 'Reverse IP API',
       })}
       <Layout>
-        <LandingGeolocation />
+        <LandingReverse />
       </Layout>
     </>
   )

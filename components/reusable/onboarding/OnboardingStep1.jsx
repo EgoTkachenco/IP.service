@@ -4,8 +4,9 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import OnboardingCard from './OnboardingCard'
 
-const OnboardingStep1 = () => {
+const OnboardingStep1 = ({ ip, token, url }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
+
   return (
     <OnboardingCard
       step="1"
@@ -23,17 +24,17 @@ const OnboardingStep1 = () => {
         gap="8px"
       >
         <Text color="success" font="monospace" weight="400" width="100%">
-          curl "ipinfo.io/46.172.142.181?token=dbaf59e6154d0d"
+          curl "{url}
         </Text>
         <Icon
           icon="copy"
-          size={isMobile ? '24px' : '40px'}
+          size={isMobile ? '24px' : '32px'}
           color="primary"
           onClick={() => {}}
         />
       </DetailsCard>
 
-      <Details />
+      <Details ip={ip} url={url} />
 
       <Button color="text" size="small" outline width="auto">
         Skip Onboarding
@@ -44,7 +45,7 @@ const OnboardingStep1 = () => {
 
 export default OnboardingStep1
 
-const Details = () => {
+const Details = ({ ip, url }) => {
   const [activeTab, setActiveTab] = useState('Free')
   const tabs = ['Free', 'Basic', 'Standart', 'Bussiness']
   return (
@@ -70,10 +71,10 @@ const Details = () => {
         </Caption>
       </DetailsCardTop>
       <Text color="white" font="monospace" weight="400">
-        # Get details for 46.172.142.181
+        # Get details for {ip}
       </Text>
       <Text color="success" font="monospace" weight="400">
-        $ curl ipinfo.io/46.172.142.181?token=dbaf59e6154d0d
+        $ curl {url}
       </Text>
       <Flex direction="column" gap="8px">
         {DETAILS.map(({ name, value }) => (

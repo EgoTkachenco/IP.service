@@ -143,7 +143,7 @@ const NoDataText = styled(Text)`
 `
 
 const OffsetContent = styled(Flex)`
-  padding-left: 40px;
+  padding-left: 32px;
 
   @media (max-width: 1140px) {
     padding-left: 24px;

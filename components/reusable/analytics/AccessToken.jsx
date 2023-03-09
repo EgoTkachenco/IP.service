@@ -9,12 +9,18 @@ import styled from 'styled-components'
 import CopyButton from '@/components/reusable/CopyButton'
 import TokenPreview from '@/components/reusable/TokenPreview'
 
-const AccessToken = ({ token }) => {
+const AccessToken = ({ token, host }) => {
   return (
     <Card color="white">
       <CardTitle align="center">
         <H6>ACCESS TOKEN</H6>
-        <CopyButton color="dark" width="auto" outline size="small" data={token}>
+        <CopyButton
+          color="dark"
+          width="auto"
+          outline
+          size="small"
+          data={`${host}/[IP address]?token=${token}`}
+        >
           Copy to Clipboard
         </CopyButton>
       </CardTitle>
@@ -31,7 +37,7 @@ const AccessToken = ({ token }) => {
         <Text weight={700} color="dark">
           How to use
         </Text>
-        <TokenQuery token={token} />
+        <TokenQuery host={host} token={token} />
       </CardBottom>
     </Card>
   )

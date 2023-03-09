@@ -64,12 +64,14 @@ export const Price = styled.div.attrs(
   }
 `
 
-export const TokenQuery = ({ token }) => (
+export const TokenQuery = ({ token, host }) => (
   <Flex align="center" gap="4px" fwrap>
     <Icon icon="question" size="18px" color="primary" />
     <Caption weight="700" inline>
       Query Parameter
     </Caption>
-    <Caption inline>ipinfo.io/[IP address]?token={token}</Caption>
+    <Caption inline>
+      {host}/[IP address]?token={token}
+    </Caption>
   </Flex>
 )

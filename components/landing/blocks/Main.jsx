@@ -5,7 +5,13 @@ import { BlockInner } from './Block'
 import APIPreview from '@/components/reusable/APIPreview'
 import { SignInContactButtons } from './styled'
 
-const Main = ({ title, description, service }) => {
+const Main = ({
+  title,
+  secondTitle,
+  reverseTitle = false,
+  description,
+  service,
+}) => {
   return (
     <Wrapper>
       <Content>
@@ -16,8 +22,9 @@ const Main = ({ title, description, service }) => {
           height={100}
           loading="lazy"
         />
-        <Flex gap="4px">
-          <H2 color="dark">{title}</H2> <H2 color="primary">API</H2>
+        <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
+          <H2 color="dark">{title}</H2>
+          {secondTitle ? <H2 color="primary">{secondTitle}</H2> : ''}
         </Flex>
         <Subtitle>{description}</Subtitle>
         <SignInContactButtons />

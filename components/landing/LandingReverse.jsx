@@ -39,16 +39,15 @@ const GeolocationStatistic = dynamic(
 const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
   loading: () => 'loading',
 })
-import { companyService } from '@/utils/api'
+import { reverseService } from '@/utils/api'
 
-const LandingCompany = () => {
+const LandingReverse = () => {
   return (
     <>
       <Main
-        title="IP to Company"
-        secondTitle="API"
-        description="View website traffic from a different point of view. Our API provides customers with firmographics data on the companies behind IP traffic."
-        service={companyService}
+        title="Reverse IP API"
+        description="Our Hosted Domains API, or Reverse IP API returns a full list of domains that are hosted on a single IP address. These domains are ordered based on host.io domain ranking."
+        service={reverseService}
       />
       <Feedback />
       <GeolocationStatistic />
@@ -64,4 +63,4 @@ const LandingCompany = () => {
   )
 }
 
-export default LandingCompany
+export default LandingReverse

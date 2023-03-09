@@ -3,6 +3,7 @@ import { searchIp, getIp } from '@/utils/api'
 
 class SearchStore {
   ip = ''
+  userIp = ''
   isUserIp = false
   isFetch = ''
   result = null
@@ -17,6 +18,7 @@ class SearchStore {
       const info = await getIp(ip)
       if (typeof info === 'string') {
         this.ip = info
+        this.userIp = info
         this.isUserIp = true
       } else {
         this.ip = info.ip

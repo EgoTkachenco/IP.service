@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import LandingGeolocation from '@/components/landing/LandingGeolocation'
+import LandingAbuse from '@/components/landing/LandingAbuse'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function AbuseService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Abuse Contact Data for IP Addresses',
+        description: 'Abuse Contact Data for IP Addresses',
       })}
       <Layout>
-        <LandingGeolocation />
+        <LandingAbuse />
       </Layout>
     </>
   )

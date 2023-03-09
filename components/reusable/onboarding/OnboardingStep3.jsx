@@ -2,7 +2,7 @@ import { Caption, Flex, Icon, Button } from '@/core'
 import styled from 'styled-components'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 
-const OnboardingStep4 = () => {
+const OnboardingStep3 = () => {
   return (
     <OnboardingCard
       step="3"
@@ -39,7 +39,7 @@ const OnboardingStep4 = () => {
   )
 }
 
-export default OnboardingStep4
+export default OnboardingStep3
 
 const ListItem = ({ children }) => (
   <Flex gap="8px" align="center">
