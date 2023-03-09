@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import PlanCard from '@/components/reusable/UpgradePlanCard'
 import PlansStore from '@/store/PlansStore'
 import { observer } from 'mobx-react-lite'
-import { AnimatePresence } from 'framer-motion'
 import Animation from '@/components/reusable/Animation'
 
 const Upgrade = observer(() => {
@@ -28,25 +27,22 @@ const Upgrade = observer(() => {
       </TitleContainer>
 
       <CardsContainer flex="1 1">
-        <AnimatePresence mode="wait">
-          {plans &&
-            plans.map((plan, i) => (
-              <Animation key={plan.name} delay={i * 0.2}>
-                <PlanCard
-                  name={plan.name}
-                  priceType={period}
-                  price={
-                    period === 'yearly'
-                      ? plan.year_price * 12
-                      : plan.month_price
-                  }
-                  description={plan.description}
-                  additional_description={plan.additional_description}
-                  options={plan.options}
-                />
-              </Animation>
-            ))}
-        </AnimatePresence>
+        {plans &&
+          plans.map((plan, i) => (
+            <Animation key={plan.name} delay={i * 0.2}>
+              <PlanCard
+                key={plan.name}
+                name={plan.name}
+                priceType={period}
+                price={
+                  period === 'yearly' ? plan.year_price * 12 : plan.month_price
+                }
+                description={plan.description}
+                additional_description={plan.additional_description}
+                options={plan.options}
+              />
+            </Animation>
+          ))}
       </CardsContainer>
     </Flex>
   )

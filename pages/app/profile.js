@@ -1,8 +1,11 @@
 import Layout from '@/components/layout/AppLayout'
-import Animation from '@/components/reusable/Animation'
-import ProfileView from '@/components/views/Profile'
 import { useMetadataRenderer } from '@/hooks'
 import { serverSideSecuredRoute } from '@/utils'
+import dynamic from 'next/dynamic'
+const ProfileView = dynamic(() => import('@/components/views/Profile'), {
+  loading: () => '',
+  ssr: false,
+})
 
 export default function Profile() {
   const renderMetadata = useMetadataRenderer()
@@ -14,9 +17,7 @@ export default function Profile() {
         description: 'IP Service',
       })}
       <Layout>
-        <Animation key="profile">
-          <ProfileView />
-        </Animation>
+        <ProfileView />
       </Layout>
     </>
   )

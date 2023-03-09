@@ -63,7 +63,13 @@ export default Footer
 
 const Logo = () => (
   <Flex gap="8px" align="center">
-    <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
+    <Image
+      src="/logo.svg"
+      height={24}
+      width={24}
+      alt="IP.Service"
+      loading="lazy"
+    />
     <H6>IP.Service</H6>
   </Flex>
 )

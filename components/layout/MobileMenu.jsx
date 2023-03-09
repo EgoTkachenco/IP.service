@@ -10,7 +10,7 @@ const MobileMenu = ({ children }) => {
   useNoBodyScroll(show)
   useEffect(() => setShow(false), [router.pathname])
   return (
-    <>
+    <Wrapper>
       <Icon
         icon={show ? 'closemark' : 'menu'}
         size="24px"
@@ -28,11 +28,18 @@ const MobileMenu = ({ children }) => {
           {children}
         </Flex>
       </MenuWrapper>
-    </>
+    </Wrapper>
   )
 }
 
 export default MobileMenu
+
+const Wrapper = styled.div`
+  display: none;
+  @media (max-width: 1140px) {
+    display: block;
+  }
+`
 
 const MenuWrapper = styled(Flex)`
   position: absolute;

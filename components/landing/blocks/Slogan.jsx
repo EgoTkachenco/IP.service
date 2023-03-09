@@ -6,7 +6,7 @@ import { BlockInner } from './Block'
 const Slogan = () => {
   return (
     <Wrapper>
-      <Image fill src="/slogan-back.png" alt="Slogan back" />
+      <Image fill src="/slogan-back.png" alt="Slogan back" loading="lazy" />
       <Content>
         <Flex direction="column">
           <H1 color="dark">Made for developers</H1>

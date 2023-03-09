@@ -7,17 +7,22 @@ import AuthStore from '@/store/AuthStore'
 import TokenStore from '@/store/TokenStore'
 import SearchStore from '@/store/SearchStore'
 import { gradient } from '@/styles/animations'
+import Animation from '@/components/reusable/Animation'
+import { useRouter } from 'next/router'
 
-const Layout = observer(({ children }) => {
-  const isMobile = useMediaQuery('(max-width: 1140px)', true)
+const Layout = observer(({ children, animation = true }) => {
   const isFetch = AuthStore.isFetch || TokenStore.isFetch || SearchStore.isFetch
 
   return (
     <Wrapper>
-      <Header isMobile={isMobile} />
+      <Header />
       <Inner>
-        {!isMobile && <Menu />}
-        <Content isFetch={isFetch}>{children}</Content>
+        <MenuWrapper>
+          <Menu />
+        </MenuWrapper>
+        <ContentContainer isFetch={isFetch} animation={animation}>
+          {children}
+        </ContentContainer>
       </Inner>
     </Wrapper>
   )
@@ -25,12 +30,32 @@ const Layout = observer(({ children }) => {
 
 export default Layout
 
+const ContentContainer = ({ isFetch, animation, children }) => {
+  const router = useRouter()
+  return (
+    <Content isFetch={isFetch}>
+      {animation ? (
+        <Animation key={router.asPath}>{children}</Animation>
+      ) : (
+        children
+      )}
+    </Content>
+  )
+}
+
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
+`
+
+const MenuWrapper = styled.div`
+  display: block;
+  @media (max-width: 1140px) {
+    display: none;
+  }
 `
 
 const Inner = styled.div`

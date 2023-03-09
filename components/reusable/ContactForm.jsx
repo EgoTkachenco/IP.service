@@ -85,6 +85,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
         <Flex justify="space-between" width="100%">
           {REASONS.map((reason) => (
             <Checkbox
+              key={reason}
               label={reason}
               value={reason === reasonValue}
               onChange={() => onReasonChange(reason)}

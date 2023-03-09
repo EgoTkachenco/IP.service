@@ -20,6 +20,7 @@ export const AdvantagesIllustration = ({ count, small }) => (
       alt="advantages back"
       className="advantages-image__back"
       fill
+      loading="lazy"
     />
     <AdvantagesImageTitle>{count}</AdvantagesImageTitle>
     <AdvantagesImageText color="white">

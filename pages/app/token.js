@@ -1,8 +1,12 @@
 import Layout from '@/components/layout/AppLayout'
-import Animation from '@/components/reusable/Animation'
-import TokenView from '@/components/views/Token'
 import { useMetadataRenderer } from '@/hooks'
 import { serverSideSecuredRoute } from '@/utils'
+import dynamic from 'next/dynamic'
+const TokenView = dynamic(() => import('@/components/views/Token'), {
+  loading: () => '',
+  ssr: false,
+})
+import Animation from '@/components/reusable/Animation'
 
 export default function Token() {
   const renderMetadata = useMetadataRenderer()
@@ -14,9 +18,7 @@ export default function Token() {
         description: 'IP Service',
       })}
       <Layout>
-        <Animation key="token">
-          <TokenView />
-        </Animation>
+        <TokenView />
       </Layout>
     </>
   )

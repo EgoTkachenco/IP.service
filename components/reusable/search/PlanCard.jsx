@@ -20,6 +20,7 @@ const PlanCard = ({
           alt="icon"
           width={177}
           height={177}
+          loading="lazy"
         />
       ) : (
         <Image
@@ -28,6 +29,7 @@ const PlanCard = ({
           alt="icon"
           width={368}
           height={368}
+          loading="lazy"
         />
       )}
       <CardContent gap="4px">

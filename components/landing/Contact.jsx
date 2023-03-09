@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Layout from './layout/Layout'
 import { Flex, H1, H6, Card } from '@/core'
 import { BlockInner } from './blocks/Block'
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
@@ -10,7 +9,7 @@ const Contact = () => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
 
   return (
-    <Layout>
+    <>
       <Block>
         <ContactTop direction="column">
           <Title color="dark">Get in Touch</Title>
@@ -32,7 +31,7 @@ const Contact = () => {
       <CarouselBlock>
         <PartnersCarousel small gap="24px" />
       </CarouselBlock>
-    </Layout>
+    </>
   )
 }
 

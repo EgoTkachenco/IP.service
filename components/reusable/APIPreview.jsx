@@ -45,11 +45,11 @@ const APIPreview = ({ service }) => {
       </SearchForm>
 
       <ContentCard color="dark" isFetch={isFetch}>
-        <ContentCardInner className="custom-scroll">
+        <ContentCardInner className="custom-scroll-dark">
           {!isFetch ? <JSONPreview data={data || {}} /> : <LoadingText />}
         </ContentCardInner>
       </ContentCard>
-      <ChipContainer flex="1">
+      <ChipContainer flex="1" className="custom-scroll">
         {example_list.map((example, i) => (
           <Chip
             key={i}
@@ -119,8 +119,8 @@ const ChipContainer = styled(Flex)`
   gap: 4px;
   max-width: 100%;
   overflow: auto;
-  padding-bottom: 16px;
-  margin-bottom: -16px;
+  padding-bottom: 8px;
+  margin-bottom: -8px;
   & > * {
     min-width: 120px;
   }

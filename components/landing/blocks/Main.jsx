@@ -14,6 +14,7 @@ const Main = ({ title, description, service }) => {
           alt="IP Geolocation API"
           width={100}
           height={100}
+          loading="lazy"
         />
         <Flex gap="4px">
           <H2 color="dark">{title}</H2> <H2 color="primary">API</H2>

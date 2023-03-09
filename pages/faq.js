@@ -1,3 +1,4 @@
+import Layout from '@/components/landing/layout/Layout'
 import FAQ from '@/components/landing/FAQ'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -10,7 +11,9 @@ export default function FAQPage() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <FAQ />
+      <Layout>
+        <FAQ />
+      </Layout>
     </>
   )
 }

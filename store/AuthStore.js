@@ -6,7 +6,7 @@ import {
   logout,
   updateProfile,
 } from '@/utils/api'
-import { eraseToken, setToken, USER_STORE_NAME } from '@/utils/axios'
+import { eraseToken, getToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 
 class AuthStore {
   isFetch = false
@@ -46,11 +46,16 @@ class AuthStore {
   }
 
   relog = async () => {
-    if (this.user) return Promise.resolve()
+    const token = getToken()
+    if (token && this.user) return Promise.resolve()
     const user = localStorage.getItem(USER_STORE_NAME)
-    if (user) {
+    if (token && user) {
       this.user = JSON.parse(user)
       return Promise.resolve()
+    } else {
+      // remove all
+      localStorage.removeItem(USER_STORE_NAME)
+      eraseToken()
     }
     return Promise.reject()
   }

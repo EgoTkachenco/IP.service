@@ -1,8 +1,15 @@
 import Layout from '@/components/layout/AppLayout'
 import BillingLayout from '@/components/views/Billing/Layout'
-import BillingSubscription from '@/components/views/Billing/Subscription'
 import { useMetadataRenderer } from '@/hooks'
 import { serverSideSecuredRoute } from '@/utils'
+import dynamic from 'next/dynamic'
+const BillingSubscription = dynamic(
+  () => import('@/components/views/Billing/Subscription'),
+  {
+    loading: () => '',
+    ssr: false,
+  }
+)
 
 export default function Billing() {
   const renderMetadata = useMetadataRenderer()
@@ -13,7 +20,7 @@ export default function Billing() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Layout>
+      <Layout animation={false}>
         <BillingLayout>
           <BillingSubscription />
         </BillingLayout>

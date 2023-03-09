@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Card, H1, Text, Checkbox, Button } from '@/core'
+import { Card, H1 } from '@/core'
 import { Block, BlockInner } from './Block'
 import ContactForm from '@/components/reusable/ContactForm'
 

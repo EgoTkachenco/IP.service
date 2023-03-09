@@ -1,3 +1,4 @@
+import Layout from '@/components/landing/layout/Layout'
 import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
 import PlansStore from '@/store/PlansStore'
@@ -14,7 +15,9 @@ const PricingPage = observer(({ plans }) => {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Pricing plans={plans} />
+      <Layout>
+        <Pricing plans={plans} />
+      </Layout>
     </>
   )
 })

@@ -71,7 +71,7 @@ const FAQItemWrapper = styled.div`
     ${({ theme, isOpen }) => (isOpen ? theme.colors.primary : '#02202D')};
 
   @media (max-width: 1140px) {
-    padding: 0 16px;
+    padding: 0 0 0 16px;
     justify-content: center;
     min-height: 38px;
     gap: 0;

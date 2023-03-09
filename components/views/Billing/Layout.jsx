@@ -1,4 +1,4 @@
-import Animation from '@/components/reusable/Animation'
+// import Animation from '@/components/reusable/Animation'
 import routes from '@/constants/routes'
 import { Flex, Chip } from '@/core'
 import Link from 'next/link'

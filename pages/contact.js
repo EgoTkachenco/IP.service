@@ -1,3 +1,4 @@
+import Layout from '@/components/landing/layout/Layout'
 import Contact from '@/components/landing/Contact'
 import { useMetadataRenderer } from '@/hooks'
 
@@ -10,7 +11,9 @@ export default function ContactPage() {
         title: 'IP Service',
         description: 'IP Service',
       })}
-      <Contact />
+      <Layout>
+        <Contact />
+      </Layout>
     </>
   )
 }

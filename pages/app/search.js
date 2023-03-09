@@ -1,8 +1,11 @@
 import Layout from '@/components/layout/AppLayout'
-import Animation from '@/components/reusable/Animation'
-import SearchView from '@/components/views/Search'
 import { useMetadataRenderer } from '@/hooks'
 import { serverSideSecuredRoute } from '@/utils'
+import dynamic from 'next/dynamic'
+const SearchView = dynamic(() => import('@/components/views/Search'), {
+  loading: () => '',
+  ssr: false,
+})
 
 export default function Search() {
   const renderMetadata = useMetadataRenderer()
@@ -14,9 +17,7 @@ export default function Search() {
         description: 'IP Service',
       })}
       <Layout>
-        <Animation key="search">
-          <SearchView />
-        </Animation>
+        <SearchView />
       </Layout>
     </>
   )

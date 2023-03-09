@@ -28,19 +28,29 @@ export default createGlobalStyle`
 	}
 
 	/* width */
-	.custom-scroll::-webkit-scrollbar {
+	.custom-scroll::-webkit-scrollbar, .custom-scroll-dark::-webkit-scrollbar {
 		width: 6px;
+		height: 6px;
 	}
 
 	/* Track */
 	.custom-scroll::-webkit-scrollbar-track {
 		background: transparent; 
 	}
+
+	.custom-scroll-dark::-webkit-scrollbar{
+		background: transparent; 
+	}
 	
 	/* Handle */
 	.custom-scroll::-webkit-scrollbar-thumb {
+		background: rgba(31, 45, 58, 0.25);
+		border-radius: 10px;
+	}
+
+	.custom-scroll-dark::-webkit-scrollbar-thumb {
 		background: #1F2D3A;
-		border-radius: 10px;;
+		border-radius: 10px;
 	}
 
 	/* Handle on hover */

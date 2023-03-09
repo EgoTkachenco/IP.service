@@ -1,8 +1,11 @@
 import Layout from '@/components/layout/AppLayout'
-import Animation from '@/components/reusable/Animation'
-import HomeView from '@/components/views/Home'
 import { useMetadataRenderer } from '@/hooks'
 import { serverSideSecuredRoute } from '@/utils'
+import dynamic from 'next/dynamic'
+const HomeView = dynamic(() => import('@/components/views/Home'), {
+  loading: () => '',
+  ssr: false,
+})
 
 export default function Home() {
   const renderMetadata = useMetadataRenderer()
@@ -13,9 +16,7 @@ export default function Home() {
         description: 'IP Service',
       })}
       <Layout>
-        <Animation key="home">
-          <HomeView />
-        </Animation>
+        <HomeView />
       </Layout>
     </>
   )

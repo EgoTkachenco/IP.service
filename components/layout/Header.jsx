@@ -12,7 +12,7 @@ import { validateIP } from '@/utils'
 import { useEffect } from 'react'
 import routes from '@/constants/routes'
 
-const Header = observer(({ isMobile }) => {
+const Header = observer(() => {
   const router = useRouter()
   const { ip, isUserIp, getIpInfo } = SearchStore
   const form = useForm({
@@ -52,37 +52,34 @@ const Header = observer(({ isMobile }) => {
     <Wrapper>
       <Link href={routes.home}>
         <LogoContainer gap="8px" align="center">
-          <Image src="/logo.svg" height={24} width={24} alt="IP.Service" />
+          <Image
+            src="/logo.svg"
+            height={24}
+            width={24}
+            alt="IP.Service"
+            loading="lazy"
+          />
           <H6 color="dark">IP.Service</H6>
         </LogoContainer>
       </Link>
-
-      {isMobile ? (
-        <MobileMenu>
-          <IPsList onClick={(ip) => getInfo(ip)} />
-          <Menu />
-        </MobileMenu>
-      ) : (
-        <>
-          <SearchWrapper onSubmit={onSubmit}>
-            <Input
-              variant="light"
-              placeholder="Search..."
-              noErrorMessage={true}
-              {...form.getInputProps('search')}
-              rightSlot={
-                <Icon
-                  icon="search"
-                  size="18px"
-                  color="text"
-                  onClick={onSubmit}
-                />
-              }
-            />
-          </SearchWrapper>
-          <IPsList ip={ip} isUserIp={isUserIp} onClick={(ip) => getInfo(ip)} />
-        </>
-      )}
+      <DesktopMenu>
+        <SearchWrapper onSubmit={onSubmit}>
+          <Input
+            variant="light"
+            placeholder="Search..."
+            noErrorMessage={true}
+            {...form.getInputProps('search')}
+            rightSlot={
+              <Icon icon="search" size="18px" color="text" onClick={onSubmit} />
+            }
+          />
+        </SearchWrapper>
+        <IPsList ip={ip} isUserIp={isUserIp} onClick={(ip) => getInfo(ip)} />
+      </DesktopMenu>
+      <MobileMenu>
+        <IPsList onClick={(ip) => getInfo(ip)} />
+        <Menu />
+      </MobileMenu>
     </Wrapper>
   )
 })
@@ -128,6 +125,15 @@ const LogoContainer = styled(Flex)`
   @media (max-width: 1140px) {
     padding: 0;
     width: 100px;
+  }
+`
+
+const DesktopMenu = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  @media (max-width: 1140px) {
+    display: none;
   }
 `
 

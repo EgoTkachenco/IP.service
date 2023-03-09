@@ -10,7 +10,7 @@ const MobileMenu = () => {
   const [show, setShow] = useState(false)
   useNoBodyScroll(show)
   return (
-    <>
+    <Wrapper>
       <Icon
         icon={show ? 'closemark' : 'menu'}
         size="24px"
@@ -40,11 +40,18 @@ const MobileMenu = () => {
           })}
         </Flex>
       </MenuWrapper>
-    </>
+    </Wrapper>
   )
 }
 
 export default MobileMenu
+
+const Wrapper = styled.div`
+  display: none;
+  @media (max-width: 1140px) {
+    display: block;
+  }
+`
 
 const Dropdown = ({ name, links }) => {
   const [isOpen, setIsOpen] = useState(false)

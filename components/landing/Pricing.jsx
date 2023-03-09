@@ -1,20 +1,18 @@
 import styled from 'styled-components'
-import Layout from './layout/Layout'
-import { Flex, Button, H1, H6 } from '@/core'
+import dynamic from 'next/dynamic'
+import { Flex, H1, H6 } from '@/core'
 import { BlockInner } from './blocks/Block'
-import APIAccess from './blocks/APIAccess'
-import DataDownload from './blocks/DataDownload'
+const APIAccess = dynamic(() => import('./blocks/APIAccess'), {
+  loading: () => 'loading',
+})
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
-import Animation from '@/components/reusable/Animation'
-import { AnimatePresence } from 'framer-motion'
 
 const Pricing = ({ plans }) => {
-  const [activeBlock, setActiveBlock] = useState('api')
   const [period, setPeriod] = useState('monthly')
 
   return (
-    <Layout>
+    <>
       <BlockInner direction="column">
         <Title color="dark">
           Flexible pricing for the most accurate IP data
@@ -26,37 +24,18 @@ const Pricing = ({ plans }) => {
         </H6>
 
         <BottomContainer>
-          <ButtonsContainer>
-            {/* <Button
-              color={activeBlock === 'api' ? 'primary' : 'dark'}
-              outline={activeBlock !== 'api'}
-              onClick={() => setActiveBlock('api')}
-            >
-              API access
-            </Button>
-            <Button
-              color={activeBlock === 'data' ? 'primary' : 'dark'}
-              outline={activeBlock !== 'data'}
-              onClick={() => setActiveBlock('data')}
-            >
-              Data Download
-            </Button> */}
-          </ButtonsContainer>
+          <ButtonsContainer></ButtonsContainer>
 
-          {activeBlock === 'api' && (
-            <Switch
-              labelOff="Yearly"
-              labelOn="Monthly"
-              value={period === 'monthly'}
-              onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
-            />
-          )}
+          <Switch
+            labelOff="Yearly"
+            labelOn="Monthly"
+            value={period === 'monthly'}
+            onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
+          />
         </BottomContainer>
-
-        {activeBlock === 'api' && <APIAccess period={period} plans={plans} />}
-        {/* {activeBlock === 'data' && <DataDownload />} */}
+        <APIAccess period={period} plans={plans} />
       </BlockInner>
-    </Layout>
+    </>
   )
 }
 

@@ -8,9 +8,13 @@ class PlansStore {
   }
 
   loadPlans = async () => {
-    const plans = await getPlansList()
-    this.savePlans(plans)
-    return plans
+    try {
+      const plans = await getPlansList()
+      this.savePlans(plans)
+      return plans
+    } catch (error) {
+      console.log(error.message)
+    }
   }
   savePlans = (plans) => {
     this.plans = plans

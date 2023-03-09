@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Layout from './layout/Layout'
 import { Flex, Button, Text, Icon, Card, Input, Chip, H1, H3 } from '@/core'
 import { BlockInner } from './blocks/Block'
 import FAQList from '@/components/reusable/FAQList'
@@ -19,7 +18,7 @@ const FAQ = () => {
   }
 
   return (
-    <Layout>
+    <>
       <SearchBlock>
         <H3 align="center" color="dark">
           Common questions and support documentation
@@ -30,49 +29,43 @@ const FAQ = () => {
         />
       </SearchBlock>
       <Content>
-        {isMobile ? (
-          <Flex direction="column" gap="24px" width="100%">
-            {FAQ_QUESTIONS.map((topic, i) => (
-              <Flex direction="column" gap="24px" width="100%" key={i}>
-                <TopicItemMobile key={i} active={activeBlock === i}>
-                  <Text
-                    weight={700}
-                    color={activeBlock === i ? 'white' : 'dark'}
-                  >
-                    {topic.name}
-                  </Text>
-                  <Icon
-                    icon={activeBlock === i ? 'plus' : 'minus'}
-                    size="24px"
-                    color={activeBlock === i ? 'white' : 'dark'}
-                    onClick={() => openTopic(i)}
-                  />
-                </TopicItemMobile>
-                {activeBlock === i && (
-                  <FAQList
-                    questions={FAQ_QUESTIONS[i].questions}
-                    active={activeQuestion}
-                    onChange={(question) => setActiveQuestion(question)}
-                  />
-                )}
-              </Flex>
-            ))}
+        <DesktopContainer>
+          <TopicList active={activeBlock} open={openTopic} />
+          <Flex direction="column" gap="40px">
+            <H3 color="dark">About IP.Service </H3>
+            <FAQList
+              questions={FAQ_QUESTIONS[activeBlock].questions}
+              active={activeQuestion}
+              onChange={(question) => setActiveQuestion(question)}
+            />
           </Flex>
-        ) : (
-          <>
-            <TopicList active={activeBlock} open={openTopic} />
-            <Flex direction="column" gap="40px">
-              <H3 color="dark">About IP.Service </H3>
-              <FAQList
-                questions={FAQ_QUESTIONS[activeBlock].questions}
-                active={activeQuestion}
-                onChange={(question) => setActiveQuestion(question)}
-              />
+        </DesktopContainer>
+        <MobileContainer>
+          {FAQ_QUESTIONS.map((topic, i) => (
+            <Flex direction="column" gap="24px" width="100%" key={i}>
+              <TopicItemMobile key={i} active={activeBlock === i}>
+                <Text weight={700} color={activeBlock === i ? 'white' : 'dark'}>
+                  {topic.name}
+                </Text>
+                <Icon
+                  icon={activeBlock === i ? 'plus' : 'minus'}
+                  size="24px"
+                  color={activeBlock === i ? 'white' : 'dark'}
+                  onClick={() => openTopic(i)}
+                />
+              </TopicItemMobile>
+              {activeBlock === i && (
+                <FAQList
+                  questions={FAQ_QUESTIONS[i].questions}
+                  active={activeQuestion}
+                  onChange={(question) => setActiveQuestion(question)}
+                />
+              )}
             </Flex>
-          </>
-        )}
+          ))}
+        </MobileContainer>
       </Content>
-    </Layout>
+    </>
   )
 }
 
@@ -81,11 +74,27 @@ export default FAQ
 const Content = styled(Flex)`
   width: calc(100% - ((100% - 1140px) / 2));
   margin: 60px 0 150px auto;
-  gap: 100px;
 
   @media (max-width: 1140px) {
     width: 100%;
     padding: 0 24px;
+  }
+`
+const DesktopContainer = styled(Flex)`
+  gap: 100px;
+  width: 100%;
+  @media (max-width: 1140px) {
+    display: none;
+  }
+`
+
+const MobileContainer = styled(Flex)`
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  display: none;
+  @media (max-width: 1140px) {
+    display: flex;
   }
 `
 

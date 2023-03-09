@@ -3,18 +3,18 @@ import { Flex } from '@/core'
 
 import DataSubscriptionCard from '@/components/reusable/DataSubscriptionCard'
 import RequestForm from '@/components/reusable/RequestForm'
-import Animation from '@/components/reusable/Animation'
+// import Animation from '@/components/reusable/Animation'
 
 const DataDownload = () => {
   return (
     <Flex direction="column" gap="150px" width="100%">
       <Container flex="1 1">
-        <Animation>
-          <DataSubscriptionCard />
-        </Animation>
-        <Animation delay={0.3}>
-          <RequestForm />
-        </Animation>
+        {/* <Animation> */}
+        <DataSubscriptionCard />
+        {/* </Animation> */}
+        {/* <Animation delay={0.3}> */}
+        <RequestForm />
+        {/* </Animation> */}
       </Container>
 
       <div />

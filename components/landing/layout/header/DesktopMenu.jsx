@@ -8,7 +8,7 @@ import links from './links'
 
 const DesktopMenu = () => {
   return (
-    <>
+    <Wrapper>
       <Flex gap="25px" align="center">
         {links.map((link) => {
           if (link.links) {
@@ -26,11 +26,20 @@ const DesktopMenu = () => {
         })}
       </Flex>
       <AuthorizationButtons />
-    </>
+    </Wrapper>
   )
 }
 
 export default DesktopMenu
+
+const Wrapper = styled(Flex)`
+  align-items: center;
+  justify-content: space-between;
+  flex-basis: 60%;
+  @media (max-width: 1140px) {
+    display: none;
+  }
+`
 
 const Dropdown = ({ name, children }) => {
   const [isOpen, setIsOpen] = useState(false)

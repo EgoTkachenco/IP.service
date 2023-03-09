@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { H1, Flex, H5, Text, Caption, Icon } from '@/core'
-import Layout from './layout/Layout'
 import { BlockInner } from './blocks/Block'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -46,7 +45,7 @@ const TermsOfService = () => {
   }, [router.asPath])
 
   return (
-    <Layout animation={false}>
+    <>
       <Wrapper>
         <TitlesList activeBlock={activeBlock} />
         <Flex direction="column">
@@ -65,7 +64,7 @@ const TermsOfService = () => {
           </TermsList>
         </Flex>
       </Wrapper>
-    </Layout>
+    </>
   )
 }
 

@@ -73,8 +73,10 @@ const PlanLabels = ({ plan }) => {
   const filtered_plans = plans.slice(0, plans.indexOf(plan) + 1)
   return (
     <ChipContainer gap="10px">
-      {filtered_plans.map((name) => (
-        <Chip type={plan_color[name]}>{name}</Chip>
+      {filtered_plans.map((name, i) => (
+        <Chip type={plan_color[name]} key={i}>
+          {name}
+        </Chip>
       ))}
     </ChipContainer>
   )
