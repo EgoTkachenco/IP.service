@@ -3,19 +3,14 @@ import { Flex, H2, Text } from '@/core'
 import { Block, BlockInner } from './Block'
 import { AdvantagesItem, AdvantagesIllustration } from './styled'
 
-const Advantages = () => {
+const Advantages = ({ title, description, count, features }) => {
   return (
     <Block>
       <Content>
         <H2 color="dark" align="center">
-          Accurate & low-latency <br /> IP geolocation lookup
+          {title}
         </H2>
-        <AdvantagesText>
-          IPinfo specializes in providing accurate IP to location data. We take
-          it so seriously that we build and maintain our own proprietary IP
-          geolocation database. Our GeoAPI provides a response that includes
-          these datasets for every IP:
-        </AdvantagesText>
+        <AdvantagesText>{description}</AdvantagesText>
 
         <Flex gap="50px" align="center">
           <Flex
@@ -24,20 +19,20 @@ const Advantages = () => {
             justify="space-around"
             gap="100px"
           >
-            <AdvantagesItem icon="edit" text="Hostname" />
-            <AdvantagesItem icon="communicate" text="Postal/zip code" />
-            <AdvantagesItem icon="navigation" text="Region" />
+            {features.slice(0, 3).map((feature) => (
+              <AdvantagesItem icon={feature.icon} text={feature.name} />
+            ))}
           </Flex>
-          <AdvantagesIllustration count="68" />
+          <AdvantagesIllustration count={count} />
           <Flex
             direction="column"
             align="flex-start"
             justify="space-around"
             gap="100px"
           >
-            <AdvantagesItem icon="flag" text="Country" />
-            <AdvantagesItem icon="map" text="Location coordinates" />
-            <AdvantagesItem icon="city" text="City" />
+            {features.slice(3, 6).map((feature) => (
+              <AdvantagesItem icon={feature.icon} text={feature.name} />
+            ))}
           </Flex>
         </Flex>
       </Content>

@@ -6,7 +6,7 @@ import Feedback from './blocks/Feedback'
 const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
+const WhoisInfo = dynamic(() => import('./blocks/WhoisInfo'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -36,9 +36,7 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
+
 import { whoisService } from '@/utils/api'
 
 const LandingWhois = () => {
@@ -51,9 +49,15 @@ const LandingWhois = () => {
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
-      <BussinessMap />
+      <AdvantagesSmall
+        title={
+          'Billion API requests last month\nWell-parsed andusable IP Whois data'
+        }
+        description={`The Internet has an approximate year-over-year increase of 5.4 percent for domain name registrations across all TLDs. We stay current with Whois data changes by updating our these insights daily and gathering record sets from around 400 Whois servers. Access our Whois data by IP, ID, or domain, including the following information:`}
+        count={28}
+        contentWidth="660px"
+      />
+      <WhoisInfo />
       <Products />
       <FAQ />
       <Contact />

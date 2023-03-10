@@ -6,9 +6,12 @@ import Feedback from './blocks/Feedback'
 const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
-  loading: () => '',
-})
+const CompanyAPIUsecases = dynamic(
+  () => import('./blocks/CompanyAPIUsecases'),
+  {
+    loading: () => '',
+  }
+)
 const Contact = dynamic(() => import('./blocks/Contact'), {
   loading: () => '',
   ssr: false,
@@ -52,8 +55,17 @@ const LandingCompany = () => {
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
+      <AdvantagesSmall
+        title={'Accurate & low-latency \n IP geolocation lookup'}
+        description={`Using insights derived from WHOIS, IPinfo IP to Company API identifies the company that operates or leases the IP block from the ASN.\n\nOur company classifiers indicate the types of organizations that frequent your website, including ISPs, businesses, educational institutions, or hosting services.`}
+        count={40}
+        features={[
+          { icon: 'navigation', name: 'Domain name' },
+          { icon: 'edit', name: 'Company name' },
+          { icon: 'city', name: 'Company type' },
+        ]}
+      />
+      <CompanyAPIUsecases />
       <BussinessMap />
       <Products />
       <FAQ />

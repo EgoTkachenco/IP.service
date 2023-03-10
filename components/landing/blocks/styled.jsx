@@ -103,15 +103,15 @@ const StatisticWrapper = styled(Card)`
   }
 `
 
-export const UseCase = ({ text }) => (
-  <UseCaseCard color="white">
+export const UseCase = ({ text, p = '47px 72px' }) => (
+  <UseCaseCard color="white" p={p}>
     <Icon icon="use-case" size="50px" color="primary" />
     <H5 align="center">{text}</H5>
   </UseCaseCard>
 )
 
 const UseCaseCard = styled(Card)`
-  padding: 47px 72px;
+  padding: ${({ p }) => p};
   gap: 15px;
   align-items: center;
 

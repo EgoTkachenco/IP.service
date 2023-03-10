@@ -4,31 +4,31 @@ import { Flex, H2, Text, Icon } from '@/core'
 import { Block, BlockInner } from './Block'
 import { AdvantagesItem, AdvantagesIllustration } from './styled'
 
-const AdvantagesSmall = () => {
+const AdvantagesSmall = ({
+  title,
+  description,
+  count,
+  features = [],
+  contentWidth,
+}) => {
   return (
     <Block>
       <Content>
-        <TextContainer>
-          <H2 color="dark">
-            Accurate & low-latency <br /> IP geolocation lookup
-          </H2>
-          <AdvantagesText>
-            Using insights derived from WHOIS, IPinfo IP to Company API
-            identifies the company that operates or leases the IP block from the
-            ASN.
-            {'\n\n'}
-            Our company classifiers indicate the types of organizations that
-            frequent your website, including ISPs, businesses, educational
-            institutions, or hosting services.
-          </AdvantagesText>
+        <TextContainer contentWidth={contentWidth}>
+          <H2 color="dark">{title}</H2>
+          <AdvantagesText>{description}</AdvantagesText>
         </TextContainer>
 
         <IllustrationContainer>
-          <AdvantagesIllustration count="40" small />
+          <AdvantagesIllustration count={count} small />
           <AdvantagesIllustrationOptions>
-            <AdvantagesItem icon="navigation" text="Domain name" />
-            <AdvantagesItem icon="edit" text="Company name" />
-            <AdvantagesItem icon="city" text="Company type" />
+            {features.map((feature, index) => (
+              <AdvantagesItem
+                key={index}
+                icon={feature.icon}
+                text={feature.name}
+              />
+            ))}
           </AdvantagesIllustrationOptions>
         </IllustrationContainer>
       </Content>
@@ -59,7 +59,7 @@ const AdvantagesText = styled(Text)`
 
 const TextContainer = styled(Flex)`
   flex-direction: column;
-  width: 446px;
+  width: ${({ contentWidth }) => contentWidth || '446px'};
 
   @media (max-width: 1140px) {
     width: 100%;
@@ -79,5 +79,5 @@ const IllustrationContainer = styled(Flex)`
 
 const AdvantagesIllustrationOptions = styled(Flex)`
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
 `

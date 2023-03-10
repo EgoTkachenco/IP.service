@@ -6,9 +6,12 @@ import Feedback from './blocks/Feedback'
 const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
-  loading: () => '',
-})
+const ReverseAPIUsecases = dynamic(
+  () => import('./blocks/ReverseAPIUsecases'),
+  {
+    loading: () => '',
+  }
+)
 const Contact = dynamic(() => import('./blocks/Contact'), {
   loading: () => '',
   ssr: false,
@@ -36,9 +39,6 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
 import { reverseService } from '@/utils/api'
 
 const LandingReverse = () => {
@@ -51,9 +51,18 @@ const LandingReverse = () => {
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
-      <BussinessMap />
+      <AdvantagesSmall
+        title={`Improve your website's \nperformance or experience`}
+        description={`Our API allows IPinfo customers to leverage their anonymous traffic into marketing and sales opportunities, combining our data with their own firmographics. For example, if your business serves differently to residential users, you can customize the experience for ISP-owned IP traffic on your website using the IP company data from our API response.`}
+        count={55}
+        features={[
+          { icon: 'done', name: 'Name' },
+          { icon: 'done', name: 'Domain' },
+          { icon: 'done', name: 'Type' },
+        ]}
+        contentWidth="568px"
+      />
+      <ReverseAPIUsecases />
       <Products />
       <FAQ />
       <Contact />

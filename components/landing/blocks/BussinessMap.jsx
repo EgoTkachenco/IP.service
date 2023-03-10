@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Flex, H2 } from '@/core'
 import { Block, BlockInner } from './Block'
-import GlobeMapSvg from '@/components/reusable/GlobeMapSvg'
+import Image from 'next/image'
 
 const BussinessMap = () => {
   return (
@@ -11,7 +11,7 @@ const BussinessMap = () => {
           Bussiness across the globe use IP.Service
         </H2>
         <MapContainer>
-          <GlobeMapSvg />
+          <Image src="/globe-map.svg" layout="fill" alt="Globe map" />
         </MapContainer>
       </Content>
     </Block>
@@ -32,9 +32,12 @@ const Content = styled(BlockInner)`
 `
 
 const MapContainer = styled(Flex)`
+  position: relative;
   justify-content: center;
-  svg {
+  width: 100%;
+  aspect-ratio: calc(1140 / 650);
+  /* svg {
     max-width: 100%;
     height: auto;
-  }
+  } */
 `

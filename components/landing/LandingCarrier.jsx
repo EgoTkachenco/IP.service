@@ -6,7 +6,7 @@ import Feedback from './blocks/Feedback'
 const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
+const CarrierInfo = dynamic(() => import('./blocks/CarrierInfo'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -36,9 +36,6 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
 import { carrierService } from '@/utils/api'
 
 const LandingCarrier = () => {
@@ -53,9 +50,18 @@ const LandingCarrier = () => {
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
-      <BussinessMap />
+      <AdvantagesSmall
+        title={'Lookup mobile users'}
+        description={`Identifying mobile users by their IP address allows for a level of detection that can be more reliable than other common methods, such as by reading their browser’s user-agent.\n\nOur mobile network IP data is updated at least once per month and can be accessed via an API endpoint or as a direct download.`}
+        count={52}
+        features={[
+          { icon: 'done', name: 'MCC' },
+          { icon: 'edit', name: 'Name' },
+          { icon: 'done', name: 'MNC' },
+        ]}
+        contentWidth="525px"
+      />
+      <CarrierInfo />
       <Products />
       <FAQ />
       <Contact />

@@ -1,28 +1,42 @@
 import styled from 'styled-components'
 import { Flex, H2, H5, Card, Icon } from '@/core'
 import { Block, BlockInner } from './Block'
+import { SignInContactButtons } from './styled'
 
-const WaysToUse = () => {
+const AbuseAPIUsecases = () => {
   return (
     <Block>
       <Content>
         <H2 color="dark" align="center">
-          {'Ways to use our \n IP Geolocation API'}
+          {'Ways to use our \n Abuse Contact API'}
         </H2>
         <Container flex="1 1 calc((100% - 62px) / 3)" gap="31px" fwrap>
-          <UseCase text="Optimize web personalization" />
-          <UseCase text={'Pre-populate \n sign-up forms'} />
-          <UseCase text="Personalize content based on location" />
-          <UseCase text="Localize language, pricing, and currency" />
-          <UseCase text="Gather statistics and demographics" />
-          <UseCase text="Enforce IP-based restrictions" />
+          <UseCase
+            text={`Collect information to assist in taking down nefarious Web entities`}
+          />
+          <UseCase
+            text={`Research IP addresses attempting to access your personal accounts`}
+          />
+          <UseCase
+            text={`Track down hackers/spammers threatening you or your business`}
+          />
+          <UseCase
+            text={`Build a foundation for taking legal action against malicious IP addresses`}
+          />
+          <UseCase
+            text={`Fight back against identity theft and forms of harassment or infringement`}
+          />
+          <UseCase
+            text={`Automate complaints to companies responsible for abusive IP addresses`}
+          />
         </Container>
+        <SignInContactButtons />
       </Content>
     </Block>
   )
 }
 
-export default WaysToUse
+export default AbuseAPIUsecases
 
 const UseCase = ({ text }) => (
   <UseCaseCard color="white">
@@ -44,7 +58,7 @@ const Container = styled(Flex)`
 `
 
 const UseCaseCard = styled(Card)`
-  padding: 47px 72px;
+  padding: 44px 24px;
   gap: 15px;
   justify-content: center;
   align-items: center;

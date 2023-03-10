@@ -3,17 +3,17 @@ import { Flex, H3 } from '@/core'
 import { Block, BlockInner } from './Block'
 import { UseCase, SignInContactButtons } from './styled'
 
-const WaysToUseSmall = () => {
+const CompanyAPIUsecases = () => {
   return (
     <Block>
       <Content>
         <LeftContainer>
-          <H3 color="dark">{'Ways to use our \n IP Geolocation API'}</H3>
+          <H3 color="dark">{'Ways to use our\nIP Geolocation API'}</H3>
           <SignInContactButtons direction="column" />
         </LeftContainer>
         <Container flex="1 1 calc((100% - 32px) / 2)">
           <UseCase text="Enrich your data" />
-          <UseCase text={'Customize website experiences'} />
+          <UseCase text="Customize website experiences" />
           <UseCase text="Target the right users" />
           <UseCase text="Discover high-value leads" />
         </Container>
@@ -22,7 +22,7 @@ const WaysToUseSmall = () => {
   )
 }
 
-export default WaysToUseSmall
+export default CompanyAPIUsecases
 
 const Content = styled(BlockInner)`
   display: flex;

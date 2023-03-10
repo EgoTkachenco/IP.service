@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic'
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
 
-const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
+const Advantages = dynamic(() => import('./blocks/Advantages'), {
   loading: () => '',
 })
-const WaysToUseSmall = dynamic(() => import('./blocks/WaysToUseSmall'), {
+const ASNAPIUsecases = dynamic(() => import('./blocks/ASNAPIUsecases'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -36,9 +36,6 @@ const GeolocationStatistic = dynamic(
     ssr: false,
   }
 )
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
 import { asnService } from '@/utils/api'
 
 const LandingASN = () => {
@@ -51,9 +48,20 @@ const LandingASN = () => {
       />
       <Feedback />
       <GeolocationStatistic />
-      <AdvantagesSmall />
-      <WaysToUseSmall />
-      <BussinessMap />
+      <Advantages
+        title={`Reliable & updated ASN data`}
+        description={`IPinfo offers the most reliable IP to ASN lookup service on the web. Our proprietary network data sets are updated every day so that our ASN database is as accurate and complete as it gets.`}
+        count={44}
+        features={[
+          { icon: 'done', name: 'Hostname' },
+          { icon: 'done', name: 'Allocation date' },
+          { icon: 'done', name: 'Registry' },
+          { icon: 'done', name: 'Number of IPs' },
+          { icon: 'done', name: 'Hosting' },
+          { icon: 'done', name: 'Hosting service' },
+        ]}
+      />
+      <ASNAPIUsecases />
       <Products />
       <FAQ />
       <Contact />

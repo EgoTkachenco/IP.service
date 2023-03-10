@@ -6,9 +6,12 @@ import Feedback from './blocks/Feedback'
 const Advantages = dynamic(() => import('./blocks/Advantages'), {
   loading: () => '',
 })
-const WaysToUse = dynamic(() => import('./blocks/WaysToUse'), {
-  loading: () => '',
-})
+const GeolocationAPIUsecases = dynamic(
+  () => import('./blocks/GeolocationAPIUsecases'),
+  {
+    loading: () => '',
+  }
+)
 const Contact = dynamic(() => import('./blocks/Contact'), {
   loading: () => '',
   ssr: false,
@@ -54,9 +57,23 @@ const Landing = () => {
       />
       <Feedback />
       <GeolocationStatistic />
+      <Advantages
+        title={`Accurate & low-latency\nIP geolocation lookup`}
+        description={
+          'IPinfo specializes in providing accurate IP to location data. We take it so seriously that we build and maintain our own proprietary IP geolocation database. Our GeoAPI provides a response that includes these datasets for every IP:'
+        }
+        count={68}
+        features={[
+          { icon: 'edit', name: 'Hostname' },
+          { icon: 'communicate', name: 'Postal/zip code' },
+          { icon: 'navigation', name: 'Region' },
+          { icon: 'flag', name: 'Country' },
+          { icon: 'map', name: 'Location coordinates' },
+          { icon: 'city', name: 'City' },
+        ]}
+      />
+      <GeolocationAPIUsecases />
       <Products />
-      <Advantages />
-      <WaysToUse />
       <FAQ />
       <Contact />
       <Partners />
