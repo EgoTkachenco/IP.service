@@ -59,12 +59,14 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
       <Flex gap="30px">
         <TextField
           label="Name"
+          placeholder="Name"
           name="name"
           variant={isDark ? 'dark' : null}
           {...form.getInputProps('first_name')}
         />
         <TextField
           label="Surname"
+          placeholder="Surname"
           name="surname"
           variant={isDark ? 'dark' : null}
           {...form.getInputProps('last_name')}
@@ -73,6 +75,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
 
       <TextField
         label="Email"
+        placeholder="Email"
         name="email"
         variant={isDark ? 'dark' : null}
         {...form.getInputProps('email')}

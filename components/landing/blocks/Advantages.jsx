@@ -20,7 +20,11 @@ const Advantages = ({ title, description, count, features }) => {
             gap="100px"
           >
             {features.slice(0, 3).map((feature) => (
-              <AdvantagesItem icon={feature.icon} text={feature.name} />
+              <AdvantagesItem
+                key={feature.name}
+                icon={feature.icon}
+                text={feature.name}
+              />
             ))}
           </Flex>
           <AdvantagesIllustration count={count} />
@@ -31,7 +35,11 @@ const Advantages = ({ title, description, count, features }) => {
             gap="100px"
           >
             {features.slice(3, 6).map((feature) => (
-              <AdvantagesItem icon={feature.icon} text={feature.name} />
+              <AdvantagesItem
+                key={feature.name}
+                icon={feature.icon}
+                text={feature.name}
+              />
             ))}
           </Flex>
         </Flex>
