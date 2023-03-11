@@ -92,6 +92,8 @@ const ContentCard = styled(Card)`
   flex-grow: 1;
   border-radius: 8px;
   max-height: 385px;
+  max-width: 550px;
+  min-width: 550px;
 
   &:after {
     content: '';

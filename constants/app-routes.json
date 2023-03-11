@@ -1,7 +1,0 @@
-[
-  { "pathname": "/app", "name": "Home", "icon": "home" },
-  { "pathname": "/app/search", "name": "Search", "icon": "search-fill" },
-  { "pathname": "/app/billing", "name": "Billing", "icon": "document" },
-  { "pathname": "/app/profile", "name": "Profile", "icon": "person" },
-  { "pathname": "/app/token", "name": "Token", "icon": "lock-closed" }
-]

@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import Landing from '@/components/landing/Landing'
+import LandingRanges from '@/components/landing/LandingRanges'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function RangesService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'IP Ranges API',
+        description: 'IP Ranges API',
       })}
       <Layout>
-        <Landing />
+        <LandingRanges />
       </Layout>
     </>
   )

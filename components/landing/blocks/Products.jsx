@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { H2, H5, Flex, Button, Text, Icon } from '@/core'
 import { Block, BlockInner } from './Block'
 import { Carousel } from '@mantine/carousel'
-import routes from '@/constants/routes'
+import services from '@/constants/services'
 import Link from 'next/link'
 
 const Products = () => {
@@ -29,16 +29,16 @@ const Products = () => {
               <Icon icon="carousel-left" color="dark" size="32px" />
             }
           >
-            {SLIDES.map((slide, i) => (
+            {services.map((slide, i) => (
               <Carousel.Slide key={i}>
                 <Slide>
                   <SlideIcon color={slide.color}>
                     <Icon icon={slide.icon} color="white" size="32px" />
                   </SlideIcon>
-                  <H5 color="white">{slide.title}</H5>
+                  <H5 color="white">{slide.name}</H5>
                   <SlideDescription>{slide.description}</SlideDescription>
-                  <Link href={slide.href} style={{ width: '100%' }}>
-                    <Button>Learn More</Button>
+                  <Link href={slide.link} style={{ width: '100%' }}>
+                    <Button variant="primary-transparent">Learn More</Button>
                   </Link>
                 </Slide>
               </Carousel.Slide>
@@ -51,65 +51,6 @@ const Products = () => {
 }
 
 export default Products
-
-const SLIDES = [
-  {
-    icon: 'move',
-    color: 'success',
-    title: 'IP Ranges API',
-    description: 'Target specific IP ranges',
-    href: '',
-  },
-  {
-    icon: 'shield',
-    color: 'secondary',
-    title: 'Privacy Detection',
-    description: 'Unmask user’s identities',
-    href: '',
-  },
-  {
-    icon: 'building',
-    color: 'primary',
-    title: 'IP to Company API',
-    description: 'Leverage anonymus leads',
-    href: routes['company-api'],
-  },
-  {
-    icon: 'share',
-    color: 'success',
-    title: 'ASN API',
-    description: 'Improve data enrichment',
-    href: routes['asn-api'],
-  },
-  {
-    icon: 'globe',
-    color: 'secondary',
-    title: 'Hosted domains API',
-    description: 'Enchance lead generation',
-    href: routes['reverse-api'],
-  },
-  {
-    icon: 'wifi',
-    color: 'primary',
-    title: 'IP to Mobille Carrier API',
-    description: 'Customize user expiriences',
-    href: routes['carrier-api'],
-  },
-  {
-    icon: 'flag',
-    color: 'success',
-    title: 'Abuse Contact API',
-    description: 'Automate abusive IP reporting',
-    href: routes['abuse-api'],
-  },
-  {
-    icon: 'zoom-in',
-    color: 'secondary',
-    title: 'IP Whois API',
-    description: 'Get more IP insights',
-    href: routes['whois-api'],
-  },
-]
 
 const Content = styled(BlockInner)`
   flex-direction: column;

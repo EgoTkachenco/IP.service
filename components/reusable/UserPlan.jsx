@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Flex, H1, H4, Caption, Card, Icon, Button } from '@/core'
+import Link from 'next/link'
+import routes from '@/constants/routes'
 
 const UserPlan = () => {
   return (
@@ -23,11 +25,13 @@ const UserPlan = () => {
           ]}
           bottomSlot={
             <>
-              <Flex gap="16px" width="100%">
+              <Flex gap="16px" width="100%" flex="1">
                 <Button>Upgrade to Basic</Button>
-                <Button outline color="dark">
-                  View All Plans
-                </Button>
+                <Link href={routes.upgrade}>
+                  <Button outline color="dark">
+                    View All Plans
+                  </Button>
+                </Link>
               </Flex>
             </>
           }

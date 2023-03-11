@@ -75,3 +75,9 @@ export const reverseService = (ip) =>
 
 export const whoisService = (ip) =>
   axios.get('/api/v1/public/services/whois' + (ip ? `?ip=${ip}` : ''))
+
+export const rangesService = (ip) =>
+  axios.get('/api/v1/public/services/ranges' + (ip ? `?domain=${ip}` : ''))
+
+export const privacyService = (ip) =>
+  axios.get('/api/v1/public/services/privacy' + (ip ? `?ip=${ip}` : ''))

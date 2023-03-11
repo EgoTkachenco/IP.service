@@ -1,4 +1,0 @@
-[
-  { "pathname": "/", "name": "Home", "icon": "search-fill" },
-  { "pathname": "/services/company", "name": "Company Landing", "icon": "home" }
-]

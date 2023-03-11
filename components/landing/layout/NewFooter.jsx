@@ -32,10 +32,12 @@ const Footer = () => {
               <Icon icon="phone" size="16px" />
             </Button>
           </Link>
-          <Button color="dark" outline size="medium">
-            Help Center
-            <Icon icon="help" size="16px" />
-          </Button>
+          <Link href={routes.faq}>
+            <Button color="dark" outline size="medium">
+              Help Center
+              <Icon icon="help" size="16px" />
+            </Button>
+          </Link>
         </FooterButtons>
       </Wrapper>
     </BlockInner>
@@ -44,18 +46,17 @@ const Footer = () => {
 
 const footer_links = [
   [
-    { name: 'IP Geolocation API', href: '' },
+    { name: 'IP Geolocation API', href: routes['geolocation-api'] },
     { name: 'IP to Company', href: routes['company-api'] },
-    { name: 'Abuse Contact API', href: '' },
-    { name: 'Privacy Detection API', href: '' },
-    { name: 'IP Database Download', href: '' },
+    { name: 'Abuse Contact API', href: routes['abuse-api'] },
+    { name: 'Privacy Detection API', href: routes['privacy-api'] },
+    { name: 'IP Ranges API', href: routes['ranges-api'] },
   ],
   [
-    { name: 'IP Ranges API', href: '' },
-    { name: 'IP to Mobile Carrier', href: '' },
-    { name: 'ASN API', href: '' },
-    { name: 'Hosted Domains API', href: '' },
-    { name: 'IP WHOIS Down', href: '' },
+    { name: 'IP to Mobile Carrier', href: routes['carrier-api'] },
+    { name: 'ASN API', href: routes['asn-api'] },
+    { name: 'Hosted Domains API', href: routes['reverse-api'] },
+    { name: 'IP WHOIS Down', href: routes['whois-api'] },
   ],
 ]
 

@@ -1,17 +1,17 @@
 import Layout from '@/components/landing/layout/Layout'
-import Landing from '@/components/landing/Landing'
+import LandingPrivacy from '@/components/landing/LandingPrivacy'
 import { useMetadataRenderer } from '@/hooks'
 
-export default function LandingPage() {
+export default function PrivacyService() {
   const renderMetadata = useMetadataRenderer()
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Privacy Detection API',
+        description: 'Privacy Detection API',
       })}
       <Layout>
-        <Landing />
+        <LandingPrivacy />
       </Layout>
     </>
   )

@@ -16,6 +16,16 @@ const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
             textColor={color}
           />
         )
+      case 'boolean':
+        return (
+          <BooleanJSON
+            key={key}
+            name={field}
+            value={String(value)}
+            isIcon={icon}
+            textColor={color}
+          />
+        )
       case 'number':
         return (
           <NumberJSON
@@ -82,9 +92,9 @@ export default JSONPreview
 
 const getDataType = (data) => {
   if (data === null) return 'string'
-  if (!isNaN(Number(data))) return 'number'
   if (typeof data === 'boolean' || data === 'false' || data === 'true')
     return 'boolean'
+  if (!isNaN(Number(data))) return 'number'
 
   try {
     if (Array.isArray(JSON.parse(data))) return 'array'
@@ -122,6 +132,17 @@ export const NumberJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-number"
     valueColor="success"
+    name={name}
+    value={value}
+    textColor={textColor}
+    isIcon={isIcon}
+  />
+)
+
+export const BooleanJSON = ({ name, value, textColor, isIcon }) => (
+  <DataJSON
+    icon="json-number"
+    valueColor="primary"
     name={name}
     value={value}
     textColor={textColor}

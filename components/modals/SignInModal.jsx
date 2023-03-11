@@ -40,6 +40,8 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         onClose()
       })
       .catch((error) => {
+        if (error.errors.identifier)
+          error.errors.email = error.errors.identifier
         if (error.errors) form.setErrors(error.errors)
         else form.setErrors('email', error.message)
       })

@@ -29,7 +29,11 @@ const Upgrade = observer(() => {
       <CardsContainer flex="1 1">
         {plans &&
           plans.map((plan, i) => (
-            <Animation key={plan.name} delay={i * 0.2}>
+            <Animation
+              key={plan.name}
+              delay={i * 0.2}
+              style={{ display: 'flex', alignItems: 'strench' }}
+            >
               <PlanCard
                 key={plan.name}
                 name={plan.name}

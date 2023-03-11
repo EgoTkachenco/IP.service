@@ -130,7 +130,8 @@ const PrimaryTransparentButton = styled(ButtonCore)`
   color: ${({ theme }) => theme.colors.primary};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
   }
 `
 const DarkTransparentButton = styled(ButtonCore)`

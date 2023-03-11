@@ -27,7 +27,7 @@ const UpgradePlanCard = ({
         <PriceCardLabelIllustration src="/building.svg" />
       </PriceCardLabel>
 
-      <Flex direction="column" gap="25px">
+      <Flex direction="column" gap="25px" style={{ flexGrow: 1 }}>
         {options.map((option, i) => (
           <Flex
             gap="8px"
@@ -59,6 +59,7 @@ export default UpgradePlanCard
 const PlanCardWrapper = styled(Card)`
   position: relative;
   gap: 30px;
+  width: 100%;
 
   @media (max-width: 1140px) {
     gap: 24px;

@@ -109,7 +109,7 @@ const MenuCard = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
-  padding: 0 35px;
+  padding: 0 24px 0 32px;
   cursor: pointer;
 `
 

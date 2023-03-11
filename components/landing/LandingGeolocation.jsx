@@ -42,7 +42,7 @@ const GeolocationStatistic = dynamic(
 
 import { geolocationService } from '@/utils/api'
 
-const Landing = () => {
+const LandingGeolocation = () => {
   return (
     <>
       <Main
@@ -82,4 +82,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default LandingGeolocation
