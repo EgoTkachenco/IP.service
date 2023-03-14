@@ -9,15 +9,19 @@ import { gradient } from '@/styles/animations'
 
 const example_list = ['', '215.204.222.212', '247.193.70.173', '66.131.120.255']
 
-const APIPreview = ({ service }) => {
-  const { ip, setIp, data, isFetch, userIP } = useService('', service)
+const APIPreview = ({ service, validation, examples = example_list }) => {
+  let defaultValue = ''
+  if (examples.indexOf('') === -1) defaultValue = examples[0]
+  const { ip, setIp, data, isFetch, userIP } = useService(defaultValue, service)
+
   const form = useForm({
     initialValues: {
-      search: ip,
+      search: defaultValue,
     },
 
     validate: {
       search: (value) => {
+        if (validation) return validation(value)
         if (!value) return 'Required'
         if (!validateIP(value)) return 'Invalid IP'
         return null
@@ -49,8 +53,8 @@ const APIPreview = ({ service }) => {
           {!isFetch ? <JSONPreview data={data || {}} /> : <LoadingText />}
         </ContentCardInner>
       </ContentCard>
-      <ChipContainer flex="1" className="custom-scroll">
-        {example_list.map((example, i) => (
+      <ChipContainer flex="0 1 150px" className="custom-scroll">
+        {examples.map((example, i) => (
           <Chip
             key={i}
             type={
@@ -91,6 +95,7 @@ const ContentCard = styled(Card)`
   margin: 16px 0 4px;
   flex-grow: 1;
   border-radius: 8px;
+  height: 385px;
   max-height: 385px;
   max-width: 550px;
   min-width: 550px;

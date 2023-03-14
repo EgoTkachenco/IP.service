@@ -46,6 +46,7 @@ const LandingPrivacy = () => {
   return (
     <>
       <Main
+        logo="/services-logo/privacy.svg"
         title="Privacy Detection API"
         description="Our Privacy Detection API detects various methods used to mask a user's true IP address, including VPN detection, proxy detection, tor, relay usage, or a connection via a hosting provider, which could potentially be used to tunnel traffic, and mask the true IP address."
         service={privacyService}

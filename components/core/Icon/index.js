@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 const Icon = dynamic(() => import('./Icon'), {
   loading: () => '',
-  ssr: false,
+  // ssr: false,
 })
 
 export default Icon

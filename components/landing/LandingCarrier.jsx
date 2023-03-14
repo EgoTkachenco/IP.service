@@ -42,6 +42,7 @@ const LandingCarrier = () => {
   return (
     <>
       <Main
+        logo="/services-logo/carrier.svg"
         title="Carrier Detection"
         secondTitle="Mobile"
         reverseTitle

@@ -45,6 +45,7 @@ const LandingReverse = () => {
   return (
     <>
       <Main
+        logo="/services-logo/reverse.svg"
         title="Reverse IP API"
         description="Our Hosted Domains API, or Reverse IP API returns a full list of domains that are hosted on a single IP address. These domains are ordered based on host.io domain ranking."
         service={reverseService}

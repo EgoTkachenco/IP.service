@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Flex, Icon, Text } from '@/core'
-import { Fragment } from 'react'
+import { useState, Fragment } from 'react'
 
 const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
   const renderDataField = (field, value, key) => {
@@ -37,35 +37,39 @@ const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
           />
         )
       case 'array':
+        const content = Array.isArray(value) ? value : JSON.parse(value)
         return (
-          <Fragment key={key}>
-            <ArrayJSON name={field} />
-            <OffsetContent direction="column" gap="8px">
-              <Text font="monospace" weight="400">
-                Array
-              </Text>
-              {JSON.parse(value).map((item, j) => (
-                <ObjectJSON
-                  key={j}
-                  value={item}
-                  isIcon={icon}
-                  textColor={color}
-                />
-              ))}
-            </OffsetContent>
-          </Fragment>
+          <DropdownData
+            key={key}
+            dropdownContent={
+              <OffsetContent direction="column" gap="8px">
+                <Text font="monospace" weight="400">
+                  Array {content && content.length > 0 ? '' : '[]'}
+                </Text>
+                {content && content.length > 0
+                  ? content.map((key, j) => renderDataField('', key, j))
+                  : ''}
+              </OffsetContent>
+            }
+          >
+            <ArrayJSON name={field} isIcon={icon} textColor={color} />
+          </DropdownData>
         )
 
       case 'object':
         return (
-          <Fragment key={key}>
+          <DropdownData
+            key={key}
+            dropdownContent={
+              <OffsetContent direction="column" gap="8px">
+                {Object.keys(value).map((key, j) =>
+                  renderDataField(key, value[key], j)
+                )}
+              </OffsetContent>
+            }
+          >
             <ObjectJSON name={field} isIcon={icon} textColor={color} />
-            <OffsetContent direction="column" gap="8px">
-              {Object.keys(value).map((key, j) =>
-                renderDataField(key, value[key], j)
-              )}
-            </OffsetContent>
-          </Fragment>
+          </DropdownData>
         )
       default:
         return <StringJSON key={key} name={field} value={value} />
@@ -94,11 +98,11 @@ const getDataType = (data) => {
   if (data === null) return 'string'
   if (typeof data === 'boolean' || data === 'false' || data === 'true')
     return 'boolean'
-  if (!isNaN(Number(data))) return 'number'
 
   try {
-    if (Array.isArray(JSON.parse(data))) return 'array'
+    if (Array.isArray(data) || Array.isArray(JSON.parse(data))) return 'array'
   } catch (error) {}
+  if (!isNaN(Number(data))) return 'number'
   if (typeof data === 'object') return 'object'
 
   return 'string'
@@ -183,6 +187,29 @@ const DataJSON = ({
     </Text>
   </Flex>
 )
+
+const DropdownData = ({ dropdownContent, children }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <Flex
+        align="center"
+        onClick={() => setIsOpen(!isOpen)}
+        style={{ cursor: 'pointer' }}
+      >
+        {children}{' '}
+        <Icon
+          icon="chevron"
+          size="24px"
+          color="text"
+          style={{ transform: `rotate(${isOpen ? '180deg' : '0'})` }}
+        />
+      </Flex>
+      {isOpen ? dropdownContent : ''}
+    </>
+  )
+}
 
 const NoDataText = styled(Text)`
   text-align: center;

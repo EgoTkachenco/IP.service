@@ -46,6 +46,7 @@ const LandingGeolocation = () => {
   return (
     <>
       <Main
+        logo="/services-logo/geolocation.svg"
         title="IP Geolocation"
         secondTitle="API"
         description="Around the globe, industry-leading organizations use IPinfo's

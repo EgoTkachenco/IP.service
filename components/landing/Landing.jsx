@@ -33,6 +33,7 @@ const Landing = () => {
       <Main
         title="The trusted source for IP address data"
         description="Accurate IP address data that keeps pace with secure, specific, and forward-looking use cases."
+        alignContent="center"
       />
       <Partners />
       <ServicesStatistic />

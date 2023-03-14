@@ -11,17 +11,24 @@ const Main = ({
   reverseTitle = false,
   description,
   service,
+  logo,
+  validation,
+  alignContent = 'stretch',
+  examples,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper align={alignContent}>
       <Content>
-        <Image
-          src="/large-logo.svg"
-          alt="IP Geolocation API"
-          width={100}
-          height={100}
-          loading="lazy"
-        />
+        {logo && (
+          <Image
+            src={logo}
+            alt="IP Geolocation API"
+            width={100}
+            height={100}
+            loading="lazy"
+          />
+        )}
+
         <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
           <H2 color="dark">{title}</H2>
           {secondTitle ? <H2 color="primary">{secondTitle}</H2> : ''}
@@ -30,7 +37,11 @@ const Main = ({
         <SignInContactButtons />
       </Content>
 
-      <APIPreview service={service} />
+      <APIPreview
+        service={service}
+        validation={validation}
+        examples={examples}
+      />
     </Wrapper>
   )
 }
@@ -41,7 +52,7 @@ const Wrapper = styled(BlockInner)`
   display: flex;
   margin-top: 64px;
   gap: 105px;
-  align-items: stretch;
+  align-items: ${({ align }) => align || 'stretch'};
   & > :nth-child(2) {
     flex-grow: 1;
   }

@@ -7,4 +7,6 @@ export default [
     links: services,
   },
   { name: 'Pricing', link: routes.pricing },
+  { name: 'Contact', link: routes.contact },
+  { name: 'Help Center', link: routes.faq },
 ]
