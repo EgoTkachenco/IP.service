@@ -426,6 +426,26 @@ const ICONS = {
       />
     </svg>
   ),
+  'json-error': () => (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="18" height="18" rx="3.375" fill="#E44332" />
+      <circle cx="9" cy="9" r="4.5" stroke="white" fill="#E44332" />
+      <rect
+        x="5.63281"
+        y="6"
+        width="8.74099"
+        height="1"
+        transform="rotate(39.3374 5.63281 6)"
+        fill="white"
+      />
+    </svg>
+  ),
   'json-string': () => (
     <svg
       width="18"

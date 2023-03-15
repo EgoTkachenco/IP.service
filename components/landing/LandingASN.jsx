@@ -47,6 +47,7 @@ const LandingASN = () => {
         description="IP to ASN mapping and ASN lookup are possible with IPinfo’s ASN API, giving our customers access to a database that includes ASN details for every IP address and every ASN’s related domains, allocation date, registry name, total number of IP addresses, and assigned prefixes."
         service={asnService}
         validation={() => null}
+        placeholder="Search IP or ASN"
       />
       <Feedback />
       <GeolocationStatistic />

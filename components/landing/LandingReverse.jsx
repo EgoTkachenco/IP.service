@@ -49,6 +49,9 @@ const LandingReverse = () => {
         title="Reverse IP API"
         description="Our Hosted Domains API, or Reverse IP API returns a full list of domains that are hosted on a single IP address. These domains are ordered based on host.io domain ranking."
         service={reverseService}
+        validation={() => {}}
+        examples={['google.com', 'youtube.com', 'facebook.com', 'twitter.com']}
+        placeholder="Search Domain"
       />
       <Feedback />
       <GeolocationStatistic />

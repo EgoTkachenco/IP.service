@@ -9,7 +9,12 @@ import { gradient } from '@/styles/animations'
 
 const example_list = ['', '215.204.222.212', '247.193.70.173', '66.131.120.255']
 
-const APIPreview = ({ service, validation, examples = example_list }) => {
+const APIPreview = ({
+  service,
+  validation,
+  examples = example_list,
+  placeholder = 'Search IP',
+}) => {
   let defaultValue = ''
   if (examples.indexOf('') === -1) defaultValue = examples[0]
   const { ip, setIp, data, isFetch, userIP } = useService(defaultValue, service)
@@ -40,6 +45,7 @@ const APIPreview = ({ service, validation, examples = example_list }) => {
       <SearchForm onSubmit={onSubmit}>
         <Input
           {...form.getInputProps('search')}
+          placeholder={placeholder}
           rightSlot={
             <IconContainer onClick={onSubmit}>
               <Icon icon="search" size="16px" color="white" />

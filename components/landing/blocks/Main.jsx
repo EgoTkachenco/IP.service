@@ -15,6 +15,7 @@ const Main = ({
   validation,
   alignContent = 'stretch',
   examples,
+  placeholder,
 }) => {
   return (
     <Wrapper align={alignContent}>
@@ -41,6 +42,7 @@ const Main = ({
         service={service}
         validation={validation}
         examples={examples}
+        placeholder={placeholder}
       />
     </Wrapper>
   )

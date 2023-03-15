@@ -4,7 +4,7 @@ import { useState, Fragment } from 'react'
 
 const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
   const renderDataField = (field, value, key) => {
-    const type = getDataType(value)
+    const type = getDataType(value, field)
     switch (type) {
       case 'string':
         return (
@@ -36,40 +36,58 @@ const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
             textColor={color}
           />
         )
+      case 'error':
+        return (
+          <ErrorJSON
+            key={key}
+            name={field}
+            value={value}
+            isIcon={icon}
+            textColor={color}
+          />
+        )
       case 'array':
         const content = Array.isArray(value) ? value : JSON.parse(value)
-        return (
+        const isContent = content && content.length > 0
+        const isDropdown = isContent && content.length > 10
+        return isDropdown ? (
           <DropdownData
             key={key}
             dropdownContent={
               <OffsetContent direction="column" gap="8px">
                 <Text font="monospace" weight="400">
-                  Array {content && content.length > 0 ? '' : '[]'}
+                  Array
                 </Text>
-                {content && content.length > 0
-                  ? content.map((key, j) => renderDataField('', key, j))
-                  : ''}
+                {content.map((key, j) => renderDataField('', key, j))}
               </OffsetContent>
             }
           >
             <ArrayJSON name={field} isIcon={icon} textColor={color} />
           </DropdownData>
+        ) : (
+          <Fragment key={key}>
+            <ArrayJSON name={field} isIcon={icon} textColor={color} />
+            <OffsetContent direction="column" gap="8px">
+              <Text font="monospace" weight="400">
+                Array {isContent ? '' : '[]'}
+              </Text>
+              {isContent
+                ? content.map((key, j) => renderDataField('', key, j))
+                : ''}
+            </OffsetContent>
+          </Fragment>
         )
 
       case 'object':
         return (
-          <DropdownData
-            key={key}
-            dropdownContent={
-              <OffsetContent direction="column" gap="8px">
-                {Object.keys(value).map((key, j) =>
-                  renderDataField(key, value[key], j)
-                )}
-              </OffsetContent>
-            }
-          >
+          <Fragment key={key}>
             <ObjectJSON name={field} isIcon={icon} textColor={color} />
-          </DropdownData>
+            <OffsetContent direction="column" gap="8px">
+              {Object.keys(value).map((key, j) =>
+                renderDataField(key, value[key], j)
+              )}
+            </OffsetContent>
+          </Fragment>
         )
       default:
         return <StringJSON key={key} name={field} value={value} />
@@ -94,7 +112,8 @@ const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
 
 export default JSONPreview
 
-const getDataType = (data) => {
+const getDataType = (data, field) => {
+  if (field === 'error') return 'error'
   if (data === null) return 'string'
   if (typeof data === 'boolean' || data === 'false' || data === 'true')
     return 'boolean'
@@ -165,6 +184,17 @@ export const ArrayJSON = ({ name, value, textColor, isIcon }) => (
   />
 )
 
+export const ErrorJSON = ({ name, value, textColor, isIcon }) => (
+  <DataJSON
+    icon="json-error"
+    valueColor="white"
+    name={'Error'}
+    value={value}
+    textColor="danger"
+    isIcon={isIcon}
+  />
+)
+
 const DataJSON = ({
   icon,
   valueColor,
@@ -174,13 +204,21 @@ const DataJSON = ({
   isString,
   isIcon,
 }) => (
-  <Flex gap="10px" align="center">
-    {isIcon ? <Icon icon={icon} size="18px" /> : null}
+  <Flex gap="10px">
+    {isIcon ? (
+      <Icon icon={icon} size="18px" style={{ transform: `translateY(5px)` }} />
+    ) : null}
     <Text weight="400" font="monospace" color={textColor} inline>
       {name}
       {name && value !== null ? ': ' : ''}
       {value && value !== null && isString ? '"' : ''}
-      <Text color={valueColor} weight="400" font="monospace" inline>
+      <Text
+        color={valueColor}
+        weight="400"
+        font="monospace"
+        inline
+        style={{ lineBreak: 'anywhere' }}
+      >
         {value}
       </Text>
       {value && value !== null && isString ? '"' : ''}

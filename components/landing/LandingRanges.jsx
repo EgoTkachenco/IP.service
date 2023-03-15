@@ -47,8 +47,6 @@ const LandingRanges = () => {
         title="IP Ranges API"
         description="Through smartphones, tablets, and other portable devices, mobile has overtaken desktop as the leading source of internet traffic. IPinfo’s API allows resolution of IP address to carrier, and our database provides information on every mobile IP’s carrier name, country code, and network code."
         service={rangesService}
-        validation={() => {}}
-        examples={['google.com', 'youtube.com', 'facebook.com', 'twitter.com']}
       />
       <Feedback />
       <GeolocationStatistic />
