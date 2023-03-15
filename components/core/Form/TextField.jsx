@@ -35,6 +35,10 @@ const DarkWrapper = styled(Wrapper)`
       color: ${({ theme }) => theme.colors.text};
     }
   }
+
+  @media (max-width: 1140px) {
+    padding: 10px;
+  }
 `
 const LightWrapper = styled(Wrapper)`
   border-radius: 6px;
@@ -64,6 +68,9 @@ const LightWrapper = styled(Wrapper)`
     &::placeholder {
       /* color: ${({ theme }) => theme.colors.text}; */
     }
+  }
+  @media (max-width: 1140px) {
+    padding: 10px;
   }
 `
 const DefaultWrapper = styled(Wrapper)`

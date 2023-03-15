@@ -71,13 +71,17 @@ const IllustrationContainer = styled(Flex)`
   flex-grow: 1;
   gap: 48px;
   align-items: center;
-
   @media (max-width: 1140px) {
-    flex-direction: column-reverse;
+    width: 100%;
+    gap: 24px;
   }
 `
 
 const AdvantagesIllustrationOptions = styled(Flex)`
   width: 100%;
   justify-content: space-around;
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 `

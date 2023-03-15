@@ -56,7 +56,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
 
   return (
     <Form onSubmit={sended ? (e) => e.preventDefault() : handleSubmit}>
-      <Flex gap="30px">
+      <InputRow>
         <TextField
           label="Name"
           placeholder="Name"
@@ -71,7 +71,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
           variant={isDark ? 'dark' : null}
           {...form.getInputProps('last_name')}
         />
-      </Flex>
+      </InputRow>
 
       <TextField
         label="Email"
@@ -85,7 +85,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
         <Text color={isDark ? 'white' : 'dark'} weight="700">
           Please select contact reason
         </Text>
-        <Flex justify="space-between" width="100%">
+        <CheckboxContainer Flex justify="space-between" width="100%">
           {REASONS.map((reason) => (
             <Checkbox
               key={reason}
@@ -94,7 +94,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
               onChange={() => onReasonChange(reason)}
             />
           ))}
-        </Flex>
+        </CheckboxContainer>
         <InputError color="danger" show={!!reasonError}>
           {reasonError || ' '}
         </InputError>
@@ -130,25 +130,25 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 1140px) {
+    gap: 12px;
+  }
 `
 
-{
-  /* <ContactCard color="dark"> */
-}
-const ContactCard = styled(Card)`
-  position: relative;
-  z-index: 10;
-  width: 500px;
+const InputRow = styled(Flex)`
   gap: 30px;
-  margin-bottom: -210px;
-  padding: 40px;
-
   @media (max-width: 1140px) {
-    margin-bottom: 0;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    width: 100%;
-    max-width: 500px;
+    flex-direction: column;
+    gap: 12px;
+  }
+`
+
+const CheckboxContainer = styled(Flex)`
+  justify-content: space-between;
+  width: 100%;
+  @media (max-width: 1140px) {
+    justify-content: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 `

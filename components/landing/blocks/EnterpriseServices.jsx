@@ -1,15 +1,13 @@
 import styled from 'styled-components'
-import { H2, H5, Flex, Text, Icon } from '@/core'
-import { Block, BlockInner } from './Block'
+import { H5, Flex, Text, Icon } from '@/core'
+import { Block, BlockInner, Title } from './Block'
 import Image from 'next/image'
 
 const EnterpriseServices = () => {
   return (
     <Block>
       <Content>
-        <H2 color="dark" align="center">
-          Enterprise-grade service for every size
-        </H2>
+        <Title color="dark">Enterprise-grade service for every size</Title>
         <Container>
           <Column>
             <Feature
@@ -35,6 +33,7 @@ const EnterpriseServices = () => {
             width={282}
             height={282}
             alt="Enterprise services"
+            className="illustration"
           />
           <Column>
             <Feature
@@ -66,6 +65,13 @@ const Content = styled(BlockInner)`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+
+  @media (max-width: 1140px) {
+    gap: 24px;
+    .illustration {
+      display: none;
+    }
+  }
 `
 
 const Container = styled.div`
@@ -76,6 +82,10 @@ const Container = styled.div`
 
   @media (max-width: 1140px) {
     width: calc(100% - (24px * 2));
+    flex-direction: column;
+    & > :nth-child(3) {
+      margin-top: 8px;
+    }
   }
 `
 const Column = styled(Flex)`
@@ -83,6 +93,9 @@ const Column = styled(Flex)`
   justify-content: space-between;
   gap: 100px;
   flex-grow: 1;
+  @media (max-width: 1140px) {
+    gap: 8px;
+  }
 `
 
 const Feature = ({ icon, title, text, right = false }) => (
@@ -97,7 +110,12 @@ const Feature = ({ icon, title, text, right = false }) => (
 
 const FeatureContainer = styled(Flex)`
   flex-direction: column;
+  justify-content: center;
   gap: 16px;
-  width: 256px;
+  width: 319px;
+  height: 194px;
   margin-left: ${({ right }) => (right ? 'auto' : '0')};
+  background-image: url(/file-card.svg);
+  background-repeat: no-repeat;
+  padding: 0 24px;
 `

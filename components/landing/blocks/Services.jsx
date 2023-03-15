@@ -1,17 +1,15 @@
 import styled from 'styled-components'
 import { H2, H5, Flex, Button, Text, Icon } from '@/core'
-import { Block, BlockInner } from './Block'
-import { Carousel } from '@mantine/carousel'
+import { Block, BlockInner, Title } from './Block'
 import services from '@/constants/services'
 import Link from 'next/link'
+import ServicesCarousel from '@/components/reusable/ServicesCarousel'
 
 const Services = () => {
   return (
     <Block>
       <Content>
-        <H2 color="dark" align="center">
-          Our Products
-        </H2>
+        <Title color="dark">Our Products</Title>
         <Container>
           {services.map((slide, i) => (
             <Slide key={i}>
@@ -26,6 +24,9 @@ const Services = () => {
             </Slide>
           ))}
         </Container>
+        <MobileContainer>
+          <ServicesCarousel description_key="description_full" />
+        </MobileContainer>
       </Content>
     </Block>
   )
@@ -48,7 +49,17 @@ const Container = styled.div`
   gap: 24px 20px;
 
   @media (max-width: 1140px) {
-    width: calc(100% - (24px * 2));
+    display: none;
+  }
+`
+
+const MobileContainer = styled.div`
+  display: none;
+  margin-top: 16px;
+  width: 100%;
+  /* width: calc(100% - (24px * 2)); */
+  @media (max-width: 1140px) {
+    display: block;
   }
 `
 

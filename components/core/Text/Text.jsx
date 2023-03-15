@@ -138,4 +138,9 @@ export const Label = styled.label.attrs(defaultProps)`
 	letter-spacing: -0.02em;
   font-feature-settings: 'calt' off;
   cursor: pointer;
+
+  @media (max-width: 1140px) {
+    font-size: 10px;
+    line-height: 220%;
+  }
 `

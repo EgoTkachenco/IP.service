@@ -23,7 +23,11 @@ const Content = styled(BlockInner)`
   gap: 20px;
 
   @media (max-width: 1140px) {
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
+    align-items: stretch;
+    & > * {
+      flex: 1 1 calc((100% / 2) - 20px);
+    }
   }
 `

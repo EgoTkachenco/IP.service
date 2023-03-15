@@ -86,4 +86,9 @@ export const InputField = styled.input`
     /* transition: background-color 5000s ease-in-out 0s; */
     background-color: red !important;
   }
+
+  @media (max-width: 1140px) {
+    font-size: 12px;
+    line-height: 22px;
+  }
 `

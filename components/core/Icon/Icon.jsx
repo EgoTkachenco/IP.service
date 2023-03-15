@@ -11,6 +11,12 @@ const IconWrapper = styled.div`
   cursor: ${({ pointer }) => (pointer ? 'pointer' : 'inherite')};
   transition: all 0.3s;
 
+  @media (max-width: 1140px) {
+    width: ${({ size, mobileSize }) => mobileSize || size};
+    min-width: ${({ size, mobileSize }) => mobileSize || size};
+    height: ${({ size, mobileSize }) => mobileSize || size};
+  }
+
   svg {
     transition: all 0.3s;
   }
@@ -46,6 +52,7 @@ const IconWrapper = styled.div`
 const Icon = ({
   icon = 'default',
   size = '16px',
+  mobileSize,
   color = 'dark',
   hoverColor,
   onClick,
@@ -55,6 +62,7 @@ const Icon = ({
   return (
     <IconWrapper
       size={size}
+      mobileSize={mobileSize}
       onClick={() => onClick && onClick()}
       color={theme.colors[color]}
       hoverColor={theme.colors[hoverColor]}

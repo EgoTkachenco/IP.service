@@ -14,14 +14,14 @@ export const AdvantagesItem = ({ icon, text }) => (
 )
 
 export const AdvantagesIllustration = ({ count, small }) => (
-  <AdvantagesImage small>
-    <Image
+  <AdvantagesImage small={small}>
+    {/* <Image
       src="/advantages_bg.png"
       alt="advantages back"
       className="advantages-image__back"
       fill
       loading="lazy"
-    />
+    /> */}
     <AdvantagesImageTitle>{count}</AdvantagesImageTitle>
     <AdvantagesImageText color="white">
       Billion API requests last month
@@ -41,6 +41,10 @@ const AdvantagesImage = styled.div`
   gap: 22px;
   border-radius: 50%;
   overflow: hidden;
+  background-image: url('/advantages_bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
 
   &:after {
     content: '';
@@ -51,6 +55,10 @@ const AdvantagesImage = styled.div`
     height: 100%;
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(15.0667px);
+    @media (max-width: 1140px) {
+      content: unset;
+      display: none;
+    }
   }
 
   & > * {
@@ -60,6 +68,14 @@ const AdvantagesImage = styled.div`
 
   @media (max-width: 1140px) {
     width: 100%;
+    height: auto;
+    border-radius: 0;
+    background-image: unset;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(52, 64, 84, 0.1);
   }
 
   .advantages-image__back {
@@ -74,16 +90,36 @@ const AdvantagesImageTitle = styled.div`
   text-align: center;
   letter-spacing: 0.01em;
   color: #ffffff;
+
+  @media (max-width: 1140px) {
+    -webkit-background-clip: text;
+    font-size: 100px;
+    background-clip: text;
+    color: transparent;
+    background-image: url('/gradient-text-mask.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: static;
+    z-index: unset;
+  }
 `
 
 const AdvantagesImageText = styled(Text)`
   margin-bottom: -6px;
+  @media (max-width: 1140px) {
+    color: ${({ theme }) => theme.colors.text};
+    max-width: 120px;
+    font-size: 12px;
+  }
 `
 
 export const StatisticCard = ({ title, description }) => (
   <StatisticWrapper color="white">
     <H1 color="primary">{title}</H1>
-    <Text weight={600}>{description}</Text>
+    <Text weight={600} align="center">
+      {description}
+    </Text>
   </StatisticWrapper>
 )
 
@@ -98,14 +134,14 @@ const StatisticWrapper = styled(Card)`
   }
 
   @media (max-width: 1140px) {
-    width: 100%;
-    max-width: 250px;
+    justify-content: center;
+    padding: 32px 20px;
   }
 `
 
 export const UseCase = ({ text, p = '47px 72px' }) => (
   <UseCaseCard color="white" p={p}>
-    <Icon icon="use-case" size="50px" color="primary" />
+    <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
     <H5 align="center">{text}</H5>
   </UseCaseCard>
 )
@@ -116,11 +152,21 @@ const UseCaseCard = styled(Card)`
   align-items: center;
 
   @media (max-width: 1140px) {
-    flex: 1 1 calc((100% - 32px) / 2);
-  }
-
-  @media (max-width: 700px) {
     flex: 1 1 100%;
+    flex-direction: row;
+    padding: 0;
+    background: none;
+    justify-content: flex-start;
+    gap: 8px;
+
+    ${H5} {
+      white-space: normal;
+      text-align: left;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      font-weight: 600;
+      line-height: 160%;
+    }
   }
 `
 
@@ -153,9 +199,32 @@ const ButtonsContainer = styled(Flex)`
   }
 
   @media (max-width: 1140px) {
+    width: 100%;
+    & > * {
+      flex-grow: 1;
+    }
+    a > button {
+      width: 100%;
+    }
     button {
       height: 50px;
       width: ${({ direction }) => (direction === 'column' ? '100%' : 'auto')};
     }
+  }
+`
+
+export const OnlyMobile = styled(Flex)`
+  display: none;
+  @media (max-width: 1140px) {
+    display: block;
+    width: 100%;
+  }
+`
+
+export const OnlyDesktop = styled(Flex)`
+  display: block;
+  width: 100%;
+  @media (max-width: 1140px) {
+    display: none;
   }
 `

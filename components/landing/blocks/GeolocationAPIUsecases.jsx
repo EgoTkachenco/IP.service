@@ -1,14 +1,12 @@
 import styled from 'styled-components'
-import { Flex, H2, H5, Card, Icon } from '@/core'
-import { Block, BlockInner } from './Block'
+import { Flex, H5, Card, Icon } from '@/core'
+import { Block, BlockInner, Title } from './Block'
 
 const GeolocationAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <H2 color="dark" align="center">
-          {'Ways to use our \n IP Geolocation API'}
-        </H2>
+        <Title color="dark">{'Ways to use our \n IP Geolocation API'}</Title>
         <Container flex="1 1 calc((100% - 62px) / 3)" gap="31px" fwrap>
           <UseCase text="Optimize web personalization" />
           <UseCase text={'Pre-populate \n sign-up forms'} />
@@ -26,7 +24,7 @@ export default GeolocationAPIUsecases
 
 const UseCase = ({ text }) => (
   <UseCaseCard color="white">
-    <Icon icon="use-case" size="50px" color="primary" />
+    <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
     <H5 align="center">{text}</H5>
   </UseCaseCard>
 )
@@ -36,11 +34,17 @@ const Content = styled(BlockInner)`
   display: flex;
   align-items: center;
   gap: 60px;
+  @media (max-width: 1140px) {
+    gap: 24px;
+  }
 `
 
 const Container = styled(Flex)`
   flex-wrap: wrap;
   gap: 32px;
+  @media (max-width: 1140px) {
+    gap: 16px;
+  }
 `
 
 const UseCaseCard = styled(Card)`
@@ -51,10 +55,19 @@ const UseCaseCard = styled(Card)`
   flex: 1 1 calc((100% - 64px) / 3);
 
   @media (max-width: 1140px) {
-    flex: 1 1 calc((100% - 32px) / 2);
-  }
-
-  @media (max-width: 700px) {
     flex: 1 1 100%;
+    flex-direction: row;
+    padding: 0;
+    background: none;
+    justify-content: flex-start;
+    gap: 8px;
+
+    ${H5} {
+      white-space: nowrap;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      font-weight: 600;
+      line-height: 160%;
+    }
   }
 `

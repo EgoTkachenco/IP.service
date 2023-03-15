@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { H2, H5, Flex, Button, Text, Icon } from '@/core'
-import { Block, BlockInner } from './Block'
+import { Block, BlockInner, Title } from './Block'
 import { Carousel } from '@mantine/carousel'
 import services from '@/constants/services'
 import Link from 'next/link'
@@ -9,9 +9,7 @@ const Solutions = () => {
   return (
     <Block>
       <Content>
-        <H2 color="dark" align="center">
-          Solutions
-        </H2>
+        <Title color="dark">Solutions</Title>
         <Container>
           {solutions.map((solution, i) => (
             <SolutionItem
@@ -74,6 +72,9 @@ const Content = styled(BlockInner)`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+  @media (max-width: 1140px) {
+    gap: 28px;
+  }
 `
 
 const Container = styled.div`
@@ -81,9 +82,8 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
-
   @media (max-width: 1140px) {
-    width: calc(100% - (24px * 2));
+    gap: 28px;
   }
 `
 
@@ -98,6 +98,11 @@ const SolutionItem = ({ icon, title, text }) => (
 const SolutionItemContainer = styled(Flex)`
   flex-direction: column;
   flex: 0 1 calc(50% - 50px);
+  gap: 16px;
+
+  @media (max-width: 1140px) {
+    flex: 0 1 100%;
+  }
 
   ${H5} {
     margin: 16px 0 24px;

@@ -63,6 +63,7 @@ export default createGlobalStyle`
 		width: calc(100% + 112px);
 		left: -56px;
 		@media (max-width: 1140px) {
+			display: none;
 			width: calc(100% + (48px * 2));
 			left: -48px;
 		}

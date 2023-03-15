@@ -10,10 +10,10 @@ const Footer = () => {
   return (
     <BlockInner>
       <Wrapper>
-        <Flex direction="column" gap="40px">
+        <FooterLogo>
           <Logo />
           <Copyrights />
-        </Flex>
+        </FooterLogo>
         <FooterLinks>
           {footer_links.map((column, i) => (
             <Flex direction="column" gap="10px" key={i}>
@@ -89,14 +89,29 @@ const Wrapper = styled.footer`
   }
 `
 
+const FooterLogo = styled(Flex)`
+  flex-direction: column;
+  gap: 40px;
+  order: 1;
+
+  @media (max-width: 1140px) {
+    order: 3;
+    border-top: 1px solid rgba(52, 64, 84, 0.1);
+    padding-top: 32px;
+    gap: 24px;
+  }
+`
+
 const FooterLinks = styled(Flex)`
   margin-left: 120px;
   gap: 100px;
+  order: 2;
 
   @media (max-width: 1140px) {
     margin-left: 0;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 32px;
+    order: 1;
   }
 `
 
@@ -106,9 +121,16 @@ const FooterButtons = styled(Flex)`
   margin-left: auto;
   width: 170px;
   align-items: stretch;
+  order: 3;
 
   @media (max-width: 1140px) {
-    margin: auto;
+    margin: 0;
+    width: 100%;
+    flex-direction: row;
+    order: 2;
+    & > * {
+      flex-grow: 1;
+    }
   }
 `
 

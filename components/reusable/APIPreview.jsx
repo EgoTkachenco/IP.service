@@ -120,6 +120,11 @@ const ContentCard = styled(Card)`
     animation: ${gradient} ${({ isFetch }) => (isFetch ? '5s' : '0')} ease
       infinite;
   }
+
+  @media (max-width: 1140px) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 `
 
 const ContentCardInner = styled.div`

@@ -48,6 +48,7 @@ const ContactCard = styled(Card)`
     flex-direction: column;
     padding: 24px;
     height: auto;
+    gap: 24px;
   }
 `
 
@@ -56,5 +57,7 @@ const ContactCardTitle = styled(H1)`
 
   @media (max-width: 1140px) {
     margin: 0;
+    font-size: 20px;
+    line-height: 140%;
   }
 `

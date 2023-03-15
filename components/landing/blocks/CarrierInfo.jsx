@@ -1,15 +1,13 @@
 import styled from 'styled-components'
 import { Flex, H2, H6, Card, Icon } from '@/core'
-import { Block, BlockInner } from './Block'
+import { Block, BlockInner, Title } from './Block'
 import { SignInContactButtons } from './styled'
 
 const CarrierInfo = () => {
   return (
     <Block>
       <Content>
-        <H2 color="dark" align="center">
-          {'Are you a mobile service provider?'}
-        </H2>
+        <Title color="dark">{'Are you a mobile service provider?'}</Title>
         <H6
           weight={500}
           align="center"
@@ -27,9 +25,13 @@ const Content = styled(BlockInner)`
   display: flex;
   align-items: center;
   gap: 60px;
-`
-
-const Container = styled(Flex)`
-  flex-wrap: wrap;
-  gap: 32px;
+  @media (max-width: 1140px) {
+    gap: 16px;
+    align-items: stretch;
+    ${H6} {
+      text-align: left;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+  }
 `

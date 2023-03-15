@@ -1,15 +1,19 @@
 import styled from 'styled-components'
 import { Flex, H3, Text } from '@/core'
-import { Block, BlockInner } from './Block'
-import { SignInContactButtons } from './styled'
+import { Block, BlockInner, Title } from './Block'
+import { SignInContactButtons, OnlyDesktop, OnlyMobile } from './styled'
 
 const PrivacyAPIUsecases = () => {
   return (
     <Block>
       <Content>
         <LeftContainer>
-          <H3 color="dark">{'A few ways to use our\nPrivacy Detection API'}</H3>
-          <SignInContactButtons />
+          <Title color="dark">
+            {'A few ways to use our\nPrivacy Detection API'}
+          </Title>
+          <OnlyDesktop>
+            <SignInContactButtons />
+          </OnlyDesktop>
         </LeftContainer>
         <Container flex="1 1 calc((100% - 50px) / 2)">
           <UseCase>
@@ -29,6 +33,9 @@ const PrivacyAPIUsecases = () => {
             </Text>
           </UseCase>
         </Container>
+        <OnlyMobile>
+          <SignInContactButtons />
+        </OnlyMobile>
       </Content>
     </Block>
   )
@@ -43,6 +50,7 @@ const Content = styled(BlockInner)`
 
   @media (max-width: 1140px) {
     flex-direction: column;
+    gap: 24px;
   }
 `
 
@@ -50,6 +58,13 @@ const Container = styled(Flex)`
   flex-wrap: wrap;
   gap: 50px;
   align-items: center;
+  @media (max-width: 1140px) {
+    gap: 16px;
+    margin-bottom: 16px;
+    & > * {
+      flex: 1 1 100%;
+    }
+  }
 `
 
 const LeftContainer = styled(Flex)`
@@ -57,14 +72,14 @@ const LeftContainer = styled(Flex)`
   justify-content: space-between;
   gap: 40px;
 
+  ${Title} {
+    text-align: left;
+  }
+
   @media (max-width: 1140px) {
     gap: 32px;
     align-items: stretch;
     min-width: unset;
-
-    ${H3} {
-      text-align: center;
-    }
   }
 `
 

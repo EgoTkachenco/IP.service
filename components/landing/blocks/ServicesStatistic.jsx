@@ -5,7 +5,7 @@ import { StatisticCard } from './styled'
 const ServicesStatistic = () => {
   return (
     <Block>
-      <Content flex="1 1 calc((100% / 4) - 60px)">
+      <Content>
         <StatisticCard title="110k+" description="Users" />
         <StatisticCard title="20B+" description="Api reqs a month" />
         <StatisticCard title="12+" description="Data types" />
@@ -28,8 +28,14 @@ const Content = styled(BlockInner)`
   gap: 20px;
   flex-wrap: wrap;
 
+  & > * {
+    flex: 1 1 calc((100% / 4) - 60px);
+  }
+
   @media (max-width: 1140px) {
-    flex-direction: column;
-    width: 100%;
+    align-items: stretch;
+    & > * {
+      flex: 1 1 calc((100% / 2) - 20px);
+    }
   }
 `

@@ -1,14 +1,15 @@
 import styled from 'styled-components'
-import { Block, BlockInner } from './Block'
-import { H2, Flex, Card, Icon, Text } from '@/core'
+import { Block, BlockInner, Title } from './Block'
+import { Flex, Card, Icon, Text } from '@/core'
+import { SignInContactButtons, OnlyMobile } from './styled'
 
 const WhoisInfo = () => {
   return (
     <Block>
       <Content flex="1">
-        <H2 color="dark" align="center">
+        <Title color="dark">
           {'Our Whois API includes \nthe following information'}
-        </H2>
+        </Title>
         <List>
           {whoisFeatures.map((block, i) => (
             <InfoCard color="white">
@@ -20,6 +21,10 @@ const WhoisInfo = () => {
             </InfoCard>
           ))}
         </List>
+
+        <OnlyMobile>
+          <SignInContactButtons />
+        </OnlyMobile>
       </Content>
     </Block>
   )
@@ -49,6 +54,7 @@ const Content = styled(BlockInner)`
   @media (max-width: 1140px) {
     flex-direction: column;
     width: 100%;
+    gap: 24px;
   }
 `
 
@@ -56,12 +62,22 @@ const List = styled(Flex)`
   align-items: stretch;
   gap: 16px;
   width: 100%;
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 `
 
 const InfoCard = styled(Card)`
   gap: 24px;
   flex: 1;
   padding: 32px 24px;
+
+  @media (max-width: 1140px) {
+    padding: 0;
+    gap: 12px;
+    background: none;
+  }
 `
 
 const InfoRow = ({ children }) => (

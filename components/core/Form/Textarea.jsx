@@ -80,4 +80,9 @@ export const TextareaField = styled.textarea`
   &:focus {
     outline: none;
   }
+
+  @media (max-width: 1140px) {
+    font-size: 12px;
+    line-height: 22px;
+  }
 `

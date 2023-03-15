@@ -18,4 +18,9 @@ export default Partners
 
 const Title = styled(H2)`
   margin-bottom: 60px;
+
+  @media (max-width: 1140px) {
+    text-align: left;
+    padding: 0 24px;
+  }
 `

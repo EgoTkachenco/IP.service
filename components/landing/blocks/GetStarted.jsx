@@ -8,14 +8,14 @@ const GetStarted = () => {
     <Block>
       <Wrapper>
         <GetStartedCard color="dark">
-          <Flex direction="column" gap="40px">
+          <GetStartedContent>
             <H2 color="white">Get started for free</H2>
             <H6 color="white" weight="500">
               {
                 'We offer 50,000 free IP geolocation lookups per month. Sign up \n for free to test our data. No gimmicks or credit cards required.'
               }
             </H6>
-          </Flex>
+          </GetStartedContent>
           <SignInContactButtons direction="column" contactColor="white" />
         </GetStartedCard>
       </Wrapper>
@@ -39,9 +39,24 @@ const GetStartedCard = styled(Card)`
   width: 100%;
 
   @media (max-width: 1140px) {
+    padding: 24px;
     flex-direction: column;
-    padding: 32px;
-    gap: 32px;
+    gap: 48px;
     align-items: stretch;
+  }
+`
+
+const GetStartedContent = styled(Flex)`
+  flex-direction: column;
+  gap: 40px;
+  @media (max-width: 1140px) {
+    gap: 16px;
+
+    ${H6} {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+      color: ${({ theme }) => theme.colors.text};
+    }
   }
 `

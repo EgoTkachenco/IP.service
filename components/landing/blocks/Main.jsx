@@ -21,18 +21,20 @@ const Main = ({
     <Wrapper align={alignContent}>
       <Content>
         {logo && (
-          <Image
-            src={logo}
-            alt="IP Geolocation API"
-            width={100}
-            height={100}
-            loading="lazy"
-          />
+          <Logo>
+            <Image
+              src={logo}
+              alt="IP Geolocation API"
+              layout="fill"
+              objectFit="cover"
+              loading="lazy"
+            />
+          </Logo>
         )}
 
         <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
-          <H2 color="dark">{title}</H2>
-          {secondTitle ? <H2 color="primary">{secondTitle}</H2> : ''}
+          <Title color="dark">{title}</Title>
+          {secondTitle ? <Title color="primary">{secondTitle}</Title> : ''}
         </Flex>
         <Subtitle>{description}</Subtitle>
         <SignInContactButtons />
@@ -62,6 +64,8 @@ const Wrapper = styled(BlockInner)`
   @media (max-width: 1140px) {
     flex-direction: column;
     align-items: center;
+    margin-top: 24px !important;
+    gap: 48px;
 
     & > :nth-child(2) {
       max-width: 500px;
@@ -73,8 +77,16 @@ const Wrapper = styled(BlockInner)`
 const Content = styled(Flex)`
   flex-direction: column;
   max-width: 485px;
+`
+
+const Logo = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+
   @media (max-width: 1140px) {
-    align-items: center;
+    width: 56px;
+    height: 56px;
   }
 `
 
@@ -83,6 +95,13 @@ const Subtitle = styled(Text)`
   margin: 40px 0 60px;
 
   @media (max-width: 1140px) {
-    text-align: center;
+    margin: 16px 0 24px;
+    width: 100%;
+  }
+`
+
+const Title = styled(H2)`
+  @media (max-width: 1140px) {
+    font-size: 24px;
   }
 `
