@@ -7,8 +7,9 @@ export default function CompanyService() {
   return (
     <>
       {renderMetadata({
-        title: 'IP to Company API',
-        description: 'IP to Company API',
+        title: 'IP to Company API | Spyskey',
+        description:
+          'Identify all information about company by IP. Connect with your website visitors on a whole new level with our IP to Company API. ',
       })}
       <Layout>
         <LandingCompany />

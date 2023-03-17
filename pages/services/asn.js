@@ -7,8 +7,9 @@ export default function ASNService() {
   return (
     <>
       {renderMetadata({
-        title: 'ASN API',
-        description: 'ASN API',
+        title: 'IP to ASN. Data | Spyskey',
+        description:
+          'Our IP to ASN tool allows you to easily identify the autonomous system number (ASN) associated with any IP address. Improve your network management and security today.',
       })}
       <Layout>
         <LandingASN />

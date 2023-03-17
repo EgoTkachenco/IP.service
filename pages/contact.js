@@ -8,8 +8,9 @@ export default function ContactPage() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Contact us. Get in touch | Spyskey',
+        description:
+          "We'd love to hear from you! Contact us today to learn more about our products and services, get support, or provide feedback.",
       })}
       <Layout>
         <Contact />

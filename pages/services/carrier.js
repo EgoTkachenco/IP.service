@@ -7,8 +7,9 @@ export default function CarrierService() {
   return (
     <>
       {renderMetadata({
-        title: 'Mobile Carrier Detection',
-        description: 'Mobile Carrier Detection',
+        title: 'Mobile Carrier Detection | Spyskey',
+        description:
+          "Improve your mobile marketing strategy with our mobile carrier detection tool. Identify your users' carriers and optimize your messaging for maximum impact",
       })}
       <Layout>
         <LandingCarrier />

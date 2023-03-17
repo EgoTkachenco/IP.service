@@ -9,8 +9,8 @@ export default function ContactPage() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: '404 | Spyskey',
+        description: 'Page not exist',
       })}
       <Wrapper>
         <H2>Page Not Found</H2>

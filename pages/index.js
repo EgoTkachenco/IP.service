@@ -7,8 +7,8 @@ export default function LandingPage() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Information by IP Address | Spyskey',
+        description: 'Accurate IP address data. We provide a lot of main tools for checking IP address privacy, security, DNS and WHOIS data',
       })}
       <Layout>
         <Landing />

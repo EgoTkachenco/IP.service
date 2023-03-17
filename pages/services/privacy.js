@@ -7,8 +7,9 @@ export default function PrivacyService() {
   return (
     <>
       {renderMetadata({
-        title: 'Privacy Detection API',
-        description: 'Privacy Detection API',
+        title: 'Privacy Detection API. VPN | Spyskey',
+        description:
+          'Our Privacy Detection API helps you identify potential privacy violations on your website, including VPN detection. Sign up for free',
       })}
       <Layout>
         <LandingPrivacy />

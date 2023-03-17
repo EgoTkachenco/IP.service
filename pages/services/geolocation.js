@@ -7,8 +7,9 @@ export default function GeolocationService() {
   return (
     <>
       {renderMetadata({
-        title: 'Geolocation API',
-        description: 'Geolocation API',
+        title: 'IP Geolocation API Tool | Spyskey',
+        description:
+          'Get accurate location data for your website visitors with our IP geolocation API. Our easy-to-use tool provides real-time data to improve your business decisions. Try it today!',
       })}
       <Layout>
         <LandingGeolocation />

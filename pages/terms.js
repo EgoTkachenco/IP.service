@@ -8,8 +8,9 @@ export default function TermsPage() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Terms of Service | Spyskey',
+        description:
+          'Review our Terms of Service to learn more about our policies and guidelines. Stay informed and protect your rights when using our products and services',
       })}
       <Layout animation={false}>
         <TermsOfService />

@@ -7,8 +7,9 @@ export default function RangesService() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Ranges API',
-        description: 'IP Ranges API',
+        title: 'IP Ranges API | Spyskey',
+        description:
+          'Our IP Ranges API provides accurate and up-to-date data on IP address ranges for companies worldwide. Enhance your security and streamline your processes with our easy-to-use tool.',
       })}
       <Layout>
         <LandingRanges />

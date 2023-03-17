@@ -12,8 +12,9 @@ const PricingPage = observer(({ plans }) => {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Real Pricing to Get Accurate IP Data | Spyskey',
+        description:
+          'Find the perfect plan for your needs with our IP Address Data API pricing options. Get accurate and up-to-date data on IP addresses to streamline your business. Choose your plan now!',
       })}
       <Layout>
         <Pricing plans={plans} />

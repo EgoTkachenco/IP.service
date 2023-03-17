@@ -7,8 +7,9 @@ export default function ReverseService() {
   return (
     <>
       {renderMetadata({
-        title: 'Reverse IP API',
-        description: 'Reverse IP API',
+        title: 'Reverse IP API. Domain Tools | Spyskey',
+        description:
+          'Our Reverse IP API allows you to discover all the domains hosted on a specific IP address. Improve your security and gain valuable insights with our easy-to-use tool.',
       })}
       <Layout>
         <LandingReverse />

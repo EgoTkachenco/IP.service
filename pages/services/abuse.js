@@ -7,8 +7,9 @@ export default function AbuseService() {
   return (
     <>
       {renderMetadata({
-        title: 'Abuse Contact Data for IP Addresses',
-        description: 'Abuse Contact Data for IP Addresses',
+        title: 'Abuse Contact Data for IP Addresses | Spyskey',
+        description:
+          'Protect your network from abuse with our tool for retrieving abuse contact data for IP addresses. Stay compliant and safeguard your business reputation.',
       })}
       <Layout>
         <LandingAbuse />
