@@ -59,7 +59,7 @@ const Header = observer(() => {
             alt="IP.Service"
             loading="lazy"
           />
-          <H6 color="dark">IP.Service</H6>
+          <H6 color="dark">Spyskey</H6>
         </LogoContainer>
       </Link>
       <DesktopMenu>

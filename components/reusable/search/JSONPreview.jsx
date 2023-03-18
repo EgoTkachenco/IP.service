@@ -2,7 +2,12 @@ import styled from 'styled-components'
 import { Flex, Icon, Text } from '@/core'
 import { useState, Fragment } from 'react'
 
-const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
+const JSONPreview = ({
+  data = {},
+  icon = true,
+  color = 'text',
+  errorColor = 'text',
+}) => {
   const renderDataField = (field, value, key) => {
     const type = getDataType(value, field)
     switch (type) {
@@ -44,6 +49,7 @@ const JSONPreview = ({ data = {}, icon = true, color = 'text' }) => {
             value={value}
             isIcon={icon}
             textColor={color}
+            errorColor={errorColor}
           />
         )
       case 'array':
@@ -184,10 +190,10 @@ export const ArrayJSON = ({ name, value, textColor, isIcon }) => (
   />
 )
 
-export const ErrorJSON = ({ name, value, textColor, isIcon }) => (
+export const ErrorJSON = ({ name, value, textColor, isIcon, errorColor }) => (
   <DataJSON
     icon="json-error"
-    valueColor="white"
+    valueColor={errorColor}
     name={'Error'}
     value={value}
     textColor="danger"

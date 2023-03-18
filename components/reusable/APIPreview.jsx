@@ -56,7 +56,11 @@ const APIPreview = ({
 
       <ContentCard color="dark" isFetch={isFetch}>
         <ContentCardInner className="custom-scroll-dark">
-          {!isFetch ? <JSONPreview data={data || {}} /> : <LoadingText />}
+          {!isFetch ? (
+            <JSONPreview data={data || {}} errorColor="white" />
+          ) : (
+            <LoadingText />
+          )}
         </ContentCardInner>
       </ContentCard>
       <ChipContainer flex="0 1 150px" className="custom-scroll">

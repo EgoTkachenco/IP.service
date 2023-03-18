@@ -25,7 +25,13 @@ const OnboardingStep1 = ({ ip, token, url }) => {
         py="20px"
         gap="8px"
       >
-        <Text color="success" font="monospace" weight="400" width="100%">
+        <Text
+          color="success"
+          font="monospace"
+          weight="400"
+          width="100%"
+          style={{ wordBreak: 'break-all' }}
+        >
           curl "{url}
         </Text>
         <Icon
