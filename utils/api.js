@@ -51,10 +51,15 @@ export const getAnalytics = (duration = 7) =>
 export const sendFeedback = (form) =>
   axios.post('/api/v1/public/feedback/contact-form', form)
 
+export const allService = ({ ip, domain }) =>
+  axios.get(
+    '/api/v1/public/services/all' + (ip ? `?ip=${ip}` : `?domain=${domain}`)
+  )
+// https://back.spyskey.com/api/v1/public/services/all?ip=188.163.28.193&domain=cloudflare.com
 export const geolocationService = (ip) =>
   axios
     .get('/api/v1/public/services/geolocation' + (ip ? `?ip=${ip}` : ''))
-    .then((res) => res.answer)
+    .then((res) => (res.answer ? res.answer : res))
 
 export const companyService = (ip) =>
   axios.get('/api/v1/public/services/company' + (ip ? `?ip=${ip}` : ''))
@@ -68,7 +73,7 @@ export const abuseService = (ip) =>
 export const carrierService = (ip) =>
   axios
     .get('/api/v1/public/services/carrier' + (ip ? `?ip=${ip}` : ''))
-    .then((res) => res.answer)
+    .then((res) => (res.answer ? res.answer : res))
 
 export const reverseService = (ip) =>
   axios.get('/api/v1/public/services/reverse' + (ip ? `?ip=${ip}` : ''))

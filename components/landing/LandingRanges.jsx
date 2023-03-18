@@ -45,6 +45,9 @@ const LandingRanges = () => {
         secondTitle="API"
         description="The API for IP ranges provides information on IP ranges owned or managed by a specific company, as identified by its domain name. This data encompasses the total count of ranges and an array containing each individual range."
         service={rangesService}
+        validation={() => {}}
+        examples={['google.com', 'youtube.com', 'facebook.com', 'twitter.com']}
+        placeholder="Search Domain"
       />
       <Feedback
         name="Michael Johnson"

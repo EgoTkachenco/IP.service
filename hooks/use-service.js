@@ -19,9 +19,10 @@ export const useService = (initialIp, service) => {
     return newData
   }
 
-  const fetchInfo = async (ip) => {
+  const fetchInfo = async (param_ip) => {
+    if (!param_ip && !userIP) return
     setData(null)
-    setIp(ip || userIP)
+    const ip = param_ip || userIP
     return action(ip)
       .catch((error) => console.log(error))
       .then((data) => data && handleData(data))

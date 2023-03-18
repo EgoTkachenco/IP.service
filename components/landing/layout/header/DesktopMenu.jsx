@@ -35,7 +35,7 @@ export default DesktopMenu
 const Wrapper = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  flex-basis: 60%;
+  flex-basis: 66.5%;
   @media (max-width: 1140px) {
     display: none;
   }

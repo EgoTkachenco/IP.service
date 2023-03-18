@@ -47,9 +47,6 @@ const LandingReverse = () => {
         secondTitle="API"
         description="Our Hosted Domains API, alternatively referred to as the Reverse IP API, delivers an extensive and detailed list of domains that share a single IP address. This valuable information enables users to gain insights into the various websites hosted on a particular server or IP address."
         service={reverseService}
-        validation={() => {}}
-        examples={['google.com', 'youtube.com', 'facebook.com', 'twitter.com']}
-        placeholder="Search Domain"
       />
       <Feedback
         name="Olivia Thompson"
