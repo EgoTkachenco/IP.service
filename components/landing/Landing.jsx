@@ -31,11 +31,13 @@ const Landing = () => {
   return (
     <>
       <Main
-        title="The trusted source for IP address data"
-        description="Accurate IP address data that keeps pace with secure, specific, and forward-looking use cases."
+        title="We're a key source for accurate IP, phone, and email data."
+        description="Reliable data tailored to meet the demands of secure, targeted, and future-oriented applications."
         alignContent="center"
       />
-      <Partners />
+      <Partners
+        title={'Global industry leaders \nrely on our dependable APIs'}
+      />
       <ServicesStatistic />
       <Services />
       <EnterpriseServices />

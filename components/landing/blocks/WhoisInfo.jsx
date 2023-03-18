@@ -7,9 +7,7 @@ const WhoisInfo = () => {
   return (
     <Block>
       <Content flex="1">
-        <Title color="dark">
-          {'Our Whois API includes \nthe following information'}
-        </Title>
+        <Title color="dark">{`Discover Our Whois API's Data`}</Title>
         <List>
           {whoisFeatures.map((block, i) => (
             <InfoCard color="white">

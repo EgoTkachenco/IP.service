@@ -29,13 +29,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 import { abuseService } from '@/utils/api'
 
 const LandingAbuse = () => {
@@ -43,15 +40,26 @@ const LandingAbuse = () => {
     <>
       <Main
         logo="/services-logo/abuse.svg"
-        title={`Abuse Contact Data\nfor IP Addresse`}
-        description="Our abuse contact API returns data containing information belonging to the abuse contact of every IP address on the Internet. Fields included in this response are the abuse contact's email address, postal/ZIP code, city, state, country, name, network, and phone number."
+        title={`Contact Information for Addressing IP Abuse`}
+        description="Introducing our premier Abuse Contact API, the ultimate solution for obtaining comprehensive and accurate abuse contact information for every IP address worldwide. Access essential data fields such as email addresses, postal/ZIP codes, cities, states, countries, names, networks, and phone numbers for abuse contacts. Harness the power of our user-friendly API to streamline reporting and safeguard the internet."
         service={abuseService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Amelia Thompson"
+        position="Senior Network Security Analyst"
+        feedback="Utilizing Spyskey's Abuse Contact Data for IP Addresses has been a game-changer for our organization. As a Senior Network Security Analyst, it's crucial for me to have accurate and up-to-date information on abuse contacts to ensure a swift response to any potential threats. Spyskey has not only streamlined our reporting process but also significantly improved our efficiency in handling IP misuse incidents. I wholeheartedly recommend their service to anyone seeking a reliable and user-friendly solution for addressing internet safety concerns."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '99.7%', description: 'Accuracy' },
+          { title: '99.4%', description: 'Coverage' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
       <Advantages
         title={`Accurate & low-latency\nAbuse contact data`}
-        description={`IPinfo specializes in providing accurate abuse contact. Our Abuse contact API provides a response that includes these datasets for every IP.`}
+        description={`Discover Spyskey's cutting-edge Abuse Contact API, your go-to source for precise and comprehensive abuse contact information. With our innovative technology, we deliver unparalleled access to essential data for every IP address, empowering you to tackle online security challenges effectively. Experience the efficiency and reliability of Spyskey's industry-leading API, and elevate your internet safety initiatives to new heights.`}
         count={61}
         features={[
           { icon: 'done', name: 'Address' },
@@ -64,10 +72,14 @@ const LandingAbuse = () => {
       />
       <AbuseAPIUsecases />
       <Products />
-      <FAQ />
+      <FAQ topic="Abuse" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={
+          'Globally-renowned organizations rely \non our top-tier APIs for their business needs.'
+        }
+      />
+      <GetStarted text="Experience our Abuse Contact API service with a 7-day trial, no credit card required." />
     </>
   )
 }

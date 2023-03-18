@@ -14,12 +14,10 @@ const Pricing = ({ plans }) => {
   return (
     <>
       <BlockInner direction="column">
-        <Title color="dark">
-          Flexible pricing for the most accurate IP data
-        </Title>
+        <Title color="dark">Affordable rates for precise IP data</Title>
         <H6>
           {
-            'Whether you’re starting off your newest side project or your \n enterprise needs the most accurate IP data, we’ve got you covered.'
+            'From new side projects to enterprise-grade IP data accuracy, \nour tailored solutions have you covered.'
           }
         </H6>
 

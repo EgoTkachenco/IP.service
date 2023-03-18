@@ -7,26 +7,17 @@ const AbuseAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'Ways to use our \n Abuse Contact API'}</Title>
-        <Container flex="1 1 calc((100% - 62px) / 3)" gap="31px" fwrap>
-          <UseCase
-            text={`Collect information to assist in taking down nefarious Web entities`}
-          />
-          <UseCase
-            text={`Research IP addresses attempting to access your personal accounts`}
-          />
-          <UseCase
-            text={`Track down hackers/spammers threatening you or your business`}
-          />
-          <UseCase
-            text={`Build a foundation for taking legal action against malicious IP addresses`}
-          />
-          <UseCase
-            text={`Fight back against identity theft and forms of harassment or infringement`}
-          />
-          <UseCase
-            text={`Automate complaints to companies responsible for abusive IP addresses`}
-          />
+        <Title color="dark">{'Making the Most of Our Abuse Contact API'}</Title>
+        <Container flex="1 1 calc((100% - 64px) / 3)">
+          <UseCase text="Enhance network security by swiftly reporting IP misuse incidents." />
+          <UseCase text="Strengthen cybersecurity measures with real-time abuse contact data." />
+          <UseCase text="Monitor IP usage patterns to proactively identify potential threats." />
+          <UseCase text="Facilitate efficient collaboration between abuse departments and ISPs." />
+          <UseCase text="Improve customer support by resolving IP-related disputes effectively." />
+          <UseCase text="Empower threat intelligence teams with comprehensive abuse contact details." />
+          <UseCase text="Streamline data center management by addressing IP allocation issues." />
+          <UseCase text="Bolster incident response strategies with accurate contact information." />
+          <UseCase text="Foster a safer online environment through proactive abuse reporting." />
         </Container>
         <SignInContactButtons />
       </Content>
@@ -56,6 +47,7 @@ const Content = styled(BlockInner)`
 const Container = styled(Flex)`
   flex-wrap: wrap;
   gap: 32px;
+  flex-wrap: wrap;
   @media (max-width: 1140px) {
     gap: 24px;
   }

@@ -6,15 +6,15 @@ const ServicesStatistic = () => {
   return (
     <Block>
       <Content>
-        <StatisticCard title="110k+" description="Users" />
-        <StatisticCard title="20B+" description="Api reqs a month" />
-        <StatisticCard title="12+" description="Data types" />
-        <StatisticCard title="6" description="Dedicated data engineers" />
+        <StatisticCard title="38K+" description="Users" />
+        <StatisticCard title="4B+" description="Api reqs a month" />
+        <StatisticCard title="9+" description="Data types" />
+        <StatisticCard title="5" description="Dedicated data engineers" />
 
-        <StatisticCard title="19.4B+" description="IP netblocks" />
-        <StatisticCard title="30B+" description="DNS records" />
-        <StatisticCard title="6325" description="TLDs & ccTLDs" />
-        <StatisticCard title="17.2B+" description="WHOIS records" />
+        <StatisticCard title="21.2B+" description="IP netblocks" />
+        <StatisticCard title="50M+" description="companies" />
+        <StatisticCard title="3325" description="TLDs & ccTLDs" />
+        <StatisticCard title="18.5B+" description="WHOIS records" />
       </Content>
     </Block>
   )

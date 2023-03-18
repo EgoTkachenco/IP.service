@@ -12,21 +12,22 @@ const CompanyAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <LeftContainer>
-          <Title color="dark">{'Ways to use our\nIP Geolocation API'}</Title>
-          <OnlyDesktop>
-            <SignInContactButtons direction="column" />
-          </OnlyDesktop>
-        </LeftContainer>
-        <Container flex="1 1 calc((100% - 32px) / 2)">
-          <UseCase text="Enrich your data" />
-          <UseCase text="Customize website experiences" />
-          <UseCase text="Target the right users" />
-          <UseCase text="Discover high-value leads" />
+        <Title color="dark">{'Ways to use our \nIP to Company data'}</Title>
+
+        <Container flex="1 1 calc((100% - 64px) / 3)">
+          <UseCase text="Identify potential customers and generate leads for sales teams using firmographics data." />
+          <UseCase text="Tailor marketing campaigns to target specific companies based on firmographics data." />
+          <UseCase text="Personalize website content for specific companies or industries using firmographics data." />
+          <UseCase text="Compare website traffic and engagement metrics of competitors using website analytics." />
+          <UseCase text="Detect and prevent fraudulent activity on your website with fraud detection and security measures." />
+          <UseCase text="Create account-based marketing strategies and tactics using firmographics data." />
+          <UseCase text="Gain insights into the competitive landscape and market trends with market research and competitive analysis." />
+          <UseCase text="Better understand customer needs and preferences for personalized support with firmographics data." />
+          <UseCase text="Customize website content based on the geographic location of visitors with geotargeting." />
+          <UseCase text="Optimize website performance, identify areas for improvement with website metrics and analysis." />
+          <UseCase text="Determine ownership information of IP addresses with IP address ownership data." />
+          <UseCase text="Analyze historical website traffic trends and patterns with historical website traffic data." />
         </Container>
-        <OnlyMobile>
-          <SignInContactButtons />
-        </OnlyMobile>
       </Content>
     </Block>
   )
@@ -36,11 +37,11 @@ export default CompanyAPIUsecases
 
 const Content = styled(BlockInner)`
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   gap: 100px;
 
   @media (max-width: 1140px) {
-    flex-direction: column;
     gap: 24px;
   }
 `
@@ -52,20 +53,5 @@ const Container = styled(Flex)`
   @media (max-width: 1140px) {
     flex-direction: column;
     gap: 16px;
-  }
-`
-
-const LeftContainer = styled(Flex)`
-  flex-direction: column;
-  min-width: 300px;
-  justify-content: space-between;
-
-  ${Title} {
-    text-align: left;
-  }
-  @media (max-width: 1140px) {
-    gap: 32px;
-    align-items: stretch;
-    min-width: unset;
   }
 `

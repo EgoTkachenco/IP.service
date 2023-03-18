@@ -7,7 +7,7 @@ const services = [
     name: 'Geolocation API',
     description: 'Identification of an IP address',
     description_full:
-      "IP address geolocation lookup is the identification of an IP address' geographic location in the real world.",
+      'Unlock accurate IP geolocation, revealing the true geographic locations seamlessly.',
     link: routes['geolocation-api'],
   },
   {
@@ -16,7 +16,7 @@ const services = [
     name: 'IP Ranges API',
     description: 'Target specific IP ranges',
     description_full:
-      'Lookup IP ranges that are owned or operated by a company, including the total number of ranges and an array with each of them.',
+      'Explore company-owned IP ranges, complete with total count and a detailed breakdown of each.',
     link: routes['ranges-api'],
   },
   {
@@ -25,7 +25,7 @@ const services = [
     name: 'Privacy Detection',
     description: 'Unmask user’s identities',
     description_full:
-      "Detects various methods used to mask a user's true IP address, including VPN detection, proxy detection and more.",
+      'Unmask hidden IP addresses with advanced detection for VPNs, proxies, and beyond.',
     link: routes['privacy-api'],
   },
   {
@@ -34,7 +34,7 @@ const services = [
     name: 'IP to Company API',
     description: 'Leverage anonymus leads',
     description_full:
-      'Lookup company details behind IP traffic. This includes the company’s name, domain, and what type of company it is: ISP, business, or hosting',
+      'Unlock genuine company insights behind IP traffic and unveil the identity of your website visitors.',
     link: routes['company-api'],
   },
   {
@@ -43,7 +43,7 @@ const services = [
     name: 'ASN API',
     description: 'Improve data enrichment',
     description_full:
-      'Giving our customers access to a database that includes ASN details for every IP address and every ASN’s related domains',
+      'Empower customers with extensive database access, featuring comprehensive ASN details for each IP address and associated domains.',
     link: routes['asn-api'],
   },
   {
@@ -52,7 +52,7 @@ const services = [
     name: 'Hosted domains API',
     description: 'Enchance lead generation',
     description_full:
-      'Returns a full list of domains that are hosted on a single IP address. These domains are ordered based on host.io domain ranking.',
+      'Explore a comprehensive collection of domains hosted on one IP address, conveniently compiled for you.',
     link: routes['reverse-api'],
   },
   {
@@ -61,7 +61,7 @@ const services = [
     name: 'IP to Mobille Carrier API',
     description: 'Customize user expiriences',
     description_full:
-      'Detects the carrier of a mobile device, and returns the carrier name, country and more.',
+      'Identify mobile carriers effortlessly, revealing carrier name, country, and additional insights.',
     link: routes['carrier-api'],
   },
   {
@@ -70,7 +70,7 @@ const services = [
     name: 'Abuse Contact API',
     description: 'Automate abusive IP reporting',
     description_full:
-      'Returns data containing information belonging to the abuse contact of every IP address on the Internet, including email, city and more.',
+      'Access extensive abuse contact data for every IP address online, featuring email, city, and more valuable details.',
     link: routes['abuse-api'],
   },
   {
@@ -79,7 +79,7 @@ const services = [
     name: 'IP Whois API',
     description: 'Get more IP insights',
     description_full:
-      'Provides records with accurate and easy-to-use data fields - Point of Contact (POC), Organization Identifiers (ORG), Networks (NET), and more.',
+      'Offering precise, user-friendly records encompassing Point of Contact (POC), Organization Identifiers (ORG), Networks (NET), and additional insights.',
     link: routes['whois-api'],
   },
 ]

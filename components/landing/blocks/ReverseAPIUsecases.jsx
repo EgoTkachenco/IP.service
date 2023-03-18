@@ -21,19 +21,19 @@ const ReverseAPIUsecases = () => {
         <Container flex="1 1 calc((100% - 32px) / 2)">
           <UseCase
             p="44px 24px"
-            text={`Enriching lead generation\ndata and tightening-up\nsales reporting.`}
+            text="Identify competitors' websites on shared hosting to better understand their online presence and improve marketing strategies."
           />
           <UseCase
             p="44px 24px"
-            text={`Having 24/7 access to\nresolving any IP address to\ndomain name with Reverse\nIP reports.`}
+            text="Detect potential security threats or malicious domains by analyzing the websites hosted on specific IP addresses."
           />
           <UseCase
             p="44px 24px"
-            text={`Uncovering new prospects by\nidentifying owners of an IP\naddress visiting your website\nand customising their\nexperience.`}
+            text="Gather insights into hosting patterns and relationships between domains to enhance data-driven decision-making."
           />
           <UseCase
             p="44px 24px"
-            text={`Tracking down malicious\nbehaviour of phishing or\nscamming websites that are\nsharing the same hosting server,\nidentifying the true owners and\noperators of compromised\ninfrastructure.`}
+            text="Discover new prospects by exploring related websites and domains, enabling targeted outreach and promotional campaigns."
           />
         </Container>
         <OnlyMobile>

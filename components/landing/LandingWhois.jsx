@@ -29,13 +29,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 
 import { whoisService } from '@/utils/api'
 
@@ -44,26 +41,40 @@ const LandingWhois = () => {
     <>
       <Main
         logo="/services-logo/whois.svg"
-        title="IP Whois API"
-        description="Our Whois API provides records with accurate and easy-to-use data fields - Point of Contact (POC), Organization Identifiers (ORG), Networks (NET), and more. We do the busy work by developing well-parsed insights for our users."
+        title="IP Whois"
+        secondTitle="API"
+        description="Discover the ultimate Whois API solution, providing precise and user-friendly data fields like Point of Contact (POC), Organization Identifiers (ORG), and Networks (NET). Save time with our well-structured insights tailored for your convenience, and enhance your data-driven projects with our comprehensive Whois API tool."
         service={whoisService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Olivia Thompson"
+        position="Cybersecurity Analyst"
+        feedback="As a cybersecurity analyst, I constantly face the challenge of identifying and tracking malicious activities online. The Whois API service by Spyskey has been a game-changer for me, providing accurate and easy-to-access domain information that helps streamline our investigations. Thanks to Spyskey, we've been able to swiftly respond to threats and protect our clients more effectively."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '99.3%', description: 'Accuracy' },
+          { title: '97.7%', description: 'Coverage' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
       <AdvantagesSmall
         title={
-          'Billion API requests last month\nWell-parsed andusable IP Whois data'
+          'Efficiently-structured and \nuser-friendly IP Whois information'
         }
-        description={`The Internet has an approximate year-over-year increase of 5.4 percent for domain name registrations across all TLDs. We stay current with Whois data changes by updating our these insights daily and gathering record sets from around 400 Whois servers. Access our Whois data by IP, ID, or domain, including the following information:`}
+        description="Stay Ahead with Our Continuously Updated Whois Data Amid Rapid Domain Growth. With the Internet experiencing an impressive annual growth of 7.2% in domain registrations across all Top-Level Domains (TLDs), it's crucial to have access to the most current Whois data. We ensure you remain informed by updating our insights daily and aggregating record sets from over 450 Whois servers globally. Effortlessly access comprehensive Whois information by IP, ID, or domain, and unlock invaluable insights to empower your online ventures."
         count={28}
         contentWidth="660px"
       />
       <WhoisInfo />
       <Products />
-      <FAQ />
+      <FAQ topic="Whois" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={'Global Top-Tier Enterprises Rely \non Our Trustworthy APIs'}
+      />
+      <GetStarted text="Experience Our Whois API Service Risk-Free with a 7-Day Free Trial, No Credit Card Required." />
     </>
   )
 }

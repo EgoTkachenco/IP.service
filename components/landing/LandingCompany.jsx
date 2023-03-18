@@ -32,13 +32,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
   loading: () => 'loading',
 })
@@ -51,14 +48,25 @@ const LandingCompany = () => {
         logo="/services-logo/company.svg"
         title="IP to Company"
         secondTitle="API"
-        description="View website traffic from a different point of view. Our API provides customers with firmographics data on the companies behind IP traffic."
+        description="Our API offers customers a fresh perspective on website traffic by providing firmographics data about the companies responsible for the IP traffic."
         service={companyService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Rachel Davis"
+        position="Marketing Director"
+        feedback="As a marketer, I'm always looking for ways to better understand my website's traffic and identify potential new customers. Spyskey's IP to Company API has been a game-changer in this regard, providing valuable firmographics data on the companies behind the IP traffic. With Spyskey's help, I'm able to tailor my marketing efforts to better reach those companies and their needs. The API is user-friendly, reliable, and accurate, and has saved me a lot of time and effort. I highly recommend Spyskey's IP to Company API to anyone looking for a powerful tool to enhance their marketing strategy and boost business growth."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '50M+', description: 'Companies' },
+          { title: '766M+', description: 'Ip ranges' },
+          { title: '3+', description: 'Data types' },
+          { title: '86%', description: 'Precision' },
+        ]}
+      />
       <AdvantagesSmall
-        title={'Accurate & low-latency \n IP geolocation lookup'}
-        description={`Using insights derived from WHOIS, IPinfo IP to Company API identifies the company that operates or leases the IP block from the ASN.\n\nOur company classifiers indicate the types of organizations that frequent your website, including ISPs, businesses, educational institutions, or hosting services.`}
+        title={'Fast and accurate IP to company API.'}
+        description={`Unlike our competitors who rely on WHOIS information that includes mostly irrelevant ISP services, we have developed a cutting-edge technology that provides highly accurate data on the companies visiting your website. See for yourself the precision of our unique technology.`}
         count={40}
         features={[
           { icon: 'navigation', name: 'Domain name' },
@@ -69,10 +77,14 @@ const LandingCompany = () => {
       <CompanyAPIUsecases />
       <BussinessMap />
       <Products />
-      <FAQ />
+      <FAQ topic="Company" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={
+          'Our APIs are trusted by industry-leading \ncompanies worldwide.'
+        }
+      />
+      <GetStarted text="We provide a credit card-free 7-day trial period for our IP to company API service." />
     </>
   )
 }

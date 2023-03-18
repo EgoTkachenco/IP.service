@@ -17,19 +17,38 @@ const PrivacyAPIUsecases = () => {
         </LeftContainer>
         <Container flex="1 1 calc((100% - 50px) / 2)">
           <UseCase>
-            <Text>Enforce content access restrictions by detecting VPNs</Text>
-          </UseCase>
-          <UseCase>
             <Text>
-              Fight fraud by flagging users who are masking their identity
+              Our Privacy Detection API strengthens your online security by
+              identifying users with concealed IP addresses. Mitigate risks,
+              prevent unauthorized transactions, and protect your business from
+              potential fraudsters using our cutting-edge IP detection
+              solutions.
             </Text>
           </UseCase>
           <UseCase>
-            <Text>Filter malicious traffic by blocking bots and spammers</Text>
+            <Text>
+              Maintain compliance with geo-restricted content regulations by
+              integrating our Privacy Detection API. Accurately detect and block
+              users employing VPNs, proxies, or Tor to bypass regional
+              restrictions, ensuring a secure and compliant content distribution
+              network.
+            </Text>
           </UseCase>
           <UseCase>
             <Text>
-              Prevent web scraping by blocking proxies and requests from servers
+              Boost your organization's cybersecurity measures with our Privacy
+              Detection API. Unmask IP addresses attempting to infiltrate your
+              network, proactively combat threats, and safeguard sensitive data
+              using our advanced IP concealment detection techniques.
+            </Text>
+          </UseCase>
+          <UseCase>
+            <Text>
+              Leverage our Privacy Detection API to gain accurate insights into
+              user behavior. By revealing hidden IP addresses, our API empowers
+              you to create more precise user profiles, optimize marketing
+              strategies, and deliver tailored experiences for genuine
+              customers.
             </Text>
           </UseCase>
         </Container>

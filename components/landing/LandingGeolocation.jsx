@@ -32,13 +32,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 
 import { geolocationService } from '@/utils/api'
 
@@ -49,20 +46,25 @@ const LandingGeolocation = () => {
         logo="/services-logo/geolocation.svg"
         title="IP Geolocation"
         secondTitle="API"
-        description="Around the globe, industry-leading organizations use IPinfo's
-          geolocation data to create efficient, enjoyable, and secure online
-          experiences for their users. These IP geolocation insights lead to
-          better conversion rates, improved customer satisfaction, and much more
-          with our API that's built for low latency responses."
+        description="Leading businesses worldwide utilize Spyskey's top-tier IP geolocation data to enrich digital user experiences. Our fast, low-latency API empowers enhanced conversion rates and customer satisfaction. Experience seamless online journeys with Spyskey's unparalleled geolocation service."
         service={geolocationService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Thomas Peterson"
+        position="Senior Marketing Manager"
+        feedback="Before implementing Spyskey's geolocation solution, our marketing efforts were hindered by inaccurate targeting and a lack of personalization. However, Spyskey's rapid, low-latency API provided us with precise location insights, enabling us to create tailored and engaging experiences. This has significantly improved our search engine rankings, boosted conversion rates, and elevated customer satisfaction. Spyskey's geolocation service is a must-have for businesses seeking to optimize their online presence and overcome localization challenges"
+      />
+      <ServiceStatistic
+        features={[
+          { title: '99.3%', description: 'Accuracy' },
+          { title: '99.9%', description: 'Coverage' },
+          { title: '~100ms', description: 'Latency' },
+          { title: '9', description: 'Data points' },
+        ]}
+      />
       <Advantages
-        title={`Accurate & low-latency\nIP geolocation lookup`}
-        description={
-          'IPinfo specializes in providing accurate IP to location data. We take it so seriously that we build and maintain our own proprietary IP geolocation database. Our GeoAPI provides a response that includes these datasets for every IP:'
-        }
+        title={`Ultra-Fast, Precise IP Geolocation Lookup`}
+        description="Spyskey, your premier IP geolocation provider, excels in delivering pinpoint-accurate IP-to-location insights. Harness the power of our proprietary, constantly-updated geolocation database to elevate your digital strategy. Experience our cutting-edge GeoAPI, featuring comprehensive data sets for every IP, ensuring optimal targeting, personalization, and search engine visibility."
         count={68}
         features={[
           { icon: 'edit', name: 'Hostname' },
@@ -75,10 +77,18 @@ const LandingGeolocation = () => {
       />
       <GeolocationAPIUsecases />
       <Products />
-      <FAQ />
+      <FAQ topic="Geolocation" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={
+          'World-class enterprises rely on \nour exceptional IP geolocation API'
+        }
+      />
+      <GetStarted
+        text={
+          'Experience 50,000 complimentary IP geolocation lookups monthly with our risk-free trial. Register now – no credit card or hidden catches involved.'
+        }
+      />
     </>
   )
 }

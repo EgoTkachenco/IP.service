@@ -17,10 +17,10 @@ const Header = () => {
               src="/logo.svg"
               height={24}
               width={24}
-              alt="IP.Service"
+              alt="Spyskey"
               loading="lazy"
             />
-            <H6 color="dark">IP.Service</H6>
+            <H6 color="dark">Spyskey</H6>
           </Flex>
         </Link>
         <DesktopMenu />

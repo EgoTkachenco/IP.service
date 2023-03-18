@@ -68,10 +68,10 @@ const Logo = () => (
       src="/logo.svg"
       height={24}
       width={24}
-      alt="IP.Service"
+      alt="Spyskey"
       loading="lazy"
     />
-    <H6>IP.Service</H6>
+    <H6>Spyskey</H6>
   </Flex>
 )
 

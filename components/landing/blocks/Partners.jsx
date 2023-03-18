@@ -3,11 +3,11 @@ import { Block } from './Block'
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import styled from 'styled-components'
 
-const Partners = () => {
+const Partners = ({ title }) => {
   return (
     <Block>
       <Title color="dark" align="center">
-        {'Industry-leading companies \n around the world trust our APIs'}
+        {title}
       </Title>
       <PartnersCarousel />
     </Block>

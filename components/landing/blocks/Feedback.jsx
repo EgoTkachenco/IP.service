@@ -3,32 +3,25 @@ import Image from 'next/image'
 import { H6, Caption } from '@/core'
 import { Block, BlockInner } from './Block'
 
-const Feedback = () => {
+const Feedback = ({
+  name,
+  position,
+  feedback,
+  avatar = '/feedback-avatar.png',
+}) => {
   return (
     <Block>
       <Content>
         <FeedbackAvatar>
-          <Image
-            src="/feedback-avatar.png"
-            layout="fill"
-            objectFit="cover"
-            alt="Andriyy Johnson"
-          />
+          <Image src={avatar} layout="fill" objectFit="cover" alt={name} />
         </FeedbackAvatar>
         <FeedbackTop>
           <Caption color="dark" weight="700">
-            Andriyy Johnson
+            {name}
           </Caption>
-          <Caption>Digital Product Owner</Caption>
+          <Caption>{position}</Caption>
         </FeedbackTop>
-        <FeedbackText weight="500">
-          Before IP.Service, we didn't personalize the site. If people landed on
-          it, they would have to identify which country they were coming from,
-          or the country wouldn't even be displayed. The visitor often ended up
-          navigating through the site or going back to Google to find what they
-          were looking for. This resulted in an unsatisfactory experience for
-          our users.
-        </FeedbackText>
+        <FeedbackText weight="500">{feedback}</FeedbackText>
       </Content>
     </Block>
   )

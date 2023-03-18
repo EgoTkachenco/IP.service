@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Icon, Flex, H3, H5, Card } from '@/core'
+import { Icon, Flex, H5, Card } from '@/core'
 import { Block, BlockInner, Title } from './Block'
 import { SignInContactButtons } from './styled'
 
@@ -9,8 +9,10 @@ const ASNAPIUsecases = () => {
       <Content>
         <Title color="dark">{'A few ways to use our ASN API'}</Title>
         <Container flex="1 1 calc((100% - 32px) / 2)">
-          <UseCase text="IPinfo's ASN API can provide information on whether an IP address belongs to a consumer, business, or hosting provider. You can utilize IP type data to better understand what type of experience to deliver to your users. You will be able to easily differentiate between IPs based on their intended use and assignment." />
-          <UseCase text="Resolving the IP address to ASN for users that visit your website will provide your business with insight on which ISPs are common among your IP traffic. This data can help you make inferences about users’ internet connection speeds, data limitations, and so forth." />
+          <UseCase text="Utilize ASN API service to strengthen your cybersecurity measures by identifying potentially malicious traffic sources. Analyzing ASN data enables you to detect suspicious IP addresses, flagging them for further investigation. By leveraging IP-to-ASN mapping and ASN lookup, you can uncover patterns, track down offending networks, and implement security policies to safeguard your online assets from emerging threats." />
+          <UseCase text="Employ ASN API service to streamline network operations by obtaining comprehensive information on IP addresses and ASN prefixes. With access to data such as allocation dates, registry names, and related domains, you can make informed decisions for network capacity planning, routing optimization, and peering arrangements. Spyskey's accurate and up-to-date ASN data empowers you to manage your network resources efficiently and effectively." />
+          <UseCase text="Enhance your location-based services by incorporating ASN API service to refine IP geolocation data. By correlating IP addresses with their respective ASNs, you can obtain more granular information about user locations, enabling you to deliver targeted marketing campaigns, localized content, or tailored user experiences. Leverage Spyskey's comprehensive ASN database to unlock the potential of location-based services for your business." />
+          <UseCase text="Tap into the power of ASN API service for academic research or data-driven decision-making. Access to detailed ASN information and IP-to-ASN mapping can help you understand internet infrastructure, uncover network trends, and analyze global connectivity patterns. Spyskey's vast and up-to-date ASN data provides valuable insights for researchers, network analysts, and decision-makers in various industries." />
         </Container>
         <SignInContactButtons />
       </Content>
@@ -51,7 +53,6 @@ const UseCase = ({ text }) => (
 const UseCaseCard = styled(Card)`
   padding: 50px;
   gap: 25px;
-  flex: 1 1 calc((100% - 64px) / 3);
 
   @media (max-width: 1140px) {
     flex: 1 1 100%;

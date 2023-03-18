@@ -8,7 +8,7 @@ const BussinessMap = () => {
     <Block>
       <Content flex="1">
         <H2 color="dark" align="center">
-          Bussiness across the globe use IP.Service
+          Bussiness across the globe use Spyskey
         </H2>
         <MapContainer>
           <Image src="/globe-map.svg" layout="fill" alt="Globe map" />
@@ -36,8 +36,4 @@ const MapContainer = styled(Flex)`
   justify-content: center;
   width: 100%;
   aspect-ratio: calc(1140 / 650);
-  /* svg {
-    max-width: 100%;
-    height: auto;
-  } */
 `

@@ -1,9 +1,6 @@
 import styled from 'styled-components'
-import { H2, H5, Flex, Button, Text, Icon } from '@/core'
+import { H5, Flex, Text, Icon } from '@/core'
 import { Block, BlockInner, Title } from './Block'
-import { Carousel } from '@mantine/carousel'
-import services from '@/constants/services'
-import Link from 'next/link'
 
 const Solutions = () => {
   return (
@@ -30,41 +27,54 @@ export default Solutions
 const solutions = [
   {
     icon: 'www',
-    title: 'Attack Surface Intelligence',
-    text: 'Attack surfaces continue to widen as interconnectivity grows and business operations expand and evolve. Attack surface management (ASM) solutions must adapt and continuously improve their asset discovery, scoring, monitoring, and prioritization capabilities, notably by accessing real-time and comprehensive Internet intelligence sources, including DNS, IP, and WHOIS data.',
+    title: 'Fraud Prevention',
+    text: 'Safeguard your business with our advanced IP intelligence, email, and phone validation services, designed to identify and block suspicious activities like phishing, identity theft, and spam, ensuring a secure and trustworthy environment.',
   },
   {
     icon: 'security',
-    title: 'Security Operations and Platform Intelligence',
-    text: 'Enterprises rely on managed security operations and platforms for round-the-clock protection against threat actors. Providing this service requires comprehensive and up-to-date visibility into the primary source of threats—the Internet. Historical and real-time access to Internet events, including DNS, WHOIS, and IP information, enables early threat detection and accurate contextualization.',
+    title: 'Geolocation Targeting',
+    text: 'Enhance your marketing reach by leveraging our precise IP geolocation data, enabling you to create personalized and location-specific campaigns for improved customer engagement, conversion rates, and brand awareness.',
   },
 
   {
     icon: 'inteligent',
-    title: 'Cyber Threat Intelligence Enrichment Solutions',
-    text: 'Cyber threat intelligence is only as good as the data used to process it. Supplementing your current cyber threat intelligence stack with real-time and historical DNS, domain, WHOIS, IP, and other Internet-related data can enable critical security processes—from early and real-time threat detection, analysis, and expansion to threat disruption.',
+    title: 'Data Validation',
+    text: 'Maintain clean, accurate customer databases with our comprehensive email verification and phone number validation solutions, reducing bounce rates, enhancing deliverability, and optimizing your communication efforts.',
   },
   {
     icon: 'law',
-    title: 'Law Enforcement Solutions',
-    text: 'Policing requires a balanced mix of technological advancement and intelligence-led initiatives. A unified view of the Internet can supplement existing law enforcement data sources and ensure that no stones are left unturned. DNS, WHOIS, and IP intelligence can provide clues that are otherwise hidden or overlooked, aiding law enforcers in their fight against cybercrime.',
+    title: 'Cybersecurity',
+    text: 'Strengthen your digital defenses by utilizing our cutting-edge IP intelligence, email filtering, and phone validation services, proactively detecting and blocking malicious IP addresses, spam emails, and harmful phone numbers for enhanced protection.',
   },
 
   {
     icon: 'banking',
-    title: 'Digital Risk Protection Intelligence',
-    text: 'As digital transformation continues, organizations become exposed to a growing number of digital risks. Gaining access to Internet-wide intelligence, including DNS, IP, and domain data, can enhance enterprise protection against various digital risks, whether from third parties, internal vulnerabilities, supply chain channels, or other sources.',
+    title: 'Access Control',
+    text: 'Implement location-based restrictions on sensitive content or services with our accurate IP geolocation data, providing a customized and secure user experience, while adhering to regional regulations and licensing agreements.',
   },
   {
     icon: 'marketing',
-    title: 'Market and Competitive Intelligence',
-    text: 'With half the world’s population and almost all organizations going online, the Internet is a valuable source of market data. DNS, IP, WHOIS, and other Internet data can provide much-needed insights that can help with market forecasting, competitive research and monitoring, business-to-business (B2B) targeting, service discovery, and other critical business processes.',
+    title: 'Compliance Monitoring',
+    text: 'Ensure regulatory compliance with data protection laws, such as GDPR, CCPA, and HIPAA, by leveraging our IP intelligence and email validation services to track user locations, safeguard privacy, and manage data accordingly.',
   },
 
   {
     icon: 'registar',
-    title: 'Know Who You’re Talking To (KWYTT) Intelligence',
-    text: 'Our interconnected global ecosystem requires constant communication with potential and existing customers, vendors, suppliers, and several other parties. Not all of them can be trusted, hence the need for initial and continuous identity verification that can be enriched with real-time access to domain, IP, DNS, and other Internet-related data.',
+    title: 'Risk Assessment',
+    text: 'Evaluate customer trustworthiness with our in-depth IP, email blacklist, and phone number analysis, empowering you to make informed decisions, prevent chargebacks, and mitigate potential risks.',
+  },
+  {
+    title: 'User Experience Optimization',
+    text: "Personalize your website content, language, and currency based on users' IP geolocation data, fostering an engaging and tailored experience that boosts customer retention and satisfaction.",
+  },
+
+  {
+    title: 'Network Management',
+    text: 'Monitor and analyze network traffic with our robust IP intelligence, email filtering, and phone validation solutions, identifying potential threats, DDoS attacks, or anomalies for optimal performance and security.',
+  },
+  {
+    title: 'Market Research',
+    text: 'Gain valuable insights into customer demographics, preferences, and behavior with our comprehensive IP, email, and phone data analysis, informing data-driven strategies, competitive analysis, and fueling business growth.',
   },
 ]
 

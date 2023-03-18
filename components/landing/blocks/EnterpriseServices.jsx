@@ -7,24 +7,26 @@ const EnterpriseServices = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">Enterprise-grade service for every size</Title>
+        <Title color="dark">
+          Premium, scalable service tailored for businesses of all sizes.
+        </Title>
         <Container>
           <Column>
             <Feature
               icon="shield-dot"
-              title="Bank grade security"
-              text="Software that's built on Google Cloud infrastructure and backed 24/7 by our data experts."
+              title="Accuracy"
+              text="Delivers highly precise IP data, ensuring reliable and trustworthy insights for informed decision-making."
               right
             />
             <Feature
               icon="persons"
-              title="Here for the long run"
-              text="We've been here since 2013, and we're here for the long run."
+              title="Reliability"
+              text="Maintains consistent stability and performance, providing dependable results across diverse use cases."
             />
             <Feature
               icon="energy"
-              title="Fast & easy to use"
-              text="Start using IP data in minutes with simple setup and supported integrations."
+              title="Speed"
+              text="Offers rapid response times and low latency, enabling efficient data retrieval and analysis."
               right
             />
           </Column>
@@ -38,19 +40,19 @@ const EnterpriseServices = () => {
           <Column>
             <Feature
               icon="shield"
-              title="Reliable & scalable"
-              text="Our auto-scaling servers handle more than a billion API queries a day"
+              title="Security"
+              text="Implements robust protection measures to guarantee data privacy, adhering to industry compliance standards."
             />
             <Feature
               icon="clock"
-              title="Here for the long run"
-              text="Our data is aggregated from multiple sources and updated daily"
+              title="Scalability"
+              text="Provides flexible, adaptable solutions designed to accommodate businesses of all sizes and requirements."
               right
             />
             <Feature
               icon="cloud"
-              title="Backed by the best"
-              text="Software that's built on Google Cloud infrastructure and backed 24/7 by our data experts."
+              title="User-friendly"
+              text="Features an intuitive interface with easy-to-understand data presentation, simplifying the user experience."
             />
           </Column>
         </Container>

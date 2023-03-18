@@ -14,8 +14,8 @@ const Contact = () => {
         <ContactTop direction="column">
           <Title color="dark">Get in Touch</Title>
           <Subtitle weight="500">
-            Our data experts are happy to answer your questions. Fill out the
-            form, and we'll be in touch within 1-2 business days.
+            Our team of data specialists eagerly awaits your inquiries. Complete
+            the form, and expect a response from us in as little as 24 hours.
           </Subtitle>
         </ContactTop>
         <ContactCard color="dark">
@@ -24,8 +24,8 @@ const Contact = () => {
       </Block>
 
       <JoinBlock>
-        <H6 color="dark">Join thousands of companies using</H6>
-        <H6 color="primary">IP.Service:</H6>
+        <H6 color="dark">Join the myriad of enterprises leveraging</H6>
+        <H6 color="primary">Spyskey</H6>
       </JoinBlock>
 
       <CarouselBlock>

@@ -29,13 +29,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 
 import { rangesService } from '@/utils/api'
 
@@ -44,16 +41,29 @@ const LandingRanges = () => {
     <>
       <Main
         logo="/services-logo/ranges.svg"
-        title="IP Ranges API"
-        description="Through smartphones, tablets, and other portable devices, mobile has overtaken desktop as the leading source of internet traffic. IPinfo’s API allows resolution of IP address to carrier, and our database provides information on every mobile IP’s carrier name, country code, and network code."
+        title="IP Ranges"
+        secondTitle="API"
+        description="The API for IP ranges provides information on IP ranges owned or managed by a specific company, as identified by its domain name. This data encompasses the total count of ranges and an array containing each individual range."
         service={rangesService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Michael Johnson"
+        position="Network Administrator"
+        feedback="Spyskey's IP ranges API service has been a game-changer for me as a network administrator. It solved the common problem of identifying and blocking malicious IP addresses by providing a comprehensive database. The service is easy to use, reliable, and well-documented. It has helped us quickly identify and block potential threats, making it an invaluable tool for any IT professional."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '100%', description: 'Accuracy' },
+          { title: '100%', description: 'Security' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
+
       <AdvantagesSmall
-        title={`Reliable & updated\nIP ranges data`}
+        title={`The Value of Accurate IP Ranges Data`}
         description={
-          'IPinfo offers the most reliable domain to IP ranges lookup service on the web. Our proprietary network data sets are updated every day so that our database is as accurate and complete as it gets.'
+          'Spyskey provides the most reliable domain to IP ranges lookup service online, with daily updates to our proprietary network data sets. Our database is highly accurate and comprehensive, making it a top choice for IT professionals and developers searching for trustworthy IP ranges data.'
         }
         count={36}
         features={[
@@ -64,10 +74,12 @@ const LandingRanges = () => {
       />
       <RangesAPIUsecases />
       <Products />
-      <FAQ />
+      <FAQ topic="Ranges" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={'Industry-leading companies \naround the world trust our APIs'}
+      />
+      <GetStarted text="We provide a credit card-free 7-day trial period for our IP Ranges API service." />
     </>
   )
 }

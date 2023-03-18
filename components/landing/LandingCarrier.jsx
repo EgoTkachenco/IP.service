@@ -6,7 +6,7 @@ import Feedback from './blocks/Feedback'
 const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
   loading: () => '',
 })
-const CarrierInfo = dynamic(() => import('./blocks/CarrierInfo'), {
+const CarrierInfo = dynamic(() => import('./blocks/CarrierAPIUsecases'), {
   loading: () => '',
 })
 const Contact = dynamic(() => import('./blocks/Contact'), {
@@ -29,13 +29,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 import { carrierService } from '@/utils/api'
 
 const LandingCarrier = () => {
@@ -46,14 +43,25 @@ const LandingCarrier = () => {
         title="Carrier Detection"
         secondTitle="Mobile"
         reverseTitle
-        description="Through smartphones, tablets, and other portable devices, mobile has overtaken desktop as the leading source of internet traffic. IPinfo’s API allows resolution of IP address to carrier, and our database provides information on every mobile IP’s carrier name, country code, and network code."
+        description="In the mobile era, smartphones and tablets reign as top internet traffic sources. Spyskey's API identifies carrier information from mobile IP addresses. Our database contains essential details such as carrier name, country code, and network code. Our platform is a go-to resource for businesses, developers, and researchers in the mobile and telecommunications industries."
         service={carrierService}
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Alex Lee"
+        position="Mobile App Developer"
+        feedback="Spyskey's Mobile Carrier Detection API is a game-changer in the telecommunications industry. As a mobile app developer, I understand the importance of accurate carrier information, and Spyskey's platform provides just that. The API's ability to identify carrier information from IP addresses makes it incredibly convenient and reliable for businesses and developers in the mobile industry. With smartphones and tablets dominating internet traffic, this tool is essential for anyone in need of mobile-related information. I highly recommend Spyskey's Mobile Carrier Detection API for anyone looking to develop new products or services in the mobile industry."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '97.3%', description: 'Coverage' },
+          { title: '99.8%', description: 'Accuracy' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
       <AdvantagesSmall
-        title={'Lookup mobile users'}
-        description={`Identifying mobile users by their IP address allows for a level of detection that can be more reliable than other common methods, such as by reading their browser’s user-agent.\n\nOur mobile network IP data is updated at least once per month and can be accessed via an API endpoint or as a direct download.`}
+        title={'Find mobile device user information.'}
+        description={`Identifying mobile users through their IP addresses is a highly reliable method compared to other commonly used techniques like reading the browser's user-agent. With regular updates at least once per month, our mobile network IP data is readily available through an API endpoint or direct download. Gain access to this reliable information today.`}
         count={52}
         features={[
           { icon: 'done', name: 'MCC' },
@@ -64,10 +72,12 @@ const LandingCarrier = () => {
       />
       <CarrierInfo />
       <Products />
-      <FAQ />
+      <FAQ topic="Carrier" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={'Industry-leading companies \n around the world trust our APIs'}
+      />
+      <GetStarted text="We provide a credit card-free 7-day trial period for our Mobile Carrier Detection API service." />
     </>
   )
 }

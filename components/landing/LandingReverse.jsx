@@ -32,13 +32,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 import { reverseService } from '@/utils/api'
 
 const LandingReverse = () => {
@@ -46,18 +43,30 @@ const LandingReverse = () => {
     <>
       <Main
         logo="/services-logo/reverse.svg"
-        title="Reverse IP API"
-        description="Our Hosted Domains API, or Reverse IP API returns a full list of domains that are hosted on a single IP address. These domains are ordered based on host.io domain ranking."
+        title="Hosted Domains"
+        secondTitle="API"
+        description="Our Hosted Domains API, alternatively referred to as the Reverse IP API, delivers an extensive and detailed list of domains that share a single IP address. This valuable information enables users to gain insights into the various websites hosted on a particular server or IP address."
         service={reverseService}
         validation={() => {}}
         examples={['google.com', 'youtube.com', 'facebook.com', 'twitter.com']}
         placeholder="Search Domain"
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="Olivia Thompson"
+        position="Digital Marketing Manager"
+        feedback="As a Digital Marketing Manager, I've found Spyskey's Hosted Domains API service to be invaluable in identifying competitors' websites on shared hosting. This insight has empowered us to make informed decisions and optimize our marketing strategies. I highly recommend Spyskey for anyone seeking to enhance their digital marketing efforts."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '99.9%', description: 'Accuracy' },
+          { title: '89.7%', description: 'Coverage' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
       <AdvantagesSmall
-        title={`Improve your website's \nperformance or experience`}
-        description={`Our API allows IPinfo customers to leverage their anonymous traffic into marketing and sales opportunities, combining our data with their own firmographics. For example, if your business serves differently to residential users, you can customize the experience for ISP-owned IP traffic on your website using the IP company data from our API response.`}
+        title={`Enhance your website's performance and user experience.`}
+        description={`Our API empowers Spyskey customers to transform anonymous traffic into marketing and sales opportunities by integrating our data with their firmographics, while also optimizing SEO. For instance, if your business caters to residential users in a distinct manner, you can personalize the experience for ISP-owned IP traffic on your website using the IP company information from our API response.`}
         count={55}
         features={[
           { icon: 'done', name: 'Name' },
@@ -68,10 +77,10 @@ const LandingReverse = () => {
       />
       <ReverseAPIUsecases />
       <Products />
-      <FAQ />
+      <FAQ topic="Reverse" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners title="Global leaders trust our APIs" />
+      <GetStarted text="Try our Hosted Domains API service with a 7-day free trial, no credit card needed." />
     </>
   )
 }

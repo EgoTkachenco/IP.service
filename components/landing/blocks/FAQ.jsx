@@ -4,12 +4,14 @@ import { H2 } from '@/core'
 import FAQList from '@/components/reusable/FAQList'
 import FAQ_QUESTIONS from '@/constants/faq.json'
 
-const FAQ = () => {
+const FAQ = ({ topic = null }) => {
+  const questions =
+    FAQ_QUESTIONS.find((block) => block.code === topic)?.questions || []
   return (
     <Block>
       <Title color="dark">Frequently Asked Questions</Title>
       <Content>
-        <FAQList questions={FAQ_QUESTIONS[0].questions} />
+        <FAQList questions={questions} />
       </Content>
     </Block>
   )

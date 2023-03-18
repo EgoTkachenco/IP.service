@@ -29,13 +29,10 @@ const Products = dynamic(() => import('./blocks/Products'), {
   loading: () => '',
   ssr: false,
 })
-const GeolocationStatistic = dynamic(
-  () => import('./blocks/GeolocationStatistic'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-)
+const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
+  loading: () => '',
+  ssr: false,
+})
 import { asnService } from '@/utils/api'
 
 const LandingASN = () => {
@@ -44,16 +41,27 @@ const LandingASN = () => {
       <Main
         logo="/services-logo/asn.svg"
         title="ASN API"
-        description="IP to ASN mapping and ASN lookup are possible with IPinfo’s ASN API, giving our customers access to a database that includes ASN details for every IP address and every ASN’s related domains, allocation date, registry name, total number of IP addresses, and assigned prefixes."
+        description="Unlock IP-to-ASN mapping and ASN lookup with Spyskey's advanced ASN API. Our database offers vital information on IP addresses and ASNs for improved security and network management. Features include fast ASN lookups, related domains, allocation dates, registry names, and assigned prefixes. Enhance your network operations with Spyskey's top solutions."
         service={asnService}
         validation={() => null}
         placeholder="Search IP or ASN"
       />
-      <Feedback />
-      <GeolocationStatistic />
+      <Feedback
+        name="David Thompson"
+        position="Network Security Analyst"
+        feedback="The Spyskey ASN API service is a game-changer for anyone in cybersecurity looking to identify the Autonomous System Number of a particular IP address. As a satisfied customer, I can attest to the ease of use and accuracy of the data provided by the Spyskey API. The comprehensive and up-to-date information about ASNs has helped me assess potential threats and vulnerabilities with greater precision. Additionally, the customer support team at Spyskey is top-notch and always available to help with any questions or issues. Overall, I highly recommend Spyskey to anyone in need of a reliable and comprehensive ASN API service. Keywords: Spyskey, ASN API, cybersecurity, threat assessment, customer support."
+      />
+      <ServiceStatistic
+        features={[
+          { title: '24H', description: 'Actualization time' },
+          { title: '99.1%', description: 'Accuracy' },
+          { title: '98.4%', description: 'Coverage' },
+          { title: '~100ms', description: 'Latency' },
+        ]}
+      />
       <Advantages
-        title={`Reliable & updated ASN data`}
-        description={`IPinfo offers the most reliable IP to ASN lookup service on the web. Our proprietary network data sets are updated every day so that our ASN database is as accurate and complete as it gets.`}
+        title={`Accurate and Up-to-Date ASN Data`}
+        description={`Experience unparalleled IP-to-ASN lookup with Spyskey's trusted online service. Harnessing daily-updated, proprietary network data sets, our comprehensive ASN database delivers unmatched accuracy and completeness in the industry.`}
         count={44}
         features={[
           { icon: 'done', name: 'Hostname' },
@@ -66,10 +74,12 @@ const LandingASN = () => {
       />
       <ASNAPIUsecases />
       <Products />
-      <FAQ />
+      <FAQ topic="ASN" />
       <Contact />
-      <Partners />
-      <GetStarted />
+      <Partners
+        title={'Industry-leading companies \naround the world trust our APIs'}
+      />
+      <GetStarted text="We provide a credit card-free 7-day trial period for our ASN API service." />
     </>
   )
 }
