@@ -1,19 +1,45 @@
 import styled from 'styled-components'
 import { Flex } from '@/core'
 import { infinite_line } from '@/styles/animations'
+import { useMediaQuery } from '@mantine/hooks'
 
 const PartnersCarousel = ({ gap = '40px', small = false }) => {
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+  const carousels = splitToArrays(partners, isMobile ? 6 : 12)
   return (
-    <Flex direction="column" gap={gap}>
-      <Carousel items={carousel_1} small={small} />
-      <Carousel items={carousel_2} small={small} reverse />
-    </Flex>
+    <Wrapper direction="column" gap={gap}>
+      {carousels.map((carousel, i) => (
+        <Carousel items={carousel} small={small} reverse={i % 2 === 1} />
+      ))}
+    </Wrapper>
   )
 }
 
 export default PartnersCarousel
 
-const carousel_1 = [
+const Wrapper = styled(Flex)`
+  flex-direction: column;
+  gap: ${({ gap }) => gap};
+
+  @media (max-width: 1140px) {
+    gap: 8px;
+  }
+`
+
+const splitToArrays = (array, size) => {
+  const result = []
+  let part = []
+  for (let i = 0; i < array.length; i++) {
+    part.push(array[i])
+    if (part.length === size) {
+      result.push(part)
+      part = []
+    }
+  }
+  return result
+}
+
+const partners = [
   { name: '', image: '/partners/partner_1.png' },
   { name: '', image: '/partners/partner_2.png' },
   { name: '', image: '/partners/partner_3.png' },
@@ -26,8 +52,6 @@ const carousel_1 = [
   { name: '', image: '/partners/partner_10.png' },
   { name: '', image: '/partners/partner_11.png' },
   { name: '', image: '/partners/partner_12.png' },
-]
-const carousel_2 = [
   { name: '', image: '/partners/partner_13.png' },
   { name: '', image: '/partners/partner_14.png' },
   { name: '', image: '/partners/partner_15.png' },
@@ -66,6 +90,10 @@ const CarouselWrapper = styled.div`
   max-width: 100%;
   overflow: hidden;
   gap: ${({ small }) => (small ? '20px' : '40px')};
+
+  @media (max-width: 1140px) {
+    gap: 8px;
+  }
 `
 const CarouselItem = styled.div`
   animation-name: ${({ small }) =>
@@ -88,5 +116,12 @@ const CarouselItemInner = styled.div`
 
   img {
     max-height: 100%;
+  }
+
+  @media (max-width: 1140px) {
+    padding: 16px;
+    height: 55px;
+    border-radius: 10px;
+    gap: 40px;
   }
 `

@@ -22,5 +22,6 @@ const Title = styled(H2)`
   @media (max-width: 1140px) {
     text-align: left;
     padding: 0 24px;
+    margin-bottom: 24px;
   }
 `
