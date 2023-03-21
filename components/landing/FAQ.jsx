@@ -32,7 +32,7 @@ const FAQ = () => {
         <DesktopContainer>
           <TopicList active={activeBlock} open={openTopic} />
           <Flex direction="column" gap="40px">
-            <H3 color="dark">About IP.Service </H3>
+            <H3 color="dark">About Spyskey</H3>
             <FAQList
               questions={FAQ_QUESTIONS[activeBlock].questions}
               active={activeQuestion}
