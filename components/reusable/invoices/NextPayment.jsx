@@ -24,8 +24,10 @@ export default NextPayment
 
 const PaymentCard = styled(Card)`
   width: 350px;
+  min-width: 350px;
 
   @media (max-width: 1140px) {
     width: 100%;
+    min-width: unset;
   }
 `

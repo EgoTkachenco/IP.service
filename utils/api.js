@@ -91,3 +91,14 @@ export const privacyService = (ip) =>
   axios.get('/api/v1/public/services/privacy' + (ip ? `?ip=${ip}` : ''))
 
 export const getFlag = (flag) => axios.get(`/api/v1/public/flag/${flag}`)
+
+export const reactivateUserPlan = () =>
+  axios.get('/api/v1/account/reactivate', securedFetchOptions())
+
+export const getOrders = () => axios.get('/api/v1/order', securedFetchOptions())
+
+export const createOrder = (plan, term) =>
+  axios.post('/api/v1/order', { plan, term }, securedFetchOptions())
+
+export const createOrderTrial = () =>
+  axios.post('/api/v1/order/trial', null, securedFetchOptions())

@@ -13,11 +13,13 @@ import UsageChart from '@/components/reusable/analytics/UsageChart'
 import { observer } from 'mobx-react-lite'
 import AnalyticsStore from '@/store/AnalyticsStore'
 import SearchStore from '@/store/SearchStore'
+import BillingStore from '@/store/BillingStore'
 
 const Home = observer(() => {
   const { analytics, usage, duration, loadAnalytics, changeDuration } =
     AnalyticsStore
   const { userIp: ip, getIpInfo } = SearchStore
+  const { isFreePlan, setUserTrial } = BillingStore
   useEffect(() => {
     loadAnalytics()
     if (!ip) getIpInfo()
@@ -29,7 +31,7 @@ const Home = observer(() => {
     <Flex direction="column" gap="50px">
       <OnboardingStep1 url={url} ip={ip} token={analytics?.token} />
       <OnboardingStep2 host={host} token={analytics?.token} />
-      <OnboardingStep3 />
+      {isFreePlan && <OnboardingStep3 setTrial={() => setUserTrial()} />}
 
       <AnalyticsContent_1 flex="1">
         <LastDaysUsage value={analytics?.weekUsage} today={analytics?.today} />

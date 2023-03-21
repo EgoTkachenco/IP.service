@@ -2,7 +2,7 @@ import { Caption, Flex, Icon, Button } from '@/core'
 import styled from 'styled-components'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 
-const OnboardingStep3 = () => {
+const OnboardingStep3 = ({ setTrial }) => {
   return (
     <OnboardingCard
       step="3"
@@ -31,7 +31,7 @@ const OnboardingStep3 = () => {
           <ListItem>Abuse</ListItem>
           <ListItem>Priority Support</ListItem>
         </List>
-        <Button size="small" width="auto">
+        <Button size="small" width="auto" onClick={setTrial}>
           Start Free Trial
         </Button>
       </OnboardingCardContent>

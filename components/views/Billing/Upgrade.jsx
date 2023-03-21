@@ -1,18 +1,12 @@
 import styled from 'styled-components'
 import { Flex, H4 } from '@/core'
 import Switch from '@/components/reusable/Switch'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import PlanCard from '@/components/reusable/UpgradePlanCard'
-import PlansStore from '@/store/PlansStore'
-import { observer } from 'mobx-react-lite'
 import Animation from '@/components/reusable/Animation'
 
-const Upgrade = observer(() => {
-  const { plans, loadPlans } = PlansStore
-  const [period, setPeriod] = useState('monthly')
-  useEffect(() => {
-    if (!plans) loadPlans()
-  })
+const Upgrade = ({ currentPlan, plans, setUserPlan }) => {
+  const [period, setPeriod] = useState('month')
 
   return (
     <Flex direction="column" gap="30px" width="100%">
@@ -21,8 +15,8 @@ const Upgrade = observer(() => {
         <Switch
           labelOff="Yearly"
           labelOn="Monthly"
-          value={period === 'monthly'}
-          onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
+          value={period === 'month'}
+          onChange={(value) => setPeriod(value ? 'month' : 'year')}
         />
       </TitleContainer>
 
@@ -39,18 +33,20 @@ const Upgrade = observer(() => {
                 name={plan.name}
                 priceType={period}
                 price={
-                  period === 'yearly' ? plan.year_price * 12 : plan.month_price
+                  period === 'year' ? plan.year_price * 12 : plan.month_price
                 }
                 description={plan.description}
                 additional_description={plan.additional_description}
                 options={plan.options}
+                setPlan={() => setUserPlan(plan.name, period)}
+                isCurrent={currentPlan?.name === plan.name}
               />
             </Animation>
           ))}
       </CardsContainer>
     </Flex>
   )
-})
+}
 
 export default Upgrade
 

@@ -1,22 +1,37 @@
 // import Animation from '@/components/reusable/Animation'
 import routes from '@/constants/routes'
 import { Flex, Chip } from '@/core'
+import BillingStore from '@/store/BillingStore'
+import PlansStore from '@/store/PlansStore'
+import { observer } from 'mobx-react-lite'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 
-const TABS = [
+const FreePlanTabs = [
+  { name: 'Your subscriptions', path: routes.billing },
+  { name: 'Upgrade', path: routes.upgrade },
+]
+
+const Tabs = [
   { name: 'Your subscriptions', path: routes.billing },
   { name: 'Upgrade', path: routes.upgrade },
   { name: 'Billing & Invoices', path: routes.invoices },
 ]
 
-const BillingLayout = ({ children }) => {
+const BillingLayout = observer(({ children }) => {
   const router = useRouter()
+  const { plans, loadPlans } = PlansStore
+  const { isFreePlan } = BillingStore
+  const tabs = isFreePlan ? FreePlanTabs : Tabs
+  useEffect(() => {
+    if (!plans) loadPlans()
+  })
   return (
     <Flex direction="column" gap="50px" width="100%">
       <TabsList>
-        {TABS.map((tab) => {
+        {tabs.map((tab) => {
           const isActive = router.pathname === tab.path
           return (
             <Link href={tab.path} key={tab.name}>
@@ -34,7 +49,7 @@ const BillingLayout = ({ children }) => {
       {children}
     </Flex>
   )
-}
+})
 
 export default BillingLayout
 

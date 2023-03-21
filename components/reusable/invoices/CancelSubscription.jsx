@@ -1,6 +1,6 @@
 import { Flex, H4, Text, Button } from '@/core'
 
-const CancelSubscription = () => {
+const CancelSubscription = ({ reactivate }) => {
   return (
     <Flex direction="column" gap="15px">
       <H4 color="dark">Cancel subscription (Danger zone)</H4>
@@ -10,7 +10,9 @@ const CancelSubscription = () => {
         }
       </Text>
       <div />
-      <Button width="260px">Reactivate Subscribtion</Button>
+      <Button onClick={reactivate} width="260px">
+        Reactivate Subscribtion
+      </Button>
     </Flex>
   )
 }

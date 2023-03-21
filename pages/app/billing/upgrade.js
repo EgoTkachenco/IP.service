@@ -1,8 +1,13 @@
 import Layout from '@/components/layout/AppLayout'
 import BillingLayout from '@/components/views/Billing/Layout'
 import { useMetadataRenderer } from '@/hooks'
+import BillingStore from '@/store/BillingStore'
+import PlansStore from '@/store/PlansStore'
 import { serverSideSecuredRoute } from '@/utils'
+import { observer } from 'mobx-react-lite'
+import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import routes from '@/constants/routes'
 const BillingUpgrade = dynamic(
   () => import('@/components/views/Billing/Upgrade'),
   {
@@ -11,9 +16,11 @@ const BillingUpgrade = dynamic(
   }
 )
 
-export default function Upgrade() {
+const Upgrade = observer(() => {
   const renderMetadata = useMetadataRenderer()
-
+  const router = useRouter()
+  const { plans } = PlansStore
+  const { currentPlan, setUserPlan } = BillingStore
   return (
     <>
       {renderMetadata({
@@ -22,11 +29,19 @@ export default function Upgrade() {
       })}
       <Layout animation={false}>
         <BillingLayout>
-          <BillingUpgrade />
+          <BillingUpgrade
+            currentPlan={currentPlan}
+            plans={plans}
+            setUserPlan={(plan, term) =>
+              setUserPlan(plan, term).then(() => router.push(routes.billing))
+            }
+          />
         </BillingLayout>
       </Layout>
     </>
   )
-}
+})
+
+export default Upgrade
 
 export const getServerSideProps = serverSideSecuredRoute

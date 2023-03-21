@@ -41,7 +41,6 @@ class AuthStore {
   }
 
   relog = async () => {
-    debugger
     const token = getToken()
     if (!token) return Promise.reject()
 
