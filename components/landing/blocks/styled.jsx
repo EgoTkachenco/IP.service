@@ -139,10 +139,10 @@ const StatisticWrapper = styled(Card)`
   }
 `
 
-export const UseCase = ({ text, p = '47px 72px' }) => (
+export const UseCase = ({ text, p = '32px 48px' }) => (
   <UseCaseCard color="white" p={p}>
     <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
-    <H5 align="center">{text}</H5>
+    <Text align="center">{text}</Text>
   </UseCaseCard>
 )
 
@@ -159,7 +159,7 @@ const UseCaseCard = styled(Card)`
     justify-content: flex-start;
     gap: 8px;
 
-    ${H5} {
+    ${Text} {
       white-space: normal;
       text-align: left;
       font-size: 14px;

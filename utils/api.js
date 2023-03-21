@@ -55,7 +55,7 @@ export const allService = ({ ip, domain }) =>
   axios.get(
     '/api/v1/public/services/all' + (ip ? `?ip=${ip}` : `?domain=${domain}`)
   )
-// https://back.spyskey.com/api/v1/public/services/all?ip=188.163.28.193&domain=cloudflare.com
+
 export const geolocationService = (ip) =>
   axios
     .get('/api/v1/public/services/geolocation' + (ip ? `?ip=${ip}` : ''))
@@ -86,3 +86,5 @@ export const rangesService = (ip) =>
 
 export const privacyService = (ip) =>
   axios.get('/api/v1/public/services/privacy' + (ip ? `?ip=${ip}` : ''))
+
+export const getFlag = (flag) => axios.get(`/api/v1/public/flag/${flag}`)

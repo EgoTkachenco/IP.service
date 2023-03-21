@@ -43,6 +43,7 @@ const LandingAbuse = () => {
         title={`Contact Information for Addressing IP Abuse`}
         description="Introducing our premier Abuse Contact API, the ultimate solution for obtaining comprehensive and accurate abuse contact information for every IP address worldwide. Access essential data fields such as email addresses, postal/ZIP codes, cities, states, countries, names, networks, and phone numbers for abuse contacts. Harness the power of our user-friendly API to streamline reporting and safeguard the internet."
         service={abuseService}
+        examples={['', '142.44.241.192', '162.144.233.16', '159.89.49.172']}
       />
       <Feedback
         name="Sophia Hamilton"

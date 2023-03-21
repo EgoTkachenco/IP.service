@@ -7,7 +7,7 @@ import { SignInContactButtons } from './styled'
 
 const Main = ({
   title,
-  secondTitle,
+  // secondTitle,
   reverseTitle = false,
   description,
   service,
@@ -34,7 +34,7 @@ const Main = ({
 
         <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
           <Title color="dark">{title}</Title>
-          {secondTitle ? <Title color="primary">{secondTitle}</Title> : ''}
+          {/* {secondTitle ? <Title color="primary">{secondTitle}</Title> : ''} */}
         </Flex>
         <Subtitle>{description}</Subtitle>
         <SignInContactButtons />

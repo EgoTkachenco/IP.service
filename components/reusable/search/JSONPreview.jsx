@@ -61,22 +61,26 @@ const JSONPreview = ({
             key={key}
             dropdownContent={
               <OffsetContent direction="column" gap="8px">
-                <Text font="monospace" weight="400">
-                  Array
-                </Text>
                 {content.map((key, j) => renderDataField('', key, j))}
               </OffsetContent>
             }
           >
-            <ArrayJSON name={field} isIcon={icon} textColor={color} />
+            <ArrayJSON
+              name={field}
+              isIcon={icon}
+              textColor={color}
+              value={`[${content.length}]`}
+            />
           </DropdownData>
         ) : (
           <Fragment key={key}>
-            <ArrayJSON name={field} isIcon={icon} textColor={color} />
+            <ArrayJSON
+              name={field}
+              isIcon={icon}
+              textColor={color}
+              value={`[${content.length}]`}
+            />
             <OffsetContent direction="column" gap="8px">
-              <Text font="monospace" weight="400">
-                Array {isContent ? '' : '[]'}
-              </Text>
               {isContent
                 ? content.map((key, j) => renderDataField('', key, j))
                 : ''}
@@ -136,7 +140,7 @@ const getDataType = (data, field) => {
 export const StringJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-string"
-    valueColor="primary"
+    valueColor="success"
     name={name}
     value={value}
     textColor={textColor}
@@ -171,7 +175,7 @@ export const NumberJSON = ({ name, value, textColor, isIcon }) => (
 export const BooleanJSON = ({ name, value, textColor, isIcon }) => (
   <DataJSON
     icon="json-number"
-    valueColor="primary"
+    valueColor="success"
     name={name}
     value={value}
     textColor={textColor}

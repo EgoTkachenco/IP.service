@@ -9,7 +9,12 @@ const PartnersCarousel = ({ gap = '40px', small = false }) => {
   return (
     <Wrapper direction="column" gap={gap}>
       {carousels.map((carousel, i) => (
-        <Carousel items={carousel} small={small} reverse={i % 2 === 1} />
+        <Carousel
+          items={carousel}
+          small={small}
+          reverse={i % 2 === 1}
+          key={i}
+        />
       ))}
     </Wrapper>
   )

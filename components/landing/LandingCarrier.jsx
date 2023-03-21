@@ -40,11 +40,11 @@ const LandingCarrier = () => {
     <>
       <Main
         logo="/services-logo/carrier.svg"
-        title="Carrier Detection"
-        secondTitle="Mobile"
+        title="Carrier Detection Mobile"
         reverseTitle
         description="In the mobile era, smartphones and tablets reign as top internet traffic sources. Spyskey's API identifies carrier information from mobile IP addresses. Our database contains essential details such as carrier name, country code, and network code. Our platform is a go-to resource for businesses, developers, and researchers in the mobile and telecommunications industries."
         service={carrierService}
+        examples={['', '31.61.246.249', '172.58.218.0']}
       />
       <Feedback
         name="Brandon Martinez"

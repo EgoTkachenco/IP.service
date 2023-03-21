@@ -44,10 +44,10 @@ const LandingPrivacy = () => {
     <>
       <Main
         logo="/services-logo/privacy.svg"
-        title="Privacy Detection"
-        secondTitle="API"
+        title="Privacy Detection API"
         description="Uncover hidden IP addresses with unparalleled VPN, Proxy, and Tor Detection Solutions. Our state-of-the-art API swiftly exposes methods used to conceal users' actual IP addresses, including VPN, proxy, and Tor relay usage, to enhance your security measures. Experience the power of our innovative Privacy Detection API by integrating it today."
         service={privacyService}
+        examples={['', '64.225.8.118', '100.2.45.164', '192.169.249.16']}
       />
       <Feedback
         name="Benjamin Edwards"

@@ -41,8 +41,7 @@ const LandingWhois = () => {
     <>
       <Main
         logo="/services-logo/whois.svg"
-        title="IP Whois"
-        secondTitle="API"
+        title="IP Whois API"
         description="Discover the ultimate Whois API solution, providing precise and user-friendly data fields like Point of Contact (POC), Organization Identifiers (ORG), and Networks (NET). Save time with our well-structured insights tailored for your convenience, and enhance your data-driven projects with our comprehensive Whois API tool."
         service={whoisService}
       />

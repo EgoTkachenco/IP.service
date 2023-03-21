@@ -44,10 +44,10 @@ const LandingGeolocation = () => {
     <>
       <Main
         logo="/services-logo/geolocation.svg"
-        title="IP Geolocation"
-        secondTitle="API"
+        title="IP Geolocation API"
         description="Leading businesses worldwide utilize Spyskey's top-tier IP geolocation data to enrich digital user experiences. Our fast, low-latency API empowers enhanced conversion rates and customer satisfaction. Experience seamless online journeys with Spyskey's unparalleled geolocation service."
         service={geolocationService}
+        examples={['', '73.150.2.140', '192.168.1.100', '23.227.38.84']}
       />
       <Feedback
         name="Ethan Thompson"

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Flex, H2, H5, Card, Icon } from '@/core'
 import { Block, BlockInner, Title } from './Block'
-import { SignInContactButtons } from './styled'
+import { SignInContactButtons, UseCase } from './styled'
 
 const AbuseAPIUsecases = () => {
   return (
@@ -27,12 +27,12 @@ const AbuseAPIUsecases = () => {
 
 export default AbuseAPIUsecases
 
-const UseCase = ({ text }) => (
-  <UseCaseCard color="white">
-    <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
-    <H5 align="center">{text}</H5>
-  </UseCaseCard>
-)
+// const UseCase = ({ text }) => (
+//   <UseCaseCard color="white">
+//     <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
+//     <H5 align="center">{text}</H5>
+//   </UseCaseCard>
+// )
 
 const Content = styled(BlockInner)`
   flex-direction: column;
@@ -53,29 +53,29 @@ const Container = styled(Flex)`
   }
 `
 
-const UseCaseCard = styled(Card)`
-  padding: 44px 24px;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 calc((100% - 64px) / 3);
+// const UseCaseCard = styled(Card)`
+//   padding: 44px 24px;
+//   gap: 15px;
+//   justify-content: center;
+//   align-items: center;
+//   flex: 1 1 calc((100% - 64px) / 3);
 
-  @media (max-width: 1140px) {
-    flex: 1 1 100%;
-    flex-direction: row;
-    padding: 0;
-    background: none;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 8px;
+//   @media (max-width: 1140px) {
+//     flex: 1 1 100%;
+//     flex-direction: row;
+//     padding: 0;
+//     background: none;
+//     justify-content: flex-start;
+//     align-items: center;
+//     gap: 8px;
 
-    ${H5} {
-      white-space: normal;
-      font-size: 14px;
-      letter-spacing: 0.01em;
-      font-weight: 600;
-      line-height: 160%;
-      text-align: left;
-    }
-  }
-`
+//     ${H5} {
+//       white-space: normal;
+//       font-size: 14px;
+//       letter-spacing: 0.01em;
+//       font-weight: 600;
+//       line-height: 160%;
+//       text-align: left;
+//     }
+//   }
+// `

@@ -43,10 +43,10 @@ const LandingReverse = () => {
     <>
       <Main
         logo="/services-logo/reverse.svg"
-        title="Hosted Domains"
-        secondTitle="API"
+        title="Hosted Domains API"
         description="Our Hosted Domains API, alternatively referred to as the Reverse IP API, delivers an extensive and detailed list of domains that share a single IP address. This valuable information enables users to gain insights into the various websites hosted on a particular server or IP address."
         service={reverseService}
+        examples={['', '8.8.8.8', '142.251.32.46', '104.16.133.229']}
       />
       <Feedback
         name="Emily Rodriguez"

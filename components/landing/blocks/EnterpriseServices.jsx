@@ -13,13 +13,13 @@ const EnterpriseServices = () => {
         <Container>
           <Column>
             <Feature
-              icon="shield-dot"
+              icon="accuracy"
               title="Accuracy"
               text="Delivers highly precise IP data, ensuring reliable and trustworthy insights for informed decision-making."
               right
             />
             <Feature
-              icon="persons"
+              icon="reliability"
               title="Reliability"
               text="Maintains consistent stability and performance, providing dependable results across diverse use cases."
             />
@@ -44,13 +44,13 @@ const EnterpriseServices = () => {
               text="Implements robust protection measures to guarantee data privacy, adhering to industry compliance standards."
             />
             <Feature
-              icon="clock"
+              icon="scalability"
               title="Scalability"
               text="Provides flexible, adaptable solutions designed to accommodate businesses of all sizes and requirements."
               right
             />
             <Feature
-              icon="cloud"
+              icon="user-friendly"
               title="User-friendly"
               text="Features an intuitive interface with easy-to-understand data presentation, simplifying the user experience."
             />

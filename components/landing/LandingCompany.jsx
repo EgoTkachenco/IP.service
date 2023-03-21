@@ -46,8 +46,7 @@ const LandingCompany = () => {
     <>
       <Main
         logo="/services-logo/company.svg"
-        title="IP to Company"
-        secondTitle="API"
+        title="IP to Company API"
         description="Our API offers customers a fresh perspective on website traffic by providing firmographics data about the companies responsible for the IP traffic."
         service={companyService}
       />
