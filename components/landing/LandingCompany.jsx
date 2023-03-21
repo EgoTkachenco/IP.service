@@ -52,9 +52,10 @@ const LandingCompany = () => {
         service={companyService}
       />
       <Feedback
-        name="Rachel Davis"
+        name="Olivia Washington"
         position="Marketing Director"
         feedback="As a marketer, I'm always looking for ways to better understand my website's traffic and identify potential new customers. Spyskey's IP to Company API has been a game-changer in this regard, providing valuable firmographics data on the companies behind the IP traffic. With Spyskey's help, I'm able to tailor my marketing efforts to better reach those companies and their needs. The API is user-friendly, reliable, and accurate, and has saved me a lot of time and effort. I highly recommend Spyskey's IP to Company API to anyone looking for a powerful tool to enhance their marketing strategy and boost business growth."
+        avatar="/feedbacks/Marketing Director.jpg"
       />
       <ServiceStatistic
         features={[

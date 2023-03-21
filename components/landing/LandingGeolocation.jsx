@@ -50,9 +50,10 @@ const LandingGeolocation = () => {
         service={geolocationService}
       />
       <Feedback
-        name="Thomas Peterson"
+        name="Ethan Thompson"
         position="Senior Marketing Manager"
         feedback="Before implementing Spyskey's geolocation solution, our marketing efforts were hindered by inaccurate targeting and a lack of personalization. However, Spyskey's rapid, low-latency API provided us with precise location insights, enabling us to create tailored and engaging experiences. This has significantly improved our search engine rankings, boosted conversion rates, and elevated customer satisfaction. Spyskey's geolocation service is a must-have for businesses seeking to optimize their online presence and overcome localization challenges"
+        avatar="/feedbacks/Senior Marketing Manager.jpg"
       />
       <ServiceStatistic
         features={[

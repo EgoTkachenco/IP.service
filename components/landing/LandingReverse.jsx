@@ -49,9 +49,10 @@ const LandingReverse = () => {
         service={reverseService}
       />
       <Feedback
-        name="Olivia Thompson"
+        name="Emily Rodriguez"
         position="Digital Marketing Manager"
         feedback="As a Digital Marketing Manager, I've found Spyskey's Hosted Domains API service to be invaluable in identifying competitors' websites on shared hosting. This insight has empowered us to make informed decisions and optimize our marketing strategies. I highly recommend Spyskey for anyone seeking to enhance their digital marketing efforts."
+        avatar="/feedbacks/Digital Marketing Manager.jpg"
       />
       <ServiceStatistic
         features={[

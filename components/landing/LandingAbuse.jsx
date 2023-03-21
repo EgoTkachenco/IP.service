@@ -45,9 +45,10 @@ const LandingAbuse = () => {
         service={abuseService}
       />
       <Feedback
-        name="Amelia Thompson"
+        name="Sophia Hamilton"
         position="Senior Network Security Analyst"
         feedback="Utilizing Spyskey's Abuse Contact Data for IP Addresses has been a game-changer for our organization. As a Senior Network Security Analyst, it's crucial for me to have accurate and up-to-date information on abuse contacts to ensure a swift response to any potential threats. Spyskey has not only streamlined our reporting process but also significantly improved our efficiency in handling IP misuse incidents. I wholeheartedly recommend their service to anyone seeking a reliable and user-friendly solution for addressing internet safety concerns."
+        avatar="/feedbacks/Senior Network Security Analyst.jpg"
       />
       <ServiceStatistic
         features={[

@@ -47,9 +47,10 @@ const LandingCarrier = () => {
         service={carrierService}
       />
       <Feedback
-        name="Alex Lee"
+        name="Brandon Martinez"
         position="Mobile App Developer"
         feedback="Spyskey's Mobile Carrier Detection API is a game-changer in the telecommunications industry. As a mobile app developer, I understand the importance of accurate carrier information, and Spyskey's platform provides just that. The API's ability to identify carrier information from IP addresses makes it incredibly convenient and reliable for businesses and developers in the mobile industry. With smartphones and tablets dominating internet traffic, this tool is essential for anyone in need of mobile-related information. I highly recommend Spyskey's Mobile Carrier Detection API for anyone looking to develop new products or services in the mobile industry."
+        avatar="/feedbacks/Mobile App Developer.jpg"
       />
       <ServiceStatistic
         features={[

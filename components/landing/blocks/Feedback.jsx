@@ -49,7 +49,10 @@ const FeedbackAvatar = styled.div`
   position: relative;
   width: 100px;
   height: 100px;
+  border-radius: 20px;
+  overflow: hidden;
   @media (max-width: 1140px) {
+    border-radius: 10px;
     width: 50px;
     height: 50px;
   }

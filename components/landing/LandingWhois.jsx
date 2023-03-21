@@ -47,9 +47,10 @@ const LandingWhois = () => {
         service={whoisService}
       />
       <Feedback
-        name="Olivia Thompson"
+        name="Aaron Patel"
         position="Cybersecurity Analyst"
         feedback="As a cybersecurity analyst, I constantly face the challenge of identifying and tracking malicious activities online. The Whois API service by Spyskey has been a game-changer for me, providing accurate and easy-to-access domain information that helps streamline our investigations. Thanks to Spyskey, we've been able to swiftly respond to threats and protect our clients more effectively."
+        avatar="/feedbacks/Cybersecurity Analyst.jpg"
       />
       <ServiceStatistic
         features={[

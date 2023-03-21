@@ -50,9 +50,10 @@ const LandingRanges = () => {
         placeholder="Search Domain"
       />
       <Feedback
-        name="Michael Johnson"
+        name="Lucas Johnson"
         position="Network Administrator"
         feedback="Spyskey's IP ranges API service has been a game-changer for me as a network administrator. It solved the common problem of identifying and blocking malicious IP addresses by providing a comprehensive database. The service is easy to use, reliable, and well-documented. It has helped us quickly identify and block potential threats, making it an invaluable tool for any IT professional."
+        avatar="/feedbacks/Network Administrator.jpg"
       />
       <ServiceStatistic
         features={[

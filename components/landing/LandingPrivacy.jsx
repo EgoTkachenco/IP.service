@@ -50,9 +50,10 @@ const LandingPrivacy = () => {
         service={privacyService}
       />
       <Feedback
-        name="Jackson O'Connor"
+        name="Benjamin Edwards"
         position="Chief Information Security Officer"
         feedback="Our organization faced a persistent issue with cybercriminals attempting to infiltrate our network and gain unauthorized access to sensitive data. Since implementing SpysKey's Privacy Detection API, we have witnessed a significant reduction in these incidents. The API has been highly effective at identifying and mitigating attempts to mask IP addresses using VPNs, proxies, and Tor relays. As a result, our security has been greatly enhanced, and we have increased confidence in protecting our company's valuable information. SpysKey's Privacy Detection API has become an indispensable component of our cybersecurity strategy."
+        avatar="/feedbacks/Chief Information Security Officer.jpg"
       />
       <ServiceStatistic
         features={[
