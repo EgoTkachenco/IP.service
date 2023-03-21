@@ -3,7 +3,6 @@ import { BlockInner } from '../blocks/Block'
 import { Flex, H6, Text, Caption, Button, Icon } from '@/core'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMediaQuery } from '@mantine/hooks'
 import routes from '@/constants/routes'
 
 const Footer = () => {
@@ -156,8 +155,8 @@ const Copyrights = () => (
   <Flex direction="column">
     <Caption>Copyright © 2022 IPinfo®</Caption>
     <Caption>
-      | <Link href="/terms">Terms & Conditions</Link> ·{' '}
-      <Link href="/">Privacy Policy</Link>
+      | <Link href={routes.terms}>Terms & Conditions</Link> ·{' '}
+      <Link href={routes.privacy}>Privacy Policy</Link>
     </Caption>
   </Flex>
 )

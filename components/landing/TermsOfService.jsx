@@ -4,13 +4,8 @@ import { H1, Flex, H5, Text, Caption, Icon } from '@/core'
 import { BlockInner } from './blocks/Block'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-// import dynamic from 'next/dynamic'
-// const terms = dynamic(() => import('@/constants/terms'), {
-//   loading: () => [],
-// })
-import terms from '@/constants/terms'
 
-const TermsOfService = () => {
+const TermsOfService = ({ title, data, published }) => {
   const [activeBlock, setActiveBlock] = useState(0)
   const router = useRouter()
   useEffect(() => {
@@ -81,19 +76,20 @@ const TermsOfService = () => {
 						width: 40px;
 					}`}
         </style>
-        <TitlesList activeBlock={activeBlock} terms={terms} />
+        <TitlesList activeBlock={activeBlock} data={data} />
         <Flex direction="column">
-          <Title color="dark">Terms of Service</Title>
+          <Title color="dark">{title}</Title>
           <LastUpdate>
             <Icon icon="refresh" size="16px" color="light-grey" />
-            <Caption color="light-grey">
-              Publication date: March 20, 2023
-            </Caption>
+            <Caption color="light-grey">Publication date: {published}</Caption>
           </LastUpdate>
           <TermsList id="terms-content">
-            {terms.map((block, i) => (
+            {data.map((block, i) => (
               <TermsBlock key={i} id={'block-' + i}>
-                <H5>{block.title}</H5>
+                <H5>
+                  {i ? i + '. ' : ''}
+                  {block.title}
+                </H5>
                 <Text>{block.content()}</Text>
               </TermsBlock>
             ))}
@@ -106,10 +102,10 @@ const TermsOfService = () => {
 
 export default TermsOfService
 
-const TitlesList = ({ activeBlock }) => {
+const TitlesList = ({ activeBlock, data }) => {
   return (
     <TitlesListWrapper>
-      {terms.map((block, i) => (
+      {data.map((block, i) => (
         <Link key={i} href={`#block-` + i}>
           <TitlesListItem active={i <= activeBlock}>
             {block.title}
@@ -187,40 +183,3 @@ const Wrapper = styled(BlockInner)`
   gap: 91px;
   padding-bottom: 150px;
 `
-
-const terms_1 = [
-  {
-    title: 'Introduction',
-    content: () => (
-      <>
-        The Terms of Use regulate the conditions for obtaining Services, namely
-        obtaining access to Data by using an IP address.
-        <br />
-        <br />
-        The Terms of Use describe the types of Services, their cost, and payment
-        methods.
-        <br />
-        <br />
-        The provision of Services is regulated exclusively by the conditions of
-        these Terms of Use and relevant legislative acts.
-        <br />
-        <br />
-        Please read this document carefully to familiarize yourself with the
-        methods and cost of providing the Services.
-        <br />
-        <br />
-        Reference to the words "we", "our" or "us" (or equivalent terms) means
-        Spyskey.
-        <br />
-        <br />
-        Reference to the words “you” or “your” (or similar words) means the
-        Client receiving the Services.
-        <br />
-        <br />
-        The words he/she and their derivatives in the text of the document can
-        be applied to either a male person or a female person, depending on the
-        context of the document.
-      </>
-    ),
-  },
-]
