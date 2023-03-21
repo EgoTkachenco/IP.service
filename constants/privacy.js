@@ -1,4 +1,6 @@
-const terms = [
+import { contact_email } from '@/constants/constants'
+
+const privacy = [
   {
     title: 'Introduction',
     content: () => (
@@ -501,11 +503,11 @@ const terms = [
               In cases where the basis for the processing of Personal Data is
               Your Consent, You have the right to withdraw it at any time. To
               withdraw your Consent, You may send an email to:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a>. If
-              Your Consent is withdrawn, the Company has the right to terminate
-              the provision of the Services and terminate all relations with
-              You. If Consent is withdrawn, your Personal Data will be
-              permanently deleted.
+              <a href={'mailto:' + contact_email}>{contact_email}</a>. If Your
+              Consent is withdrawn, the Company has the right to terminate the
+              provision of the Services and terminate all relations with You. If
+              Consent is withdrawn, your Personal Data will be permanently
+              deleted.
             </li>
             <li>
               The Company undertakes to stop processing Personal Data within 15
@@ -625,7 +627,7 @@ const terms = [
               If you believe that the provisions of this Privacy Policy violate
               and/or in any way limit Your rights regarding the processing of
               Data, please contact us by e-mail:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a> and we
+              <a href={'mailto:' + contact_email}>{contact_email}</a> and we
               will do our best to resolve the matter within a reasonable time.
             </li>
           </ol>
@@ -643,8 +645,7 @@ const terms = [
               A Client in any jurisdiction has the right to submit a request to
               the Company if he believes that his rights have been violated by
               writing a request in writing to the support of the Company at the
-              address:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a>
+              address: <a href={'mailto:' + contact_email}>{contact_email}</a>
             </li>
             <li>
               The Client's request must contain accurate information about the
@@ -862,7 +863,7 @@ const terms = [
               If you have information about the receipt of the Services by a
               person under the age of majority, please contact the Company
               support service by sending an email to:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a>
+              <a href={'mailto:' + contact_email}>{contact_email}</a>
             </li>
           </ol>
         </li>
@@ -908,7 +909,7 @@ const terms = [
           <ol>
             <li>
               The Client has the right to contact the Company support service
-              at: <a href="mailto:contat@spyskey.com">contat@spyskey.com</a> to
+              at: <a href={'mailto:' + contact_email}>{contact_email}</a> to
               ensure his rights, in accordance with the terms of this Privacy
               Policy, or in case of violation of his rights, or to leave
               feedback or ask a question.
@@ -920,4 +921,4 @@ const terms = [
   },
 ]
 
-export default terms
+export default privacy

@@ -1,3 +1,5 @@
+import { contact_email } from '@/constants/constants'
+
 const terms = [
   {
     title: 'Introduction',
@@ -326,7 +328,7 @@ const terms = [
             <li>
               To return the funds, the Client undertakes to send a request to
               the Company to the email address:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a> Such a
+              <a href={'mailto:' + contact_email}>{contact_email}</a> Such a
               request must contain the following information: confirmation of
               the Client's identity and description of the Client's order If we
               are unable to verify your identity or receive a description of the
@@ -343,8 +345,7 @@ const terms = [
               The Client has the right to refuse to receive the Service and
               cancel the subscription to such Services at any time. To cancel a
               subscription, the Client needs to write to the following e-mail
-              address:{' '}
-              <a href="mailto:contat@spyskey.com">contat@spyskey.com</a> a
+              address: <a href={'mailto:' + contact_email}>{contact_email}</a> a
               request indicating the cancellation of the subscription and
               indicating your identity data. The Company has the right to
               request the Client to confirm his Personal Data in the manner
@@ -622,7 +623,7 @@ const terms = [
         </p>
         <p>
           <b>E-mail: </b>{' '}
-          <a href="mailto:contat@spyskey.com">contat@spyskey.com</a>
+          <a href={'mailto:' + contact_email}>{contact_email}</a>
         </p>
         <p>
           <b>Website: </b>{' '}
