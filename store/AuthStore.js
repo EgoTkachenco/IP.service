@@ -5,6 +5,7 @@ import {
   forgetPassword,
   logout,
   updateProfile,
+  getProfile,
 } from '@/utils/api'
 import { eraseToken, getToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 
@@ -21,9 +22,6 @@ class AuthStore {
       .then((data) => {
         eraseToken()
         setToken(data.token)
-        delete data.token
-        localStorage.setItem(USER_STORE_NAME, JSON.stringify(data))
-        this.user = data
       })
       .finally(() => {
         this.isFetch = false
@@ -36,9 +34,6 @@ class AuthStore {
     return register(data)
       .then((data) => {
         setToken(data.token)
-        delete data.token
-        localStorage.setItem(USER_STORE_NAME, JSON.stringify(data))
-        this.user = data
       })
       .finally(() => {
         this.isFetch = false
@@ -46,17 +41,15 @@ class AuthStore {
   }
 
   relog = async () => {
+    debugger
     const token = getToken()
+    if (!token) return Promise.reject()
+
+    if (token && !this.user) await this.getProfile()
+
     if (token && this.user) return Promise.resolve()
-    const user = localStorage.getItem(USER_STORE_NAME)
-    if (token && user) {
-      this.user = JSON.parse(user)
-      return Promise.resolve()
-    } else {
-      // remove all
-      localStorage.removeItem(USER_STORE_NAME)
-      eraseToken()
-    }
+    else eraseToken()
+
     return Promise.reject()
   }
 
@@ -74,6 +67,14 @@ class AuthStore {
     return logout().catch(() => {
       console.log('error')
     })
+  }
+
+  getProfile = async () => {
+    try {
+      this.user = await getProfile()
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   updateProfile = (data) => {

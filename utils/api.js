@@ -39,6 +39,9 @@ export const getToken = () =>
 export const updateWhitelist = (data) =>
   axios.post('/api/v1/account/token/white-lists', data, securedFetchOptions())
 
+export const getProfile = () =>
+  axios.get('/api/v1/account/profile', securedFetchOptions())
+
 export const updateProfile = (data) =>
   axios.put('/api/v1/account/profile', data, securedFetchOptions())
 
