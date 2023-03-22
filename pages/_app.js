@@ -7,6 +7,7 @@ import AuthContext from '@/utils/authContext'
 import Modals from '@/components/modals'
 import { observer } from 'mobx-react-lite'
 import AuthStore from '@/store/AuthStore'
+import Head from 'next/head'
 
 const App = observer(({ Component, pageProps, router }) => {
   const [modal, setModal] = useState(null)
@@ -24,15 +25,23 @@ const App = observer(({ Component, pageProps, router }) => {
   }, [user, router.asPath])
 
   return (
-    <ThemeProvider theme={theme}>
-      <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-        <ModalContext.Provider value={{ modal, openModal: setModal }}>
-          <GlobalStyles />
-          <Component {...pageProps} />
-          <Modals />
-        </ModalContext.Provider>
-      </AuthContext.Provider>
-    </ThemeProvider>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+          <ModalContext.Provider value={{ modal, openModal: setModal }}>
+            <GlobalStyles />
+            <Component {...pageProps} />
+            <Modals />
+          </ModalContext.Provider>
+        </AuthContext.Provider>
+      </ThemeProvider>
+    </>
   )
 })
 
