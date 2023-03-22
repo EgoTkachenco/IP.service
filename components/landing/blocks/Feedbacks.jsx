@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Block, BlockInner, Title } from './Block'
+import { Block, BlockInner } from './Block'
 import { Carousel } from '@mantine/carousel'
-import { H5, Flex, Button, Text, Icon, Caption } from '@/core'
+import { Flex, Text, Icon, Caption } from '@/core'
 import { useMediaQuery } from '@mantine/hooks'
 import Image from 'next/image'
 
@@ -10,7 +10,6 @@ const Feedbacks = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">Our Products</Title>
         <CarouselContainer>
           <Carousel
             slideSize="33.3333%"
