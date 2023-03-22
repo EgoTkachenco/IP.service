@@ -14,7 +14,7 @@ const Invoices = ({ currentPlan, orders, reactivate }) => {
     <Flex direction="column" gap="30px" width="100%">
       <Row_1>
         <UserPlan plan={currentPlan} />
-        <NextPayment />
+        <NextPayment date={currentPlan?.stop_at} />
       </Row_1>
       <Row_2>
         <Column_1>

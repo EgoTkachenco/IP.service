@@ -1,12 +1,13 @@
 import styled from 'styled-components'
-import { Caption, Card, H6 } from '@/core'
+import { Caption, Card, H6, Text } from '@/core'
 import {
   CardTitle,
   CardContent,
   CardBottom,
 } from '@/components/reusable/styled.jsx'
+import { format } from 'date-fns'
 
-const NextPayment = () => {
+const NextPayment = ({ date }) => {
   return (
     <PaymentCard color="white">
       <CardTitle>
@@ -14,7 +15,13 @@ const NextPayment = () => {
       </CardTitle>
       <CardContent />
       <CardBottom>
-        <Caption>No pending payment</Caption>
+        {date ? (
+          <Text weight={600} color="dark">
+            {format(new Date(date), 'MMMM dd, yyyy')}
+          </Text>
+        ) : (
+          <Caption>No pending payment</Caption>
+        )}
       </CardBottom>
     </PaymentCard>
   )

@@ -15,11 +15,11 @@ const Pricing = ({ plans }) => {
     <>
       <BlockInner direction="column">
         <Title color="dark">Affordable rates for precise IP data</Title>
-        <H6>
+        <Subtitle>
           {
             'From new side projects to enterprise-grade IP data accuracy, \nour tailored solutions have you covered.'
           }
-        </H6>
+        </Subtitle>
 
         <BottomContainer>
           <ButtonsContainer>
@@ -46,6 +46,12 @@ const Title = styled(H1)`
 
   @media (max-width: 1140px) {
     margin: 48px 0 16px;
+  }
+`
+
+const Subtitle = styled(H6)`
+  @media (max-width: 1140px) {
+    white-space: normal;
   }
 `
 

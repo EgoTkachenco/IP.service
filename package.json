@@ -17,6 +17,7 @@
     "@next/font": "13.1.6",
     "axios": "^1.3.3",
     "cookies-next": "^2.1.1",
+    "date-fns": "^2.29.3",
     "embla-carousel-react": "^7.0.9",
     "framer-motion": "^10.2.3",
     "mobx": "^6.8.0",

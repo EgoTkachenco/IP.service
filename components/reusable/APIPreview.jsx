@@ -134,6 +134,7 @@ const ContentCard = styled(Card)`
 const ContentCardInner = styled.div`
   overflow: auto;
   width: 100%;
+  height: 100%;
 
   ${Text} {
     font-size: 14px;

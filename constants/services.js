@@ -49,7 +49,7 @@ const services = [
   {
     icon: 'globe',
     color: 'secondary',
-    name: 'Hosted domains API',
+    name: 'Hosted Domains API',
     description: 'Enchance lead generation',
     description_full:
       'Explore a comprehensive collection of domains hosted on one IP address, conveniently compiled for you.',

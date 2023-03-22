@@ -9,11 +9,6 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-const FreePlanTabs = [
-  { name: 'Your subscriptions', path: routes.billing },
-  { name: 'Upgrade', path: routes.upgrade },
-]
-
 const Tabs = [
   { name: 'Your subscriptions', path: routes.billing },
   { name: 'Upgrade', path: routes.upgrade },
@@ -23,15 +18,13 @@ const Tabs = [
 const BillingLayout = observer(({ children }) => {
   const router = useRouter()
   const { plans, loadPlans } = PlansStore
-  const { isFreePlan } = BillingStore
-  const tabs = isFreePlan ? FreePlanTabs : Tabs
   useEffect(() => {
     if (!plans) loadPlans()
   })
   return (
     <Flex direction="column" gap="50px" width="100%">
       <TabsList>
-        {tabs.map((tab) => {
+        {Tabs.map((tab) => {
           const isActive = router.pathname === tab.path
           return (
             <Link href={tab.path} key={tab.name}>

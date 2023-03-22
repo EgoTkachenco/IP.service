@@ -12,11 +12,11 @@ const UserPlan = ({ plan }) => {
   return (
     <Card color="white">
       <CardTitle>
-        <H6>{plan?.name}</H6>
+        <H6>{plan?.name || 'Free'}</H6>
         <Chip type="primary-transparent">Current Plan</Chip>
       </CardTitle>
       <CardContent align="baseline">
-        <Price value={plan?.month_price} fixed="2" />
+        <Price value={plan?.month_price || 0} fixed="2" />
         <Caption>/month</Caption>
       </CardContent>
       <CardBottom align="flex-end" gap="24px">

@@ -64,15 +64,18 @@ const solutions = [
     text: 'Evaluate customer trustworthiness with our in-depth IP, email blacklist, and phone number analysis, empowering you to make informed decisions, prevent chargebacks, and mitigate potential risks.',
   },
   {
+    icon: 'experiance-optimization',
     title: 'User Experience Optimization',
     text: "Personalize your website content, language, and currency based on users' IP geolocation data, fostering an engaging and tailored experience that boosts customer retention and satisfaction.",
   },
 
   {
+    icon: 'network-management',
     title: 'Network Management',
     text: 'Monitor and analyze network traffic with our robust IP intelligence, email filtering, and phone validation solutions, identifying potential threats, DDoS attacks, or anomalies for optimal performance and security.',
   },
   {
+    icon: 'market-research',
     title: 'Market Research',
     text: 'Gain valuable insights into customer demographics, preferences, and behavior with our comprehensive IP, email, and phone data analysis, informing data-driven strategies, competitive analysis, and fueling business growth.',
   },
