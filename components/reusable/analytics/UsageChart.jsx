@@ -1,4 +1,5 @@
 import { Card, Flex, H6, Chip, Caption } from '@/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import {
   Area,
@@ -12,6 +13,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts'
+import styled from 'styled-components'
 
 const tabs = [
   { name: '14 days', value: 14 },
@@ -34,9 +36,11 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
     }
     setState(chartData)
   }, [data])
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+
   return (
-    <Card width="100%" gap="64px" color="white">
-      <Flex width="100%" justify="space-between">
+    <Wrapper color="white">
+      <Flex width="100%" justify="space-between" align="center">
         <H6>Usage</H6>
 
         <Flex gap="10px">
@@ -48,7 +52,11 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
                 type={isActive ? 'primary' : 'grey-outline'}
                 onClick={() => onDurationChange(tab.value)}
               >
-                <Caption color={isActive ? 'white' : 'text'} weight="600">
+                <Caption
+                  color={isActive ? 'white' : 'text'}
+                  weight="600"
+                  style={{ margin: '-2px' }}
+                >
                   {tab.name}
                 </Caption>
               </Chip>
@@ -56,7 +64,13 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
           })}
         </Flex>
       </Flex>
-      <ResponsiveContainer width="100%" aspect={10 / 3}>
+      <style>
+        {`.recharts-responsive-container {
+					margin-left: -32px;
+					width: calc(100% + 32px);
+				}`}
+      </style>
+      <ResponsiveContainer aspect={isMobile ? 3 / 2 : 10 / 3}>
         <AreaChart data={state}>
           <defs>
             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
@@ -67,20 +81,12 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="name" />
           <YAxis />
-          {/* <Tooltip /> */}
-          {/* <Legend /> */}
           <Area
             type="monotone"
             dataKey="all"
             stroke="transparent"
             fill="url(#colorPv)"
           />
-          {/* <Line
-            type="monotone"
-            dataKey="pv"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          /> */}
           <Area
             type="monotone"
             dataKey="failed"
@@ -97,53 +103,22 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
           />
         </AreaChart>
       </ResponsiveContainer>
-    </Card>
+    </Wrapper>
   )
 }
 
 export default UsageChart
 
-const data = [
-  {
-    name: 'Dec 6',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Dec 8',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Dec 10',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Dec 12',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Dec 14',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Dec 16',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Dec 18',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-]
+const Wrapper = styled(Card)`
+  width: 100%;
+  gap: 64px;
+
+  ${Chip} {
+    padding: 4px 10px !important;
+  }
+
+  @media (max-width: 1140px) {
+    padding: 16px;
+    gap: 32px;
+  }
+`

@@ -19,7 +19,7 @@ const Home = observer(() => {
   const { analytics, usage, duration, loadAnalytics, changeDuration } =
     AnalyticsStore
   const { userIp: ip, getIpInfo } = SearchStore
-  const { isFreePlan, setUserTrial } = BillingStore
+  const { currentPlan, isFreePlan, setUserTrial } = BillingStore
   useEffect(() => {
     loadAnalytics()
     if (!ip) getIpInfo()
@@ -35,7 +35,7 @@ const Home = observer(() => {
 
       <AnalyticsContent_1 flex="1">
         <LastDaysUsage value={analytics?.weekUsage} today={analytics?.today} />
-        <UpcomingBill planName={analytics?.billing.plan.name} price={0} />
+        <UpcomingBill currentPlan={currentPlan} />
       </AnalyticsContent_1>
 
       <AnalyticsContent_2 flex="1">

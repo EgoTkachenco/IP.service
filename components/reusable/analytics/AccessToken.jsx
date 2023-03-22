@@ -1,4 +1,4 @@
-import { Card, H6, Text, Chip } from '@/core'
+import { Card, H6, Text } from '@/core'
 import {
   CardTitle,
   CardContent,

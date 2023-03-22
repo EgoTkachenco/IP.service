@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import { Card, H6, Chip, Text } from '@/core'
 import {
   CardTitle,
@@ -7,7 +6,7 @@ import {
   Price,
 } from '@/components/reusable/styled.jsx'
 
-const UpcomingBill = ({ planName, price }) => {
+const UpcomingBill = ({ currentPlan }) => {
   return (
     <Card color="white">
       <CardTitle>
@@ -16,12 +15,17 @@ const UpcomingBill = ({ planName, price }) => {
       </CardTitle>
 
       <CardContent>
-        <Price value={price} fixed="2" />
+        <Price value={currentPlan?.month_price || 0} fixed="2" />
       </CardContent>
 
       <CardBottom>
-        <Text>Subscribtion Plan ({planName})</Text>
-        <Price color="text" value={price} variant="small" fixed="2" />
+        <Text>Subscribtion Plan ({currentPlan?.name || 'Free'})</Text>
+        <Price
+          color="text"
+          value={currentPlan?.month_price || 0}
+          variant="small"
+          fixed="2"
+        />
       </CardBottom>
     </Card>
   )

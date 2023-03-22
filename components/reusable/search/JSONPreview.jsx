@@ -56,12 +56,24 @@ const JSONPreview = ({
         const content = Array.isArray(value) ? value : JSON.parse(value)
         const isContent = content && content.length > 0
         const isDropdown = isContent && content.length > 10
+        const renderArrayContent = () => {
+          return content.map((value, j) => {
+            if (typeof value === 'object')
+              return Object.keys(value).map((key, k) => (
+                <Fragment key={k}>
+                  {renderDataField(key, value[key], k)}{' '}
+                  {k === Object.keys(value).length - 1 && <br />}
+                </Fragment>
+              ))
+            return renderDataField('', value, j)
+          })
+        }
         return isDropdown ? (
           <DropdownData
             key={key}
             dropdownContent={
               <OffsetContent direction="column" gap="8px">
-                {content.map((key, j) => renderDataField('', key, j))}
+                {renderArrayContent()}
               </OffsetContent>
             }
           >
@@ -81,9 +93,7 @@ const JSONPreview = ({
               value={`[${content.length}]`}
             />
             <OffsetContent direction="column" gap="8px">
-              {isContent
-                ? content.map((key, j) => renderDataField('', key, j))
-                : ''}
+              {isContent ? renderArrayContent() : ''}
             </OffsetContent>
           </Fragment>
         )
