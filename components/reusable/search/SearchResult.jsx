@@ -60,8 +60,9 @@ const DataPreviewBlock = ({ title, data, bottomSlot }) => {
           Copy JSON
         </CopyButton>
       </TitleContainer>
-
-      <JSONPreview data={data} />
+      <PreviewContainer className="custom-scroll">
+        <JSONPreview data={data} />
+      </PreviewContainer>
 
       {bottomSlot}
     </Flex>
@@ -115,4 +116,12 @@ const Divider = styled.div`
 
 const TitleContainer = styled(Flex)`
   margin-bottom: 10px;
+`
+
+const PreviewContainer = styled(Flex)`
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow: auto;
 `

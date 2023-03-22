@@ -26,6 +26,10 @@ const ServicesStatistic = dynamic(() => import('./blocks/ServicesStatistic'), {
   loading: () => '',
   ssr: false,
 })
+const Feedbacks = dynamic(() => import('./blocks/Feedbacks'), {
+  loading: () => '',
+  ssr: false,
+})
 
 import { allService } from '@/utils/api'
 import { validateIP } from '@/utils'
@@ -53,6 +57,7 @@ const Landing = () => {
       <ServicesStatistic />
       <Services />
       <EnterpriseServices />
+      <Feedbacks />
       <Solutions />
       <Contact />
     </>

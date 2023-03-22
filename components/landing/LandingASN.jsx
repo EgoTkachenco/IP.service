@@ -49,7 +49,7 @@ const LandingASN = () => {
       <Feedback
         name="Miles Turner"
         position="Network Security Analyst"
-        feedback="The Spyskey ASN API service is a game-changer for anyone in cybersecurity looking to identify the Autonomous System Number of a particular IP address. As a satisfied customer, I can attest to the ease of use and accuracy of the data provided by the Spyskey API. The comprehensive and up-to-date information about ASNs has helped me assess potential threats and vulnerabilities with greater precision. Additionally, the customer support team at Spyskey is top-notch and always available to help with any questions or issues. Overall, I highly recommend Spyskey to anyone in need of a reliable and comprehensive ASN API service. Keywords: Spyskey, ASN API, cybersecurity, threat assessment, customer support."
+        feedback="The Spyskey ASN API service is a game-changer for anyone in cybersecurity looking to identify the Autonomous System Number of a particular IP address. As a satisfied customer, I can attest to the ease of use and accuracy of the data provided by the Spyskey API. The comprehensive and up-to-date information about ASNs has helped me assess potential threats and vulnerabilities with greater precision. Additionally, the customer support team at Spyskey is top-notch and always available to help with any questions or issues. Overall, I highly recommend Spyskey to anyone in need of a reliable and comprehensive ASN API service."
         avatar="/feedbacks/Network Security Analyst.jpg"
       />
       <ServiceStatistic

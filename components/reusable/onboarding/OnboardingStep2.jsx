@@ -1,5 +1,4 @@
-import { Card, H2, Caption, Flex, Icon } from '@/core'
-import styled from 'styled-components'
+import { Caption } from '@/core'
 import TokenPreview from '@/components/reusable/TokenPreview'
 import OnboardingCard, { OnboardingCardContent } from './OnboardingCard'
 import { TokenQuery } from '@/components/reusable/styled.jsx'

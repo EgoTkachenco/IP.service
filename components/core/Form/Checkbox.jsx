@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Flex from '../Flex'
 import { Caption } from '../Text'
 import Icon from '../Icon'
+import InputError from './InputError'
 
 export default function Checkbox({
   name,
@@ -10,6 +11,8 @@ export default function Checkbox({
   onChange = () => {},
   label,
   size = 'medium',
+  error,
+  noErrorMessage = false,
 }) {
   const [state, setState] = useState(false)
   useEffect(() => {
@@ -21,13 +24,19 @@ export default function Checkbox({
   }
 
   return (
-    <Flex align="center" onClick={() => handleChange(!state)} gap="10px">
-      <Box size={size} active={!!state}>
-        <Value active={!!state}>
-          <Icon icon="checkmark" size="8px" color="white" />
-        </Value>
-      </Box>
-      <Label color="light-grey">{label}</Label>
+    <Flex direction="column">
+      <Flex align="center" onClick={() => handleChange(!state)} gap="10px">
+        <Box size={size} active={!!state}>
+          <Value active={!!state}>
+            <Icon icon="checkmark" size="8px" color="white" />
+          </Value>
+        </Box>
+        <Label color="light-grey">{label}</Label>
+      </Flex>
+
+      <InputError color="danger" show={!noErrorMessage && !!error}>
+        {!noErrorMessage && (error || ' ')}
+      </InputError>
     </Flex>
   )
 }

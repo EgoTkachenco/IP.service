@@ -39,6 +39,10 @@ const SignUpModal = observer(({ onLogin, onClose }) => {
         if (value !== form.values.password) return 'Password not match'
         return null
       },
+      accept: (value) => {
+        if (!value) return 'Field required'
+        return null
+      },
     },
   })
   const { signUp, isFetch } = store
