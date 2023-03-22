@@ -101,4 +101,4 @@ export const createOrder = (plan, term) =>
   axios.post('/api/v1/order', { plan, term }, securedFetchOptions())
 
 export const createOrderTrial = () =>
-  axios.post('/api/v1/order/trial', null, securedFetchOptions())
+  axios.get('/api/v1/order/trial', securedFetchOptions())
