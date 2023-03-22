@@ -38,7 +38,11 @@ const PlanCard = ({
           Plan
         </H2>
       </CardContent>
-      <Button color={buttonColor} width="260px" onClick={onClick}>
+      <Button
+        color={buttonColor}
+        width={isMobile ? '100%' : '260px'}
+        onClick={onClick}
+      >
         {buttonText}
       </Button>
     </CardWrapper>
