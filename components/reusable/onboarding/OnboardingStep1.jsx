@@ -5,10 +5,8 @@ import styled from 'styled-components'
 import OnboardingCard from './OnboardingCard'
 import { getIp, searchIp } from '@/utils/api'
 import JSONPreview from '../search/JSONPreview'
-
+import { useClipboard } from '@mantine/hooks'
 const OnboardingStep1 = ({ ip, token, url }) => {
-  const isMobile = useMediaQuery('(max-width: 1140px)')
-
   return (
     <OnboardingCard
       step="1"
@@ -32,14 +30,9 @@ const OnboardingStep1 = ({ ip, token, url }) => {
           width="100%"
           style={{ wordBreak: 'break-all' }}
         >
-          curl "{url}
+          curl "{url}"
         </Text>
-        <Icon
-          icon="copy"
-          size={isMobile ? '24px' : '32px'}
-          color="primary"
-          onClick={() => {}}
-        />
+        <CopyIconButton data={url} />
       </DetailsCard>
 
       <Details ip={ip} url={url} />
@@ -48,6 +41,19 @@ const OnboardingStep1 = ({ ip, token, url }) => {
         Skip Onboarding
       </Button>
     </OnboardingCard>
+  )
+}
+
+const CopyIconButton = ({ data }) => {
+  const clipboard = useClipboard({ timeout: 1000 })
+  const isMobile = useMediaQuery('(max-width: 1140px)')
+  return (
+    <Icon
+      icon={clipboard.copied ? 'done' : 'copy'}
+      size={isMobile ? '24px' : '32px'}
+      color={clipboard.copied ? 'success' : 'primary'}
+      onClick={() => clipboard.copy(data)}
+    />
   )
 }
 
