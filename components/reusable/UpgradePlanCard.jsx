@@ -4,7 +4,7 @@ import { Flex, H1, Chip, Caption, Card, Icon, Button } from '@/core'
 const UpgradePlanCard = ({
   name,
   price,
-  priceType,
+  priceType = 'month',
   description,
   additional_description,
   options,
@@ -19,7 +19,7 @@ const UpgradePlanCard = ({
       <Flex direction="column" gap="16px" width="100%" align="stretch">
         <Flex align="flex-end" pt="10px">
           <PlanCardPrice color="dark">${price?.toFixed(0)}</PlanCardPrice>
-          <Caption>/{priceType}</Caption>
+          <Caption>/{priceType === 'month' ? 'monthly' : 'yearly'}</Caption>
         </Flex>
         <PlanDescription dangerouslySetInnerHTML={{ __html: description }} />
       </Flex>

@@ -15,14 +15,14 @@ const UpcomingBill = ({ currentPlan }) => {
       </CardTitle>
 
       <CardContent>
-        <Price value={currentPlan?.month_price || 0} fixed="2" />
+        <Price value={currentPlan?.current_price || 0} fixed="2" />
       </CardContent>
 
       <CardBottom>
         <Text>Subscribtion Plan ({currentPlan?.name || 'Free'})</Text>
         <Price
           color="text"
-          value={currentPlan?.month_price || 0}
+          value={currentPlan?.current_price || 0}
           variant="small"
           fixed="2"
         />

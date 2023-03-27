@@ -1,15 +1,16 @@
 import styled from 'styled-components'
-import dynamic from 'next/dynamic'
 import { Flex, H1, H6, Button } from '@/core'
 import { BlockInner } from './blocks/Block'
-const APIAccess = dynamic(() => import('./blocks/APIAccess'), {
-  loading: () => 'loading',
-})
+// import dynamic from 'next/dynamic'
+// const APIAccess = dynamic(() => import('./blocks/APIAccess'), {
+//   loading: () => 'loading',
+// })
+import APIAccess from './blocks/APIAccess'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
 
 const Pricing = ({ plans }) => {
-  const [period, setPeriod] = useState('monthly')
+  const [period, setPeriod] = useState('month')
 
   return (
     <>
@@ -29,8 +30,8 @@ const Pricing = ({ plans }) => {
           <Switch
             labelOff="Yearly"
             labelOn="Monthly"
-            value={period === 'monthly'}
-            onChange={(value) => setPeriod(value ? 'monthly' : 'yearly')}
+            value={period === 'month'}
+            onChange={(value) => setPeriod(value ? 'month' : 'year')}
           />
         </BottomContainer>
         <APIAccess period={period} plans={plans} />

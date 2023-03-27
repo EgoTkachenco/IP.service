@@ -1,12 +1,18 @@
 import styled from 'styled-components'
 import { Flex, H1, Caption, Card, Icon } from '@/core'
 
-const SubscriptionCard = ({ price, subtitle, features = [], bottomSlot }) => {
+const SubscriptionCard = ({
+  price,
+  subtitle,
+  features = [],
+  bottomSlot,
+  priceType = 'month',
+}) => {
   return (
     <CardWrapper color="white">
       <Flex align="flex-end">
         <CardPrice color="dark">${price.toFixed(2)}</CardPrice>
-        <Caption>/monthly</Caption>
+        <Caption>/{priceType === 'month' ? 'monthly' : 'yearly'}</Caption>
       </Flex>
       <CardSubtitle>{subtitle}</CardSubtitle>
       <Flex direction="column" gap="20px">

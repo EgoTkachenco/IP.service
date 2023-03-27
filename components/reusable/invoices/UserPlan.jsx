@@ -16,8 +16,8 @@ const UserPlan = ({ plan }) => {
         <Chip type="primary-transparent">Current Plan</Chip>
       </CardTitle>
       <CardContent align="baseline">
-        <Price value={plan?.month_price || 0} fixed="2" />
-        <Caption>/month</Caption>
+        <Price value={plan?.current_price || 0} fixed="2" />
+        <Caption>/{plan?.type === 'month' ? 'monthly' : 'yearly'}</Caption>
       </CardContent>
       <CardBottom align="flex-end" gap="24px">
         <TextLink color="primary" caption>

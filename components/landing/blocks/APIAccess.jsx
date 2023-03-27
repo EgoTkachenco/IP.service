@@ -17,10 +17,8 @@ const APIAccess = ({ period, plans }) => {
             <PlanCard
               // key={plan.name}
               name={plan.name}
-              priceType={period}
-              price={
-                period === 'yearly' ? plan.year_price * 12 : plan.month_price
-              }
+              priceType={period === 'year' ? 'yearly' : 'monthly'}
+              price={period === 'year' ? plan.year_price : plan.month_price}
               description={plan.description}
               additional_description={plan.additional_description}
               options={plan.options.filter((option) => option.included)}

@@ -32,9 +32,7 @@ const Upgrade = ({ currentPlan, plans, setUserPlan }) => {
                 key={plan.name}
                 name={plan.name}
                 priceType={period}
-                price={
-                  period === 'year' ? plan.year_price * 12 : plan.month_price
-                }
+                price={period === 'year' ? plan.year_price : plan.month_price}
                 description={plan.description}
                 additional_description={plan.additional_description}
                 options={plan.options}
