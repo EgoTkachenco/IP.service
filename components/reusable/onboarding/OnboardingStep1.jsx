@@ -6,6 +6,7 @@ import OnboardingCard from './OnboardingCard'
 import { getIp, searchIp } from '@/utils/api'
 import JSONPreview from '../search/JSONPreview'
 import { useClipboard } from '@mantine/hooks'
+
 const OnboardingStep1 = ({ ip, token, url }) => {
   return (
     <OnboardingCard
@@ -61,13 +62,15 @@ export default OnboardingStep1
 
 const Details = ({ ip, url }) => {
   const [activeTab, setActiveTab] = useState('Free')
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({})
   const tabs = data ? Object.keys(data) : []
 
   useEffect(() => {
     if (ip) {
-      const promises = [getIp(ip), searchIp(ip)]
-      Promise.all(promises).then(([free_data, search_data]) => {
+      getIp(ip).then((free_data) => {
+        setData((data) => ({ ...data, Free: free_data }))
+      })
+      searchIp(ip).then((search_data) => {
         const plans_data = {}
         search_data.reduce((acc, plan_data) => {
           const data = plan_data.data_groups.reduce(
@@ -80,7 +83,7 @@ const Details = ({ ip, url }) => {
           plans_data[plan_data.name] = { ...acc, ...data }
           return { ...acc, ...data }
         }, {})
-        setData({ Free: free_data, ...plans_data })
+        setData((data) => ({ ...data, ...plans_data }))
       })
     }
   }, [ip])
