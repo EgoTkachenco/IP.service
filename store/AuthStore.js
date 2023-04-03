@@ -22,6 +22,7 @@ class AuthStore {
       .then((data) => {
         eraseToken()
         setToken(data.token)
+        return data
       })
       .finally(() => {
         this.isFetch = false
@@ -47,7 +48,7 @@ class AuthStore {
     if (token && !this.user) await this.getProfile()
 
     if (token && this.user) return Promise.resolve()
-    else eraseToken()
+    // else eraseToken()
 
     return Promise.reject()
   }

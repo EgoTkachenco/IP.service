@@ -35,8 +35,9 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
   const { signIn, isFetch } = store
   const onSubmit = form.onSubmit((values) => {
     signIn(values)
-      .then(() => {
-        router.push('/app')
+      .then((user) => {
+        if (user.role.name === 'admin') router.push('/admin')
+        else router.push('/app')
         onClose()
       })
       .catch((error) => {

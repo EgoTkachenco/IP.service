@@ -1,80 +1,44 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { H1, Flex, H5, Text, Caption, Icon } from '@/core'
 import { BlockInner } from './blocks/Block'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useObserverNavigation } from '@/hooks'
 
 const TermsOfService = ({ title, data, published }) => {
-  const [activeBlock, setActiveBlock] = useState(0)
-  const router = useRouter()
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          const blockIndex = entry.target.id.split('-')[1]
-          if (entry.isIntersecting)
-            setActiveBlock((state) => (blockIndex > state ? blockIndex : state))
-          else
-            setActiveBlock((state) => (blockIndex == state ? state - 1 : state))
-        }),
-      {
-        root: null,
-        threshold: 0,
-      }
-    )
-    const blocks = document.getElementById('terms-content')
-    for (let i = 0; i < blocks.children.length; i++) {
-      const block = blocks.children[i]
-      observer.observe(block)
-    }
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  useEffect(() => {
-    const blockId = router.asPath.split('#')[1]
-    if (blockId) {
-      const block = document.getElementById(blockId)
-      block.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      })
-    }
-  }, [router.asPath])
+  const [activeBlock] = useObserverNavigation('terms-content')
 
   return (
     <>
       <Wrapper>
-        <style>
+        <style jsx global>
           {`
-					address {
-						display: inline;
-					}
-					ol {
-						list-style-type: none;
-						counter-reset: item;
-						margin: 0;
-						padding: 0;
-					}
-					ol > li {
-						display: table;
-						counter-increment: item;
-						margin-bottom: 0.6em;
-					}
-					
-					ol > li:before {
-						content: "";
-						display: table-cell;
-					}
-					li ol > li {
-						margin: 0 0 8px 0;
-					}
-					li ol > li:before {
-						content: counters(item, ".") ". ";
-						width: 40px;
-					}`}
+            address {
+              display: inline;
+            }
+            ol {
+              list-style-type: none;
+              counter-reset: item;
+              margin: 0;
+              padding: 0;
+            }
+            ol > li {
+              display: table;
+              counter-increment: item;
+              margin-bottom: 0.6em;
+            }
+
+            ol > li:before {
+              content: '';
+              display: table-cell;
+            }
+            li ol > li {
+              margin: 0 0 8px 0;
+            }
+            li ol > li:before {
+              content: counters(item, '.') '. ';
+              width: 40px;
+            }
+          `}
         </style>
         <TitlesList activeBlock={activeBlock} data={data} />
         <Flex direction="column">

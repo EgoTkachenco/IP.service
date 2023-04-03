@@ -614,13 +614,13 @@ const terms = [
         <p>
           <b>Business Identification Number (BIN): </b>311230692
         </p>
-        <p>
+        <div>
           <b>Address: </b>{' '}
           <address>
             1110 Finch Avenue West, Suite 406, North York, Ontario, Canada, M3J
             2T2
           </address>
-        </p>
+        </div>
         <p>
           <b>E-mail: </b>{' '}
           <a href={'mailto:' + contact_email}>{contact_email}</a>

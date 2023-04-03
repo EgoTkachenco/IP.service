@@ -208,7 +208,7 @@ export const ErrorJSON = ({ name, value, textColor, isIcon, errorColor }) => (
   <DataJSON
     icon="json-error"
     valueColor={errorColor}
-    name={'Error'}
+    name={name || 'Error'}
     value={value}
     textColor="danger"
     isIcon={isIcon}

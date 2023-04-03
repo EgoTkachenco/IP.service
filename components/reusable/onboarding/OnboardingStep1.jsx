@@ -45,7 +45,7 @@ const OnboardingStep1 = ({ ip, token, url }) => {
   )
 }
 
-const CopyIconButton = ({ data }) => {
+export const CopyIconButton = ({ data }) => {
   const clipboard = useClipboard({ timeout: 1000 })
   const isMobile = useMediaQuery('(max-width: 1140px)')
   return (

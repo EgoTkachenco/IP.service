@@ -5,6 +5,7 @@ const routes = {
   pricing: '/pricing',
   terms: '/terms',
   privacy: '/privacy',
+  docs: '/docs',
   'geolocation-api': '/services/geolocation',
   'company-api': '/services/company',
   'asn-api': '/services/asn',

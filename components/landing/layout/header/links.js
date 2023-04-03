@@ -9,4 +9,5 @@ export default [
   { name: 'Pricing', link: routes.pricing },
   { name: 'Contact', link: routes.contact },
   { name: 'Help Center', link: routes.faq },
+  { name: 'Docs', link: routes.docs },
 ]

@@ -103,3 +103,9 @@ export const createOrder = (plan, term) =>
 
 export const createOrderTrial = () =>
   axios.get('/api/v1/order/trial', securedFetchOptions())
+
+export const getOrdersList = ({ search, page = 1, per_page = 10 }) =>
+  axios.get('/api/v1/admin/orders', {
+    params: { search, page, per_page },
+    ...securedFetchOptions(),
+  })
