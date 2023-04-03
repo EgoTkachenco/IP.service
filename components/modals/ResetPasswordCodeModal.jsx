@@ -9,22 +9,18 @@ import {
 import { observer } from 'mobx-react-lite'
 import store from '@/store/AuthStore'
 import { useForm } from '@mantine/form'
+import { useState } from 'react'
 
 const ResetPasswordCodeModal = observer(({ onClose }) => {
+  const [isSended, setIsSended] = useState(false)
   const form = useForm({
     initialValues: {
-      identifier: '',
       key: '',
       password: '',
       password_confirmation: '',
     },
 
     validate: {
-      identifier: (value) => {
-        if (!value) return 'Email required'
-        if (!/^\S+@\S+$/.test(value)) return 'Invalid email'
-        return null
-      },
       key: (value) => {
         if (!value) return 'Code required'
         return null
@@ -42,11 +38,12 @@ const ResetPasswordCodeModal = observer(({ onClose }) => {
       },
     },
   })
-  const { resetPassword, isFetch } = store
+  const { resetPassword, isFetch, forgetIdentifier } = store
   const onSubmit = form.onSubmit((values) => {
-    resetPassword(values)
+    resetPassword({ ...values, identifier: forgetIdentifier })
       .then(() => {
-        onClose()
+        setIsSended(true)
+        // onClose()
       })
       .catch((error) => {
         if (error?.response?.status === 500)
@@ -59,31 +56,32 @@ const ResetPasswordCodeModal = observer(({ onClose }) => {
   return (
     <Modal onClose={onClose} isIllustration={true}>
       <ModalTitle>Password recovery</ModalTitle>
-      <ModalSubtitle>
-        <Caption>Enter code from email</Caption>
-      </ModalSubtitle>
+      {!isSended && (
+        <ModalSubtitle>
+          <Caption>Enter code from email</Caption>
+        </ModalSubtitle>
+      )}
 
-      <Form onSubmit={onSubmit}>
-        <TextInput label="Code" name="code" {...form.getInputProps('key')} />
-        <TextInput
-          label="Email"
-          name="email"
-          {...form.getInputProps('identifier')}
-        />
-        <PasswordInput
-          label="Password"
-          name="password"
-          {...form.getInputProps('password')}
-        />
-        <PasswordInput
-          label="Password confirmation"
-          name="confirmPassword"
-          {...form.getInputProps('password_confirmation')}
-        />
-        <Button type="submit" disabled={isFetch}>
-          Send
-        </Button>
-      </Form>
+      {!isSended && (
+        <Form onSubmit={onSubmit}>
+          <TextInput label="Code" name="code" {...form.getInputProps('key')} />
+          <PasswordInput
+            label="Password"
+            name="password"
+            {...form.getInputProps('password')}
+          />
+          <PasswordInput
+            label="Password confirmation"
+            name="confirmPassword"
+            {...form.getInputProps('password_confirmation')}
+          />
+          <Button type="submit" disabled={isFetch}>
+            Send
+          </Button>
+        </Form>
+      )}
+
+      {isSended && <ModalTitle align="center">Successfull</ModalTitle>}
     </Modal>
   )
 })

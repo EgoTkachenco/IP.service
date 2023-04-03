@@ -13,6 +13,7 @@ import { eraseToken, getToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 class AuthStore {
   isFetch = false
   user = null
+  forgetIdentifier = ''
   constructor() {
     makeAutoObservable(this)
   }
@@ -56,12 +57,15 @@ class AuthStore {
 
   forgetPassword = (data) => {
     this.isFetch = true
+    this.forgetIdentifier = ''
     return forgetPassword(data).finally(() => {
+      this.forgetIdentifier = data.identifier
       this.isFetch = false
     })
   }
   resetPassword = (data) => {
     this.isFetch = true
+    this.forgetIdentifier = ''
     return resetPassword(data).finally(() => {
       this.isFetch = false
     })
