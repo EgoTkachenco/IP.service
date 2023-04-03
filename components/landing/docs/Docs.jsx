@@ -52,9 +52,18 @@ const Content = styled(Flex)`
   gap: 50px;
   flex-grow: 1;
   max-width: 885px;
+  padding-bottom: 100px;
 
   & > :first-child {
     margin-top: 100px;
+    @media (max-width: 1140px) {
+      margin-top: 50px;
+    }
+  }
+
+  @media (max-width: 1140px) {
+    gap: 35px;
+    padding-bottom: 32px;
   }
 `
 
@@ -62,10 +71,21 @@ const Wrapper = styled(Flex)`
   position: relative;
   align-items: stretch;
   gap: 44px;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 24px;
+  }
 `
 
 const TopicTitle = styled(H2)`
   margin-top: 50px;
+
+  @media (max-width: 1140px) {
+    margin-top: 24px;
+    margin-left: 24px;
+  }
 `
 
 const DocsCard = ({ title, children, id }) => (
@@ -78,6 +98,9 @@ const DocsCard = ({ title, children, id }) => (
 const DocsContent = styled(Flex)`
   flex-direction: column;
   gap: 40px;
+  @media (max-width: 1140px) {
+    gap: 24px;
+  }
 `
 
 const Example = styled(Flex)`
@@ -109,7 +132,7 @@ const CopyCard = ({ children, data }) => (
 )
 
 const Available = ({ plans = [] }) => (
-  <Flex gap="16px" align="center">
+  <Flex gap="16px" align="center" fwrap>
     <Text weight={700}>Available in: </Text>
     <Flex gap="10px">
       {plans.includes('basic') && <Chip type="success">Basic</Chip>}
@@ -280,7 +303,7 @@ const DOCS = [
               plan of the token.
             </Text>
             <Example>
-              <Flex gap="20px">
+              <Flex gap="20px" fwrap>
                 <Chip type="grey">Free: 50k</Chip>
                 <Chip type="success">Basic: 150k</Chip>
                 <Chip type="secondary">Standard: 250k</Chip>
@@ -594,7 +617,7 @@ const DOCS = [
         title: 'ASN API',
         content: () => (
           <>
-            <Flex gap="16px" align="center">
+            <Flex gap="16px" align="center" fwrap>
               <Text weight={700}>Tech Documentation for : </Text>
               <Flex gap="10px">
                 <Chip type="success">ASN</Chip>
