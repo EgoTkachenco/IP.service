@@ -21,6 +21,19 @@ export const forgetPassword = ({ identifier }) =>
     identifier,
   })
 
+export const resetPassword = ({
+  identifier,
+  password,
+  key,
+  password_confirmation,
+}) =>
+  axios.post('/api/v1/password/reset', {
+    identifier,
+    password,
+    password_confirmation,
+    key,
+  })
+
 export const logout = () => axios.get('/api/v1/logout', securedFetchOptions())
 
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))

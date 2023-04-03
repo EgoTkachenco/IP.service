@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import store from '@/store/AuthStore'
 import { useForm } from '@mantine/form'
 
-const ForgetPasswordModal = observer(({ onClose }) => {
+const ForgetPasswordModal = observer(({ onClose, redirect }) => {
   const form = useForm({
     initialValues: {
       identifier: '',
@@ -23,10 +23,7 @@ const ForgetPasswordModal = observer(({ onClose }) => {
   const onSubmit = form.onSubmit((values) => {
     forgetPassword(values)
       .then(() => {
-        debugger
-        console.log('OK')
-        // router.push('/app')
-        // onClose()
+        redirect()
       })
       .catch((error) => {
         if (error?.response?.status === 500)

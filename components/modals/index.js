@@ -4,6 +4,7 @@ import SignInModal from './SignInModal'
 import SignUpModal from './SignUpModal'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import ResetPasswordModal from './ResetPasswordModal'
+import ResetPasswordCodeModal from './ResetPasswordCodeModal'
 import { useNoBodyScroll } from '@/hooks'
 
 const Modals = () => {
@@ -29,7 +30,17 @@ const Modals = () => {
       )
       break
     case 'forget-password':
-      modalComponent = <ForgetPasswordModal onClose={() => openModal(null)} />
+      modalComponent = (
+        <ForgetPasswordModal
+          onClose={() => openModal(null)}
+          redirect={() => openModal('reset-password-code')}
+        />
+      )
+      break
+    case 'reset-password-code':
+      modalComponent = (
+        <ResetPasswordCodeModal onClose={() => openModal(null)} />
+      )
       break
     case 'reset-password':
       modalComponent = <ResetPasswordModal onClose={() => openModal(null)} />

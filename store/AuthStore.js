@@ -3,6 +3,7 @@ import {
   login,
   register,
   forgetPassword,
+  resetPassword,
   logout,
   updateProfile,
   getProfile,
@@ -56,6 +57,12 @@ class AuthStore {
   forgetPassword = (data) => {
     this.isFetch = true
     return forgetPassword(data).finally(() => {
+      this.isFetch = false
+    })
+  }
+  resetPassword = (data) => {
+    this.isFetch = true
+    return resetPassword(data).finally(() => {
       this.isFetch = false
     })
   }
