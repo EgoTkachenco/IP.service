@@ -21,7 +21,6 @@ import {
 
 const Docs = () => {
   const [activeBlock, setActiveBlock] = useObserverNavigation('docs')
-
   return (
     <Wrapper>
       <Navigation
@@ -142,10 +141,13 @@ const Available = ({ plans = [] }) => (
   </Flex>
 )
 
-const Details = ({ service, ip }) => {
-  const [data, setData] = useState(null)
+const Details = ({ service, ip, format }) => {
+  const [response, setResponse] = useState(null)
   useEffect(() => {
-    service(ip || '8.8.8.8').then((data) => setData(data))
+    if (service)
+      service(ip || '8.8.8.8')
+        .then((data) => (format ? format(data) : data))
+        .then((data) => setResponse(data))
   }, [])
   return (
     <DetailsCard color="dark" gap="20px">
@@ -157,7 +159,9 @@ const Details = ({ service, ip }) => {
         </Points>
       </DetailsCardTop>
       <PreviewContainer className="custom-scroll">
-        <JSONPreview icon={false} data={data || {}} color="white" />
+        {format ? <Text color="secondary">...</Text> : ''}
+        <JSONPreview icon={false} data={response || {}} color="white" />
+        {format ? <Text color="secondary">...</Text> : ''}
       </PreviewContainer>
     </DetailsCard>
   )
@@ -386,14 +390,17 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={geolocationService} />
+              <Details
+                service={geolocationService}
+                format={(data) => ({ geolocation: data })}
+              />
             </Example>
           </>
         ),
       },
       {
         title: 'ASN Data',
-        content: () => (
+        content: ({ data } = {}) => (
           <>
             <Available plans={['basic', 'strandart', 'bussiness']} />
             <Text>
@@ -406,13 +413,16 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/asn/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/asn/8.8.8.8?token = TOKEN
+              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
+                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={asnService} />
+              <Details
+                service={asnService}
+                format={(data) => ({ asn: data })}
+              />
             </Example>
           </>
         ),
@@ -442,7 +452,10 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={privacyService} />
+              <Details
+                service={privacyService}
+                format={(data) => ({ privacy: data })}
+              />
             </Example>
           </>
         ),
@@ -474,7 +487,11 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={carrierService} ip="1.38.167.255" />
+              <Details
+                service={carrierService}
+                ip="1.38.167.255"
+                format={(data) => ({ carrier: data })}
+              />
             </Example>
           </>
         ),
@@ -506,7 +523,10 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={companyService} />
+              <Details
+                service={companyService}
+                format={(data) => ({ company: data })}
+              />
             </Example>
           </>
         ),
@@ -538,7 +558,10 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={reverseService} />
+              <Details
+                service={reverseService}
+                format={(data) => ({ reverse: data })}
+              />
             </Example>
           </>
         ),
@@ -569,7 +592,10 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={abuseService} />
+              <Details
+                service={abuseService}
+                format={(data) => ({ abuse: data })}
+              />
             </Example>
           </>
         ),
@@ -603,7 +629,10 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Details service={whoisService} />
+              <Details
+                service={whoisService}
+                format={(data) => ({ whois: data })}
+              />
             </Example>
           </>
         ),
