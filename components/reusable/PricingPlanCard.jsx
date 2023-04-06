@@ -9,6 +9,8 @@ const PlanCard = ({
   types,
   additional_description,
   options,
+  onSubscription,
+  isCurrent,
 }) => {
   return (
     <Flex direction="column" gap="10px" width="100%">
@@ -40,7 +42,11 @@ const PlanCard = ({
           ))}
         </FeaturesContainer>
         <PriceCardDelimiter />
-        <Button>Subscribe</Button>
+        {!isCurrent ? (
+          <Button onClick={onSubscription}>Subscribe</Button>
+        ) : (
+          <Button disabled>Current plan</Button>
+        )}
       </PlanCardWrapper>
       <PlanCaption dangerouslySetInnerHTML={{ __html: description }} />
     </Flex>

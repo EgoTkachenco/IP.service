@@ -9,7 +9,7 @@ import APIAccess from './blocks/APIAccess'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
 
-const Pricing = ({ plans }) => {
+const Pricing = ({ currentPlan, plans, onPlanChange }) => {
   const [period, setPeriod] = useState('month')
 
   return (
@@ -34,7 +34,12 @@ const Pricing = ({ plans }) => {
             onChange={(value) => setPeriod(value ? 'month' : 'year')}
           />
         </BottomContainer>
-        <APIAccess period={period} plans={plans} />
+        <APIAccess
+          currentPlan={currentPlan}
+          period={period}
+          plans={plans}
+          onPlanChange={(plan) => onPlanChange(plan, period)}
+        />
       </BlockInner>
     </>
   )
