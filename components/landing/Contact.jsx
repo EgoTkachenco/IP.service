@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { Flex, H1, H6, Card } from '@/core'
+import { Flex, H1, H6, Card, Icon, Text } from '@/core'
 import { BlockInner } from './blocks/Block'
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import ContactForm from '@/components/reusable/ContactForm'
 import { useMediaQuery } from '@mantine/hooks'
-
+import { contact_email } from '@/constants/constants'
 const Contact = () => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
 
@@ -17,6 +17,18 @@ const Contact = () => {
             Our team of data specialists eagerly awaits your inquiries. Complete
             the form, and expect a response from us in as little as 24 hours.
           </Subtitle>
+          <Flex direction="column" gap="20px">
+            <Flex gap="10px" align="center">
+              <Icon icon="phone" size="24px" color="text" />
+              <Text>+1 225 486 598</Text>
+            </Flex>
+            <Flex gap="10px" align="center">
+              <Icon icon="mail" size="24px" color="text" />
+              <a href={`mailto:${contact_email}`}>
+                <Text>{contact_email}</Text>
+              </a>
+            </Flex>
+          </Flex>
         </ContactTop>
         <ContactCard color="dark">
           <ContactForm isDark={!isMobile} />
@@ -51,8 +63,10 @@ const Block = styled(BlockInner)`
 
 const ContactTop = styled(Flex)`
   width: 410px;
+  padding-bottom: 64px;
 
   @media (max-width: 1140px) {
+    padding-bottom: 48px;
     width: auto;
   }
 `
@@ -65,11 +79,8 @@ const Title = styled(H1)`
   }
 `
 const Subtitle = styled(H6)`
-  margin-bottom: 171px;
-
-  @media (max-width: 1140px) {
-    margin-bottom: 48px;
-  }
+  margin-bottom: 32px;
+  font-weight: 500;
 `
 
 const ContactCard = styled(Card)`
@@ -78,7 +89,7 @@ const ContactCard = styled(Card)`
   width: 500px;
   gap: 30px;
   margin-bottom: -210px;
-  padding: 40px;
+  padding: 50px;
 
   @media (max-width: 1140px) {
     margin-bottom: 0;
