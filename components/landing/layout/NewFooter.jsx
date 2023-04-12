@@ -4,6 +4,7 @@ import { Flex, H6, Text, Caption, Button, Icon } from '@/core'
 import Image from 'next/image'
 import Link from 'next/link'
 import routes from '@/constants/routes'
+import { OnlyDesktop, OnlyMobile } from '@/components/landing/blocks/styled'
 
 const Footer = () => {
   return (
@@ -12,6 +13,15 @@ const Footer = () => {
         <FooterLogo>
           <Logo />
           <Copyrights />
+          <OnlyMobile gap="21px">
+            <Image src="/visa.svg" alt="Visa" width={61} height={20} />
+            <Image
+              src="/mastercard.svg"
+              alt="Mastercard"
+              width={32}
+              height={20}
+            />
+          </OnlyMobile>
         </FooterLogo>
         <FooterLinks>
           {footer_links.map((column, i) => (
@@ -37,7 +47,7 @@ const Footer = () => {
               <Icon icon="help" size="16px" />
             </Button>
           </Link>
-          <Flex gap="21px" justify="center" pt="12px">
+          <OnlyDesktop gap="21px" justify="center" pt="12px">
             <Image src="/visa.svg" alt="Visa" width={61} height={20} />
             <Image
               src="/mastercard.svg"
@@ -45,7 +55,7 @@ const Footer = () => {
               width={32}
               height={20}
             />
-          </Flex>
+          </OnlyDesktop>
         </FooterButtons>
       </Wrapper>
     </BlockInner>

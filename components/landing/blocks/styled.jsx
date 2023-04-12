@@ -216,13 +216,13 @@ const ButtonsContainer = styled(Flex)`
 export const OnlyMobile = styled(Flex)`
   display: none;
   @media (max-width: 1140px) {
-    display: block;
+    display: flex;
     width: 100%;
   }
 `
 
 export const OnlyDesktop = styled(Flex)`
-  display: block;
+  display: flex;
   width: 100%;
   @media (max-width: 1140px) {
     display: none;

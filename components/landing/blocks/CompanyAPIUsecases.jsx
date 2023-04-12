@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 import { Flex, H3 } from '@/core'
 import { Block, BlockInner, Title } from './Block'
-import {
-  UseCase,
-  SignInContactButtons,
-  OnlyDesktop,
-  OnlyMobile,
-} from './styled'
+import { UseCase } from './styled'
 
 const CompanyAPIUsecases = () => {
   return (
