@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 const SubscriptionsTable = ({ plans }) => {
   const getCellValue = (value) => {
-    if (typeof value === 'boolean')
+    if (!value || typeof value === 'boolean')
       return value ? (
         <Icon icon="done-outline" size="24px" color="success" />
       ) : (
@@ -13,11 +13,46 @@ const SubscriptionsTable = ({ plans }) => {
 
     return <Caption>{value}</Caption>
   }
-  // const [data, setData] = useState([])
-  // useEffect(() => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const free_key = 'free_plan'
+    const req_key = 'Requests per month'
+    const add_req_key = 'Additional requests'
+    let order = 1
+    let newData = {
+      [req_key]: { [free_key]: '50k lookups', order: order++ },
+      [add_req_key]: { [free_key]: false, order: order++ },
+    }
 
-  // }, [plans])
-  // console.log('plans: ', plans)
+    plans.forEach((plan) => {
+      const planKey = plan.name.toLowerCase()
+      const text = document.createElement('span')
+      text.innerHTML = plan.additional_description
+      newData[req_key][planKey] = (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: text.childNodes[0].childNodes[0].innerText,
+          }}
+        />
+      )
+      newData[add_req_key][planKey] = (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: text.childNodes[0].childNodes[2].data,
+          }}
+        />
+      )
+      plan.options.forEach((option) => {
+        if (!newData[option.name])
+          newData[option.name] = { [free_key]: false, order: order++ }
+        newData[option.name][planKey] = !!option.included
+      })
+    })
+    newData = Object.keys(newData)
+      .map((key) => ({ key, ...newData[key] }))
+      .sort((a, b) => a.order - b.order)
+    setData(newData)
+  }, [plans])
   return (
     <Table>
       <TableHeaderRow>
