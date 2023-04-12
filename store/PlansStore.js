@@ -1,8 +1,11 @@
 const { makeAutoObservable } = require('mobx')
-import { getPlansList } from '@/utils/api'
+import services from '@/constants/services'
+import { getPlansList, getCustomPlanDetails } from '@/utils/api'
 
 class PlansStore {
   plans = null
+  customPlanOptions = null
+
   constructor() {
     makeAutoObservable(this)
   }
@@ -18,6 +21,17 @@ class PlansStore {
   }
   savePlans = (plans) => {
     this.plans = plans
+  }
+  loadCustomPlanOptions = async () => {
+    try {
+      const options = await getCustomPlanDetails()
+      this.customPlanOptions = options.map((el) => ({
+        ...services.find((service) => service.name.search(el.name) !== -1),
+        ...el,
+      }))
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 }
 

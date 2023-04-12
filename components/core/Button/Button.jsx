@@ -79,7 +79,8 @@ const ButtonFlatCore = styled(ButtonCore)`
 `
 const ButtonOutlineCore = styled(ButtonCore)`
   border-color: ${({ color, theme }) => theme.colors.grey};
-  color: ${({ color, theme }) => theme.colors[color]};
+  color: ${({ color, theme }) => theme.colors.dark};
+  /* theme.colors[color] */
   background: transparent;
 
   &:hover {

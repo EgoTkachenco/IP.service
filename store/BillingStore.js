@@ -4,6 +4,7 @@ import {
   createOrder,
   createOrderTrial,
   reactivateUserPlan,
+  setCustomPlan,
 } from '@/utils/api'
 import AuthStore from './AuthStore'
 
@@ -46,6 +47,12 @@ class BillingStore {
     } catch (error) {
       console.log(error.message)
     }
+  }
+
+  setUserCustomPlan = async (selectedOptions, period) => {
+    const options = selectedOptions.map((id) => ({ id, included: true }))
+    await setCustomPlan(period, options)
+    AuthStore.getProfile()
   }
 
   get currentPlan() {

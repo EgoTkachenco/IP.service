@@ -3,15 +3,21 @@ import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
 import BillingStore from '@/store/BillingStore'
 import PlansStore from '@/store/PlansStore'
+import { getCustomPlanDetails } from '@/utils/api'
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const PricingPage = observer(({ plans }) => {
   const renderMetadata = useMetadataRenderer()
-  const { savePlans } = PlansStore
-  const { currentPlan, setUserPlan } = BillingStore
+  const { customPlanOptions, savePlans, loadCustomPlanOptions } = PlansStore
+  const { currentPlan, setUserPlan, setUserCustomPlan } = BillingStore
   // Plans hydration to store
   useEffect(() => savePlans(plans), [plans])
+
+  useEffect(() => {
+    loadCustomPlanOptions()
+  }, [])
+
   return (
     <>
       {renderMetadata({
@@ -23,7 +29,9 @@ const PricingPage = observer(({ plans }) => {
         <Pricing
           currentPlan={currentPlan}
           plans={plans}
+          customPlan={customPlanOptions}
           onPlanChange={setUserPlan}
+          setCustomPlan={setUserCustomPlan}
         />
       </Layout>
     </>

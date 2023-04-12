@@ -17,10 +17,12 @@ const Tabs = [
 
 const BillingLayout = observer(({ children }) => {
   const router = useRouter()
-  const { plans, loadPlans } = PlansStore
+  const { plans, loadPlans, customPlanOptions, loadCustomPlanOptions } =
+    PlansStore
   useEffect(() => {
     if (!plans) loadPlans()
-  })
+    if (!customPlanOptions) loadCustomPlanOptions()
+  }, [])
   return (
     <Flex direction="column" gap="50px" width="100%">
       <TabsList>

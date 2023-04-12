@@ -38,8 +38,13 @@ const Footer = () => {
             </Button>
           </Link>
           <Flex gap="21px" justify="center" pt="12px">
-            <Image src="/visa.svg" width={61} height={20} />
-            <Image src="/mastercard.svg" width={32} height={20} />
+            <Image src="/visa.svg" alt="Visa" width={61} height={20} />
+            <Image
+              src="/mastercard.svg"
+              alt="Mastercard"
+              width={32}
+              height={20}
+            />
           </Flex>
         </FooterButtons>
       </Wrapper>

@@ -19,8 +19,8 @@ const BillingUpgrade = dynamic(
 const Upgrade = observer(() => {
   const renderMetadata = useMetadataRenderer()
   const router = useRouter()
-  const { plans } = PlansStore
-  const { currentPlan, setUserPlan } = BillingStore
+  const { customPlanOptions, plans } = PlansStore
+  const { currentPlan, setUserPlan, setUserCustomPlan } = BillingStore
   return (
     <>
       {renderMetadata({
@@ -31,10 +31,12 @@ const Upgrade = observer(() => {
         <BillingLayout>
           <BillingUpgrade
             currentPlan={currentPlan}
+            customPlan={customPlanOptions}
             plans={plans}
             setUserPlan={(plan, term) =>
               setUserPlan(plan, term).then(() => router.push(routes.billing))
             }
+            setCustomPlan={(options, term) => setUserCustomPlan(options, term)}
           />
         </BillingLayout>
       </Layout>

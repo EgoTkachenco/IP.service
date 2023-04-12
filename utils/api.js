@@ -122,3 +122,13 @@ export const getOrdersList = ({ search, page = 1, per_page = 10 }) =>
     params: { search, page, per_page },
     ...securedFetchOptions(),
   })
+
+export const getCustomPlanDetails = () =>
+  axios.get('/api/v1/public/plans-options/list')
+
+export const setCustomPlan = (term, options) =>
+  axios.post(
+    '/api/v1/account/plan/custom',
+    { term, options },
+    securedFetchOptions()
+  )

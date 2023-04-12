@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 import { Flex, H1, H6, Button } from '@/core'
 import { BlockInner } from './blocks/Block'
-// import dynamic from 'next/dynamic'
-// const APIAccess = dynamic(() => import('./blocks/APIAccess'), {
-//   loading: () => 'loading',
-// })
 import APIAccess from './blocks/APIAccess'
+import CustomPlan from './blocks/CustomPlan'
 import Switch from '@/components/reusable/Switch'
 import { useState } from 'react'
 
-const Pricing = ({ currentPlan, plans, onPlanChange }) => {
+const Pricing = ({
+  currentPlan,
+  customPlan = [],
+  plans,
+  onPlanChange,
+  setCustomPlan,
+}) => {
   const [period, setPeriod] = useState('month')
-
+  const [tab, setTab] = useState('api')
   return (
     <>
       <BlockInner direction="column">
@@ -24,7 +27,20 @@ const Pricing = ({ currentPlan, plans, onPlanChange }) => {
 
         <BottomContainer>
           <ButtonsContainer>
-            <Button color="primary">API access</Button>
+            <Button
+              color="primary"
+              outline={tab !== 'api'}
+              onClick={() => setTab('api')}
+            >
+              API access
+            </Button>
+            <Button
+              color="primary"
+              outline={tab !== 'custom'}
+              onClick={() => setTab('custom')}
+            >
+              Data Download
+            </Button>
           </ButtonsContainer>
 
           <Switch
@@ -34,12 +50,21 @@ const Pricing = ({ currentPlan, plans, onPlanChange }) => {
             onChange={(value) => setPeriod(value ? 'month' : 'year')}
           />
         </BottomContainer>
-        <APIAccess
-          currentPlan={currentPlan}
-          period={period}
-          plans={plans}
-          onPlanChange={(plan) => onPlanChange(plan, period)}
-        />
+        {tab === 'api' && (
+          <APIAccess
+            currentPlan={currentPlan}
+            period={period}
+            plans={plans}
+            onPlanChange={(plan) => onPlanChange(plan, period)}
+          />
+        )}
+        {tab === 'custom' && (
+          <CustomPlan
+            details={customPlan}
+            period={period}
+            onSubscribe={(options) => setCustomPlan(options, period)}
+          />
+        )}
       </BlockInner>
     </>
   )
@@ -64,7 +89,7 @@ const Subtitle = styled(H6)`
 const ButtonsContainer = styled(Flex)`
   gap: 20px;
   button {
-    width: 438px;
+    width: 220px;
   }
   @media (max-width: 1140px) {
     width: 100%;
