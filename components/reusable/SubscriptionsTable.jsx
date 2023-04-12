@@ -13,7 +13,9 @@ const SubscriptionsTable = ({ plans }) => {
 
     return <Caption>{value}</Caption>
   }
+
   const [data, setData] = useState([])
+
   useEffect(() => {
     const free_key = 'free_plan'
     const req_key = 'Requests per month'
@@ -53,6 +55,7 @@ const SubscriptionsTable = ({ plans }) => {
       .sort((a, b) => a.order - b.order)
     setData(newData)
   }, [plans])
+
   return (
     <Table>
       <TableHeaderRow>

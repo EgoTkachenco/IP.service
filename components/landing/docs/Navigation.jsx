@@ -32,6 +32,7 @@ const Wrapper = styled(Flex)`
   background: #ffffff;
   border: 1px solid rgba(52, 64, 84, 0.1);
   width: 27%;
+  transform: translateY(-1px);
   @media (max-width: 1140px) {
     width: 100%;
     overflow: auto;
