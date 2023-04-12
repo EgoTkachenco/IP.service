@@ -79,7 +79,8 @@ const ButtonFlatCore = styled(ButtonCore)`
 `
 const ButtonOutlineCore = styled(ButtonCore)`
   border-color: ${({ color, theme }) => theme.colors.grey};
-  color: ${({ color, theme }) => theme.colors.dark};
+  color: ${({ color, theme }) =>
+    color === 'white' ? theme.colors[color] : 'dark'};
   /* theme.colors[color] */
   background: transparent;
 

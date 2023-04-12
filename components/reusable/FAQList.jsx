@@ -52,6 +52,7 @@ const List = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background: ${({ theme }) => theme.colors.white};
+  width: 100%;
 
   @media (max-width: 1140px) {
     width: 100%;
@@ -65,7 +66,7 @@ const FAQItemWrapper = styled.div`
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
   max-width: 1140px;
   border-left: 8px solid
     ${({ theme, isOpen }) => (isOpen ? theme.colors.primary : '#02202D')};
@@ -91,4 +92,5 @@ const FAQItemAnswer = styled(Text)`
   overflow: hidden;
   transition: all 0.3s;
   max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
+  margin-top: ${({ isOpen }) => (isOpen ? '20px' : '0')};
 `

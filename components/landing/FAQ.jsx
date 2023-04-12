@@ -1,14 +1,47 @@
 import styled from 'styled-components'
-import { Flex, Button, Text, Icon, Card, Input, Chip, H1, H3 } from '@/core'
+import { Flex, Text, Icon, Input, H3 } from '@/core'
 import { BlockInner } from './blocks/Block'
 import FAQList from '@/components/reusable/FAQList'
 import FAQ_QUESTIONS from '@/constants/faq.json'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useMediaQuery } from '@mantine/hooks'
+import _ from 'lodash'
+let onSearchChange
 
 const FAQ = () => {
+  const [search, setSearch] = useState('')
+  const [questions, setQuestions] = useState([...FAQ_QUESTIONS])
   const [activeBlock, setActiveBlock] = useState(0)
   const [activeQuestion, setActiveQuestion] = useState(null)
+
+  useEffect(() => {
+    onSearchChange = _.debounce((search) => {
+      if (search) {
+        let newQuestions = FAQ_QUESTIONS.reduce((acc, topic) => {
+          acc.push({
+            ...topic,
+            questions: topic.questions.filter(
+              (question) => question.question.search(search) !== -1
+            ),
+          })
+          return acc
+        }, [])
+        newQuestions = newQuestions.filter(
+          (topic) => topic.questions.length > 0
+        )
+        setActiveQuestion(null)
+        setActiveBlock(newQuestions.length > 0 ? 0 : null)
+        setQuestions(newQuestions)
+      } else {
+        setQuestions([...FAQ_QUESTIONS])
+        setActiveQuestion(null)
+        setActiveBlock(0)
+      }
+    }, 300)
+  }, [])
+  useEffect(() => {
+    onSearchChange(search)
+  }, [search])
 
   const isMobile = useMediaQuery('(max-width: 1140px)')
 
@@ -24,24 +57,28 @@ const FAQ = () => {
           Common questions and support documentation
         </H3>
         <Input
+          value={search}
+          onChange={setSearch}
           placeholder="Search the knowledge base"
           width={isMobile ? '100%' : '685px'}
         />
       </SearchBlock>
       <Content>
         <DesktopContainer>
-          <TopicList active={activeBlock} open={openTopic} />
-          <Flex direction="column" gap="40px">
+          <TopicList topics={questions} active={activeBlock} open={openTopic} />
+          <Flex direction="column" gap="40px" width="100%">
             <H3 color="dark">About Spyskey</H3>
             <FAQList
-              questions={FAQ_QUESTIONS[activeBlock].questions}
+              questions={
+                activeBlock !== null ? questions[activeBlock].questions : []
+              }
               active={activeQuestion}
               onChange={(question) => setActiveQuestion(question)}
             />
           </Flex>
         </DesktopContainer>
         <MobileContainer>
-          {FAQ_QUESTIONS.map((topic, i) => (
+          {questions.map((topic, i) => (
             <Flex direction="column" gap="24px" width="100%" key={i}>
               <TopicItemMobile key={i} active={activeBlock === i}>
                 <Text weight={700} color={activeBlock === i ? 'white' : 'dark'}>
@@ -56,7 +93,7 @@ const FAQ = () => {
               </TopicItemMobile>
               {activeBlock === i && (
                 <FAQList
-                  questions={FAQ_QUESTIONS[i].questions}
+                  questions={questions[i].questions}
                   active={activeQuestion}
                   onChange={(question) => setActiveQuestion(question)}
                 />
@@ -110,10 +147,10 @@ const SearchBlock = styled(BlockInner)`
     padding: 38px 24px;
   }
 `
-const TopicList = ({ active, open }) => {
+const TopicList = ({ topics, active, open }) => {
   return (
     <TopicListContainer>
-      {FAQ_QUESTIONS.map((topic, i) => (
+      {topics.map((topic, i) => (
         <TopicItem key={i} active={active === i}>
           <Text weight={700}>{topic.name}</Text>
           <Icon
