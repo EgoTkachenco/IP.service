@@ -25,10 +25,16 @@ class PlansStore {
   loadCustomPlanOptions = async () => {
     try {
       const options = await getCustomPlanDetails()
-      this.customPlanOptions = options.map((el) => ({
-        ...services.find((service) => service.name.search(el.name) !== -1),
-        ...el,
-      }))
+      this.customPlanOptions = options.map((el) => {
+        const service = services.find(
+          (service) => service.name.search(el.name) !== -1
+        )
+        return {
+          ...service,
+          ...el,
+          description: service?.description || '',
+        }
+      })
     } catch (error) {
       console.log(error.message)
     }

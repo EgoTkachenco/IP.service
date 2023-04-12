@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Icon, Caption } from '@/core'
+import { useState, useEffect } from 'react'
 
 const SubscriptionsTable = ({ plans }) => {
   const getCellValue = (value) => {
@@ -12,8 +13,11 @@ const SubscriptionsTable = ({ plans }) => {
 
     return <Caption>{value}</Caption>
   }
+  // const [data, setData] = useState([])
+  // useEffect(() => {
 
-  console.log(plans)
+  // }, [plans])
+  // console.log('plans: ', plans)
   return (
     <Table>
       <TableHeaderRow>

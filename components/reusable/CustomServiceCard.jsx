@@ -21,7 +21,7 @@ const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
         <Title color="dark">{details?.name}</Title>
         {details.advanced ? <Chip>Advanced</Chip> : ''}
       </Flex>
-      <Description>{details.description_full}</Description>
+      <Description>{details.description}</Description>
       <PriceContainer>
         <H3 color="dark" weight={700}>
           ${details[priceKey].toFixed(0)}
@@ -69,9 +69,6 @@ const Title = styled(Text)`
 
 const Description = styled(Caption)`
   margin: 20px 0 10px;
-  max-height: 24px;
-  overflow: hidden;
-  text-overflow: clip;
 `
 
 const PriceContainer = styled(Flex)`
