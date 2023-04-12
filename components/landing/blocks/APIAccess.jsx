@@ -3,17 +3,8 @@ import { Flex } from '@/core'
 import SubscriptionsTable from '@/components/reusable/SubscriptionsTable'
 import PlanCard from '@/components/reusable/PricingPlanCard'
 import Animation from '@/components/reusable/Animation'
-import { useContext } from 'react'
-import ModalContext from '@/utils/modalContext'
-import AuthContext from '@/utils/authContext'
 
 const APIAccess = ({ currentPlan, period, plans, onPlanChange }) => {
-  const { openModal } = useContext(ModalContext)
-  const { isLogged } = useContext(AuthContext)
-  const handleSubscription = (plan) => {
-    if (isLogged) onPlanChange(plan)
-    else openModal('sign-up')
-  }
   return (
     <Container direction="column" gap="168px" width="100%">
       <CardsContainer flex="1 1">
@@ -32,7 +23,7 @@ const APIAccess = ({ currentPlan, period, plans, onPlanChange }) => {
               additional_description={plan.additional_description}
               options={plan.options.filter((option) => option.included)}
               types={(i + 1) * 2 + 1}
-              onSubscription={() => handleSubscription(plan.name)}
+              onSubscription={() => onPlanChange(plan.name)}
             />
           </Animation>
         ))}

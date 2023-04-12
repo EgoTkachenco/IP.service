@@ -4,7 +4,9 @@ import { BlockInner } from './blocks/Block'
 import APIAccess from './blocks/APIAccess'
 import CustomPlan from './blocks/CustomPlan'
 import Switch from '@/components/reusable/Switch'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import ModalContext from '@/utils/modalContext'
+import AuthContext from '@/utils/authContext'
 
 const Pricing = ({
   currentPlan,
@@ -15,6 +17,15 @@ const Pricing = ({
 }) => {
   const [period, setPeriod] = useState('month')
   const [tab, setTab] = useState('api')
+  const { openModal } = useContext(ModalContext)
+  const { isLogged } = useContext(AuthContext)
+  const handleSubscription = (params, callback) => {
+    if (isLogged) return callback(params, period)
+    else {
+      openModal('sign-up')
+      return Promise.reject()
+    }
+  }
   return (
     <>
       <BlockInner direction="column">
@@ -55,14 +66,16 @@ const Pricing = ({
             currentPlan={currentPlan}
             period={period}
             plans={plans}
-            onPlanChange={(plan) => onPlanChange(plan, period)}
+            onPlanChange={(plan) => handleSubscription(plan, onPlanChange)}
           />
         )}
         {tab === 'custom' && (
           <CustomPlan
             details={customPlan}
             period={period}
-            onSubscribe={(options) => setCustomPlan(options, period)}
+            onSubscribe={(options) =>
+              handleSubscription(options, setCustomPlan)
+            }
           />
         )}
       </BlockInner>
