@@ -147,11 +147,4 @@ const data = [
     standard: false,
     business: false,
   },
-  {
-    key: 'IP Activity',
-    free_plan: false,
-    basic: false,
-    standard: false,
-    business: false,
-  },
 ]
