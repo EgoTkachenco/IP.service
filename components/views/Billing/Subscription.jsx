@@ -44,7 +44,7 @@ const Subscription = ({
           <SubscriptionCard
             price={currentPlan.current_price}
             priceType={currentPlan.type}
-            subtitle={`You're on the ${currentPlan.name} plan`}
+            subtitle={`You're on the ${currentPlan.title} plan`}
             features={basicPlan.options
               .filter((option) => option.included)
               .map((option) => option.name)}

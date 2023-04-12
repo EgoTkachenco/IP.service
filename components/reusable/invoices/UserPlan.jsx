@@ -12,7 +12,7 @@ const UserPlan = ({ plan }) => {
   return (
     <Card color="white">
       <CardTitle>
-        <H6>{plan?.name || 'Free'}</H6>
+        <H6>{plan?.title || 'Free'}</H6>
         <Chip type="primary-transparent">Current Plan</Chip>
       </CardTitle>
       <CardContent align="baseline">

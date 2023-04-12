@@ -29,7 +29,7 @@ const APIAccess = ({ currentPlan, period, plans, onPlanChange }) => {
         ))}
       </CardsContainer>
 
-      <SubscriptionsTable />
+      <SubscriptionsTable plans={plans} />
     </Container>
   )
 }

@@ -4,6 +4,12 @@ import Link from 'next/link'
 
 const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
   const priceKey = period === 'month' ? 'month_price' : 'year_price'
+  const lookups = details.limit_reqeusts
+    ? Math.floor(details.limit_reqeusts / 1000) + 'k'
+    : 0
+  const additional_lookups = details.additional_requests_limit
+    ? Math.floor(details.additional_requests_limit / 1000) + 'k'
+    : 0
   return (
     <Card color="white">
       <Flex align="center" gap="20px" width="100%">
@@ -20,11 +26,20 @@ const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
         <H3 color="dark" weight={700}>
           ${details[priceKey].toFixed(0)}
         </H3>
-        <Caption weight={700}>/100k lookups</Caption>
+        <Caption weight={700}>/{lookups} lookups</Caption>
       </PriceContainer>
-      <Lookups
+      {/* <Lookups
         dangerouslySetInnerHTML={{ __html: details.small_description }}
-      />
+      /> */}
+      <Lookups>
+        <Caption weight={700} color="dark">
+          {lookups} lookups per month
+        </Caption>
+        <Caption weight={500}>
+          ${details.additional_requests_price.toFixed(0)} per additional{' '}
+          {additional_lookups} lookups
+        </Caption>
+      </Lookups>
 
       <Bottom flex="1">
         {details.link && (

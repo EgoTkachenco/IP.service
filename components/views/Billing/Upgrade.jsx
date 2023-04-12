@@ -29,14 +29,14 @@ const Upgrade = ({
             outline={tab !== 'plans'}
             onClick={() => setTab('plans')}
           >
-            API access
+            Our plans
           </Button>
           <Button
             color="primary"
             outline={tab !== 'custom'}
             onClick={() => setTab('custom')}
           >
-            Data Download
+            Create your plan
           </Button>
         </ButtonsContainer>
 

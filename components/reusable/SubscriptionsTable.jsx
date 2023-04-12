@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Icon, Caption } from '@/core'
 
-const SubscriptionsTable = () => {
+const SubscriptionsTable = ({ plans }) => {
   const getCellValue = (value) => {
     if (typeof value === 'boolean')
       return value ? (
@@ -12,6 +12,8 @@ const SubscriptionsTable = () => {
 
     return <Caption>{value}</Caption>
   }
+
+  console.log(plans)
   return (
     <Table>
       <TableHeaderRow>

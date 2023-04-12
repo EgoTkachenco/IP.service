@@ -12,6 +12,10 @@ const SelectedServicesCart = ({
   const priceKey = period === 'month' ? 'month_price' : 'year_price'
 
   const sum = list.reduce((acc, option) => (acc += option[priceKey]), 0)
+  const additional_req_sum = list.reduce(
+    (acc, option) => (acc += option.additional_requests_price),
+    0
+  )
   return (
     <CartCard color="white">
       <Title>Selected Services</Title>
@@ -50,7 +54,9 @@ const SelectedServicesCart = ({
               <Caption weight={700} color="dark">
                 100k lookups per month
               </Caption>
-              <Caption weight={500}>$20 per additional 100k lookups</Caption>
+              <Caption weight={500}>
+                ${additional_req_sum.toFixed(0)} per additional 10k lookups
+              </Caption>
             </Lookups>
           </>
         )}
@@ -72,6 +78,13 @@ const CartCard = styled(Card)`
   width: 360px;
   min-width: 360px;
   min-height: 492px;
+  position: sticky;
+  top: 0;
+  @media (max-width: 1140px) {
+    width: 100%;
+    position: static;
+    top: unset;
+  }
 `
 
 const Title = styled(H6)`

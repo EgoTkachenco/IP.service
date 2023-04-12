@@ -58,5 +58,9 @@ const CardsContainer = styled(Flex)`
   @media (max-width: 1140px) {
     gap: 24px;
     flex-direction: column;
+    & > * {
+      flex: 1 1 100%;
+      width: 100%;
+    }
   }
 `

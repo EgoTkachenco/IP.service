@@ -20,7 +20,7 @@ const Contact = () => {
           <Flex direction="column" gap="20px">
             <Flex gap="10px" align="center">
               <Icon icon="phone" size="24px" color="text" />
-              <Text>+1 225 486 598</Text>
+              <Text>+1 202 440 7180</Text>
             </Flex>
             <Flex gap="10px" align="center">
               <Icon icon="mail" size="24px" color="text" />

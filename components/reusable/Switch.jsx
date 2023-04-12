@@ -34,8 +34,7 @@ const SwitchContainer = styled.div`
   border-radius: 12px;
   width: 36px;
   padding: 2px;
-  background-color: ${({ theme, isActive }) =>
-    isActive ? theme.colors.success : theme.colors['light-grey']};
+  background-color: ${({ theme, isActive }) => theme.colors.success};
   display: flex;
   cursor: pointer;
 
