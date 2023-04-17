@@ -43,7 +43,7 @@ const SubscriptionsTable = ({ plans }) => {
             plan.options.find((option) => option.name === column)?.included) ||
           false
 
-        if (!plan && column === 'Geolication') value = true
+        if (!plan && column === 'Geolocation') value = true
         return (
           <Icon
             icon={value ? 'done-outline' : 'close'}
