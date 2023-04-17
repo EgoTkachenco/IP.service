@@ -9,6 +9,7 @@ const PlanCard = ({
   buttonText,
   onClick,
   marginBottom = true,
+  disabled,
 }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
@@ -42,6 +43,7 @@ const PlanCard = ({
         color={buttonColor}
         width={isMobile ? '100%' : '260px'}
         onClick={onClick}
+        disabled={disabled}
       >
         {buttonText}
       </Button>

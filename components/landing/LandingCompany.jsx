@@ -49,6 +49,7 @@ const LandingCompany = () => {
         title="IP to Company API"
         description="Our API offers customers a fresh perspective on website traffic by providing firmographics data about the companies responsible for the IP traffic."
         service={companyService}
+        advanced={true}
       />
       <Feedback
         name="Olivia Washington"

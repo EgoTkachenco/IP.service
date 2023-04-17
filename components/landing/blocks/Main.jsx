@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
-import { Flex, H2, Text } from '@/core'
+import { Flex, H2, Text, Chip } from '@/core'
 import { BlockInner } from './Block'
 import APIPreview from '@/components/reusable/APIPreview'
 import { SignInContactButtons } from './styled'
@@ -8,6 +8,7 @@ import { SignInContactButtons } from './styled'
 const Main = ({
   title,
   // secondTitle,
+  advanced,
   reverseTitle = false,
   description,
   service,
@@ -33,7 +34,20 @@ const Main = ({
         )}
 
         <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
-          <Title color="dark">{title}</Title>
+          <Title color="dark">
+            {title}{' '}
+            {advanced && (
+              <Chip
+                type="primary-transparent"
+                style={{
+                  transform: 'translateY(-15%)',
+                  display: 'inline-flex',
+                }}
+              >
+                Advanced
+              </Chip>
+            )}
+          </Title>
           {/* {secondTitle ? <Title color="primary">{secondTitle}</Title> : ''} */}
         </Flex>
         <Subtitle>{description}</Subtitle>
@@ -101,6 +115,8 @@ const Subtitle = styled(Text)`
 `
 
 const Title = styled(H2)`
+  display: inline;
+
   @media (max-width: 1140px) {
     font-size: 24px;
   }

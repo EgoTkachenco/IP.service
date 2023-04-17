@@ -4,7 +4,7 @@ import { Flex } from '@/core'
 import SelectedServicesCart from '@/components/reusable/SelectedServicesCart'
 import CustomServiceCard from '@/components/reusable/CustomServiceCard'
 
-const CustomPlan = ({ period, details, onSubscribe }) => {
+const CustomPlan = ({ period, details = [], onSubscribe }) => {
   const [selected, setSelected] = useState([])
   const handleSelect = (value) => {
     if (selected.includes(value))
@@ -15,19 +15,20 @@ const CustomPlan = ({ period, details, onSubscribe }) => {
   return (
     <Container>
       <CardsContainer>
-        {details.map((detail) => (
-          <CustomServiceCard
-            key={detail.id}
-            period={period}
-            details={detail}
-            isActive={selected.includes(detail.id)}
-            handleSelect={() => handleSelect(detail.id)}
-          />
-        ))}
+        {details &&
+          details.map((detail) => (
+            <CustomServiceCard
+              key={detail.id}
+              period={period}
+              details={detail}
+              isActive={selected.includes(detail.id)}
+              handleSelect={() => handleSelect(detail.id)}
+            />
+          ))}
       </CardsContainer>
       <SelectedServicesCart
         period={period}
-        details={details}
+        details={details || []}
         selected={selected}
         onItemRemove={removeItem}
         onSubscribe={() => onSubscribe(selected).then(() => setSelected([]))}
@@ -41,12 +42,10 @@ export default CustomPlan
 const Container = styled(Flex)`
   gap: 30px;
   width: 100%;
-  margin-bottom: 168px;
 
   @media (max-width: 1140px) {
     flex-direction: column-reverse;
     gap: 24px;
-    margin-bottom: 32px;
   }
 `
 
@@ -55,6 +54,7 @@ const CardsContainer = styled(Flex)`
   gap: 30px;
   flex-wrap: wrap;
   flex-grow: 1;
+  align-items: stretch;
   & > * {
     flex: 0 1 calc((100% - 30px) / 2);
   }

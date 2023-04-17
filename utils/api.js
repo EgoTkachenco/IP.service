@@ -58,6 +58,9 @@ export const getProfile = () =>
 export const updateProfile = (data) =>
   axios.put('/api/v1/account/profile', data, securedFetchOptions())
 
+export const skipOnboarding = () =>
+  axios.put('/api/v1/account/profile', { onboarding: 0 }, securedFetchOptions())
+
 export const getAnalytics = (duration = 7) =>
   axios.get('/api/v1/account/data/analytics', {
     ...securedFetchOptions(),

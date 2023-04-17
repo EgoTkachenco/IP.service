@@ -1,4 +1,4 @@
-const { makeAutoObservable } = require('mobx')
+const { makeAutoObservable, computed } = require('mobx')
 import {
   login,
   register,
@@ -7,6 +7,7 @@ import {
   logout,
   updateProfile,
   getProfile,
+  skipOnboarding,
 } from '@/utils/api'
 import { eraseToken, getToken, setToken, USER_STORE_NAME } from '@/utils/axios'
 
@@ -15,7 +16,9 @@ class AuthStore {
   user = null
   forgetIdentifier = ''
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this, {
+      showOnboarding: computed,
+    })
   }
 
   signIn = (data) => {
@@ -93,11 +96,25 @@ class AuthStore {
     return updateProfile(data)
       .then((user) => {
         this.user = user
-        localStorage.setItem(USER_STORE_NAME, JSON.stringify(user))
       })
       .finally(() => {
         this.isFetch = false
       })
+  }
+
+  skipOnboarding = () => {
+    this.isFetch = true
+    return skipOnboarding()
+      .then(() => {
+        this.user.onboarding = 0
+      })
+      .finally(() => {
+        this.isFetch = false
+      })
+  }
+
+  get showOnboarding() {
+    return this.user && this.user.onboarding ? true : false
   }
 }
 

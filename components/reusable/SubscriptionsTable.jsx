@@ -3,58 +3,56 @@ import { Icon, Caption } from '@/core'
 import { useState, useEffect } from 'react'
 
 const SubscriptionsTable = ({ plans }) => {
-  const getCellValue = (value) => {
-    if (!value || typeof value === 'boolean')
-      return value ? (
-        <Icon icon="done-outline" size="24px" color="success" />
-      ) : (
-        <Icon icon="close" size="24px" color="danger" />
-      )
-
-    return <Caption>{value}</Caption>
-  }
-
   const [data, setData] = useState([])
+  const columns = [
+    'Requests per month',
+    'Additional requests',
+    'Geolocation',
+    'ASN',
+    'Privacy Detection',
+    'Abuse',
+    'Carrier',
+    'Hosted Domains',
+    'Company',
+    'Whois',
+    'Ranges',
+    'Support',
+  ]
 
-  useEffect(() => {
-    const free_key = 'free_plan'
-    const req_key = 'Requests per month'
-    const add_req_key = 'Additional requests'
-    let order = 1
-    let newData = {
-      [req_key]: { [free_key]: '50k lookups', order: order++ },
-      [add_req_key]: { [free_key]: false, order: order++ },
+  const getCellValue = (column, planName) => {
+    const plan = plans.find((el) => el.name === planName)
+
+    switch (column) {
+      case 'Requests per month':
+        const limit = ((plan ? plan.requests_count : 50000) / 1000).toFixed(0)
+        return <Caption>{limit}k</Caption>
+      case 'Additional requests':
+        if (!plan) return <Icon icon="close" size="24px" color="danger" />
+        return (
+          <Caption>{`$${plan.additional_requests_price} per extra \n${(
+            plan.additional_requests_limit / 1000
+          ).toFixed(0)}k requests`}</Caption>
+        )
+      case 'Support':
+        if (!plan) return <Icon icon="close" size="24px" color="danger" />
+        if (plan.name === 'Basic') return <Caption>Basic Support</Caption>
+        return <Caption>Priority Support</Caption>
+      default:
+        let value =
+          (plan &&
+            plan.options.find((option) => option.name === column)?.included) ||
+          false
+
+        if (!plan && column === 'Geolication') value = true
+        return (
+          <Icon
+            icon={value ? 'done-outline' : 'close'}
+            size="24px"
+            color={value ? 'success' : 'danger'}
+          />
+        )
     }
-
-    plans.forEach((plan) => {
-      const planKey = plan.name.toLowerCase()
-      const text = document.createElement('span')
-      text.innerHTML = plan.additional_description
-      newData[req_key][planKey] = (
-        <span
-          dangerouslySetInnerHTML={{
-            __html: text.childNodes[0].childNodes[0].innerText,
-          }}
-        />
-      )
-      newData[add_req_key][planKey] = (
-        <span
-          dangerouslySetInnerHTML={{
-            __html: text.childNodes[0].childNodes[2].data,
-          }}
-        />
-      )
-      plan.options.forEach((option) => {
-        if (!newData[option.name])
-          newData[option.name] = { [free_key]: false, order: order++ }
-        newData[option.name][planKey] = !!option.included
-      })
-    })
-    newData = Object.keys(newData)
-      .map((key) => ({ key, ...newData[key] }))
-      .sort((a, b) => a.order - b.order)
-    setData(newData)
-  }, [plans])
+  }
 
   return (
     <Table>
@@ -65,6 +63,18 @@ const SubscriptionsTable = ({ plans }) => {
         <TableCell>Standard</TableCell>
         <TableCell>Business</TableCell>
       </TableHeaderRow>
+
+      {columns.map((column, i) => (
+        <TableRow key={i}>
+          <TableCell>
+            <Caption weight="600">{column}</Caption>
+          </TableCell>
+          <TableCell>{getCellValue(column, 'Free')}</TableCell>
+          <TableCell>{getCellValue(column, 'Basic')}</TableCell>
+          <TableCell>{getCellValue(column, 'Standard')}</TableCell>
+          <TableCell>{getCellValue(column, 'Business')}</TableCell>
+        </TableRow>
+      ))}
 
       {data.map((row, i) => (
         <TableRow key={i}>
@@ -88,7 +98,6 @@ const Table = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 168px;
 
   @media (max-width: 1140px) {
     display: none;

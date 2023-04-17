@@ -7,7 +7,7 @@ import { getIp, searchIp } from '@/utils/api'
 import JSONPreview from '../search/JSONPreview'
 import { useClipboard } from '@mantine/hooks'
 
-const OnboardingStep1 = ({ ip, token, url }) => {
+const OnboardingStep1 = ({ ip, token, url, skipOnboarding }) => {
   return (
     <OnboardingCard
       step="1"
@@ -38,7 +38,13 @@ const OnboardingStep1 = ({ ip, token, url }) => {
 
       <Details ip={ip} url={url} />
 
-      <Button color="text" size="small" outline width="auto">
+      <Button
+        color="text"
+        size="small"
+        outline
+        width="auto"
+        onClick={skipOnboarding}
+      >
         Skip Onboarding
       </Button>
     </OnboardingCard>
@@ -116,7 +122,7 @@ const Details = ({ ip, url }) => {
       <Text color="success" font="monospace" weight="400">
         $ curl {url}
       </Text>
-      <PreviewContainer className="custom-scroll">
+      <PreviewContainer className="custom-scroll-dark">
         <JSONPreview
           icon={false}
           data={(data && data[activeTab]) || {}}

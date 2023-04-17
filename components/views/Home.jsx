@@ -4,6 +4,7 @@ import { Flex } from '@/core'
 import OnboardingStep1 from '@/components/reusable/onboarding/OnboardingStep1'
 import OnboardingStep2 from '@/components/reusable/onboarding/OnboardingStep2'
 import OnboardingStep3 from '@/components/reusable/onboarding/OnboardingStep3'
+import OnboardingStep4 from '@/components/reusable/onboarding/OnboardingStep4'
 
 import LastDaysUsage from '@/components/reusable/analytics/LastDaysUsage'
 import UpcomingBill from '@/components/reusable/analytics/UpcomingBill'
@@ -14,27 +15,45 @@ import { observer } from 'mobx-react-lite'
 import AnalyticsStore from '@/store/AnalyticsStore'
 import SearchStore from '@/store/SearchStore'
 import BillingStore from '@/store/BillingStore'
+import AuthStore from '@/store/AuthStore'
 
 const Home = observer(() => {
   const { analytics, usage, duration, loadAnalytics, changeDuration } =
     AnalyticsStore
   const { userIp: ip, getIpInfo } = SearchStore
   const { currentPlan, isFreePlan, setUserTrial } = BillingStore
+  const { showOnboarding, skipOnboarding } = AuthStore
   useEffect(() => {
     loadAnalytics()
     if (!ip) getIpInfo()
   }, [])
 
+  console.log('showOnboarding', showOnboarding)
+
   const host = 'https://spyskey.com'
   const url = `${host}/${ip}?token=${analytics?.token}`
   return (
     <Flex direction="column" gap="50px">
-      <OnboardingStep1 url={url} ip={ip} token={analytics?.token} />
-      <OnboardingStep2 host={host} token={analytics?.token} />
-      {isFreePlan && <OnboardingStep3 setTrial={() => setUserTrial()} />}
+      {showOnboarding && (
+        <>
+          <OnboardingStep1
+            url={url}
+            ip={ip}
+            token={analytics?.token}
+            skipOnboarding={skipOnboarding}
+          />
+          <OnboardingStep2 />
+          <OnboardingStep3 host={host} token={analytics?.token} />
+          {isFreePlan && <OnboardingStep4 setTrial={() => setUserTrial()} />}
+        </>
+      )}
 
       <AnalyticsContent_1 flex="1">
-        <LastDaysUsage value={analytics?.weekUsage} today={analytics?.today} />
+        <LastDaysUsage
+          value={analytics?.weekUsage}
+          today={analytics?.today}
+          yesterday={analytics?.yesterday}
+        />
         <UpcomingBill currentPlan={currentPlan} />
       </AnalyticsContent_1>
 

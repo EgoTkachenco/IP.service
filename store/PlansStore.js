@@ -26,9 +26,12 @@ class PlansStore {
     try {
       const options = await getCustomPlanDetails()
       this.customPlanOptions = options.map((el) => {
-        const service = services.find(
+        let service = services.find(
           (service) => service.name.search(el.name) !== -1
         )
+        if (!service && el.name.toLowerCase().search('support') !== -1) {
+          service = { icon: 'support', color: 'success' }
+        }
         return {
           ...service,
           ...el,

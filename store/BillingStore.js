@@ -35,6 +35,7 @@ class BillingStore {
   setUserTrial = async () => {
     try {
       await createOrderTrial()
+      AuthStore.getProfile()
     } catch (error) {
       console.log(error.message)
     }

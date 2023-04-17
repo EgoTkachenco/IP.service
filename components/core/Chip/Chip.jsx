@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 // import Card from '../Card'
 
-const Chip = ({ type, children, onClick }) => {
+const Chip = ({ type, children, onClick, inline = false, style }) => {
   let ChipComponent
   switch (type) {
     case 'primary':
@@ -32,7 +32,11 @@ const Chip = ({ type, children, onClick }) => {
       ChipComponent = GreyChip
   }
   return (
-    <ChipComponent onClick={() => onClick && onClick()} clickable={!!onClick}>
+    <ChipComponent
+      onClick={() => onClick && onClick()}
+      clickable={!!onClick}
+      style={style}
+    >
       {children}
     </ChipComponent>
   )

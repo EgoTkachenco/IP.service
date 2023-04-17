@@ -23,6 +23,11 @@ class AnalyticsStore {
       data.today = Object.values(data.usage.all)[
         Object.values(data.usage.all).length - 1
       ]
+      if (Object.values(data.usage.all).length > 1) {
+        data.yesterday = Object.values(data.usage.all)[
+          Object.values(data.usage.all).length - 2
+        ]
+      }
       this.analytics = data
       await this.loadUsage()
     } catch (error) {

@@ -3,13 +3,16 @@ import { Card, Icon, Flex, Text, Chip, Caption, H3, Button } from '@/core'
 import Link from 'next/link'
 
 const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
-  const priceKey = period === 'month' ? 'month_price' : 'year_price'
+  const isSupport = details.name.toLowerCase().search('upport') !== -1
+  const priceKey =
+    period === 'month' || isSupport ? 'month_price' : 'year_price'
   const lookups = details.limit_reqeusts
     ? Math.floor(details.limit_reqeusts / 1000) + 'k'
     : 0
   const additional_lookups = details.additional_requests_limit
     ? Math.floor(details.additional_requests_limit / 1000) + 'k'
     : 0
+
   return (
     <Card color="white">
       <Flex align="center" gap="20px" width="100%">
@@ -19,27 +22,35 @@ const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
           </IconWrapper>
         )}
         <Title color="dark">{details?.name}</Title>
-        {details.advanced ? <Chip>Advanced</Chip> : ''}
+        {details.advanced ? (
+          <Chip type="primary-transparent">Advanced</Chip>
+        ) : (
+          ''
+        )}
       </Flex>
       <Description>{details.description}</Description>
       <PriceContainer>
         <H3 color="dark" weight={700}>
           ${details[priceKey].toFixed(0)}
         </H3>
-        <Caption weight={700}>/{lookups} lookups</Caption>
+        {!isSupport ? (
+          <Caption weight={700}>/{lookups} lookups</Caption>
+        ) : (
+          <Caption weight={700}>/a month</Caption>
+        )}
       </PriceContainer>
-      {/* <Lookups
-        dangerouslySetInnerHTML={{ __html: details.small_description }}
-      /> */}
-      <Lookups>
-        <Caption weight={700} color="dark">
-          {lookups} lookups per month
-        </Caption>
-        <Caption weight={500}>
-          ${details.additional_requests_price.toFixed(0)} per additional{' '}
-          {additional_lookups} lookups
-        </Caption>
-      </Lookups>
+
+      {!isSupport && (
+        <Lookups>
+          <Caption weight={700} color="dark">
+            {lookups} lookups per month
+          </Caption>
+          <Caption weight={500}>
+            ${details.additional_requests_price.toFixed(0)} per additional{' '}
+            {additional_lookups} lookups
+          </Caption>
+        </Lookups>
+      )}
 
       <Bottom flex="1">
         {details.link && (
@@ -96,6 +107,7 @@ const Bottom = styled(Flex)`
   width: 100%;
   border-top: 1px solid #f1f4f9;
   gap: 10px;
+  margin-top: auto;
 `
 
 const IconWrapper = styled(Flex)`

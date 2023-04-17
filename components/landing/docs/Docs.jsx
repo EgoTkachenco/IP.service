@@ -367,7 +367,7 @@ const DOCS = [
     ],
   },
   {
-    title: 'Data Types',
+    title: 'Plan APIs',
     blocks: [
       {
         title: 'Geolocation data',
@@ -497,41 +497,6 @@ const DOCS = [
         ),
       },
       {
-        title: 'Company Data',
-        content: () => (
-          <>
-            <Available plans={['bussiness']} />
-            <Text>
-              Company Data refers to the information that can be obtained from
-              an IP address to identify the name of the organization behind the
-              IP. This information can be useful for various purposes, such as
-              marketing research, cybersecurity, and intellectual property
-              protection.
-            </Text>
-            <Text>
-              To obtain company data from an IP address, various tools and
-              techniques can be used, such as WHOIS databases, IP lookup tools,
-              and reverse DNS lookups. These tools can provide information about
-              the organization's name, address, phone number, and other contact
-              information.
-            </Text>
-            <Example>
-              <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
-              </CopyCard>
-            </Example>
-            <Example>
-              <H6 color="dark">Example Response:</H6>
-              <Details
-                service={companyService}
-                format={(data) => ({ company: data })}
-              />
-            </Example>
-          </>
-        ),
-      },
-      {
         title: 'Hosted Domains Data',
         content: () => (
           <>
@@ -600,48 +565,6 @@ const DOCS = [
           </>
         ),
       },
-      {
-        title: 'Whois Data',
-        content: () => (
-          <>
-            <Available plans={['bussiness']} />
-            <Text>
-              WHOIS IP data refers to the information that can be obtained from
-              a WHOIS database about an internet protocol (IP) address. WHOIS is
-              a protocol used to query databases that contain information about
-              domain name registrations and IP addresses, including contact
-              details for the owners and administrators of the domain or IP
-              address.
-            </Text>
-            <Text>
-              WHOIS IP data can provide valuable information about the
-              organization or individual responsible for an IP address,
-              including their name, address, phone number, email address, and
-              other contact information. This information can be useful for
-              various purposes, such as cybersecurity, intellectual property
-              protection, and marketing research.
-            </Text>
-            <Example>
-              <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
-              </CopyCard>
-            </Example>
-            <Example>
-              <H6 color="dark">Example Response:</H6>
-              <Details
-                service={whoisService}
-                format={(data) => ({ whois: data })}
-              />
-            </Example>
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    title: 'Other APIs',
-    blocks: [
       {
         title: 'ASN API',
         content: () => (
@@ -949,6 +872,81 @@ const DOCS = [
               for the IP address "8.8.8.8". It returns a list of all domains
               hosted on the given IP address.
             </Text>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: 'Custom APIs',
+    blocks: [
+      {
+        title: 'Company Data',
+        content: () => (
+          <>
+            <Text>
+              Company Data refers to the information that can be obtained from
+              an IP address to identify the name of the organization behind the
+              IP. This information can be useful for various purposes, such as
+              marketing research, cybersecurity, and intellectual property
+              protection.
+            </Text>
+            <Text>
+              To obtain company data from an IP address, various tools and
+              techniques can be used, such as WHOIS databases, IP lookup tools,
+              and reverse DNS lookups. These tools can provide information about
+              the organization's name, address, phone number, and other contact
+              information.
+            </Text>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
+                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details
+                service={companyService}
+                format={(data) => ({ company: data })}
+              />
+            </Example>
+          </>
+        ),
+      },
+      {
+        title: 'Whois Data',
+        content: () => (
+          <>
+            <Text>
+              WHOIS IP data refers to the information that can be obtained from
+              a WHOIS database about an internet protocol (IP) address. WHOIS is
+              a protocol used to query databases that contain information about
+              domain name registrations and IP addresses, including contact
+              details for the owners and administrators of the domain or IP
+              address.
+            </Text>
+            <Text>
+              WHOIS IP data can provide valuable information about the
+              organization or individual responsible for an IP address,
+              including their name, address, phone number, email address, and
+              other contact information. This information can be useful for
+              various purposes, such as cybersecurity, intellectual property
+              protection, and marketing research.
+            </Text>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
+                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details
+                service={whoisService}
+                format={(data) => ({ whois: data })}
+              />
+            </Example>
           </>
         ),
       },

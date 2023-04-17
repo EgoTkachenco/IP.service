@@ -1,15 +1,12 @@
-import { Card, Flex, H6, Chip, Caption } from '@/core'
+import { Card, Flex, H6, Chip, Caption, Text } from '@/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import {
   Area,
   AreaChart,
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
 } from 'recharts'
@@ -64,45 +61,77 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
           })}
         </Flex>
       </Flex>
-      <style>
-        {`.recharts-responsive-container {
+      {state && state.length ? (
+        <Flex direction="column" gap="32px" width="100%">
+          <style>
+            {`.recharts-responsive-container {
 					margin-left: -32px;
 					width: calc(100% + 32px);
+					
+					@media (max-width: 1140px) {
+						margin-left: -32px;
+						width: calc(100% + 64px);
+					}
 				}`}
-      </style>
-      <ResponsiveContainer aspect={isMobile ? 3 / 2 : 10 / 3}>
-        <AreaChart data={state}>
-          <defs>
-            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="73.24%" stopColor="#0E5DF6" stopOpacity={0.08} />
-              <stop offset="98.65%" stopColor="#0E5DF6" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Area
-            type="monotone"
-            dataKey="all"
-            stroke="transparent"
-            fill="url(#colorPv)"
-          />
-          <Area
-            type="monotone"
-            dataKey="failed"
-            stroke="#EE2354"
-            fill="transparent"
-            strokeWidth="2"
-          />
-          <Area
-            type="monotone"
-            dataKey="successful"
-            stroke="#0E5DF6"
-            fill="transparent"
-            strokeWidth="2"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+          </style>
+          <ResponsiveContainer aspect={isMobile ? 3 / 2 : 10 / 3}>
+            <AreaChart data={state}>
+              <defs>
+                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="73.24%"
+                    stopColor="#0E5DF6"
+                    stopOpacity={0.08}
+                  />
+                  <stop offset="98.65%" stopColor="#0E5DF6" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Area
+                type="monotone"
+                dataKey="all"
+                stroke="transparent"
+                fill="url(#colorPv)"
+              />
+              <Area
+                type="monotone"
+                dataKey="failed"
+                stroke="#EE2354"
+                fill="transparent"
+                strokeWidth="2"
+              />
+              <Area
+                type="monotone"
+                dataKey="successful"
+                stroke="#0E5DF6"
+                fill="transparent"
+                strokeWidth="2"
+              />
+              {/* <Legend /> */}
+            </AreaChart>
+          </ResponsiveContainer>
+          <LabelsContainer>
+            <ChartLabel>
+              <ChartLabelCircle />
+              <Text>Total Requests</Text>
+            </ChartLabel>
+            <ChartLabel>
+              <ChartLabelCircle color="primary" />
+              <Text>Successfull Requests</Text>
+            </ChartLabel>
+            <ChartLabel>
+              <ChartLabelCircle color="danger" />
+              <Text>Failed Requests</Text>
+            </ChartLabel>
+          </LabelsContainer>
+        </Flex>
+      ) : (
+        <Flex width="100%" justify="center">
+          <Caption weight={700}>No usage</Caption>
+        </Flex>
+      )}
     </Wrapper>
   )
 }
@@ -121,4 +150,24 @@ const Wrapper = styled(Card)`
     padding: 16px;
     gap: 32px;
   }
+`
+const LabelsContainer = styled(Flex)`
+  gap: 30px;
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+`
+const ChartLabel = styled(Flex)`
+  gap: 10px;
+  align-items: center;
+`
+const ChartLabelCircle = styled.div`
+  width: 30px;
+  height: 30px;
+  background: rgba(14, 93, 246, 0.1);
+  border: 2px solid
+    ${({ theme, color }) =>
+      color ? theme.colors[color] : 'rgba(14, 93, 246, 0.1)'};
+  border-radius: 50%;
 `

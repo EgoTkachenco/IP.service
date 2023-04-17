@@ -41,6 +41,7 @@ module.exports = {
     'light-grey': 'rgba(102, 112, 128, 0.5)',
     // danger: '#EE2354',
     danger: '#E44332',
+    pink: '#C268ED',
   },
   buttons: {
     sizes: {

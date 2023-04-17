@@ -4,8 +4,11 @@ import JSONPreview from './JSONPreview'
 import PlanCard from './PlanCard'
 import { Fragment } from 'react'
 import CopyButton from '@/components/reusable/CopyButton'
+import { useRouter } from 'next/router'
+import routes from '@/constants/routes'
 
-const Result = ({ result }) => {
+const Result = ({ currentPlan, changePlan, result }) => {
+  const router = useRouter()
   if (!result) return ''
 
   const renderPlan = (plan_data, bottomSlot) => {
@@ -25,20 +28,37 @@ const Result = ({ result }) => {
 
   return (
     <WrapperCard color="white">
-      {result.map((plan) => (
-        <Fragment key={plan.name}>
-          <PlanLabels plan={plan.name} />
-          {renderPlan(
-            plan.data_groups,
-            <PlanCard
-              name={plan.name}
-              buttonColor={plan_color[plan.name]}
-              buttonText={`Buy for $${plan.month_price.toFixed(2)}/mo`}
-              onClick={() => {}}
-            />
-          )}
-        </Fragment>
-      ))}
+      {result.map((plan) => {
+        const isActive = currentPlan.name === plan.name
+        const isCustom = plan.name === 'Custom'
+        let buttonText = `Buy for $${plan.month_price.toFixed(2)}/mo`
+        if (isCustom) buttonText = 'Create your plan'
+        if (isActive) buttonText = 'Active'
+        return (
+          <Fragment key={plan.name}>
+            <PlanLabels plan={plan.name} />
+            {renderPlan(
+              plan.data_groups,
+              <PlanCard
+                name={plan.name}
+                buttonColor={plan_color[plan.name]}
+                buttonText={buttonText}
+                disabled={isActive}
+                onClick={() => {
+                  if (isCustom) {
+                    router.push({
+                      pathname: routes.upgrade,
+                      query: { tab: 'custom' },
+                    })
+                  } else if (!isActive) {
+                    changePlan(plan.name)
+                  }
+                }}
+              />
+            )}
+          </Fragment>
+        )
+      })}
     </WrapperCard>
   )
 }
@@ -87,6 +107,7 @@ const plan_color = {
   Basic: 'success',
   Standard: 'secondary',
   Business: 'primary',
+  Custom: 'pink',
 }
 
 const WrapperCard = styled(Card)`

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import PlanCard from '@/components/reusable/UpgradePlanCard'
 import Animation from '@/components/reusable/Animation'
 import CustomPlan from '@/components/landing/blocks/CustomPlan'
+import { useRouter } from 'next/router'
 
 const Upgrade = ({
   currentPlan,
@@ -15,6 +16,15 @@ const Upgrade = ({
 }) => {
   const [period, setPeriod] = useState('month')
   const [tab, setTab] = useState('plans') // plans, custom
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query.tab) setTab(router.query.tab)
+  }, [router])
+  const changeTab = (tab) => {
+    router.query.tab = tab
+    router.push(router)
+  }
 
   return (
     <Flex direction="column" gap="30px" width="100%">
@@ -27,14 +37,14 @@ const Upgrade = ({
           <Button
             color="primary"
             outline={tab !== 'plans'}
-            onClick={() => setTab('plans')}
+            onClick={() => changeTab('plans')}
           >
             Our plans
           </Button>
           <Button
             color="primary"
             outline={tab !== 'custom'}
-            onClick={() => setTab('custom')}
+            onClick={() => changeTab('custom')}
           >
             Create your plan
           </Button>
@@ -68,30 +78,33 @@ const Upgrade = ({
 
 export default Upgrade
 
-const PlansList = ({ currentPlan, plans, period, onPlanChoose }) => (
-  <CardsContainer flex="1 1">
-    {plans &&
-      plans.map((plan, i) => (
-        <Animation
-          key={plan.name}
-          delay={i * 0.2}
-          style={{ display: 'flex', alignItems: 'strench' }}
-        >
-          <PlanCard
+const PlansList = ({ currentPlan, plans, period, onPlanChoose }) => {
+  let priceKey = period === 'year' ? 'year_price' : 'month_price'
+  return (
+    <CardsContainer flex="1 1">
+      {plans &&
+        plans.map((plan, i) => (
+          <Animation
             key={plan.name}
-            name={plan.name}
-            priceType={period}
-            price={period === 'year' ? plan.year_price : plan.month_price}
-            description={plan.description}
-            additional_description={plan.additional_description}
-            options={plan.options}
-            setPlan={() => onPlanChoose(plan.name)}
-            isCurrent={currentPlan?.name === plan.name}
-          />
-        </Animation>
-      ))}
-  </CardsContainer>
-)
+            delay={i * 0.2}
+            style={{ display: 'flex', alignItems: 'strench' }}
+          >
+            <PlanCard
+              key={plan.name}
+              name={plan.name}
+              priceType={period}
+              price={plan[priceKey]}
+              description={plan.description}
+              additional_description={plan.additional_description}
+              options={plan.options}
+              setPlan={() => onPlanChoose(plan.name)}
+              isCurrent={currentPlan?.name === plan.name}
+            />
+          </Animation>
+        ))}
+    </CardsContainer>
+  )
+}
 
 const TitleContainer = styled(Flex)`
   width: 100%;
@@ -131,7 +144,7 @@ const ButtonsContainer = styled(Flex)`
 `
 
 const BottomContainer = styled(Flex)`
-  margin: 50px 0 30px;
+  margin: 20px 0 30px;
   width: 100%;
   align-items: flex-end;
   justify-content: flex-start;
