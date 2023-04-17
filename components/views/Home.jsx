@@ -28,8 +28,6 @@ const Home = observer(() => {
     if (!ip) getIpInfo()
   }, [])
 
-  console.log('showOnboarding', showOnboarding)
-
   const host = 'https://spyskey.com'
   const url = `${host}/${ip}?token=${analytics?.token}`
   return (

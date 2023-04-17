@@ -16,6 +16,9 @@ const Chip = ({ type, children, onClick, inline = false, style }) => {
     case 'grey':
       ChipComponent = GreyRoundChip
       break
+    case 'pink':
+      ChipComponent = PinkChip
+      break
     case 'grey-outline':
       ChipComponent = GreyOutlineRoundChip
       break
@@ -86,6 +89,10 @@ const SecondaryChip = styled(RoundedChip)`
 
 const SuccessChip = styled(RoundedChip)`
   background: ${({ theme }) => theme.colors.success};
+`
+
+const PinkChip = styled(RoundedChip)`
+  background: ${({ theme }) => theme.colors.pink};
 `
 
 const GreyRoundChip = styled(RoundedChip)`

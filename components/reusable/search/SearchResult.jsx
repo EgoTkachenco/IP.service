@@ -91,7 +91,8 @@ const DataPreviewBlock = ({ title, data, bottomSlot }) => {
 
 const PlanLabels = ({ plan }) => {
   const plans = ['Basic', 'Standard', 'Business']
-  const filtered_plans = plans.slice(0, plans.indexOf(plan) + 1)
+  const filtered_plans =
+    plan !== 'Custom' ? plans.slice(0, plans.indexOf(plan) + 1) : ['Custom']
   return (
     <ChipContainer gap="10px">
       {filtered_plans.map((name, i) => (

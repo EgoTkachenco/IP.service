@@ -29,7 +29,29 @@ class AnalyticsStore {
         ]
       }
       this.analytics = data
-      await this.loadUsage()
+      this.usage = {
+        ...data.usage,
+        // test
+        // all: {
+        //   'Apr 17, 2023': 61,
+        //   'Apr 16, 2023': 50,
+        //   'Apr 15, 2023': 30,
+        //   'Apr 14, 2023': 55,
+        // },
+        // failed: {
+        //   'Apr 17, 2023': 20,
+        //   'Apr 16, 2023': 30,
+        //   // 'Apr 15, 2023': 10,
+        //   'Apr 14, 2023': 15,
+        // },
+        // successful: {
+        //   'Apr 17, 2023': 41,
+        //   'Apr 16, 2023': 20,
+        //   'Apr 15, 2023': 20,
+        //   'Apr 14, 2023': 50,
+        // },
+      }
+      // await this.loadUsage()
     } catch (error) {
       console.log(error.message)
     }

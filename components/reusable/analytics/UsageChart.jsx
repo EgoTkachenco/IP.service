@@ -20,15 +20,17 @@ const tabs = [
 
 const UsageChart = ({ data, duration, onDurationChange }) => {
   const [state, setState] = useState([])
+
   useEffect(() => {
     let chartData = []
+
     if (data) {
       const keys = Object.keys(data.all)
       chartData = keys.map((key) => ({
         name: key,
         all: data.all[key],
-        failed: data.failed[key],
-        successful: data.successful[key],
+        failed: data.failed[key] || 0,
+        successful: data.successful[key] || 0,
       }))
     }
     setState(chartData)
@@ -65,14 +67,18 @@ const UsageChart = ({ data, duration, onDurationChange }) => {
         <Flex direction="column" gap="32px" width="100%">
           <style>
             {`.recharts-responsive-container {
-					margin-left: -32px;
-					width: calc(100% + 32px);
-					
-					@media (max-width: 1140px) {
-						margin-left: -32px;
-						width: calc(100% + 64px);
-					}
-				}`}
+								margin-left: -32px;
+								width: calc(100% + 32px);
+								
+								@media (max-width: 1140px) {
+									margin-left: -32px;
+									width: calc(100% + 64px);
+								}
+							}
+							.recharts-xAxis > .recharts-cartesian-axis-ticks text {
+								transform: translateY(12px);
+							}
+						`}
           </style>
           <ResponsiveContainer aspect={isMobile ? 3 / 2 : 10 / 3}>
             <AreaChart data={state}>
