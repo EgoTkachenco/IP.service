@@ -13,9 +13,9 @@ const SubscriptionsTable = ({ plans }) => {
     'Abuse',
     'Carrier',
     'Hosted Domains',
+    'IP Ranges API',
     'Company',
     'Whois',
-    'Ranges',
     'Support',
   ]
 
