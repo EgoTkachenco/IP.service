@@ -1,38 +1,13 @@
-import dynamic from 'next/dynamic'
-
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
-
-const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
-  loading: () => '',
-})
-const RangesAPIUsecases = dynamic(() => import('./blocks/RangesAPIUsecases'), {
-  loading: () => '',
-})
-const Contact = dynamic(() => import('./blocks/Contact'), {
-  loading: () => '',
-  ssr: false,
-})
-const FAQ = dynamic(() => import('./blocks/FAQ'), {
-  loading: () => '',
-  ssr: false,
-})
-const Partners = dynamic(() => import('./blocks/Partners'), {
-  loading: () => '',
-  ssr: false,
-})
-const GetStarted = dynamic(() => import('./blocks/GetStarted'), {
-  loading: () => '',
-  ssr: false,
-})
-const Products = dynamic(() => import('./blocks/Products'), {
-  loading: () => '',
-  ssr: false,
-})
-const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
-  loading: () => '',
-  ssr: false,
-})
+import AdvantagesSmall from './blocks/AdvantagesSmall'
+import RangesAPIUsecases from './blocks/RangesAPIUsecases'
+import Contact from './blocks/Contact'
+import FAQ from './blocks/FAQ'
+import Partners from './blocks/Partners'
+import GetStarted from './blocks/GetStarted'
+import Products from './blocks/Products'
+import ServiceStatistic from './blocks/ServiceStatistic'
 
 import { rangesService } from '@/utils/api'
 

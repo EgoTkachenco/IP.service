@@ -38,10 +38,15 @@ export const logout = () => axios.get('/api/v1/logout', securedFetchOptions())
 
 export const getIp = (ip) => axios.get('/' + (ip ? `?ip=${ip}` : ''))
 
+// export const searchIp = (ip) =>
+//   axios.get('/api/v1/account/data/search', {
+//     params: ip ? { query: ip } : {},
+//     ...securedFetchOptions(),
+// 	})
+
 export const searchIp = (ip) =>
-  axios.get('/api/v1/account/data/search', {
+  axios.get('/api/v1/public/services/search', {
     params: ip ? { query: ip } : {},
-    ...securedFetchOptions(),
   })
 
 export const getPlansList = () => axios.get('/api/v1/public/plans/list')

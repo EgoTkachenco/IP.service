@@ -5,6 +5,7 @@ import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import ContactForm from '@/components/reusable/ContactForm'
 import { useMediaQuery } from '@mantine/hooks'
 import { contact_email } from '@/constants/constants'
+
 const Contact = () => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
 

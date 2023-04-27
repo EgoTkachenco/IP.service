@@ -1,44 +1,15 @@
-import dynamic from 'next/dynamic'
-
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
+import AdvantagesSmall from './blocks/AdvantagesSmall'
+import CompanyAPIUsecases from './blocks/CompanyAPIUsecases'
+import Contact from './blocks/Contact'
+import FAQ from './blocks/FAQ'
+import Partners from './blocks/Partners'
+import GetStarted from './blocks/GetStarted'
+import Products from './blocks/Products'
+import ServiceStatistic from './blocks/ServiceStatistic'
+import BussinessMap from './blocks/BussinessMap'
 
-const AdvantagesSmall = dynamic(() => import('./blocks/AdvantagesSmall'), {
-  loading: () => '',
-})
-const CompanyAPIUsecases = dynamic(
-  () => import('./blocks/CompanyAPIUsecases'),
-  {
-    loading: () => '',
-  }
-)
-const Contact = dynamic(() => import('./blocks/Contact'), {
-  loading: () => '',
-  ssr: false,
-})
-const FAQ = dynamic(() => import('./blocks/FAQ'), {
-  loading: () => '',
-  ssr: false,
-})
-const Partners = dynamic(() => import('./blocks/Partners'), {
-  loading: () => '',
-  ssr: false,
-})
-const GetStarted = dynamic(() => import('./blocks/GetStarted'), {
-  loading: () => '',
-  ssr: false,
-})
-const Products = dynamic(() => import('./blocks/Products'), {
-  loading: () => '',
-  ssr: false,
-})
-const ServiceStatistic = dynamic(() => import('./blocks/ServiceStatistic'), {
-  loading: () => '',
-  ssr: false,
-})
-const BussinessMap = dynamic(() => import('./blocks/BussinessMap'), {
-  loading: () => 'loading',
-})
 import { companyService } from '@/utils/api'
 
 const LandingCompany = () => {
