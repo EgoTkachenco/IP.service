@@ -10,7 +10,6 @@ const SlideDown = ({ children, width, delay, style = {} }) => (
   <motion.div
     style={{ width: width || '100%', ...style }}
     variants={variants}
-    initial="hidden"
     animate="enter"
     exit="exit"
     transition={{
