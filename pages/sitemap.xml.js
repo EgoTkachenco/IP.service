@@ -47,7 +47,6 @@ ${paths
   .join('')}
 	</urlset>
 `
-  console.log(sitemap)
   res.setHeader('Content-Type', 'text/xml')
   res.write(sitemap)
   res.end()
