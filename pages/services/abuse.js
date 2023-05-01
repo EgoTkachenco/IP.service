@@ -10,6 +10,8 @@ export default function AbuseService() {
         title: 'Abuse Contact Data for IP Addresses | Spyskey',
         description:
           'Protect your network from abuse with our tool for retrieving abuse contact data for IP addresses. Stay compliant and safeguard your business reputation.',
+        schema: 'faq',
+        faqTopic: 'Abuse',
       })}
       <Layout>
         <LandingAbuse />

@@ -10,6 +10,8 @@ export default function WhoisService() {
         title: 'IP Whois API. What Is My IP Address | Spyskey',
         description:
           'Get comprehensive and accurate data on any IP address with our IP Whois API. Improve your security and streamline your processes. My IP address information',
+        schema: 'faq',
+        faqTopic: 'Whois',
       })}
       <Layout>
         <LandingWhois />

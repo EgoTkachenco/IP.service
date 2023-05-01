@@ -19,3 +19,15 @@ export const serverSideSecuredRoute = (ctx) => {
     }
   return { props: {} }
 }
+
+export const ignoreMarkup = (str) => {
+  let isTagStart = false
+  return str
+    .split('')
+    .filter((el) => {
+      if (el === '<') isTagStart = true
+      if (!isTagStart) return true
+      if (el === '>') isTagStart = false
+    })
+    .join('')
+}

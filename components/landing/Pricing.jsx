@@ -24,13 +24,6 @@ const Pricing = ({
   const { openModal } = useContext(ModalContext)
   const { isLogged } = useContext(AuthContext)
   const router = useRouter()
-  const handleSubscription = (params, callback) => {
-    if (isLogged) return callback(params, period)
-    else {
-      openModal('sign-up')
-      return Promise.reject()
-    }
-  }
   useEffect(() => {
     if (router.query.tab) setTab(router.query.tab)
   }, [router])
@@ -39,6 +32,15 @@ const Pricing = ({
     router.push(router)
     setTab(tab)
   }
+
+  const handleSubscription = (params, callback) => {
+    if (isLogged) return callback(params, period)
+    else {
+      openModal('sign-up')
+      return Promise.reject()
+    }
+  }
+
   return (
     <>
       <BlockInner direction="column">

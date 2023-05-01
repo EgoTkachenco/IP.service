@@ -10,6 +10,8 @@ export default function ASNService() {
         title: 'IP to ASN. Data | Spyskey',
         description:
           'Our IP to ASN tool allows you to easily identify the autonomous system number (ASN) associated with any IP address. Improve your network management and security today.',
+        schema: 'faq',
+        faqTopic: 'ASN',
       })}
       <Layout>
         <LandingASN />

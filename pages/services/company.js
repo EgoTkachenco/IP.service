@@ -10,6 +10,8 @@ export default function CompanyService() {
         title: 'IP to Company API | Spyskey',
         description:
           'Identify all information about company by IP. Connect with your website visitors on a whole new level with our IP to Company API. ',
+        schema: 'faq',
+        faqTopic: 'Company',
       })}
       <Layout>
         <LandingCompany />

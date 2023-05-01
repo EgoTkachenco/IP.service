@@ -10,6 +10,8 @@ export default function PrivacyService() {
         title: 'Privacy Detection API. VPN | Spyskey',
         description:
           'Our Privacy Detection API helps you identify potential privacy violations on your website, including VPN detection. Sign up for free',
+        schema: 'faq',
+        faqTopic: 'Privacy',
       })}
       <Layout>
         <LandingPrivacy />

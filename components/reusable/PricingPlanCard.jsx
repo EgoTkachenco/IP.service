@@ -13,7 +13,7 @@ const PlanCard = ({
   isCurrent,
 }) => {
   return (
-    <Flex direction="column" gap="10px" width="100%">
+    <Flex direction="column" gap="10px" width="100%" id={name}>
       <PlanCardWrapper color="white">
         <PlanCardName>
           <Caption>{name}</Caption>

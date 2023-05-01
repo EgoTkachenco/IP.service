@@ -10,6 +10,8 @@ export default function CarrierService() {
         title: 'Mobile Carrier Detection | Spyskey',
         description:
           "Improve your mobile marketing strategy with our mobile carrier detection tool. Identify your users' carriers and optimize your messaging for maximum impact",
+        schema: 'faq',
+        faqTopic: 'Carrier',
       })}
       <Layout>
         <LandingCarrier />

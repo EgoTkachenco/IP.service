@@ -1,4 +1,8 @@
-import { contact_email } from '@/constants/constants'
+import {
+  contact_email,
+  organization_address,
+  site_url,
+} from '@/constants/constants'
 
 const terms = [
   {
@@ -615,19 +619,14 @@ const terms = [
           <b>Business Identification Number (BIN): </b>311230692
         </p>
         <div>
-          <b>Address: </b>{' '}
-          <address>
-            1110 Finch Avenue West, Suite 406, North York, Ontario, Canada, M3J
-            2T2
-          </address>
+          <b>Address: </b> <address>{organization_address}</address>
         </div>
         <p>
           <b>E-mail: </b>{' '}
           <a href={'mailto:' + contact_email}>{contact_email}</a>
         </p>
         <p>
-          <b>Website: </b>{' '}
-          <a href="https://spyskey.com/">https://spyskey.com/</a>
+          <b>Website: </b> <a href={site_url + '/'}>{site_url + '/'}</a>
         </p>
       </>
     ),

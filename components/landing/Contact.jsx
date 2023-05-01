@@ -4,7 +4,7 @@ import { BlockInner } from './blocks/Block'
 import PartnersCarousel from '@/components/reusable/PartnersCarousel'
 import ContactForm from '@/components/reusable/ContactForm'
 import { useMediaQuery } from '@mantine/hooks'
-import { contact_email } from '@/constants/constants'
+import { contact_email, contact_phone } from '@/constants/constants'
 
 const Contact = () => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
@@ -21,7 +21,7 @@ const Contact = () => {
           <Flex direction="column" gap="20px">
             <Flex gap="10px" align="center">
               <Icon icon="phone" size="24px" color="text" />
-              <Text>+1 202 440 7180</Text>
+              <Text>{contact_phone}</Text>
             </Flex>
             <Flex gap="10px" align="center">
               <Icon icon="mail" size="24px" color="text" />

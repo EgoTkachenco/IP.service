@@ -3,12 +3,11 @@ import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
 import BillingStore from '@/store/BillingStore'
 import PlansStore from '@/store/PlansStore'
-import { getCustomPlanDetails } from '@/utils/api'
 import { observer } from 'mobx-react-lite'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 const PricingPage = observer(({ plans }) => {
-  const renderMetadata = useMetadataRenderer()
+  const renderMetadata = useMetadataRenderer([])
   const { customPlanOptions, savePlans, loadCustomPlanOptions } = PlansStore
   const { currentPlan, setUserPlan, setUserCustomPlan } = BillingStore
   // Plans hydration to store
@@ -24,6 +23,8 @@ const PricingPage = observer(({ plans }) => {
         title: 'Real Pricing to Get Accurate IP Data | Spyskey',
         description:
           'Find the perfect plan for your needs with our IP Address Data API pricing options. Get accurate and up-to-date data on IP addresses to streamline your business. Choose your plan now!',
+        plans,
+        schema: 'plans-list',
       })}
       <Layout>
         <Pricing
