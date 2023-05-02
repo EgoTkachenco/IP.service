@@ -41,7 +41,7 @@ const Feedbacks = () => {
                     <Image
                       src={slide.logo}
                       alt={slide.position}
-                      layout="fill"
+                      fill
                       objectFit="contain"
                     />
                   </SlideLogo>
@@ -51,7 +51,7 @@ const Feedbacks = () => {
                       <Image
                         src={slide.avatar}
                         alt={slide.name}
-                        layout="fill"
+                        fill
                         objectFit="cover"
                       />
                     </SlideAvatar>

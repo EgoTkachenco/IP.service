@@ -7,7 +7,9 @@ const AbuseAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'Making the Most of Our Abuse Contact API'}</Title>
+        <Title as="h2" color="dark">
+          {'Making the Most of Our Abuse Contact API'}
+        </Title>
         <Container flex="1 1 calc((100% - 64px) / 3)">
           <UseCase text="Enhance network security by swiftly reporting IP misuse incidents." />
           <UseCase text="Strengthen cybersecurity measures with real-time abuse contact data." />

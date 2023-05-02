@@ -7,7 +7,7 @@ const CarrierAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">
+        <Title as="h2" color="dark">
           {'Ways to use our\nMobile Carrier Detection API'}
         </Title>
         <Container flex="1 1 calc((100% - 64px) / 3)">

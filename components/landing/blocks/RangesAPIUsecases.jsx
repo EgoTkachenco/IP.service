@@ -7,7 +7,9 @@ const RangesAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'A few ways to use our\nIP Ranges API'}</Title>
+        <Title as="h2" color="dark">
+          {'A few ways to use our\nIP Ranges API'}
+        </Title>
 
         <Container flex="1 1 calc((100% - 64px) / 3)">
           <UseCase text="Use Reverse IP API to identify potentially malicious domains or websites sharing the same IP address for threat intelligence and mitigation efforts." />

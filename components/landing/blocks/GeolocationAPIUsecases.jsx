@@ -6,7 +6,9 @@ const GeolocationAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'Ways to use our \n IP Geolocation API'}</Title>
+        <Title as="h2" color="dark">
+          {'Ways to use our \n IP Geolocation API'}
+        </Title>
         <Container flex="1 1 calc((100% - 32px) / 2)">
           <UseCase text="Boost your marketing strategy with Spyskey's IP geolocation service, enabling precise, location-based advertising for improved conversion rates and cost-effective campaigns. Reach your target audience with tailored messaging, maximizing engagement and ROI." />
           <UseCase text="Enhance user experiences through Spyskey's accurate geolocation data for content personalization. Offer region-specific content, driving engagement, and search engine ranking, while catering to users' unique preferences and interests." />
@@ -44,7 +46,9 @@ const Container = styled(Flex)`
 const UseCase = ({ text }) => (
   <UseCaseCard color="white">
     <Icon icon="use-case" size="50px" mobileSize="24px" color="primary" />
-    <H5 weight={500}>{text}</H5>
+    <H5 as="div" weight={500}>
+      {text}
+    </H5>
   </UseCaseCard>
 )
 

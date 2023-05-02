@@ -11,7 +11,7 @@ const BussinessMap = () => {
           Bussiness across the globe use Spyskey
         </H2>
         <MapContainer>
-          <Image src="/globe-map.svg" layout="fill" alt="Globe map" />
+          <Image src="/globe-map.svg" fill alt="Globe map" />
         </MapContainer>
       </Content>
     </Block>

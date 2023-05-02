@@ -9,7 +9,9 @@ const Contact = () => {
       <Content flex="1">
         <ContactCard color="dark">
           <img src="/contact-illustration.png" />
-          <ContactCardTitle color="white">Contact</ContactCardTitle>
+          <ContactCardTitle as="div" color="white">
+            Contact
+          </ContactCardTitle>
 
           <ContactForm isDark={true} />
         </ContactCard>

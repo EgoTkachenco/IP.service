@@ -6,7 +6,9 @@ const Products = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">Our Products</Title>
+        <Title as="h2" color="dark">
+          Our Products
+        </Title>
         <CarouselContainer>
           <ServicesCarousel />
         </CarouselContainer>

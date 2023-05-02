@@ -104,7 +104,9 @@ const Feature = ({ icon, title, text, right = false }) => (
   <FeatureContainer right={right}>
     <Flex align="center" gap="10px">
       <Icon icon={icon} size="24px" color="primary" />
-      <H5 color="dark">{title}</H5>
+      <H5 as="h4" color="dark">
+        {title}
+      </H5>
     </Flex>
     <Text>{text}</Text>
   </FeatureContainer>

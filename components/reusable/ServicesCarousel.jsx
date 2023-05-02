@@ -35,7 +35,9 @@ const ServicesCarousel = ({ description_key = 'description' }) => {
             <SlideIcon color={slide.color}>
               <Icon icon={slide.icon} color="white" size="32px" />
             </SlideIcon>
-            <H5 color="white">{slide.name}</H5>
+            <H5 as="h3" color="white">
+              {slide.name}
+            </H5>
             <SlideDescription>{slide[description_key]}</SlideDescription>
             <Link href={slide.link} style={{ width: '100%' }}>
               <Button variant="primary-transparent">Learn More</Button>

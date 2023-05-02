@@ -33,7 +33,9 @@ const FAQItem = ({ question, answer, onClick, isOpen }) => {
   return (
     <FAQItemWrapper isOpen={isOpen}>
       <FAQItemQuestion onClick={onClick}>
-        <H6 color={isOpen ? 'primary' : 'text'}>{question}</H6>
+        <H6 as="h4" color={isOpen ? 'primary' : 'text'}>
+          {question}
+        </H6>
         <Icon
           icon="chevron-outline"
           size="24px"

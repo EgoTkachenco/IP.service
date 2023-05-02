@@ -7,7 +7,9 @@ const CompanyAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'Ways to use our \nIP to Company data'}</Title>
+        <Title as="h2" color="dark">
+          {'Ways to use our \nIP to Company data'}
+        </Title>
 
         <Container flex="1 1 calc((100% - 64px) / 3)">
           <UseCase text="Identify potential customers and generate leads for sales teams using firmographics data." />

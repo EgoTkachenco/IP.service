@@ -6,7 +6,9 @@ const Solutions = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">Solutions</Title>
+        <Title as="h2" color="dark">
+          Solutions
+        </Title>
         <Container>
           {solutions.map((solution, i) => (
             <SolutionItem
@@ -103,7 +105,9 @@ const Container = styled.div`
 const SolutionItem = ({ icon, title, text }) => (
   <SolutionItemContainer>
     <Icon icon={icon} size="30px" color="primary" />
-    <H5 color="dark">{title}</H5>
+    <H5 as="h3" color="dark">
+      {title}
+    </H5>
     <Text>{text}</Text>
   </SolutionItemContainer>
 )

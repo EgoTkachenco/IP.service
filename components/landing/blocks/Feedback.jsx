@@ -13,7 +13,7 @@ const Feedback = ({
     <Block>
       <Content>
         <FeedbackAvatar>
-          <Image src={avatar} layout="fill" objectFit="cover" alt={name} />
+          <Image src={avatar} fill objectFit="cover" alt={name} />
         </FeedbackAvatar>
         <FeedbackTop>
           <Caption color="dark" weight="700">
@@ -21,7 +21,9 @@ const Feedback = ({
           </Caption>
           <Caption>{position}</Caption>
         </FeedbackTop>
-        <FeedbackText weight="500">{feedback}</FeedbackText>
+        <FeedbackText as="div" weight="500">
+          {feedback}
+        </FeedbackText>
       </Content>
     </Block>
   )

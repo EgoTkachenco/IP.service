@@ -116,7 +116,9 @@ const AdvantagesImageText = styled(Text)`
 
 export const StatisticCard = ({ title, description }) => (
   <StatisticWrapper color="white">
-    <H1 color="primary">{title}</H1>
+    <H1 as="div" color="primary">
+      {title}
+    </H1>
     <Text weight={600} align="center">
       {description}
     </Text>

@@ -7,7 +7,9 @@ const ASNAPIUsecases = () => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{'A few ways to use our ASN API'}</Title>
+        <Title as="h2" color="dark">
+          {'A few ways to use our ASN API'}
+        </Title>
         <Container flex="1 1 calc((100% - 32px) / 2)">
           <UseCase text="Utilize ASN API service to strengthen your cybersecurity measures by identifying potentially malicious traffic sources. Analyzing ASN data enables you to detect suspicious IP addresses, flagging them for further investigation. By leveraging IP-to-ASN mapping and ASN lookup, you can uncover patterns, track down offending networks, and implement security policies to safeguard your online assets from emerging threats." />
           <UseCase text="Employ ASN API service to streamline network operations by obtaining comprehensive information on IP addresses and ASN prefixes. With access to data such as allocation dates, registry names, and related domains, you can make informed decisions for network capacity planning, routing optimization, and peering arrangements. Spyskey's accurate and up-to-date ASN data empowers you to manage your network resources efficiently and effectively." />

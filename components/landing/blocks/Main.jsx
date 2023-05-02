@@ -26,7 +26,7 @@ const Main = ({
             <Image
               src={logo}
               alt="IP Geolocation API"
-              layout="fill"
+              fill
               objectFit="cover"
               loading="lazy"
             />
@@ -34,7 +34,7 @@ const Main = ({
         )}
 
         <Flex gap="8px" direction={reverseTitle ? 'row-reverse' : 'row'}>
-          <Title color="dark">
+          <Title as="h1" color="dark">
             {title}{' '}
             {advanced && (
               <Chip

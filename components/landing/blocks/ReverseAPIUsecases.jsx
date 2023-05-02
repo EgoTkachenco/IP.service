@@ -13,7 +13,10 @@ const ReverseAPIUsecases = () => {
     <Block>
       <Content>
         <LeftContainer>
-          <Title color="dark">{`A few ways to use our Reverse IP data`}</Title>
+          <Title
+            as="h2"
+            color="dark"
+          >{`A few ways to use our Reverse IP data`}</Title>
           <OnlyDesktop>
             <SignInContactButtons direction="column" />
           </OnlyDesktop>

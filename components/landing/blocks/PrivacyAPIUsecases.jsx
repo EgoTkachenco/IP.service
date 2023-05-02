@@ -8,7 +8,7 @@ const PrivacyAPIUsecases = () => {
     <Block>
       <Content>
         <LeftContainer>
-          <Title color="dark">
+          <Title as="h2" color="dark">
             {'A few ways to use our\nPrivacy Detection API'}
           </Title>
           <OnlyDesktop>

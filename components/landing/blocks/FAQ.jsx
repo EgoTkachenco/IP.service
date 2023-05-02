@@ -9,7 +9,9 @@ const FAQ = ({ topic = null }) => {
     FAQ_QUESTIONS.find((block) => block.code === topic)?.questions || []
   return (
     <Block>
-      <Title color="dark">Frequently Asked Questions</Title>
+      <Title as="h3" color="dark">
+        Frequently Asked Questions
+      </Title>
       <Content>
         <FAQList questions={questions} />
       </Content>

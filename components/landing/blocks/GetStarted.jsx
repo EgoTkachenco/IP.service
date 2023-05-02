@@ -9,8 +9,10 @@ const GetStarted = ({ text }) => {
       <Wrapper>
         <GetStartedCard color="dark">
           <GetStartedContent>
-            <H2 color="white">Get started for free</H2>
-            <H6 color="white" weight="500">
+            <H2 as="h6" color="white">
+              Get started for free
+            </H2>
+            <H6 as="div" color="white" weight="500">
               {text}
             </H6>
           </GetStartedContent>

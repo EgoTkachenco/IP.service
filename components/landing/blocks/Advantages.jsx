@@ -7,7 +7,9 @@ const Advantages = ({ title, description, count, features }) => {
   return (
     <Block>
       <Content>
-        <Title color="dark">{title}</Title>
+        <Title as="h2" color="dark">
+          {title}
+        </Title>
         <AdvantagesText>{description}</AdvantagesText>
         <AdvantagesContainer gap="50px" align="center">
           <Column_1>
