@@ -11,6 +11,7 @@ export default function FAQPage() {
         title: 'Help Center | Spyskey',
         description:
           'Help Center: our common questions and support pages provide everything you need to know about our products and services. ',
+        schema: 'faq',
       })}
       <Layout>
         <FAQ />

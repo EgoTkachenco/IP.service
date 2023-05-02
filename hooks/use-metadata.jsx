@@ -33,7 +33,17 @@ const getFAQTopicSchema = (topicCode = '') => {
     '@type': 'FAQPage',
     mainEntity: [],
   }
-  const topic = FAQ.find((topic) => topic.code === topicCode)
+  let topic
+  if (topicCode) topic = FAQ.find((topic) => topic.code === topicCode)
+  else
+    topic = FAQ.reduce(
+      (acc, t) => {
+        acc.questions = [...acc.questions, ...t.questions]
+        return acc
+      },
+      { questions: [] }
+    )
+
   if (!topic) return
   topic.questions.forEach((question) => {
     faqSchema.mainEntity.push({
@@ -45,6 +55,7 @@ const getFAQTopicSchema = (topicCode = '') => {
       },
     })
   })
+  console.log(faqSchema)
   return faqSchema
 }
 
