@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html prefix="og:https://ogp.me/ns#">
+      <Html lang="en" prefix="og:https://ogp.me/ns#">
         <Head>
           <link
             rel="apple-touch-icon"

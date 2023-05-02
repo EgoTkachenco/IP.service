@@ -55,7 +55,6 @@ const getFAQTopicSchema = (topicCode = '') => {
       },
     })
   })
-  console.log(faqSchema)
   return faqSchema
 }
 
@@ -115,7 +114,12 @@ const renderPageSchemaMetaData = (props, schemaKey) => {
     default:
       break
   }
-  return <script type="application/ld+json">{JSON.stringify(schema)}</script>
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
 }
 
 export function useMetadataRenderer() {
