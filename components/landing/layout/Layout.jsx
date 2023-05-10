@@ -18,4 +18,7 @@ export default Layout
 
 const Wrapper = styled.div`
   background: #f9fafc;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `

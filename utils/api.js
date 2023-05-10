@@ -119,8 +119,12 @@ export const reactivateUserPlan = () =>
 
 export const getOrders = () => axios.get('/api/v1/order', securedFetchOptions())
 
-export const createOrder = (plan, term) =>
-  axios.post('/api/v1/order', { plan, term }, securedFetchOptions())
+export const createOrder = (plan, term, success_url, cancel_url) =>
+  axios.post(
+    '/api/v1/order',
+    { plan, term, success_url, cancel_url },
+    securedFetchOptions()
+  )
 
 export const createOrderTrial = () =>
   axios.get('/api/v1/order/trial', securedFetchOptions())

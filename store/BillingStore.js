@@ -25,8 +25,14 @@ class BillingStore {
 
   setUserPlan = async (plan, term) => {
     try {
-      await createOrder(plan, term)
-      AuthStore.getProfile()
+      const res = await createOrder(
+        plan,
+        term,
+        location.href,
+        'http://127.0.0.1:3000/payment-cancel'
+      )
+      if (res) window.open(res.session_url)
+      // AuthStore.getProfile()
     } catch (error) {
       console.log(error.message)
     }
