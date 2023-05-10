@@ -29,7 +29,7 @@ const Result = ({ currentPlan, changePlan, result }) => {
   return (
     <WrapperCard color="white">
       {result.map((plan) => {
-        const isActive = currentPlan.name === plan.name
+        const isActive = currentPlan?.name === plan.name
         const isCustom = plan.name === 'Custom'
         let buttonText = `Buy for $${plan.month_price.toFixed(2)}/mo`
         if (isCustom) buttonText = 'Create your plan'

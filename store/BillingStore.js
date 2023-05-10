@@ -58,7 +58,14 @@ class BillingStore {
 
   setUserCustomPlan = async (selectedOptions, period) => {
     const options = selectedOptions.map((id) => ({ id, included: true }))
-    await setCustomPlan(period, options)
+    const res = await setCustomPlan(
+      period,
+      options,
+      location.href,
+      'http://127.0.0.1:3000/payment-cancel'
+    )
+
+    if (res) window.open(res.session_url)
     AuthStore.getProfile()
   }
 

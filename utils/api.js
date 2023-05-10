@@ -138,9 +138,9 @@ export const getOrdersList = ({ search, page = 1, per_page = 10 }) =>
 export const getCustomPlanDetails = () =>
   axios.get('/api/v1/public/plans-options/list')
 
-export const setCustomPlan = (term, options) =>
+export const setCustomPlan = (term, options, success_url, cancel_url) =>
   axios.post(
     '/api/v1/account/plan/custom',
-    { term, options },
+    { term, options, success_url, cancel_url },
     securedFetchOptions()
   )
