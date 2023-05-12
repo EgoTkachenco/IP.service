@@ -57,6 +57,19 @@ export default class MyDocument extends Document {
               "window.addEventListener('resize', () => {let vh = window.innerHeight * 0.01;document.documentElement.style.setProperty('--vh', `${vh}px`);});"
             }
           </Script>
+          {/* <!-- Google tag (gtag.js) --> */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-QJRZWNMN14"
+            strategy="afterInteractive"
+          ></Script>
+          <Script strategy="afterInteractive">
+            {`
+						window.dataLayer = window.dataLayer || []; 
+						function gtag(){window.dataLayer.push(arguments)}
+            gtag('js', new Date()); 
+						gtag('config', 'G-QJRZWNMN14');
+						`}
+          </Script>
         </Head>
         <body>
           <Main />
