@@ -2,7 +2,7 @@ import { Card, H6, Caption } from '@/core'
 import { CardTitle, CardBottom } from '@/components/reusable/styled.jsx'
 import Switch from '../Switch'
 
-const AutomaticBilling = () => {
+const AutomaticBilling = ({ value, onChange }) => {
   return (
     <Card color="white">
       <CardTitle fwrap gap="24px">
@@ -10,8 +10,8 @@ const AutomaticBilling = () => {
         <Switch
           labelOff="Disabled"
           labelOn="Enabled"
-          onChange={() => {}}
-          value={true}
+          onChange={(value) => onChange(value)}
+          value={value}
         />
       </CardTitle>
       <CardBottom align="flex-end">

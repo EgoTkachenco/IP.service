@@ -61,11 +61,11 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/whois/:ip?token=:token`,
       },
-      // flags
-      {
-        source: '/flags/:id',
-        destination: `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/flag/:id`,
-      },
+      // // flags
+      // {
+      //   source: '/flags/:id',
+      //   destination: `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/flag/:id`,
+      // },
     ]
   },
 }

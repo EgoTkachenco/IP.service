@@ -2,7 +2,7 @@ import { Card, H6, Icon, Caption } from '@/core'
 import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
 import styled from 'styled-components'
 
-const CardDetails = () => {
+const CardDetails = ({ profile }) => {
   return (
     <Card color="white">
       <CardTitle>
@@ -10,11 +10,13 @@ const CardDetails = () => {
         <Icon icon="edit" size="20px" color="primary" />
       </CardTitle>
       <CardContent>
-        <CreditCard
-          name="George Johnson"
-          expirationDate="09/2024"
-          cardNumber="**** **** ****  35 76"
-        />
+        {profile.card.last4 && (
+          <CreditCard
+            name={profile.card.name}
+            expirationDate={profile.card.date}
+            cardNumber={`**** **** ****  ${profile.card.last4}`}
+          />
+        )}
       </CardContent>
     </Card>
   )

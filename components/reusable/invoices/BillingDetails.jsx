@@ -1,7 +1,7 @@
 import { Card, H6, H4, Icon } from '@/core'
 import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
 
-const BillingDetails = () => {
+const BillingDetails = ({ name }) => {
   return (
     <Card color="white">
       <CardTitle>
@@ -9,7 +9,7 @@ const BillingDetails = () => {
         <Icon icon="edit" size="20px" color="primary" />
       </CardTitle>
       <CardContent>
-        <H4 color="dark">George Johnson</H4>
+        <H4 color="dark">{name}</H4>
       </CardContent>
     </Card>
   )

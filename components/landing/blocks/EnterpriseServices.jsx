@@ -31,9 +31,9 @@ const EnterpriseServices = () => {
             />
           </Column>
           <Image
-            src="/enterprise-illustration.png"
-            width={282}
-            height={282}
+            src="/enterprise-illustration.svg"
+            width={257}
+            height={257}
             alt="Enterprise services"
             className="illustration"
           />

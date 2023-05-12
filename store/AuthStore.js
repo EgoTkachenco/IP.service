@@ -95,7 +95,7 @@ class AuthStore {
     this.isFetch = true
     return updateProfile(data)
       .then((user) => {
-        this.user = user
+        return this.getProfile()
       })
       .finally(() => {
         this.isFetch = false

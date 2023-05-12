@@ -9,7 +9,13 @@ import CancelSubscription from '@/components/reusable/invoices/CancelSubscriptio
 
 import { Flex } from '@/core'
 
-const Invoices = ({ currentPlan, orders, reactivate }) => {
+const Invoices = ({
+  profile,
+  currentPlan,
+  orders,
+  reactivate,
+  changeAutoBilling,
+}) => {
   return (
     <Flex direction="column" gap="30px" width="100%">
       <Row_1>
@@ -18,10 +24,13 @@ const Invoices = ({ currentPlan, orders, reactivate }) => {
       </Row_1>
       <Row_2>
         <Column_1>
-          <BillingDetails />
-          <AutomaticBilling />
+          <BillingDetails name={profile?.card?.name} />
+          <AutomaticBilling
+            value={profile.auto_overage_billing}
+            onChange={changeAutoBilling}
+          />
         </Column_1>
-        <CardDetails />
+        <CardDetails profile={profile} />
       </Row_2>
       <OrderHistory orders={orders} />
       <CancelSubscription reactivate={reactivate} />

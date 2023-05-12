@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import routes from '@/constants/routes'
 import { useEffect } from 'react'
+import AuthStore from '@/store/AuthStore'
 const BillingInvoices = dynamic(
   () => import('@/components/views/Billing/Invoices'),
   {
@@ -19,7 +20,14 @@ const BillingInvoices = dynamic(
 const Invoices = observer(() => {
   const renderMetadata = useMetadataRenderer()
   const router = useRouter()
-  const { orders, reactivateUserPlan, currentPlan, loadOrders } = BillingStore
+  const {
+    orders,
+    reactivateUserPlan,
+    currentPlan,
+    loadOrders,
+    changeAutoBilling,
+  } = BillingStore
+  const { user: profile } = AuthStore
   useEffect(() => {
     if (!orders) loadOrders()
   }, [])
@@ -32,11 +40,13 @@ const Invoices = observer(() => {
       <Layout animation={false}>
         <BillingLayout>
           <BillingInvoices
+            profile={profile}
             currentPlan={currentPlan}
             orders={orders}
             reactivate={() =>
               reactivateUserPlan().then(() => router.push(routes.billing))
             }
+            changeAutoBilling={(value) => changeAutoBilling(value)}
           />
         </BillingLayout>
       </Layout>

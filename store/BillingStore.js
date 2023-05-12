@@ -69,6 +69,10 @@ class BillingStore {
     AuthStore.getProfile()
   }
 
+  changeAutoBilling = (value) => {
+    AuthStore.updateProfile({ auto_overage_billing: !!value ? 1 : 0 })
+  }
+
   get currentPlan() {
     return AuthStore?.user?.plan || null
   }
