@@ -36,6 +36,10 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
     sendFeedback({ ...values, url: router.pathname })
       .then(() => {
         setSended(true)
+        setTimeout(() => {
+          form.reset()
+          setSended(false)
+        }, 3000)
       })
       .catch((error) => {
         if (error.code === 'ERR_BAD_RESPONSE')
@@ -118,7 +122,7 @@ const ContactForm = ({ isDark = false, onSubmit }) => {
         color={sended ? 'success' : 'primary'}
         disabled={sended}
       >
-        {sended ? 'Send Sent successfully' : 'Send message'}
+        {sended ? 'Sent successfully' : 'Send message'}
       </Button>
     </Form>
   )
