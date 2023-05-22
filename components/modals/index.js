@@ -5,6 +5,8 @@ import SignUpModal from './SignUpModal'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import ResetPasswordModal from './ResetPasswordModal'
 import ResetPasswordCodeModal from './ResetPasswordCodeModal'
+import UpdateCardholderModal from './UpdateCardholderModal'
+import UpdateCardDetailsModal from './UpdateCardDetailsModal'
 import { useNoBodyScroll } from '@/hooks'
 
 const Modals = () => {
@@ -45,6 +47,15 @@ const Modals = () => {
     case 'reset-password':
       modalComponent = <ResetPasswordModal onClose={() => openModal(null)} />
       break
+    case 'update-cardholder':
+      modalComponent = <UpdateCardholderModal onClose={() => openModal(null)} />
+      break
+    case 'update-card-details':
+      modalComponent = (
+        <UpdateCardDetailsModal onClose={() => openModal(null)} />
+      )
+      break
+
     default:
       break
   }

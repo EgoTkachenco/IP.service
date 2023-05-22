@@ -26,6 +26,7 @@ const Invoices = observer(() => {
     currentPlan,
     loadOrders,
     changeAutoBilling,
+    switchToYear,
   } = BillingStore
   const { user: profile } = AuthStore
   useEffect(() => {
@@ -47,6 +48,7 @@ const Invoices = observer(() => {
               reactivateUserPlan().then(() => router.push(routes.billing))
             }
             changeAutoBilling={(value) => changeAutoBilling(value)}
+            switchToYear={switchToYear}
           />
         </BillingLayout>
       </Layout>

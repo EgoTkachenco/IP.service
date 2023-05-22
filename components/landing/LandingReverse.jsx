@@ -38,7 +38,7 @@ const LandingReverse = () => {
       <AdvantagesSmall
         title={`Enhance your website's performance and user experience.`}
         description={`Our API empowers Spyskey customers to transform anonymous traffic into marketing and sales opportunities by integrating our data with their firmographics, while also optimizing SEO. For instance, if your business caters to residential users in a distinct manner, you can personalize the experience for ISP-owned IP traffic on your website using the IP company information from our API response.`}
-        count={55}
+        count={27}
         features={[
           { icon: 'done', name: 'Name' },
           { icon: 'done', name: 'Domain' },

@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react'
-import { BlockInner } from './blocks/Block'
+import { BlockInner } from '../blocks/Block'
 import { allService } from '@/utils/api'
 import { validateIP } from '@/utils'
-import { Flex, Text, H1, H3, Input, Icon, Card, Tooltip } from '@/core'
+import { Flex, Text, H1, H3, Input, Icon, Card, Tooltip, H6 } from '@/core'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { useObserverNavigation, useService } from '@/hooks'
 import { useForm } from '@mantine/form'
+
+import CommonSummary from './CommonSummary'
+import GeolocationSummary from './GeolocationSummary'
+import PrivacySummary from './PrivacySummary'
+import ASNSummary from './ASNSummary'
+import CompanySummary from './CompanySummary'
+import CarrierSummary from './CarrierSummary'
+import AbuseSummary from './AbuseSummary'
 
 const list = [
   'Summary',
@@ -72,8 +80,21 @@ const Summary = () => {
           onSubmit={onSubmit}
         />
         <Content id="content">
-          <SummaryBlock id="block-0" data={data} />
-          <GeolocationBlock id="block-1" data={data?.geolocation} />
+          <CommonSummary id="block-0" data={data} />
+          {data?.geolocation && (
+            <GeolocationSummary id="block-1" data={data?.geolocation} />
+          )}
+          {data?.privacy && (
+            <PrivacySummary id="block-2" data={data?.privacy} />
+          )}
+          {data?.asn && <ASNSummary id="block-3" data={data?.asn} />}
+          {data?.company && (
+            <CompanySummary id="block-4" data={data?.company} />
+          )}
+          {/* {data?.carrier && ( */}
+          <CarrierSummary id="block-5" data={data?.carrier} />
+          {/* )} */}
+          {data?.abuse && <AbuseSummary id="block-6" data={data?.abuse} />}
         </Content>
       </Container>
     </Wrapper>
@@ -137,114 +158,6 @@ const Navigation = ({
   )
 }
 
-const SummaryBlock = ({ id, data }) => {
-  return (
-    <Flex direction="column" gap="32px" id={id}>
-      <H3 color="dark">Summary</H3>
-      <Flex direction="column" gap="10px">
-        <ValueCard
-          label="ASN"
-          value={
-            <>
-              <Text color="primary" inline>
-                {data?.asn?.ashandle}
-              </Text>{' '}
-              - {data?.asn?.desscr || data?.asn?.organisation['org-name']}
-            </>
-          }
-        />
-        <ValueCard label="Hostname" value="No Hostname" />
-        <ValueCard
-          label="Range"
-          value={<Text color="primary">88.155.48.0/20</Text>}
-        />
-        <ValueCard label="Company" value="Limited Liability Company lifecell" />
-        <ValueCard label="Hosted domains" value="0" />
-        <ValueCard
-          label="Privacy"
-          value={
-            <Flex align="center" gap="10px">
-              <Icon icon="close" size="18px" color="danger" />
-              <Text weight={500}>False</Text>
-            </Flex>
-          }
-        />
-        <ValueCard
-          label="Anycast"
-          value={
-            <Flex align="center" gap="10px">
-              <Icon icon="close" size="18px" color="danger" />
-              <Text weight={500}>False</Text>
-            </Flex>
-          }
-        />
-        <ValueCard label="ASN type" value="ISP" />
-        <ValueCard
-          label="Abuse contact"
-          value={
-            <Text as="a" color="primary" href="mailto:ripe@lifecell.com.ua">
-              mailto:ripe@lifecell.com.ua
-            </Text>
-          }
-        />
-      </Flex>
-    </Flex>
-  )
-}
-
-const GeolocationBlock = ({ id, data }) => {
-  return (
-    <Flex direction="column" gap="32px" id={id}>
-      <H3 color="dark">IP Geolocation</H3>
-      <Flex direction="column" gap="10px">
-        <ValueCard label="City" value={data?.city} />
-        <ValueCard label="State" value={data?.name} />
-        <ValueCard
-          label="Country"
-          value={
-            <Flex gap="12px" align="center">
-              <Image src={data?.flag} width={21} height={15} alt="UA" />
-              <Text weight={600}>{data?.name_country}</Text>
-            </Flex>
-          }
-        />
-        <ValueCard label="Postal" value={data?.post_code} />
-        <ValueCard
-          label="Local time"
-          value={data?.time_zone?.current_time
-            .replace('T', ' ')
-            .replace('+', ' +')}
-        />
-        <ValueCard label="Timezone" value={data?.time_zone?.name} />
-        <ValueCard label="Coordinates" value={data?.loc} />
-      </Flex>
-    </Flex>
-  )
-}
-
-const ValueCard = ({ label, value, hint }) => {
-  return (
-    <ValueCardWrapper>
-      <Flex width="180px">
-        <Tooltip hint={hint}>
-          <ValueCardLabel>{label}</ValueCardLabel>
-        </Tooltip>
-      </Flex>
-      <Text>{value}</Text>
-    </ValueCardWrapper>
-  )
-}
-
-const ValueCardWrapper = styled(Card)`
-  gap: 16px;
-  flex-direction: row;
-  overflow: visible;
-  padding: 16px 24px;
-`
-const ValueCardLabel = styled(Text)`
-  border-bottom: 1px dashed #bdbdbd;
-  font-weight: 700;
-`
 const Wrapper = styled(BlockInner)`
   margin: 80px auto;
   align-items: center;

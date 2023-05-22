@@ -7,9 +7,10 @@ export default function ReverseService() {
   return (
     <>
       {renderMetadata({
-        title: 'Reverse IP API. Domain Tools | Spyskey',
+        title:
+          'Reverse IP Lookup: Find Other Web Sites Hosted on a Web Server | Spyskey',
         description:
-          'Our Reverse IP API allows you to discover all the domains hosted on a specific IP address. Improve your security and gain valuable insights with our easy-to-use tool.',
+          'Reverse IP checker discovers the actual hostname associated with an IP address. Enter an IP to initiate a reverse lookup and find the corresponding hostname.',
         schema: 'faq',
         faqTopic: 'Reverse',
       })}

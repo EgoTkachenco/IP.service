@@ -8,7 +8,8 @@ import {
 import routes from '@/constants/routes'
 import Link from 'next/link'
 
-const UserPlan = ({ plan }) => {
+const UserPlan = ({ plan, switchToYear }) => {
+  console.log(plan)
   return (
     <Card color="white">
       <CardTitle>
@@ -19,16 +20,18 @@ const UserPlan = ({ plan }) => {
         <Price value={plan?.current_price || 0} fixed="2" />
         <Caption>/{plan?.type === 'month' ? 'monthly' : 'yearly'}</Caption>
       </CardContent>
-      <CardBottom align="flex-end" gap="24px">
-        <TextLink color="primary" caption>
-          Switch to annual billing and get 2 month free
-        </TextLink>
-        <Link href={routes.upgrade}>
-          <Button color="dark" outline width="200px" size="medium">
-            Change Plan
-          </Button>
-        </Link>
-      </CardBottom>
+      {plan?.type === 'month' && (
+        <CardBottom align="flex-end" gap="24px">
+          <TextLink color="primary" caption onClick={switchToYear}>
+            Switch to annual billing and get 2 month free
+          </TextLink>
+          <Link href={routes.upgrade}>
+            <Button color="dark" outline width="200px" size="medium">
+              Change Plan
+            </Button>
+          </Link>
+        </CardBottom>
+      )}
     </Card>
   )
 }

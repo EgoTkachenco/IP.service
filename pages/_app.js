@@ -23,6 +23,12 @@ const App = observer(({ Component, pageProps, router }) => {
     }
   }, [user, router.asPath])
 
+  // check url and open reset password token
+  useEffect(() => {
+    const { reset_password } = router.query
+    if (reset_password) setModal('reset-password-code')
+  }, [router.query])
+
   return (
     <ThemeProvider theme={theme}>
       <AuthContext.Provider value={{ isLogged, setIsLogged }}>

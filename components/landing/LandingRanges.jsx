@@ -48,7 +48,7 @@ const LandingRanges = () => {
         description={
           'Spyskey provides the most reliable domain to IP ranges lookup service online, with daily updates to our proprietary network data sets. Our database is highly accurate and comprehensive, making it a top choice for IT professionals and developers searching for trustworthy IP ranges data.'
         }
-        count={36}
+        count={17}
         features={[
           { icon: 'done', name: 'Number of ranges' },
           { icon: 'done', name: 'List of all ranges' },

@@ -21,6 +21,7 @@ const LandingASN = () => {
         service={asnService}
         validation={() => null}
         placeholder="Search IP or ASN"
+        examples={['', '215.204.222.212', 'AS9876', '66.131.120.255']}
       />
       <Feedback
         name="Miles Turner"
@@ -39,7 +40,7 @@ const LandingASN = () => {
       <Advantages
         title={`Accurate and Up-to-Date ASN Data`}
         description={`Experience unparalleled IP-to-ASN lookup with Spyskey's trusted online service. Harnessing daily-updated, proprietary network data sets, our comprehensive ASN database delivers unmatched accuracy and completeness in the industry.`}
-        count={44}
+        count={38}
         features={[
           { icon: 'done', name: 'Hostname' },
           { icon: 'done', name: 'Allocation date' },

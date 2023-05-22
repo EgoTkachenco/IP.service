@@ -9,22 +9,32 @@ import {
 import { observer } from 'mobx-react-lite'
 import store from '@/store/AuthStore'
 import { useForm } from '@mantine/form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router.js'
+import routes from '@/constants/routes.js'
 
 const ResetPasswordCodeModal = observer(({ onClose }) => {
-  const [isSended, setIsSended] = useState(false)
-  const form = useForm({
+  const [step, setStep] = useState(0)
+  const router = useRouter()
+  const form_code = useForm({
     initialValues: {
-      key: '',
+      code: '',
+    },
+
+    validate: {
+      code: (value) => {
+        if (!value) return 'Code required'
+        return null
+      },
+    },
+  })
+  const form_password = useForm({
+    initialValues: {
       password: '',
       password_confirmation: '',
     },
 
     validate: {
-      key: (value) => {
-        if (!value) return 'Code required'
-        return null
-      },
       password: (value) => {
         if (!value) return 'Password required'
         if (value.length < 8)
@@ -33,55 +43,72 @@ const ResetPasswordCodeModal = observer(({ onClose }) => {
       },
       password_confirmation: (value) => {
         if (!value) return 'Password required'
-        if (value !== form.values.password) return 'Password not match'
+        if (value !== form_password.values.password) return 'Password not match'
         return null
       },
     },
   })
-  const { resetPassword, isFetch, forgetIdentifier } = store
-  const onSubmit = form.onSubmit((values) => {
-    resetPassword({ ...values, identifier: forgetIdentifier })
+  const { resetPassword, signIn, isFetch } = store
+  const onCodeSubmit = form_code.onSubmit((values) => {
+    setStep(1)
+  })
+  const onSubmit = form_password.onSubmit((values) => {
+    const { email } = router.query
+    resetPassword({
+      identifier: email,
+      key: form_code.values.code,
+      ...values,
+    })
+      .then(() => signIn({ email, password: values.password }))
       .then(() => {
-        setIsSended(true)
-        // onClose()
+        router.push(routes.app)
+        onClose()
       })
       .catch((error) => {
         if (error?.response?.status === 500)
-          form.setErrors({ identifier: 'Server error' })
-        else if (error.errors) form.setErrors(error.errors)
-        else form.setErrors('identifier', error.message)
+          form_password.setErrors({ identifier: 'Server error' })
+        else if (error.errors) form_password.setErrors(error.errors)
+        else form_password.setErrors('identifier', error.message)
       })
   })
 
   return (
     <Modal onClose={onClose} isIllustration={true}>
       <ModalTitle>Password recovery</ModalTitle>
-      {!isSended && (
-        <ModalSubtitle>
-          <Caption>Enter code from email</Caption>
-        </ModalSubtitle>
+      <ModalSubtitle>
+        <Caption>Enter code from email</Caption>
+      </ModalSubtitle>
+
+      {step === 0 && (
+        <Form onSubmit={onCodeSubmit}>
+          <TextInput
+            label="Code"
+            name="code"
+            {...form_code.getInputProps('code')}
+          />
+          <Button type="submit" disabled={isFetch}>
+            Next
+          </Button>
+        </Form>
       )}
 
-      {!isSended && (
+      {step === 1 && (
         <Form onSubmit={onSubmit}>
-          <TextInput label="Code" name="code" {...form.getInputProps('key')} />
           <PasswordInput
             label="Password"
             name="password"
-            {...form.getInputProps('password')}
+            {...form_password.getInputProps('password')}
           />
           <PasswordInput
             label="Password confirmation"
             name="confirmPassword"
-            {...form.getInputProps('password_confirmation')}
+            {...form_password.getInputProps('password_confirmation')}
           />
           <Button type="submit" disabled={isFetch}>
             Send
           </Button>
         </Form>
       )}
-
-      {isSended && <ModalTitle align="center">Successfull</ModalTitle>}
     </Modal>
   )
 })

@@ -4,8 +4,10 @@ import { ModalTitle, ModalSubtitle, TextInput, Form } from './styled.jsx'
 import { observer } from 'mobx-react-lite'
 import store from '@/store/AuthStore'
 import { useForm } from '@mantine/form'
+import { useState } from 'react'
 
 const ForgetPasswordModal = observer(({ onClose, redirect }) => {
+  const [isSended, setIsSended] = useState(false)
   const form = useForm({
     initialValues: {
       identifier: '',
@@ -23,7 +25,7 @@ const ForgetPasswordModal = observer(({ onClose, redirect }) => {
   const onSubmit = form.onSubmit((values) => {
     forgetPassword(values)
       .then(() => {
-        redirect()
+        setIsSended(true)
       })
       .catch((error) => {
         if (error?.response?.status === 500)
@@ -36,20 +38,30 @@ const ForgetPasswordModal = observer(({ onClose, redirect }) => {
   return (
     <Modal onClose={onClose} isIllustration={true}>
       <ModalTitle>Password recovery</ModalTitle>
-      <ModalSubtitle>
-        <Caption>Enter your phone number or email</Caption>
-      </ModalSubtitle>
+      {!isSended && (
+        <ModalSubtitle>
+          <Caption>Enter your phone number or email</Caption>
+        </ModalSubtitle>
+      )}
 
-      <Form onSubmit={onSubmit}>
-        <TextInput
-          label="Email"
-          name="email"
-          {...form.getInputProps('identifier')}
-        />
-        <Button type="submit" disabled={isFetch}>
-          Send
-        </Button>
-      </Form>
+      {!isSended && (
+        <Form onSubmit={onSubmit}>
+          <TextInput
+            label="Email"
+            name="email"
+            {...form.getInputProps('identifier')}
+          />
+          <Button type="submit" disabled={isFetch}>
+            Send
+          </Button>
+        </Form>
+      )}
+
+      {isSended && (
+        <ModalSubtitle align="center">
+          Check your email for password reset url
+        </ModalSubtitle>
+      )}
     </Modal>
   )
 })

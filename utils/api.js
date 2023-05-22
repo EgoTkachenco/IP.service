@@ -1,4 +1,5 @@
 import { axios, securedFetchOptions } from './axios'
+import { ADMIN_TOKEN_NAME } from './constants'
 
 export const login = ({ email, password }) =>
   axios.post('/api/v1/login', { identifier: email, password })
@@ -132,7 +133,7 @@ export const createOrderTrial = () =>
 export const getOrdersList = ({ search, page = 1, per_page = 10 }) =>
   axios.get('/api/v1/admin/orders', {
     params: { search, page, per_page },
-    ...securedFetchOptions(),
+    ...securedFetchOptions(ADMIN_TOKEN_NAME),
   })
 
 export const getCustomPlanDetails = () =>
@@ -144,3 +145,16 @@ export const setCustomPlan = (term, options, success_url, cancel_url) =>
     { term, options, success_url, cancel_url },
     securedFetchOptions()
   )
+
+export const setCardDetails = ({ number, month, year, cvc }) =>
+  axios.post(
+    '/api/v1/account/card-data',
+    { number, month, year, cvc },
+    securedFetchOptions()
+  )
+
+export const setBillingName = (name) =>
+  axios.post('/api/v1/account/billing-name', { name }, securedFetchOptions())
+
+export const switchToYear = () =>
+  axios.get('/api/v1/order/switch-to-year', securedFetchOptions())

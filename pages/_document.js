@@ -60,9 +60,9 @@ export default class MyDocument extends Document {
           {/* <!-- Google tag (gtag.js) --> */}
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-QJRZWNMN14"
-            strategy="afterInteractive"
+            strategy="beforeInteractive"
           ></Script>
-          <Script strategy="afterInteractive">
+          <Script strategy="beforeInteractive">
             {`
 						window.dataLayer = window.dataLayer || []; 
 						function gtag(){window.dataLayer.push(arguments)}
@@ -71,7 +71,7 @@ export default class MyDocument extends Document {
 						`}
           </Script>
           {/* <!-- Google Tag Manager --> */}
-          <Script strategy="afterInteractive">{`
+          <Script strategy="beforeInteractive">{`
 					(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

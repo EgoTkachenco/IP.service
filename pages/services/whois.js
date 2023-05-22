@@ -7,9 +7,10 @@ export default function WhoisService() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Whois API. What Is My IP Address | Spyskey',
+        title:
+          'IP WHOIS Lookup: Check the WHOIS IP Geolocation API | Geo IP Database',
         description:
-          'Get comprehensive and accurate data on any IP address with our IP Whois API. Improve your security and streamline your processes. My IP address information',
+          'Spyskey: Free IP Geolocation API and Accurate IP Database provides country, city, zip code, ISP data in REST JSON and XML format from any IPv4 and IPv6 Address.',
         schema: 'faq',
         faqTopic: 'Whois',
       })}

@@ -22,14 +22,15 @@ const Home = observer(() => {
     AnalyticsStore
   const { userIp: ip, getIpInfo } = SearchStore
   const { currentPlan, isFreePlan, setUserTrial } = BillingStore
-  const { showOnboarding, skipOnboarding } = AuthStore
+  const { showOnboarding, skipOnboarding, isTrialAvailable } = AuthStore
   useEffect(() => {
     loadAnalytics()
     if (!ip) getIpInfo()
   }, [])
 
-  const host = 'https://spyskey.com'
-  const url = `${host}/${ip}?token=${analytics?.token}`
+  const host = 'https://back.spyskey.com'
+  // const url = `${host}/${ip}?token=${analytics?.token}`
+  const url = `${host}/${ip}`
   return (
     <Flex direction="column" gap="50px">
       {showOnboarding && (
@@ -42,7 +43,9 @@ const Home = observer(() => {
           />
           <OnboardingStep2 />
           <OnboardingStep3 host={host} token={analytics?.token} />
-          {isFreePlan && <OnboardingStep4 setTrial={() => setUserTrial()} />}
+          {isTrialAvailable && (
+            <OnboardingStep4 setTrial={() => setUserTrial()} />
+          )}
         </>
       )}
 

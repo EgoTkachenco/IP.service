@@ -5,6 +5,7 @@ import {
   createOrderTrial,
   reactivateUserPlan,
   setCustomPlan,
+  switchToYear,
 } from '@/utils/api'
 import AuthStore from './AuthStore'
 
@@ -71,6 +72,10 @@ class BillingStore {
 
   changeAutoBilling = (value) => {
     AuthStore.updateProfile({ auto_overage_billing: !!value ? 1 : 0 })
+  }
+
+  switchToYear = () => {
+    switchToYear().then(() => AuthStore.getProfile())
   }
 
   get currentPlan() {

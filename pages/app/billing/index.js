@@ -17,7 +17,7 @@ const BillingSubscription = dynamic(
 const Billing = observer(() => {
   const renderMetadata = useMetadataRenderer()
   const { plans } = PlansStore
-  const { currentPlan, isFreePlan, setUserPlan } = BillingStore
+  const { currentPlan, isFreePlan, setUserPlan, switchToYear } = BillingStore
 
   return (
     <>
@@ -32,6 +32,7 @@ const Billing = observer(() => {
             currentPlan={currentPlan}
             plans={plans}
             upgradeToBasic={(plan, term) => setUserPlan(plan, term)}
+            switchToYear={switchToYear}
           />
         </BillingLayout>
       </Layout>

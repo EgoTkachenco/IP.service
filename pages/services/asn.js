@@ -7,9 +7,9 @@ export default function ASNService() {
   return (
     <>
       {renderMetadata({
-        title: 'IP to ASN. Data | Spyskey',
+        title: 'WHOIS ASN Lookup: Check AS Numbers, IP to ASN | Spyskey',
         description:
-          'Our IP to ASN tool allows you to easily identify the autonomous system number (ASN) associated with any IP address. Improve your network management and security today.',
+          'Utilize our ANS Lookup tool to conduct an ANS WHOIS Lookup. Retrieve information on the assigned owner, location, contact details, and abuse reporting for any ASN.',
         schema: 'faq',
         faqTopic: 'ASN',
       })}

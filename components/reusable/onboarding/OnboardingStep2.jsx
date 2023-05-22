@@ -8,16 +8,12 @@ const OnboardingStep2 = ({ token, host }) => {
   return (
     <OnboardingCard
       step="2"
-      title="Check the documentation and get your SDK"
+      title="Check documentation"
       subtitle={
-        <ContentText>
-          Visit our documentation and get started with our libraries for{' '}
-          <b>
-            Python, Django, Java, C#, NodeJS, PHP, Laravel, Go, Ruby, Ruby on
-            Rails, Rust, Perl
-          </b>
-          .
-        </ContentText>
+        <Caption>
+          Read our full documentation and easily integrate our high-quality
+          services.
+        </Caption>
       }
     >
       <OnboardingCardContent>
@@ -31,10 +27,10 @@ const OnboardingStep2 = ({ token, host }) => {
 
 export default OnboardingStep2
 
-const ContentText = styled(Caption)`
-  max-width: 65%;
+// const ContentText = styled(Caption)`
+//   max-width: 65%;
 
-  @media (max-width: 1140px) {
-    max-width: unset;
-  }
-`
+//   @media (max-width: 1140px) {
+//     max-width: unset;
+//   }
+// `

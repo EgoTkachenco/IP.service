@@ -55,10 +55,11 @@ const DomainsWhitelist = ({ value, onChange, error }) => {
     <DomainCard color="dark">
       <H6 color="white">Whitelist Referring Domains</H6>
       <Info>
-        If you're using IPInfo on your website, you can use this feature to only
-        allow requests made from certain domain names. Requests not originating
-        from these domain names will be blocked. Note that any subdomain in the
-        whitelisted domain will also be able to make requests.
+        If you have Spyskey implemented on your website, you can utilize this
+        feature to permit requests only from specified domain names. Any
+        requests not coming from these whitelisted domains will be denied.
+        Please be aware that any subdomains within the approved domains will
+        also have the ability to send requests.
       </Info>
       <Textarea
         variant="dark"
@@ -72,8 +73,8 @@ const DomainsWhitelist = ({ value, onChange, error }) => {
         <Caption color="white" inline>
           Note:{' '}
         </Caption>
-        IPInfo uses Referer header to determine where the request is coming
-        from.
+        Spyskey determines the origin of the request by utilizing the Referer
+        header.
       </Caption>
     </DomainCard>
   )
@@ -84,9 +85,9 @@ const IpsWhitelist = ({ value, onChange, error, disabled }) => {
     <IPCard color="dark">
       <H6 color="white">Whitelist Requesting IPs</H6>
       <Info>
-        You can also whitelist requesting IPs. We will block the requests if the
-        IP isn't in the whitelist. You can specify IPs individually or use CIDR
-        notation.
+        You also have the option to approve specific requesting IP addresses.
+        Any requests from IPs not included in this whitelist will be denied. IP
+        addresses can be specified individually or in CIDR notation.
       </Info>
       <Textarea
         variant="dark"
@@ -149,7 +150,7 @@ const IPCard = styled(Card)`
 `
 
 const Info = styled(Caption)`
-  height: 84px;
+  height: 94px;
 
   @media (max-width: 1140px) {
     height: auto;

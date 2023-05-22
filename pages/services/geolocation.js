@@ -7,9 +7,10 @@ export default function GeolocationService() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Geolocation API Tool | Spyskey',
+        title:
+          'IP Address Lookup: Geolocate the Location of an IP Address | Spyskey',
         description:
-          'Get accurate location data for your website visitors with our IP geolocation API. Our easy-to-use tool provides real-time data to improve your business decisions. Try it today!',
+          'Discover your public IPv4 or IPv6 address and its corresponding location. Retrieve the geolocation details of your IP address, including latitude, longitude, city, region, and country.',
         schema: 'faq',
         faqTopic: 'Geolocation',
       })}

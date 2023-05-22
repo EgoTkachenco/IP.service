@@ -9,6 +9,7 @@ const Subscription = ({
   plans,
   upgradeToBasic,
   isFreePlan = true,
+  switchToYear,
 }) => {
   const basicPlan = plans?.find((plan) => plan.name === 'Basic')
   if (!plans) return
@@ -49,7 +50,7 @@ const Subscription = ({
               .filter((option) => option.included)
               .map((option) => option.name)}
             bottomSlot={
-              <TextLink color="primary">
+              <TextLink color="primary" onClick={switchToYear}>
                 Switch to annual billing and get 2 month free
               </TextLink>
             }

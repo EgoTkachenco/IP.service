@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Modal, Caption, Button } from '@/core'
+import { Modal, Caption, Button, InputError } from '@/core'
 import {
   ModalTitle,
   ModalSubtitle,
@@ -11,6 +11,7 @@ import { useForm } from '@mantine/form'
 import store from '@/store/AuthStore'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
+import routes from '@/constants/routes.js'
 
 const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
   const router = useRouter()
@@ -37,7 +38,7 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
     signIn(values)
       .then((user) => {
         if (user.role.name === 'admin') router.push('/admin')
-        else router.push('/app')
+        else router.push(routes.app)
         onClose()
       })
       .catch((error) => {
@@ -47,6 +48,7 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         else form.setErrors('email', error.message)
       })
   })
+  const error = form.getInputProps('email').error
 
   return (
     <Modal onClose={onClose} isIllustration={true}>
@@ -62,19 +64,24 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         <TextInput
           label="Email"
           name="email"
-          {...form.getInputProps('email')}
+          value={form.getInputProps('email').value}
+          onChange={form.getInputProps('email').onChange}
         />
         <PasswordInput
           label="Password"
           name="password"
-          {...form.getInputProps('password')}
+          value={form.getInputProps('password').value}
+          onChange={form.getInputProps('password').onChange}
         />
         <ForgotPassword color="light-grey" onClick={onForget}>
           Forgot your password?
         </ForgotPassword>
         <Button type="submit" disabled={isFetch}>
-          Create an account
+          Enter
         </Button>
+        <InputError color="danger" show={!!error}>
+          {error}
+        </InputError>
       </Form>
     </Modal>
   )

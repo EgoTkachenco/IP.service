@@ -182,6 +182,7 @@ const variants = {
 
 const Button = React.forwardRef(function Button(
   {
+    id,
     variant,
     color = 'primary',
     text,
@@ -209,6 +210,7 @@ const Button = React.forwardRef(function Button(
   if (height) sizeProps.height = height
   return (
     <ButtonCore
+      id={id}
       ref={ref}
       as={ButtonTemplate}
       color={color}

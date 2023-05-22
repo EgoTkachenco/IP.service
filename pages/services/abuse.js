@@ -7,9 +7,9 @@ export default function AbuseService() {
   return (
     <>
       {renderMetadata({
-        title: 'Abuse Contact Data for IP Addresses | Spyskey',
+        title: 'IP Abuse Check: IP Reputation Lookup History | Spyskey',
         description:
-          'Protect your network from abuse with our tool for retrieving abuse contact data for IP addresses. Stay compliant and safeguard your business reputation.',
+          'Spyskey: Check IP address reputation to lookup threats or SPAM issues along with risk scoring. Lookup detailed IP reputation history with leading IP address intelligence.',
         schema: 'faq',
         faqTopic: 'Abuse',
       })}

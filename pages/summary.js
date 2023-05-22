@@ -1,5 +1,5 @@
 import Layout from '@/components/landing/layout/Layout'
-import Summary from '@/components/landing/Summary'
+import Summary from '@/components/landing/summary/Summary'
 import { useMetadataRenderer } from '@/hooks'
 
 export default function ContactPage() {

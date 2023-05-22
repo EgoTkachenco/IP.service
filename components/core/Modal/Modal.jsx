@@ -3,7 +3,7 @@ import Icon from '../Icon'
 import { useMediaQuery } from '@mantine/hooks'
 import Animation from '@/components/reusable/Animation'
 
-const Modal = ({ children, onClose, isIllustration = false }) => {
+const Modal = ({ children, onClose, isIllustration = false, width }) => {
   const isMobile = useMediaQuery('(max-width: 1140px)')
   return (
     <ModalWrapper>
@@ -21,7 +21,7 @@ const Modal = ({ children, onClose, isIllustration = false }) => {
               zIndex: 10,
             }}
           />
-          <ModalContentInner>{children}</ModalContentInner>
+          <ModalContentInner width={width}>{children}</ModalContentInner>
 
           {isIllustration && (
             <ModalIllustration>
@@ -75,7 +75,7 @@ const ModalContent = styled.div`
 `
 const ModalContentInner = styled.div`
   padding: 50px;
-  width: 400px;
+  width: ${({ width }) => width || '400px'};
 
   @media (max-width: 1140px) {
     padding: 24px;

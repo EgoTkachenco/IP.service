@@ -19,6 +19,8 @@ import {
   whoisService,
 } from '@/utils/api'
 
+const host = 'https://spyskey.com'
+
 const Docs = () => {
   const [activeBlock, setActiveBlock] = useObserverNavigation('docs')
   return (
@@ -239,8 +241,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = ozjtkxh95yt7SHkK">
-                GET https://api.spyskey.com/8.8.8.8?token=ozjtkxh95yt7SHkK
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Text>
@@ -260,12 +262,12 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = ozjtkxh95yt7SHkK">
-                GET https://api.spyskey.com/8.8.8.8?token = TOKEN <br />
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET {host}/8.8.8.8?token=TOKEN&domain=example.com <br />
                 <br />
-                GET https://api.spyskey.com/2607:F888::?token = TOKEN <br />
+                GET {host}/2607:F888::?token=TOKEN&domain=example.com <br />
                 <br />
-                GET https://api.spyskey.com/AS131293?token = TOKEN
+                GET {host}/AS131293?token=TOKEN&domain=example.com
               </CopyCard>
             </Example>
             <Text>
@@ -291,8 +293,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token=TOKEN">
-                GET https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
           </>
@@ -384,8 +386,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -413,8 +415,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -446,8 +448,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/asn/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/asn/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/asn/8.8.8.8?token=TOKEN`}>
+                GET: {host}/asn/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -481,8 +483,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/1.38.167.255?token = TOKEN">
-                GET: https://api.spyskey.com/1.38.167.255?token = TOKEN
+              <CopyCard data={`${host}/1.38.167.255?token=TOKEN`}>
+                GET: {host}/1.38.167.255?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -517,8 +519,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -551,8 +553,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -562,6 +564,508 @@ const DOCS = [
                 format={(data) => ({ abuse: data })}
               />
             </Example>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: 'Custom APIs',
+    blocks: [
+      {
+        title: 'Geolocation IP API',
+        content: () => (
+          <>
+            <Text>
+              The Geolocation IP API is a RESTful API that provides geolocation
+              information based on an IP address. This API is available in the
+              Free, Basic, Standard, and Business packages. It allows you to
+              retrieve geographic details such as the approximate location,
+              country, city, and potentially more specific data.
+            </Text>
+            <Example>
+              <H6 color="dark">API Endpoint:</H6>
+              <Text>
+                To use the Geolocation IP API, make a GET request to the
+                endpoint "{' '}
+                <Text color="primary" inline>
+                  {'/geolocation/{ip}'}
+                </Text>
+                ", where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                is the IP address you want to geolocate. The request should
+                include a token as a query parameter for authentication and
+                access control.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>
+                The API requires one path parameter:{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>
+                . This parameter specifies the IP address for which you want to
+                retrieve the Geolocation information. The parameter should be a
+                valid IPv4 or IPv6 address.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns HTTP status codes to indicate the status of the
+                request. The following HTTP status codes may be returned:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested ASN information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the ASN database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data={`${host}/geolocation/8.8.8.8`}>
+                GET: {host}/geolocation/8.8.8.8
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details service={geolocationService} ip="8.8.8.8" />
+            </Example>
+            <Text>
+              The Geolocation IP API is a powerful tool for retrieving
+              geographic details based on an IP address. By following the
+              provided documentation, developers can easily integrate this API
+              into their applications, allowing them to obtain accurate
+              geolocation data for various purposes such as targeting content,
+              fraud prevention, and personalized experiences.
+            </Text>
+          </>
+        ),
+      },
+      {
+        title: 'Privacy IP API',
+        content: () => (
+          <>
+            <Text>
+              The Privacy IP API is a RESTful API that provides access to
+              privacy-related information associated with an IP address. This
+              API is available in the Standard and Business packages. It allows
+              users to retrieve personal information that is kept confidential
+              and protected, ensuring the privacy of individuals.
+            </Text>
+            <Example>
+              <H6 color="dark">API Endpoint:</H6>
+              <Text>
+                To use the Privacy IP API, make a GET request to the endpoint "{' '}
+                <Text color="primary" inline>
+                  {'/privacy/{ip}'}
+                </Text>
+                ", where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                represents the IP address for which privacy information is
+                desired. The request should include a token as a query parameter
+                for authentication and access control.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>
+                The API requires one path parameter:{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>
+                . This parameter specifies the IP address for which you want to
+                retrieve the Privacy information. The parameter should be a
+                valid IPv4 or IPv6 address.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns HTTP status codes to indicate the status of the
+                request. The following HTTP status codes may be returned:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested ASN information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the ASN database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data={`${host}/privacy/8.8.8.8`}>
+                GET: {host}/privacy/8.8.8.8
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details service={privacyService} ip="8.8.8.8" />
+            </Example>
+            <Text>
+              The Privacy IP API is a valuable resource for accessing
+              privacy-related information associated with an IP address. By
+              following the provided documentation, developers can easily
+              integrate this API into their applications, ensuring the
+              protection of personal data and respecting individual privacy.
+            </Text>
+          </>
+        ),
+      },
+      {
+        title: 'Mobile Carrier IP API',
+        content: () => (
+          <>
+            <Text>
+              The Mobile Carrier IP API is a RESTful API that provides
+              information associated with an IP address assigned by a mobile
+              network operator (MNO) to a mobile device. This API is exclusively
+              available in the Business package and enables users to retrieve
+              details related to the mobile carrier associated with a specific
+              IP address.
+            </Text>
+            <Example>
+              <H6 color="dark">API Endpoint:</H6>
+              <Text>
+                To use the Mobile Carrier IP API, make a GET request to the
+                endpoint "{' '}
+                <Text color="primary" inline>
+                  {'/carrier/{ip}'}
+                </Text>
+                ", where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                represents the IP address for which mobile carrier information
+                is desired. The request should include a token as a query
+                parameter for authentication and access control.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>
+                The API requires one path parameter:{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>
+                . This parameter specifies the IP address for which you want to
+                retrieve the Mobile carrier information. The parameter should be
+                a valid IPv4 or IPv6 address.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns HTTP status codes to indicate the status of the
+                request. The following HTTP status codes may be returned:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested ASN information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the ASN database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data={`${host}/carrier/8.8.8.8`}>
+                GET: {host}/carrier/8.8.8.8
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details service={carrierService} ip="8.8.8.8" />
+            </Example>
+            <Text>
+              The Mobile Carrier IP API provides a valuable resource for
+              obtaining information related to the mobile carrier assigned to a
+              specific IP address. By following the provided documentation,
+              developers can seamlessly integrate this API into their
+              applications, enabling them to leverage mobile carrier data for
+              various use cases such as network optimization, targeted
+              advertising, and personalized content delivery.
+            </Text>
+          </>
+        ),
+      },
+      {
+        title: 'Abuse IP API',
+        content: () => (
+          <>
+            <Text>
+              The Abuse IP API is a RESTful API that provides information
+              associated with an IP address that has been identified as engaging
+              in abusive or malicious activities on the internet. This API is
+              exclusively available in the Business package and allows users to
+              retrieve details related to abusive behavior associated with a
+              specific IP address.
+            </Text>
+            <Example>
+              <H6 color="dark">API Endpoint:</H6>
+              <Text>
+                The endpoint for the Abuse IP API is "{' '}
+                <Text color="primary" inline>
+                  {'/abuse/{ip}'}
+                </Text>
+                ", where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                is the IP address you want to retrieve the Abuse information
+                for. The endpoint should be accessed using HTTPS protocol.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>
+                The API requires one path parameter:{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>
+                . This parameter specifies the IP address for which you want to
+                retrieve the Abuse information. The parameter should be a valid
+                IPv4 or IPv6 address.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns HTTP status codes to indicate the status of the
+                request. The following HTTP status codes may be returned:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested ASN information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the ASN database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data={`${host}/abuse/8.8.8.8`}>
+                GET: {host}/abuse/8.8.8.8
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details service={abuseService} ip="8.8.8.8" />
+            </Example>
+            <Text>
+              The Abuse IP API offers valuable insights into IP addresses that
+              have been involved in abusive or malicious activities. By
+              referring to the provided documentation, developers can seamlessly
+              integrate this API into their applications, enabling them to
+              enhance security measures, identify potential threats, and protect
+              their systems and networks from abusive behavior on the internet.
+            </Text>
+          </>
+        ),
+      },
+      {
+        title: 'Company IP API',
+        content: () => (
+          <>
+            <Text>
+              The Company IP API is a RESTful API that provides information
+              associated with the IP addresses used by a specific organization
+              or company. This API is available in the Custom package, allowing
+              users to retrieve details related to IP addresses associated with
+              a particular company or organization.
+            </Text>
+            <Example>
+              <H6 color="dark">API Endpoint:</H6>
+              <Text>
+                The endpoint for the Company IP API is "{' '}
+                <Text color="primary" inline>
+                  {'/company/{ip}'}
+                </Text>
+                ", where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                is the IP address you want to retrieve the Company information
+                for. The endpoint should be accessed using HTTPS protocol.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>
+                The API requires one path parameter:{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>
+                . This parameter specifies the IP address for which you want to
+                retrieve the Company information. The parameter should be a
+                valid IPv4 or IPv6 address.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns HTTP status codes to indicate the status of the
+                request. The following HTTP status codes may be returned:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested ASN information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the ASN database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard data={`${host}/company/8.8.8.8`}>
+                GET: {host}/company/8.8.8.8
+              </CopyCard>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Details service={companyService} ip="8.8.8.8" />
+            </Example>
+            <Text>
+              The Company IP API provides valuable information about the IP
+              addresses used by a specific organization or company. By following
+              the provided documentation, developers can integrate this API into
+              their applications, enabling them to gather insights about a
+              company's IP infrastructure and tailor their services or solutions
+              accordingly.
+            </Text>
           </>
         ),
       },
@@ -653,8 +1157,8 @@ const DOCS = [
             </Card>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/asn/8.8.8.8">
-                GET: https://api.spyskey.com/asn/8.8.8.8
+              <CopyCard data={`${host}/asn/8.8.8.8?token=TOKEN`}>
+                GET: {host}/asn/8.8.8.8
               </CopyCard>
             </Example>
             <Example>
@@ -757,8 +1261,8 @@ const DOCS = [
             </Card>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/ranges/cloudflare.com">
-                GET: https://api.spyskey.com/ranges/cloudflare.com
+              <CopyCard data={`${host}/ranges/cloudflare.com`}>
+                GET: {host}/ranges/cloudflare.com
               </CopyCard>
             </Example>
             <Example>
@@ -775,11 +1279,11 @@ const DOCS = [
         ),
       },
       {
-        title: 'Hosted domains api',
+        title: 'Hosted domains API',
         content: () => (
           <>
             <Flex gap="16px" align="center">
-              <Text weight={700}>Hosted domains api: </Text>
+              <Text weight={700}>Hosted domains API: </Text>
               <Flex gap="10px">
                 <Chip type="secondary">IP</Chip>
                 <Chip type="primary">API</Chip>
@@ -859,8 +1363,8 @@ const DOCS = [
             </Card>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/domains/8.8.8.8">
-                GET: https://api.spyskey.com/domains/8.8.8.8
+              <CopyCard data={`${host}/domains/8.8.8.8`}>
+                GET: {host}/domains/8.8.8.8
               </CopyCard>
             </Example>
             <Example>
@@ -875,11 +1379,6 @@ const DOCS = [
           </>
         ),
       },
-    ],
-  },
-  {
-    title: 'Custom APIs',
-    blocks: [
       {
         title: 'Company Data',
         content: () => (
@@ -900,8 +1399,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -936,8 +1435,8 @@ const DOCS = [
             </Text>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/8.8.8.8?token = TOKEN">
-                GET: https://api.spyskey.com/8.8.8.8?token = TOKEN
+              <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
+                GET: {host}/8.8.8.8?token = TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -1030,8 +1529,8 @@ const DOCS = [
             </Card>
             <Example>
               <H6 color="dark">Example Request:</H6>
-              <CopyCard data="https://api.spyskey.com/whois/8.8.8.8">
-                GET: https://api.spyskey.com/whois/8.8.8.8
+              <CopyCard data={`${host}/whois/8.8.8.8`}>
+                GET: {host}/whois/8.8.8.8
               </CopyCard>
             </Example>
             <Example>

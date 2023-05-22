@@ -16,9 +16,9 @@ const AutomaticBilling = ({ value, onChange }) => {
       </CardTitle>
       <CardBottom align="flex-end">
         <Caption>
-          Keep your API running even when you consume your monthly limit before
-          end of the month. You’ll get an email notification about it when 80%
-          of request volume has been consumed.
+          Ensure your API remains operational even if you reach your monthly
+          limit before the month ends. You'll receive an email alert once you've
+          used up 80% of your request volume.
         </Caption>
       </CardBottom>
     </Card>

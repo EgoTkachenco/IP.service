@@ -8,11 +8,10 @@ import { OnlyDesktop, OnlyMobile } from '@/components/landing/blocks/styled'
 
 const Footer = () => {
   return (
-    <BlockInner>
+    <BlockInner direction="column">
       <Wrapper>
         <FooterLogo>
           <Logo />
-          <Copyrights />
           <OnlyMobile gap="21px">
             <Image src="/visa.svg" alt="Visa" width={61} height={20} />
             <Image
@@ -26,7 +25,8 @@ const Footer = () => {
         <FooterLinks>
           {footer_links.map((column, i) => (
             <Flex direction="column" gap="10px" key={i}>
-              {column.map((link, j) => (
+              <FooterTitle color="dark">{column.title}</FooterTitle>
+              {column.links.map((link, j) => (
                 <Link href={link.href} key={j}>
                   <LinkText>{link.name}</LinkText>
                 </Link>
@@ -58,24 +58,41 @@ const Footer = () => {
           </OnlyDesktop>
         </FooterButtons>
       </Wrapper>
+      <Copyrights />
     </BlockInner>
   )
 }
 
 const footer_links = [
-  [
-    { name: 'IP Geolocation API', href: routes['geolocation-api'] },
-    { name: 'IP to Company', href: routes['company-api'] },
-    { name: 'Abuse Contact API', href: routes['abuse-api'] },
-    { name: 'Privacy Detection API', href: routes['privacy-api'] },
-    { name: 'IP Ranges API', href: routes['ranges-api'] },
-  ],
-  [
-    { name: 'IP to Mobile Carrier', href: routes['carrier-api'] },
-    { name: 'ASN API', href: routes['asn-api'] },
-    { name: 'Hosted Domains API', href: routes['reverse-api'] },
-    { name: 'IP WHOIS Down', href: routes['whois-api'] },
-  ],
+  {
+    title: 'Products',
+    links: [
+      { name: 'IP Geolocation API', href: routes['geolocation-api'] },
+      { name: 'IP to Company', href: routes['company-api'] },
+      { name: 'Abuse Contact API', href: routes['abuse-api'] },
+      { name: 'Privacy Detection API', href: routes['privacy-api'] },
+      { name: 'IP Ranges API', href: routes['ranges-api'] },
+    ],
+  },
+  {
+    title: ' ',
+    links: [
+      { name: 'IP to Mobile Carrier', href: routes['carrier-api'] },
+      { name: 'ASN API', href: routes['asn-api'] },
+      { name: 'Hosted Domains API', href: routes['reverse-api'] },
+      { name: 'IP WHOIS Down', href: routes['whois-api'] },
+    ],
+  },
+  {
+    title: 'Information',
+    links: [
+      { name: 'Pricing', href: routes.pricing },
+      { name: 'Contact', href: routes.contact },
+      { name: 'Help Center', href: routes.faq },
+      { name: 'Docs', href: routes.docs },
+      { name: 'Login', href: '/' },
+    ],
+  },
 ]
 
 export default Footer
@@ -95,7 +112,7 @@ const Logo = () => (
 
 const Wrapper = styled.footer`
   border-top: 1px solid rgba(52, 64, 84, 0.1);
-  padding: 60px 0 120px;
+  padding: 60px 0;
   width: 100%;
   display: flex;
 
@@ -131,6 +148,11 @@ const FooterLinks = styled(Flex)`
     gap: 32px;
     order: 1;
   }
+`
+
+const FooterTitle = styled(Text)`
+  margin-bottom: 10px;
+  font-weight: 700;
 `
 
 const FooterButtons = styled(Flex)`
@@ -171,11 +193,16 @@ const LinkText = styled(Caption)`
 `
 
 const Copyrights = () => (
-  <Flex direction="column">
+  <CopyrightsWrapper justify="center">
     <Caption>Copyright © 2023 IPinfo®</Caption>
     <Caption>
       | <Link href={routes.terms}>Terms & Conditions</Link> ·{' '}
       <Link href={routes.privacy}>Privacy Policy</Link>
     </Caption>
-  </Flex>
+  </CopyrightsWrapper>
 )
+
+const CopyrightsWrapper = styled(Flex)`
+  margin-bottom: 120px;
+  width: 100%;
+`

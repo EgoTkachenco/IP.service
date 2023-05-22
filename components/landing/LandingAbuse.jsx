@@ -37,7 +37,7 @@ const LandingAbuse = () => {
       <Advantages
         title={`Accurate & low-latency\nAbuse contact data`}
         description={`Discover Spyskey's cutting-edge Abuse Contact API, your go-to source for precise and comprehensive abuse contact information. With our innovative technology, we deliver unparalleled access to essential data for every IP address, empowering you to tackle online security challenges effectively. Experience the efficiency and reliability of Spyskey's industry-leading API, and elevate your internet safety initiatives to new heights.`}
-        count={61}
+        count={24}
         features={[
           { icon: 'done', name: 'Address' },
           { icon: 'done', name: 'Email address' },

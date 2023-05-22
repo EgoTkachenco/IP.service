@@ -8,16 +8,19 @@ import {
   updateProfile,
   getProfile,
   skipOnboarding,
+  setBillingName,
+  setCardDetails,
 } from '@/utils/api'
 import { eraseToken, getToken, setToken, USER_STORE_NAME } from '@/utils/axios'
+import { ADMIN_TOKEN_NAME } from '@/utils/constants'
 
 class AuthStore {
   isFetch = false
   user = null
-  forgetIdentifier = ''
   constructor() {
     makeAutoObservable(this, {
       showOnboarding: computed,
+      isTrialAvailable: computed,
     })
   }
 
@@ -25,8 +28,13 @@ class AuthStore {
     this.isFetch = true
     return login(data)
       .then((data) => {
-        eraseToken()
-        setToken(data.token)
+        if (data.role.name === 'admin') {
+          eraseToken(ADMIN_TOKEN_NAME)
+          setToken(data.token, ADMIN_TOKEN_NAME)
+        } else {
+          eraseToken()
+          setToken(data.token)
+        }
         return data
       })
       .finally(() => {
@@ -60,15 +68,12 @@ class AuthStore {
 
   forgetPassword = (data) => {
     this.isFetch = true
-    this.forgetIdentifier = ''
     return forgetPassword(data).finally(() => {
-      this.forgetIdentifier = data.identifier
       this.isFetch = false
     })
   }
   resetPassword = (data) => {
     this.isFetch = true
-    this.forgetIdentifier = ''
     return resetPassword(data).finally(() => {
       this.isFetch = false
     })
@@ -113,8 +118,23 @@ class AuthStore {
       })
   }
 
+  updateCardholder(cardholder) {
+    return setBillingName(cardholder).then(() => {
+      return this.getProfile()
+    })
+  }
+  updateCardDetails(details) {
+    return setCardDetails(details).then(() => {
+      return this.getProfile()
+    })
+  }
+
   get showOnboarding() {
     return this.user && this.user.onboarding ? true : false
+  }
+
+  get isTrialAvailable() {
+    return this.user && this.user.trial ? true : false
   }
 }
 

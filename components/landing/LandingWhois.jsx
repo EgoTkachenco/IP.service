@@ -40,7 +40,7 @@ const LandingWhois = () => {
           'Efficiently-structured and \nuser-friendly IP Whois information'
         }
         description="Stay Ahead with Our Continuously Updated Whois Data Amid Rapid Domain Growth. With the Internet experiencing an impressive annual growth of 7.2% in domain registrations across all Top-Level Domains (TLDs), it's crucial to have access to the most current Whois data. We ensure you remain informed by updating our insights daily and aggregating record sets from over 450 Whois servers globally. Effortlessly access comprehensive Whois information by IP, ID, or domain, and unlock invaluable insights to empower your online ventures."
-        count={28}
+        count={18}
         contentWidth="660px"
       />
       <WhoisInfo />

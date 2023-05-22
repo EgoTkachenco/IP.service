@@ -6,6 +6,8 @@ export const validateIP = (value) =>
     value
   )
 
+export const validateASN = (value) => /^(^AS)?[0-9]+$/gm.test(value)
+
 export const isAuthorized = (ctx) => !!getCookie(TOKEN_NAME, ctx)
 
 export const serverSideSecuredRoute = (ctx) => {

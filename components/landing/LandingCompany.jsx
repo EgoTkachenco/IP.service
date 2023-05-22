@@ -1,6 +1,6 @@
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
-import AdvantagesSmall from './blocks/AdvantagesSmall'
+import Advantages from './blocks/Advantages'
 import CompanyAPIUsecases from './blocks/CompanyAPIUsecases'
 import Contact from './blocks/Contact'
 import FAQ from './blocks/FAQ'
@@ -21,6 +21,7 @@ const LandingCompany = () => {
         description="Our API offers customers a fresh perspective on website traffic by providing firmographics data about the companies responsible for the IP traffic."
         service={companyService}
         advanced={true}
+        examples={['', '66.177.228.234', '247.193.70.173', '66.131.120.255']}
       />
       <Feedback
         name="Olivia Washington"
@@ -36,14 +37,17 @@ const LandingCompany = () => {
           { title: '86%', description: 'Precision' },
         ]}
       />
-      <AdvantagesSmall
+      <Advantages
         title={'Fast and accurate IP to company API.'}
         description={`Unlike our competitors who rely on WHOIS information that includes mostly irrelevant ISP services, we have developed a cutting-edge technology that provides highly accurate data on the companies visiting your website. See for yourself the precision of our unique technology.`}
-        count={40}
+        count={17}
         features={[
-          { icon: 'navigation', name: 'Domain name' },
-          { icon: 'edit', name: 'Company name' },
-          { icon: 'city', name: 'Company type' },
+          { icon: 'company', name: 'Сompany' },
+          { icon: 'url', name: 'Url' },
+          { icon: 'size', name: 'Size' },
+          { icon: 'founded', name: 'Founded' },
+          { icon: 'industry', name: 'Industry' },
+          { icon: 'location', name: 'Location' },
         ]}
       />
       <CompanyAPIUsecases />

@@ -40,9 +40,9 @@ axios.interceptors.response.use(
   }
 )
 
-function setToken(token) {
+function setToken(token, tokenName = TOKEN_NAME) {
   document.cookie =
-    TOKEN_NAME +
+    tokenName +
     '=' +
     (token || '') +
     `; expires=${new Date(
@@ -50,8 +50,8 @@ function setToken(token) {
     ).toUTCString()}`
 }
 
-function getToken() {
-  var nameEQ = TOKEN_NAME + '='
+function getToken(tokenName = TOKEN_NAME) {
+  var nameEQ = tokenName + '='
   var ca = document.cookie.split(';')
   for (var i = 0; i < ca.length; i++) {
     var c = ca[i]
@@ -61,14 +61,14 @@ function getToken() {
   return null
 }
 
-function eraseToken() {
-  document.cookie = `${TOKEN_NAME}=; Max-Age=0`
+function eraseToken(tokenName = TOKEN_NAME) {
+  document.cookie = `${tokenName}=; Max-Age=0`
 }
 
-let securedFetchOptions = () => {
+let securedFetchOptions = (tokenName = TOKEN_NAME) => {
   return {
     headers: {
-      Authorization: 'Bearer ' + getToken(),
+      Authorization: 'Bearer ' + getToken(tokenName),
     },
   }
 }

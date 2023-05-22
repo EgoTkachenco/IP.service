@@ -11,6 +11,7 @@ import { useForm } from '@mantine/form'
 import store from '@/store/AuthStore'
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
+import routes from '@/constants/routes.js'
 
 const SignUpModal = observer(({ onLogin, onClose }) => {
   const router = useRouter()
@@ -19,7 +20,7 @@ const SignUpModal = observer(({ onLogin, onClose }) => {
       identifier: '',
       password: '',
       password_confirmation: '',
-      accept: false,
+      accept: true,
     },
 
     validate: {
@@ -85,7 +86,21 @@ const SignUpModal = observer(({ onLogin, onClose }) => {
         />
         <CheckboxBlock>
           <Checkbox
-            label="I'll get by with the rules of the coronation of the service"
+            label={
+              <Caption inline>
+                I accept{' '}
+                <Caption
+                  inline
+                  as="a"
+                  href={routes.terms}
+                  target="_blank"
+                  color="primary"
+                  style={{ textDecoration: 'underline' }}
+                >
+                  Terms of Service
+                </Caption>
+              </Caption>
+            }
             {...form.getInputProps('accept')}
           />
         </CheckboxBlock>

@@ -3,6 +3,8 @@ import { Card, H6, Chip, H5, Caption } from '@/core'
 import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
 import { useEffect, useState } from 'react'
 import { useWindowSize } from '@/hooks'
+import routes from '@/constants/routes'
+import Link from 'next/link'
 
 const MonthUsage = ({ limit = 0, value = 0 }) => {
   const percent_value = getPercent(value, limit)
@@ -10,7 +12,11 @@ const MonthUsage = ({ limit = 0, value = 0 }) => {
     <Card color="white">
       <CardTitle>
         <H6>This month</H6>
-        <Chip type="grey-outline">Manage Overages</Chip>
+        <Link href={routes.invoices}>
+          <Chip type="grey-outline" onClick={() => {}}>
+            Manage Overages
+          </Chip>
+        </Link>
       </CardTitle>
 
       <CardContent

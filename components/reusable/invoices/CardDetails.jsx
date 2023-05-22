@@ -1,21 +1,34 @@
+import { useContext } from 'react'
+import styled from 'styled-components'
 import { Card, H6, Icon, Caption } from '@/core'
 import { CardTitle, CardContent } from '@/components/reusable/styled.jsx'
-import styled from 'styled-components'
+import ModalContext from '@/utils/modalContext'
 
 const CardDetails = ({ profile }) => {
+  const { openModal } = useContext(ModalContext)
+  const isCard = profile?.card?.last4
   return (
     <Card color="white">
       <CardTitle>
         <H6>Card on file</H6>
-        <Icon icon="edit" size="20px" color="primary" />
+        {isCard && (
+          <Icon
+            icon="edit"
+            size="20px"
+            color="primary"
+            onClick={() => openModal('update-card-details')}
+          />
+        )}
       </CardTitle>
       <CardContent>
-        {profile.card.last4 && (
+        {isCard ? (
           <CreditCard
             name={profile.card.name}
             expirationDate={profile.card.date}
             cardNumber={`**** **** ****  ${profile.card.last4}`}
           />
+        ) : (
+          <H6 color="dark">No card details</H6>
         )}
       </CardContent>
     </Card>

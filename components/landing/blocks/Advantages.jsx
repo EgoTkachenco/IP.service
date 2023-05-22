@@ -13,17 +13,19 @@ const Advantages = ({ title, description, count, features }) => {
         <AdvantagesText>{description}</AdvantagesText>
         <AdvantagesContainer gap="50px" align="center">
           <Column_1>
-            {features.slice(0, 3).map((feature) => (
-              <AdvantagesItem
-                key={feature.name}
-                icon={feature.icon}
-                text={feature.name}
-              />
-            ))}
+            {features
+              .slice(0, Math.ceil(features.length / 2))
+              .map((feature) => (
+                <AdvantagesItem
+                  key={feature.name}
+                  icon={feature.icon}
+                  text={feature.name}
+                />
+              ))}
           </Column_1>
           <AdvantagesIllustration count={count} />
           <Column_2>
-            {features.slice(3, 6).map((feature) => (
+            {features.slice(Math.ceil(features.length / 2)).map((feature) => (
               <AdvantagesItem
                 key={feature.name}
                 icon={feature.icon}
@@ -76,7 +78,7 @@ const AdvantagesContainer = styled(Flex)`
 const Column = styled(Flex)`
   flex-direction: column;
   justify-content: space-around;
-  gap: 100px;
+  gap: 70px;
   @media (max-width: 1140px) {
     gap: 24px;
   }

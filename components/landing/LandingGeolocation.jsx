@@ -38,14 +38,18 @@ const LandingGeolocation = () => {
       <Advantages
         title={`Ultra-Fast, Precise IP Geolocation Lookup`}
         description="Spyskey, your premier IP geolocation provider, excels in delivering pinpoint-accurate IP-to-location insights. Harness the power of our proprietary, constantly-updated geolocation database to elevate your digital strategy. Experience our cutting-edge GeoAPI, featuring comprehensive data sets for every IP, ensuring optimal targeting, personalization, and search engine visibility."
-        count={68}
+        count={58}
         features={[
           { icon: 'edit', name: 'Hostname' },
           { icon: 'communicate', name: 'Postal/zip code' },
           { icon: 'navigation', name: 'Region' },
+          { icon: 'language', name: 'Languages' },
+          { icon: 'currency', name: 'Currency' },
           { icon: 'flag', name: 'Country' },
           { icon: 'map', name: 'Location coordinates' },
           { icon: 'city', name: 'City' },
+          { icon: 'clock', name: 'Time zone' },
+          { icon: 'flag', name: 'Flag' },
         ]}
       />
       <GeolocationAPIUsecases />

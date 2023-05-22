@@ -9,8 +9,8 @@ const OnboardingStep4 = ({ setTrial }) => {
       title="Start your 7 days trial"
       subtitle={
         <Caption>
-          Start your 7 days trial subscription to IPinfo Premium plan. You'll
-          have access to the following data:
+          Begin your one-week trial membership for the Spyskey Premium plan.
+          This will provide you access to the following data:
         </Caption>
       }
     >

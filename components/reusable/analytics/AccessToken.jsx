@@ -19,7 +19,8 @@ const AccessToken = ({ token, host }) => {
           width="auto"
           outline
           size="small"
-          data={`${host}/[IP address]?token=${token}`}
+          // data={`${host}/[IP address]?token=${token}`}
+          data={`${host}/[IP address]`}
         >
           Copy to Clipboard
         </CopyButton>

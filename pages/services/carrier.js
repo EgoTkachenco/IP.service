@@ -7,9 +7,9 @@ export default function CarrierService() {
   return (
     <>
       {renderMetadata({
-        title: 'Mobile Carrier Detection | Spyskey',
+        title: 'IP Carrier Lookup Tool: Mobile Carrier Detection | Spyskey',
         description:
-          "Improve your mobile marketing strategy with our mobile carrier detection tool. Identify your users' carriers and optimize your messaging for maximum impact",
+          "Using the IP address to identify mobile users provides a higher level of detection reliability compared to other common methods, such as reading their browser's user-agent.",
         schema: 'faq',
         faqTopic: 'Carrier',
       })}

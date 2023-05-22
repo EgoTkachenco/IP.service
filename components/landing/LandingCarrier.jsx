@@ -39,7 +39,7 @@ const LandingCarrier = () => {
       <AdvantagesSmall
         title={'Find mobile device user information.'}
         description={`Identifying mobile users through their IP addresses is a highly reliable method compared to other commonly used techniques like reading the browser's user-agent. With regular updates at least once per month, our mobile network IP data is readily available through an API endpoint or direct download. Gain access to this reliable information today.`}
-        count={52}
+        count={44}
         features={[
           { icon: 'done', name: 'MCC' },
           { icon: 'edit', name: 'Name' },

@@ -1,6 +1,6 @@
 import Main from './blocks/Main'
 import Feedback from './blocks/Feedback'
-import Advantages from './blocks/Advantages'
+import AdvantagesSmall from './blocks/AdvantagesSmall'
 import PrivacyAPIUsecases from './blocks/PrivacyAPIUsecases'
 import Contact from './blocks/Contact'
 import FAQ from './blocks/FAQ'
@@ -35,17 +35,17 @@ const LandingPrivacy = () => {
           { title: '~100ms', description: 'Latency' },
         ]}
       />
-      <Advantages
-        title={`Accurate, timely \nIP concealment detection`}
+      <AdvantagesSmall
+        title={`Accurate, timely IP concealment detection`}
         description="Experience our powerful custom internet scans, detecting nearly 11 million active VPNs alongside data on public SOCKS, HTTP proxies, and Tor exit nodes. With our proprietary IP usage type classification and regular updates, we ensure consistently fresh, accurate results. Enhance your security and protect against IP concealment threats using our comprehensive, real-time IP detection solutions."
-        count={36}
+        count={42}
         features={[
           { icon: 'done', name: 'VPN' },
           { icon: 'done', name: 'Proxy' },
           { icon: 'done', name: 'Tor' },
-          { icon: 'done', name: 'Relay' },
-          { icon: 'done', name: 'Hosting' },
-          { icon: 'done', name: 'Hosting service' },
+          // { icon: 'done', name: 'Relay' },
+          // { icon: 'done', name: 'Hosting' },
+          // { icon: 'done', name: 'Hosting service' },
         ]}
       />
       <PrivacyAPIUsecases />

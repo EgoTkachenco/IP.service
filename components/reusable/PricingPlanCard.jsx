@@ -11,6 +11,7 @@ const PlanCard = ({
   options,
   onSubscription,
   isCurrent,
+  buttonId,
 }) => {
   return (
     <Flex direction="column" gap="10px" width="100%" id={name}>
@@ -43,9 +44,13 @@ const PlanCard = ({
         </FeaturesContainer>
         <PriceCardDelimiter />
         {!isCurrent ? (
-          <Button onClick={onSubscription}>Subscribe</Button>
+          <Button id={buttonId} onClick={onSubscription}>
+            Subscribe
+          </Button>
         ) : (
-          <Button disabled>Current plan</Button>
+          <Button id={buttonId} disabled>
+            Current plan
+          </Button>
         )}
       </PlanCardWrapper>
       <PlanCaption dangerouslySetInnerHTML={{ __html: description }} />
