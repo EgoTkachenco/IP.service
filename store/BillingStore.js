@@ -29,8 +29,8 @@ class BillingStore {
       const res = await createOrder(
         plan,
         term,
-        location.href,
-        'http://127.0.0.1:3000/payment-cancel'
+        location.origin + '/payment-success',
+        location.origin + '/payment-cancel'
       )
       if (res) window.open(res.session_url)
       // AuthStore.getProfile()
@@ -62,8 +62,8 @@ class BillingStore {
     const res = await setCustomPlan(
       period,
       options,
-      location.href,
-      'http://127.0.0.1:3000/payment-cancel'
+      location.origin + '/payment-success',
+      location.origin + '/payment-cancel'
     )
 
     if (res) window.open(res.session_url)
