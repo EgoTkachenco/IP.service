@@ -1,11 +1,22 @@
 import Layout from '@/components/landing/layout/Layout'
 import { useMetadataRenderer } from '@/hooks'
-import { Flex, H2 } from '@/core'
+import { Flex, Button } from '@/core'
 import styled from 'styled-components'
+import Payment from '@/components/reusable/Payment'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { getOrderDetails } from '@/utils/api'
+import Link from 'next/link'
+import routes from '@/constants/routes'
 
 export default function PaymentCancelPage() {
   const renderMetadata = useMetadataRenderer()
-
+  const [orderDetails, setOrderDetails] = useState(null)
+  const router = useRouter()
+  const { order } = router.query
+  useEffect(() => {
+    if (order) getOrderDetails(order).then((res) => setOrderDetails(res.data))
+  }, [order])
   return (
     <>
       {renderMetadata({
@@ -13,9 +24,14 @@ export default function PaymentCancelPage() {
       })}
       <Layout animation={false}>
         <Content>
-          <H2 as="p" color="dark">
-            Payment cancel
-          </H2>
+          <Payment
+            details={orderDetails}
+            bottomSlot={
+              <Link href={routes.upgrade}>
+                <Button>Try again</Button>
+              </Link>
+            }
+          />
         </Content>
       </Layout>
     </>
