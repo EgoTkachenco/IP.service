@@ -194,7 +194,7 @@ const LinkText = styled(Caption)`
 
 const Copyrights = () => (
   <CopyrightsWrapper justify="center">
-    <Caption>Copyright © 2023 IPinfo®</Caption>
+    <Caption>Copyright © 2023 Spyskey </Caption>
     <Caption>
       | <Link href={routes.terms}>Terms & Conditions</Link> ·{' '}
       <Link href={routes.privacy}>Privacy Policy</Link>
