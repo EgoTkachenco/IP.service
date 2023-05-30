@@ -127,18 +127,16 @@ export function useMetadataRenderer() {
     const { title, description, schema } = props
     const router = useRouter()
     return (
-      <>
-        <Head>
-          {renderCommonMetaData({
-            title: title,
-            description: description,
-            siteName: title,
-            url: router.pathname,
-          })}
+      <Head>
+        {renderCommonMetaData({
+          title: title,
+          description: description,
+          siteName: title,
+          url: router.pathname,
+        })}
 
-          {renderPageSchemaMetaData(props, schema)}
-        </Head>
-      </>
+        {renderPageSchemaMetaData(props, schema)}
+      </Head>
     )
   }
 }

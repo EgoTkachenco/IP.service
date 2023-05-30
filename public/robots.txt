@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Disallow: /app/
+Allow: */media/*
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.svg*
+Allow: /*.webp*
+ 
+Sitemap: https://spyskey.com/sitemap.xml

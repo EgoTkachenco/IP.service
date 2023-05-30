@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import ModalContext from '@/utils/modalContext'
 import { H4, Flex, Card, Button, Link } from '@/core'
 import styled from 'styled-components'
@@ -12,20 +12,20 @@ const Profile = observer(() => {
   const { user, updateProfile, isFetch } = AuthStore
   const form = useForm({
     initialValues: {
-      first_name: user?.first_name || '',
-      last_name: user?.last_name || '',
+      full_name: user?.full_name || '',
+      // last_name: user?.last_name || '',
       email: user?.email || '',
     },
 
     validate: {
-      first_name: (value) => {
+      full_name: (value) => {
         // if (!value) return 'Password required'
         return null
       },
-      last_name: (value) => {
-        // if (!value) return 'Password required'
-        return null
-      },
+      // last_name: (value) => {
+      //   // if (!value) return 'Password required'
+      //   return null
+      // },
       email: (value) => {
         if (!value) return 'Email required'
         if (!/^\S+@\S+$/.test(value)) return 'Invalid email'
@@ -38,6 +38,8 @@ const Profile = observer(() => {
       if (error.errors) form.setErrors(error.errors)
     })
   })
+
+  useEffect(() => form.setValues(user), [user])
   return (
     <Wrapper direction="column">
       <H4 color="dark">Profile</H4>
@@ -45,13 +47,13 @@ const Profile = observer(() => {
         <TextField
           label="Name"
           name="name"
-          {...form.getInputProps('first_name')}
+          {...form.getInputProps('full_name')}
         />
-        <TextField
+        {/* <TextField
           label="Last Name"
           name="lastName"
           {...form.getInputProps('last_name')}
-        />
+        /> */}
         <TextField
           label="Email address"
           name="email"

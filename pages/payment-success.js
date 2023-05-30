@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { getOrderDetails } from '@/utils/api'
 import Link from 'next/link'
 import routes from '@/constants/routes'
+import Script from 'next/script'
 
 export default function PaymentSuccessPage() {
   const renderMetadata = useMetadataRenderer()
@@ -22,6 +23,13 @@ export default function PaymentSuccessPage() {
       {renderMetadata({
         title: 'Success payment | Spyskey',
       })}
+      {/* <!-- Event snippet for Paid conversion page --> */}
+      <Script strategy="beforeInteractive">
+        {`gtag('event', 'conversion', {
+						'send_to': 'AW-11176276843/9bIICIbazKMYEOvmodEp',
+						'transaction_id': ''
+					});`}
+      </Script>
       <Layout animation={false}>
         <Content>
           <Payment

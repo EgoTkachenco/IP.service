@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Payment from '@/components/reusable/Payment'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { getOrderDetails } from '@/utils/api'
+import { getCanceledOrderDetails, getOrderDetails } from '@/utils/api'
 import Link from 'next/link'
 import routes from '@/constants/routes'
 
@@ -16,6 +16,7 @@ export default function PaymentCancelPage() {
   const { order } = router.query
   useEffect(() => {
     if (order) getOrderDetails(order).then((res) => setOrderDetails(res.data))
+    // getCanceledOrderDetails(order)
   }, [order])
   return (
     <>

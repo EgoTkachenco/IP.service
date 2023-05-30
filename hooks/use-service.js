@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRequest } from './use-request'
 import { getIp } from '@/utils/api'
 
-export const useService = (initialIp, service) => {
+export const useService = (initialIp, service, autoload = true) => {
   const [userIP, setUserIP] = useState('')
   const [ip, setIp] = useState(initialIp)
   const [data, setData] = useState(null)
@@ -40,7 +40,7 @@ export const useService = (initialIp, service) => {
       getIp()
         .then((data) => {
           setUserIP(data)
-          if (!ip) setIp(data)
+          if (!ip && autoload) setIp(data)
         })
         .catch((error) => console.log(error))
     }

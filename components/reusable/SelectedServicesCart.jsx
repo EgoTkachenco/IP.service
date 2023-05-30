@@ -62,6 +62,8 @@ const SelectedServicesCart = ({
         )}
       </Content>
       <Button
+        id="custom-plan-subscribe"
+        value={sum.toFixed(0)}
         disabled={list.length === 0}
         variant={list.length === 0 ? 'primary-transparent' : null}
         onClick={onSubscribe}
@@ -107,7 +109,7 @@ const EmptyBox = styled(Flex)`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: auto 0; ;
+  margin: auto 0;
 `
 
 const ListItem = styled(Flex)`

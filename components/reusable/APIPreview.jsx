@@ -14,10 +14,16 @@ const APIPreview = ({
   validation,
   examples = example_list,
   placeholder = 'Search IP',
+  autoload = true,
+  examplesfirst = false,
 }) => {
   let defaultValue = ''
   if (examples.indexOf('') === -1) defaultValue = examples[0]
-  const { ip, setIp, data, isFetch, userIP } = useService(defaultValue, service)
+  const { ip, setIp, data, isFetch, userIP } = useService(
+    defaultValue,
+    service,
+    autoload
+  )
 
   const form = useForm({
     initialValues: {
@@ -54,7 +60,7 @@ const APIPreview = ({
         />
       </SearchForm>
 
-      <ContentCard color="dark" isFetch={isFetch}>
+      <ContentCard color="dark" isFetch={isFetch} order={examplesfirst ? 3 : 2}>
         <ContentCardInner className="custom-scroll-dark">
           {!isFetch ? (
             <JSONPreview data={data || {}} errorColor="white" />
@@ -63,7 +69,11 @@ const APIPreview = ({
           )}
         </ContentCardInner>
       </ContentCard>
-      <ChipContainer flex="0 1 150px" className="custom-scroll">
+      <ChipContainer
+        flex="0 1 150px"
+        className="custom-scroll"
+        order={examplesfirst ? 2 : 3}
+      >
         {examples.map((example, i) => (
           <Chip
             key={i}
@@ -102,13 +112,14 @@ const LoadingText = () => {
 const ContentCard = styled(Card)`
   position: relative;
   width: 100%;
-  margin: 16px 0 4px;
+  margin: 16px 0;
   flex-grow: 1;
   border-radius: 8px;
   height: 385px;
   max-height: 385px;
   max-width: 550px;
   min-width: 550px;
+  order: ${({ order }) => order};
 
   &:after {
     content: '';
@@ -146,8 +157,11 @@ const ChipContainer = styled(Flex)`
   gap: 4px;
   max-width: 100%;
   overflow: auto;
+  margin-top: 4px;
   padding-bottom: 8px;
   margin-bottom: -8px;
+  order: ${({ order }) => order};
+
   & > * {
     min-width: 120px;
   }
@@ -166,4 +180,5 @@ const IconContainer = styled.div`
 
 const SearchForm = styled.form`
   width: 100%;
+  order: 1;
 `

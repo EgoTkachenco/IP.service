@@ -195,6 +195,7 @@ const Button = React.forwardRef(function Button(
     width,
     height,
     disabled = false,
+    value = undefined,
   },
   ref
 ) {
@@ -219,6 +220,7 @@ const Button = React.forwardRef(function Button(
       width={width}
       onClick={onClick}
       disabled={disabled}
+      value={value}
       {...sizeProps}
     >
       {children}
