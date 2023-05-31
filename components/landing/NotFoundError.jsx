@@ -11,7 +11,7 @@ const NotFoundError = () => {
       <Block>
         <Title color="dark">404: Page not found</Title>
 
-        <Flex direction="column" gap="16px">
+        <Content>
           <H6 color="dark">Search for an IP address or ASN</H6>
           <APIPreview
             service={(data) => allService({ ip: data })}
@@ -26,7 +26,7 @@ const NotFoundError = () => {
             // autoload={true}
             examplesfirst
           />
-        </Flex>
+        </Content>
       </Block>
     </>
   )
@@ -40,8 +40,7 @@ const Block = styled(BlockInner)`
   align-items: center;
 
   @media (max-width: 1140px) {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding: 48px 24px;
     flex-direction: column;
     align-items: center;
   }
@@ -50,5 +49,16 @@ const Block = styled(BlockInner)`
 const Title = styled(H2)`
   @media (max-width: 1140px) {
     margin: 0 0 64px;
+  }
+`
+
+const Content = styled(Flex)`
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+
+  & > :last-child {
+    max-width: 500px;
+    width: 100%;
   }
 `
