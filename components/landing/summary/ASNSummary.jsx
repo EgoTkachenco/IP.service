@@ -8,13 +8,13 @@ const ASNSummary = ({ id, data }) => {
     <Flex direction="column" gap="32px" id={id}>
       <H3 color="dark">ASN</H3>
       <StyledCard direction="column" gap="32px" color="white">
-        <Flex align="center">
+        <ASNContainer>
           <H4 color="primary" weight={700}>
-            AS34058
+            {data?.ashandle}
           </H4>
-          <Text weight={600}> - {data?.descr}</Text>
-        </Flex>
-        <Flex gap="60px">
+          <Text weight={600}> - {data?.organisation['org-name']}</Text>
+        </ASNContainer>
+        <ValuesContainer>
           <ASNItem
             icon="web"
             label="Domain"
@@ -34,7 +34,7 @@ const ASNSummary = ({ id, data }) => {
               </H6>
             }
           />
-        </Flex>
+        </ValuesContainer>
         <ServiceDetails
           title="ASN data"
           description="ASN details for every IP address and every ASN’s related domains, allocation date, registry name, total number of IP addresses, and assigned prefixes."
@@ -50,6 +50,10 @@ export default ASNSummary
 
 const StyledCard = styled(Card)`
   padding: 32px 40px;
+
+  @media (max-width: 1140px) {
+    padding: 32px;
+  }
 `
 
 const ASNItem = ({ icon, label, value }) => (
@@ -63,4 +67,24 @@ const ASNItem = ({ icon, label, value }) => (
 
 const ASNItemValue = styled.div`
   padding: 8px 0 0 44px;
+`
+
+const ASNContainer = styled(Flex)`
+  align-items: center;
+  @media (max-width: 1140px) {
+    flex-wrap: wrap;
+    H4 {
+      font-size: 20px;
+      line-height: 160%;
+    }
+  }
+`
+
+const ValuesContainer = styled(Flex)`
+  gap: 60px;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    gap: 32px;
+  }
 `

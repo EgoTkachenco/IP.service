@@ -2,6 +2,7 @@ import routes from '@/constants/routes'
 import services from '@/constants/services'
 
 export default [
+  { name: 'My IP', link: routes.summary },
   {
     name: 'Products',
     links: services,

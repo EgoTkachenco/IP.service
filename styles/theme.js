@@ -39,6 +39,7 @@ module.exports = {
     grey: '#667080',
     silvery: '#F9FAFC',
     'light-grey': 'rgba(102, 112, 128, 0.5)',
+    'light-card-grey': 'rgba(80, 92, 117, 0.05)',
     // danger: '#EE2354',
     danger: '#E44332',
     pink: '#C268ED',

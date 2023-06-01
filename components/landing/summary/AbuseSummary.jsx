@@ -45,6 +45,10 @@ export default AbuseSummary
 
 const StyledCard = styled(Card)`
   padding: 32px 40px;
+
+  @media (max-width: 1140px) {
+    padding: 32px;
+  }
 `
 
 const DarkCard = styled(Card)`
@@ -55,4 +59,13 @@ const DarkCard = styled(Card)`
   justify-content: stretch;
   gap: 32px;
   overflow: visible;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+
+    & > :nth-child(2) {
+      height: 1px;
+      width: 100%;
+    }
+  }
 `

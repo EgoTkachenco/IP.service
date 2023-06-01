@@ -4,22 +4,36 @@ import Link from 'next/link'
 
 export const ValueCard = ({ label, value, hint }) => {
   return (
-    <ValueCardWrapper>
-      <Flex width="180px">
+    <ValueCardWrapper color="white">
+      <TitleWrapper>
         <Tooltip hint={hint}>
           <ValueCardLabel>{label}</ValueCardLabel>
         </Tooltip>
-      </Flex>
+      </TitleWrapper>
       <Text>{value}</Text>
     </ValueCardWrapper>
   )
 }
+
+const TitleWrapper = styled(Flex)`
+  width: 180px;
+
+  @media (max-width: 1140px) {
+    width: 80px;
+  }
+`
 
 const ValueCardWrapper = styled(Card)`
   gap: 16px;
   flex-direction: row;
   overflow: visible;
   padding: 16px 24px;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 1140px) {
+    padding: 16px;
+  }
 `
 const ValueCardLabel = styled(Text)`
   border-bottom: 1px dashed #bdbdbd;

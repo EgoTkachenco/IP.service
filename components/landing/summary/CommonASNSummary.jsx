@@ -1,7 +1,7 @@
 import { Flex, H3, Text } from '@/core'
 import { ValueCard, CheckValue } from './styled'
 
-const CommonSummary = ({ id, data }) => {
+const CommonASNSummary = ({ id, data }) => {
   return (
     <Flex direction="column" gap="32px" id={id} width="100%">
       <H3 color="dark">Summary</H3>
@@ -16,43 +16,38 @@ const CommonSummary = ({ id, data }) => {
               -{' '}
               {data?.asn?.desscr ||
                 (data?.asn?.organisation &&
-                  data?.asn?.organisation['org-name'])}
+                  data?.asn?.organisation['org-name']) ||
+                'no organisation'}
             </>
           }
         />
         <ValueCard label="Hostname" value="No Hostname" />
-        <ValueCard label="Range" value={<Text color="primary">---</Text>} />
-        <ValueCard label="Company" value="Limited Liability Company lifecell" />
         <ValueCard
-          label="Hosted domains"
-          value={data?.reverse?.domains.length}
+          label="Range"
+          value={<Text color="primary">88.155.48.0/20</Text>}
         />
+        <ValueCard label="Company" value="Limited Liability Company lifecell" />
+        <ValueCard label="Hosted domains" value="0" />
         <ValueCard
           label="Privacy"
-          value={<CheckValue label="False" value={data?.privacy?.isProxy} />}
+          value={<CheckValue label="False" value={false} />}
         />
         <ValueCard
           label="Anycast"
           value={<CheckValue label="False" value={false} />}
         />
         <ValueCard label="ASN type" value="ISP" />
-        {data?.abuse?.email && (
-          <ValueCard
-            label="Abuse contact"
-            value={
-              <Text
-                as="a"
-                color="primary"
-                href={`mailto:${data?.abuse?.email}`}
-              >
-                mailto:{data?.abuse?.email}
-              </Text>
-            }
-          />
-        )}
+        <ValueCard
+          label="Abuse contact"
+          value={
+            <Text as="a" color="primary" href="mailto:ripe@lifecell.com.ua">
+              mailto:ripe@lifecell.com.ua
+            </Text>
+          }
+        />
       </Flex>
     </Flex>
   )
 }
 
-export default CommonSummary
+export default CommonASNSummary

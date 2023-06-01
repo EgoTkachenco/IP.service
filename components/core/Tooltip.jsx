@@ -9,7 +9,11 @@ const Tooltip = ({ children, hint }) => {
   const debouceOpen = _.debounce(() => setShow(true), 300)
   const debouceClose = _.debounce(() => setShow(false), 300)
   return (
-    <Wrapper onMouseEnter={debouceOpen} onMouseLeave={debouceClose}>
+    <Wrapper
+      onMouseEnter={debouceOpen}
+      onMouseLeave={debouceClose}
+      onClick={() => (show ? debouceClose() : debouceOpen())}
+    >
       {children}
 
       <AnimatePresence>

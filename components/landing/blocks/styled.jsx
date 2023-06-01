@@ -1,5 +1,4 @@
 import { Card, Flex, Icon, Text, H1, H5, Button } from '@/core'
-import Image from 'next/image'
 import styled from 'styled-components'
 import { useContext } from 'react'
 import ModalContext from '@/utils/modalContext'

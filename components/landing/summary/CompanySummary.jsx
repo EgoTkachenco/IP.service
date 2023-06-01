@@ -4,7 +4,6 @@ import { ServiceDetails, Delimiter } from './styled'
 import styled from 'styled-components'
 
 const CompanySummary = ({ id, data }) => {
-  console.log(data)
   return (
     <Flex direction="column" gap="32px" id={id}>
       <H3 color="dark">Company</H3>
@@ -35,4 +34,8 @@ export default CompanySummary
 
 const StyledCard = styled(Card)`
   padding: 32px 40px;
+
+  @media (max-width: 1140px) {
+    padding: 32px;
+  }
 `

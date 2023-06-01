@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-export function useObserverNavigation(contentId) {
+export function useObserverNavigation(contentId, isInfo) {
   const [activeBlock, setActiveBlock] = useState(0)
   const router = useRouter()
   useEffect(() => {
@@ -20,25 +20,31 @@ export function useObserverNavigation(contentId) {
       }
     )
     const blocks = document.getElementById(contentId)
+    if (!blocks) {
+      setActiveBlock(0)
+      return
+    }
     for (let i = 0; i < blocks.children.length; i++) {
       const block = blocks.children[i]
       observer.observe(block)
     }
     return () => {
+      setActiveBlock(0)
       observer.disconnect()
     }
-  }, [])
+  }, [isInfo])
 
   useEffect(() => {
     const blockId = router.asPath.split('#')[1]
-    if (blockId) {
+    if (blockId && isInfo) {
       const block = document.getElementById(blockId)
-      block.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      })
+      if (block)
+        block.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        })
     }
-  }, [router.asPath])
+  }, [router.asPath, isInfo])
 
   return [activeBlock, setActiveBlock]
 }

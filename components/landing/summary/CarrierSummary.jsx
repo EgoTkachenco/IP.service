@@ -11,7 +11,7 @@ const CarrierSummary = ({ id, data }) => {
         <DarkCard>
           <Flex direction="column" gap="8px" width="100%">
             <Text>Carrier name</Text>
-            <Text weight={600}>lifecell</Text>
+            <Text weight={600}>{data?.Carrier}</Text>
           </Flex>
           <VerticalDelimiter />
           <Flex direction="column" gap="8px" width="100%">
@@ -21,7 +21,7 @@ const CarrierSummary = ({ id, data }) => {
                 <Icon icon="info" size="20px" color="light-grey" />
               </Tooltip>
             </Flex>
-            <Text weight={600}>255</Text>
+            <Text weight={600}>{data?.mcc}</Text>
           </Flex>
           <VerticalDelimiter />
           <Flex direction="column" gap="8px" width="100%">
@@ -31,7 +31,7 @@ const CarrierSummary = ({ id, data }) => {
                 <Icon icon="info" size="20px" color="light-grey" />
               </Tooltip>
             </Flex>
-            <Text weight={600}>6</Text>
+            <Text weight={600}>{data?.mnc}</Text>
           </Flex>
         </DarkCard>
         <Delimiter />
@@ -52,6 +52,10 @@ export default CarrierSummary
 const StyledCard = styled(Card)`
   padding: 32px 40px;
   overflow: visible;
+
+  @media (max-width: 1140px) {
+    padding: 32px;
+  }
 `
 
 const DarkCard = styled(Card)`
@@ -62,6 +66,16 @@ const DarkCard = styled(Card)`
   justify-content: stretch;
   gap: 32px;
   overflow: visible;
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+
+    & > :nth-child(2),
+    & > :nth-child(4) {
+      height: 1px;
+      width: 100%;
+    }
+  }
 `
 
 const Delimiter = styled.div`

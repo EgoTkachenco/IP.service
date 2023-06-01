@@ -8,13 +8,13 @@ const PrivacySummary = ({ id, data }) => {
     <Flex direction="column" gap="32px" id={id}>
       <H3 color="dark">Privacy Detection</H3>
       <StyledCard direction="column" gap="32px" color="white">
-        <Flex gap="44px">
+        <ValuesContainer>
           <CheckValue label="VPN" value={data?.is_vpn} />
           <CheckValue label="Proxy" value={data?.is_proxy} />
           <CheckValue label="Tor" value={data?.is_tor} />
           <CheckValue label="Relay" value={false} />
           <CheckValue label="Hosting" value={false} />
-        </Flex>
+        </ValuesContainer>
         <Delimiter />
         <ServiceDetails
           title="Privacy Detection data"
@@ -31,4 +31,17 @@ export default PrivacySummary
 
 const StyledCard = styled(Card)`
   padding: 40px;
+
+  @media (max-width: 1140px) {
+    padding: 32px;
+  }
+`
+
+const ValuesContainer = styled(Flex)`
+  gap: 44px;
+
+  @media (max-width: 1140px) {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
 `
