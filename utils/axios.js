@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import { TOKEN_NAME, USER_STORE_NAME } from './constants'
+import { add } from 'date-fns'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -41,13 +42,13 @@ axios.interceptors.response.use(
 )
 
 function setToken(token, tokenName = TOKEN_NAME) {
+  const expirationDate = add(new Date(), { years: 1 })
+
   document.cookie =
     tokenName +
     '=' +
     (token || '') +
-    `; expires=${new Date(
-      new Date().getTime() + 7 * 24 * 60 * 60 * 1000
-    ).toUTCString()}`
+    `; expires=${expirationDate.toUTCString()}`
 }
 
 function getToken(tokenName = TOKEN_NAME) {
