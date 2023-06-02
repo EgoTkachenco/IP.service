@@ -7,16 +7,20 @@ const browsers = {
   Edge: { image: 'edge.svg', name: 'Edge' },
   Firefox: { image: 'firefox.svg', name: 'Firefox' },
   Safari: { image: 'safari.svg', name: 'Safari' },
+  'Mobile Safari': { image: 'safari.svg', name: 'Safari' },
   Opera: { image: 'opera.svg', name: 'Opera' },
   Chrome: { image: 'chrome.svg', name: 'Chrome' },
 }
 
 const oses = {
   Windows: { image: 'windows.svg', name: 'Windows' },
+  IOS: { image: 'macos.svg', name: 'IOS' },
 }
 
 const devices = {
   Desktop: { image: 'desktop.svg', name: 'Desktop' },
+  mobile: { image: 'mobile.svg', name: 'Mobile' },
+  tablet: { image: 'tablet.svg', name: 'Tablet' },
 }
 
 const DeviceInfo = ({ id }) => {
