@@ -75,6 +75,7 @@ const Map = ({ lat, lng }) => {
 
 const MapContainer = styled(Flex)`
   gap: 30px;
+  width: 100%;
 
   @media (max-width: 1140px) {
     flex-direction: column;
