@@ -15,6 +15,7 @@ const browsers = {
 const oses = {
   Windows: { image: 'windows.svg', name: 'Windows' },
   iOS: { image: 'macos.svg', name: 'IOS' },
+  'Mac OS': { image: 'macos.svg', name: 'IOS' },
 }
 
 const devices = {
