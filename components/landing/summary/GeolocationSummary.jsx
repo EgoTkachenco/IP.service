@@ -55,10 +55,10 @@ export default GeolocationSummary
 
 const Map = ({ lat, lng }) => {
   return (
-    <Flex direction="column">
+    <Flex direction="column" width="100%">
       <iframe
         style={{ maxWidth: '360px', width: '100%' }}
-        width="360"
+        width="360px"
         height="230"
         frameBorder="0"
         scrolling="no"

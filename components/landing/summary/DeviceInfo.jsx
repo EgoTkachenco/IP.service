@@ -25,13 +25,13 @@ const devices = {
 }
 
 const DeviceInfo = ({ id }) => {
-  let parser = new UAParser() // you need to pass the user-agent for nodejs
+  let parser = new UAParser()
   let parserResults = parser.getResult()
   const browser = browsers[parserResults.browser.name]
   const os = oses[parserResults.os.name]
   const device = devices[parserResults.device.type] || devices.Desktop
 
-  alert(JSON.stringify(parserResults))
+  // alert(JSON.stringify(parserResults))
   return (
     <ContainerCard id={id} color="white">
       {browser && (
