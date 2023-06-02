@@ -243,7 +243,9 @@ const Summary = () => {
             data?.geolocation?.city,
             data?.geolocation?.name,
             data?.geolocation?.name_country,
-          ].join(', ')}
+          ]
+            .filter((el) => el)
+            .join(', ')}
           isFetch={!isInfo}
           isUserIP={ip === userIP}
         />
