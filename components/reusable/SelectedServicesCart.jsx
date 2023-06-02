@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Card, H3, H6, Button, Icon, Text, Caption } from '@/core'
+import { Flex, Card, H3, H6, Button, Icon, Text, Caption, Chip } from '@/core'
 
 const SelectedServicesCart = ({
   details,
@@ -7,6 +7,8 @@ const SelectedServicesCart = ({
   selected,
   onItemRemove,
   onSubscribe,
+  discount,
+  price,
 }) => {
   const list = details.filter((el) => selected.includes(el.id))
   const priceKey = period === 'month' ? 'month_price' : 'year_price'
@@ -18,7 +20,10 @@ const SelectedServicesCart = ({
   )
   return (
     <CartCard color="white">
-      <Title>Selected Services</Title>
+      <Flex width="100%" justify="space-between">
+        <Title>Selected Services</Title>
+        {discount ? <Chip type="red">-{discount}%</Chip> : ''}
+      </Flex>
       <Content>
         {list.length === 0 ? (
           <EmptyBox>
@@ -46,7 +51,7 @@ const SelectedServicesCart = ({
             <Text weight={600}>Total:</Text>
             <Flex align="baseline">
               <H3 color="dark" weight={700}>
-                ${sum.toFixed(0)}
+                ${price.toFixed(0)}
               </H3>
               <Caption weight={700}>/100k lookups</Caption>
             </Flex>

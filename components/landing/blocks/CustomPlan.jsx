@@ -51,6 +51,39 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
 
     setSelected(newSelected)
   }
+  const getPriceAndDiscount = (selected = []) => {
+    const options =
+      details?.filter(
+        (service) =>
+          selected.includes(service.id) &&
+          ![basic_support_id, priority_support_id].includes(service.id)
+      ) || []
+    const priceKey = period === 'month' ? 'month_price' : 'year_price'
+    let price = options.reduce((acc, option) => (acc += option[priceKey]), 0)
+    let discount = options?.length > 1 ? 2 * (options.length - 1) : 0
+    let oldPrice = price
+
+    if (!discount) return { discount, price }
+
+    price = price * ((100 - discount) / 100)
+    price =
+      price >= 1000
+        ? Math.floor(price / 100) * 100 + 99
+        : Math.floor(price / 10) * 10 + 9
+
+    discount = ((oldPrice - price) / oldPrice) * 100
+    discount = discount.toFixed(0)
+    // console.log(
+    //   'old price: ',
+    //   oldPrice,
+    //   ' price: ',
+    //   price,
+    //   ' discount: ',
+    //   discount
+    // )
+    return { price, discount }
+  }
+  const { price, discount } = getPriceAndDiscount(selected)
   return (
     <Container>
       <CardsContainer>
@@ -64,11 +97,17 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
                 details={detail}
                 isActive={selected.includes(detail.id)}
                 handleSelect={() => handleSelect(detail.id)}
+                discount={
+                  !selected.includes(detail.id) &&
+                  getPriceAndDiscount([...selected, detail.id]).discount
+                }
               />
             ))}
       </CardsContainer>
       <SelectedServicesCart
         period={period}
+        discount={discount}
+        price={price}
         details={details || []}
         selected={selected}
         onItemRemove={removeItem}

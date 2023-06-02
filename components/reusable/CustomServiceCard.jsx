@@ -2,7 +2,13 @@ import styled from 'styled-components'
 import { Card, Icon, Flex, Text, Chip, Caption, H3, Button } from '@/core'
 import Link from 'next/link'
 
-const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
+const CustomServiceCard = ({
+  details,
+  isActive,
+  handleSelect,
+  period,
+  discount,
+}) => {
   const isSupport = details.name.toLowerCase().search('upport') !== -1
   const priceKey =
     period === 'month' || isSupport ? 'month_price' : 'year_price'
@@ -27,6 +33,7 @@ const CustomServiceCard = ({ details, isActive, handleSelect, period }) => {
         ) : (
           ''
         )}
+        {discount ? <Chip type="red">-{discount}%</Chip> : ''}
       </Flex>
       <Description>{details.description}</Description>
       <PriceContainer>
