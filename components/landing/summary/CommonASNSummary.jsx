@@ -12,7 +12,7 @@ const CommonASNSummary = ({ id, data }) => {
           value={
             <>
               <Text color="primary" inline>
-                {data?.asn?.ashandle}
+                {data?.asn?.ashandle || data?.asn?.['aut-num']}
               </Text>{' '}
               -{' '}
               {data?.asn?.desscr ||
@@ -23,10 +23,7 @@ const CommonASNSummary = ({ id, data }) => {
           }
         />
         <ValueCard label="Hostname" value="No Hostname" />
-        <ValueCard
-          label="Range"
-          value={<Text color="primary">88.155.48.0/20</Text>}
-        />
+        <ValueCard label="Range" value={<Text color="primary">---</Text>} />
         <ValueCard
           label="Company"
           value={data?.asn?.organisation && data?.asn?.organisation['org-name']}
