@@ -6,6 +6,7 @@ import {
   reactivateUserPlan,
   setCustomPlan,
   switchToYear,
+  setCardDetails,
 } from '@/utils/api'
 import AuthStore from './AuthStore'
 
@@ -76,6 +77,15 @@ class BillingStore {
 
   switchToYear = () => {
     switchToYear().then(() => AuthStore.getProfile())
+  }
+
+  updateCardDetails = async () => {
+    const res = await setCardDetails({
+      success_url: location.href,
+      cancel_url: location.href,
+    })
+    if (res) window.open(res.redirect)
+    AuthStore.getProfile()
   }
 
   get currentPlan() {

@@ -146,10 +146,10 @@ export const setCustomPlan = (term, options, success_url, cancel_url) =>
     securedFetchOptions()
   )
 
-export const setCardDetails = ({ number, month, year, cvc }) =>
+export const setCardDetails = ({ success_url, cancel_url }) =>
   axios.post(
     '/api/v1/account/card-data',
-    { number, month, year, cvc },
+    { success_url, cancel_url },
     securedFetchOptions()
   )
 

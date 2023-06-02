@@ -43,4 +43,5 @@ const Content = styled(Flex)`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  padding: 64px;
 `

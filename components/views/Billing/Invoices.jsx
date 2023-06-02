@@ -16,6 +16,7 @@ const Invoices = ({
   reactivate,
   changeAutoBilling,
   switchToYear,
+  onCardDetailsUpdate,
 }) => {
   return (
     <Flex direction="column" gap="30px" width="100%">
@@ -31,7 +32,7 @@ const Invoices = ({
             onChange={changeAutoBilling}
           />
         </Column_1>
-        <CardDetails profile={profile} />
+        <CardDetails profile={profile} onUpdate={onCardDetailsUpdate} />
       </Row_2>
       <OrderHistory orders={orders} />
       <CancelSubscription reactivate={reactivate} isActive={!!currentPlan} />

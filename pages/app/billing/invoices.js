@@ -27,6 +27,7 @@ const Invoices = observer(() => {
     loadOrders,
     changeAutoBilling,
     switchToYear,
+    updateCardDetails,
   } = BillingStore
   const { user: profile } = AuthStore
   useEffect(() => {
@@ -49,6 +50,7 @@ const Invoices = observer(() => {
             }
             changeAutoBilling={(value) => changeAutoBilling(value)}
             switchToYear={switchToYear}
+            onCardDetailsUpdate={() => updateCardDetails()}
           />
         </BillingLayout>
       </Layout>
