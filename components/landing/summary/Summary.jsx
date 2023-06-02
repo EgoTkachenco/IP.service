@@ -383,6 +383,8 @@ const NavigationWrapper = styled(Flex)`
 
   @media (max-width: 1140px) {
     position: static;
+    min-width: unset;
+    max-width: unset;
   }
 `
 const List = styled(Flex)`
