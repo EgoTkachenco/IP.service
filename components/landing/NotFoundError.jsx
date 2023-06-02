@@ -58,7 +58,7 @@ const Content = styled(Flex)`
   max-width: 100%;
 
   & > :last-child {
-    max-width: 500px;
+    max-width: 550px;
     width: 100%;
   }
 `
