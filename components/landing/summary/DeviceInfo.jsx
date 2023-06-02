@@ -19,7 +19,7 @@ const oses = {
 
 const devices = {
   Desktop: { image: 'desktop.svg', name: 'Desktop' },
-  mobile: { image: 'mobile.svg', name: 'Mobile' },
+  mobile: { image: 'phone.svg', name: 'Mobile' },
   tablet: { image: 'tablet.svg', name: 'Tablet' },
 }
 
