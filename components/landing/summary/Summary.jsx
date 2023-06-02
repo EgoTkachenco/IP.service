@@ -260,8 +260,8 @@ const Summary = () => {
           <Content id="content">{list.map((el) => el.children)}</Content>
         )}
       </Container>
-      <RelatedNetworks onNetworkChange={(asn) => setIp(asn)} />
-      <ASNInfo />
+      {isASN && <RelatedNetworks onNetworkChange={(asn) => setIp(asn)} />}
+      {isASN && <ASNInfo />}
       <GetStarted />
     </Wrapper>
   )
