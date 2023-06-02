@@ -10,7 +10,7 @@ const ASNSummary = ({ id, data }) => {
       <StyledCard direction="column" gap="32px" color="white">
         <ASNContainer>
           <H4 color="primary" weight={700}>
-            {data?.ashandle}
+            {data?.asn?.ashandle || data?.asn?.['aut-num']}
           </H4>
           <Text weight={600}> - {data?.organisation['org-name']}</Text>
         </ASNContainer>
