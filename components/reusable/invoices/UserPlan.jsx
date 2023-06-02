@@ -9,7 +9,6 @@ import routes from '@/constants/routes'
 import Link from 'next/link'
 
 const UserPlan = ({ plan, switchToYear }) => {
-  console.log(plan)
   return (
     <Card color="white">
       <CardTitle>
