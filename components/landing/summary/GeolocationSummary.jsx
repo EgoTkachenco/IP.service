@@ -57,7 +57,7 @@ const Map = ({ lat, lng }) => {
   return (
     <Flex direction="column">
       <iframe
-        width="360"
+        width="300"
         height="230"
         frameBorder="0"
         scrolling="no"

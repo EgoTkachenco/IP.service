@@ -385,6 +385,7 @@ const NavigationWrapper = styled(Flex)`
     position: static;
     min-width: unset;
     max-width: unset;
+    width: 100%;
   }
 `
 const List = styled(Flex)`
