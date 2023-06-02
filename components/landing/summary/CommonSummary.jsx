@@ -11,7 +11,7 @@ const CommonSummary = ({ id, data }) => {
           value={
             <>
               <Text color="primary" inline>
-                {data?.asn?.ashandle}
+                {data?.asn?.ashandle || data?.asn?.['aut-num']}
               </Text>{' '}
               -{' '}
               {data?.asn?.desscr ||
@@ -22,7 +22,10 @@ const CommonSummary = ({ id, data }) => {
         />
         <ValueCard label="Hostname" value="No Hostname" />
         <ValueCard label="Range" value={<Text color="primary">---</Text>} />
-        <ValueCard label="Company" value="Limited Liability Company lifecell" />
+        <ValueCard
+          label="Company"
+          value={data?.asn?.organisation && data?.asn?.organisation['org-name']}
+        />
         <ValueCard
           label="Hosted domains"
           value={data?.reverse?.domains.length}
@@ -35,7 +38,10 @@ const CommonSummary = ({ id, data }) => {
           label="Anycast"
           value={<CheckValue label="False" value={false} />}
         />
-        <ValueCard label="ASN type" value="ISP" />
+        <ValueCard
+          label="ASN type"
+          value={data?.asn?.organisation['org-type']}
+        />
         {data?.abuse?.email && (
           <ValueCard
             label="Abuse contact"

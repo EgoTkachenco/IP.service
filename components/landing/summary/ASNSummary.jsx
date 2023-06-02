@@ -23,7 +23,7 @@ const ASNSummary = ({ id, data }) => {
           <ASNItem
             icon="brief-case"
             label="Asn type"
-            value={<H6 weight={600}>ISP</H6>}
+            value={<H6 weight={600}>{data?.organisation['org-type']}</H6>}
           />
           <ASNItem
             icon="route"

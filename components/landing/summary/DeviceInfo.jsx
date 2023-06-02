@@ -1,46 +1,76 @@
 import { Flex, Text, H5, Card } from '@/core'
 import styled from 'styled-components'
 import Image from 'next/image'
+import UAParser from 'ua-parser-js'
+
+const browsers = {
+  Edge: { image: 'edge.svg', name: 'Edge' },
+  Firefox: { image: 'firefox.svg', name: 'Firefox' },
+  Safari: { image: 'safari.svg', name: 'Safari' },
+  Opera: { image: 'opera.svg', name: 'Opera' },
+  Chrome: { image: 'chrome.svg', name: 'Chrome' },
+}
+
+const oses = {
+  Windows: { image: 'windows.svg', name: 'Windows' },
+}
+
+const devices = {
+  Desktop: { image: 'desktop.svg', name: 'Desktop' },
+}
 
 const DeviceInfo = ({ id }) => {
+  let parser = new UAParser() // you need to pass the user-agent for nodejs
+  let parserResults = parser.getResult()
+  const browser = browsers[parserResults.browser.name]
+  const os = oses[parserResults.os.name]
+  const device = devices[parserResults.device.type] || devices.Desktop
+
+  alert(JSON.stringify(parserResults))
   return (
     <ContainerCard id={id} color="white">
-      <ItemContainer>
-        <Text>Your browser</Text>
-        <Flex gap="12px" align="center">
-          <Image
-            src="/devices/chrome.svg"
-            alt="Chrome"
-            width={24}
-            height={24}
-          />
-          <H5 weight={600}>Chrome</H5>
-        </Flex>
-      </ItemContainer>
-      <ItemContainer>
-        <Text>Operating System</Text>
-        <Flex gap="12px" align="center">
-          <Image
-            src="/devices/windows.svg"
-            alt="Windows"
-            width={24}
-            height={24}
-          />
-          <H5 weight={600}>Windows</H5>
-        </Flex>
-      </ItemContainer>
-      <ItemContainer>
-        <Text>Device</Text>
-        <Flex gap="12px" align="center">
-          <Image
-            src="/devices/desktop.svg"
-            alt="Desktop"
-            width={24}
-            height={24}
-          />
-          <H5 weight={600}>Desktop</H5>
-        </Flex>
-      </ItemContainer>
+      {browser && (
+        <ItemContainer>
+          <Text>Your browser</Text>
+          <Flex gap="12px" align="center">
+            <Image
+              src={'/devices/' + browser.image}
+              alt={browser.name}
+              width={24}
+              height={24}
+            />
+            <H5 weight={600}>{browser.name}</H5>
+          </Flex>
+        </ItemContainer>
+      )}
+      {os && (
+        <ItemContainer>
+          <Text>Operating System</Text>
+          <Flex gap="12px" align="center">
+            <Image
+              src={'/devices/' + os.image}
+              alt={os.name}
+              width={24}
+              height={24}
+            />
+            <H5 weight={600}>{os.name}</H5>
+          </Flex>
+        </ItemContainer>
+      )}
+      {device && (
+        <ItemContainer>
+          <Text>Device</Text>
+          <Flex gap="12px" align="center">
+            <Image
+              src={'/devices/' + device.image}
+              alt={device.name}
+              width={24}
+              height={24}
+            />
+            <H5 weight={600}>{device.name}</H5>
+          </Flex>
+        </ItemContainer>
+      )}
     </ContainerCard>
   )
 }

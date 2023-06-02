@@ -11,10 +11,13 @@ const UpstreamsSummary = ({ id, data = [] }) => {
       <Text>There are {data?.length || 0} upstreams for this ASN.</Text>
       <StyledCard direction="column" gap="32px" color="white">
         <List
-          data={data.map((upstream) => ({
-            upstream,
-            name: '---',
-          }))}
+          data={data.map((upstream) => {
+            const isObj = typeof upstream === 'object'
+            return {
+              upstream: isObj ? upstream.asn : upstream,
+              name: isObj ? upstream.name : '---',
+            }
+          })}
           columns={['upstream', 'name']}
           moreText="Show more upstreams"
         />

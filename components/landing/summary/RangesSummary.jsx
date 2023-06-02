@@ -32,11 +32,14 @@ const RangesSummary = ({ id, data }) => {
       </TopContainer>
       <StyledCard color="white">
         <List
-          data={ranges.map((netblock) => ({
-            netblock,
-            company: '---',
-            'Num of IPS': '---',
-          }))}
+          data={ranges.map((netblock) => {
+            const isObj = typeof netblock === 'object'
+            return {
+              netblock: isObj ? netblock.netblock : netblock,
+              company: isObj ? netblock.company : '---',
+              'Num of IPS': isObj ? netblock.num_ips : '---',
+            }
+          })}
           columns={['netblock', 'company', 'Num of IPS']}
           moreText="Show more IP ranges"
         />

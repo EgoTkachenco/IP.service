@@ -71,8 +71,8 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
         ? Math.floor(price / 100) * 100 + 99
         : Math.floor(price / 10) * 10 + 9
 
-    discount = ((oldPrice - price) / oldPrice) * 100
-    discount = discount.toFixed(0)
+    // discount = ((oldPrice - price) / oldPrice) * 100
+    // discount = discount.toFixed(0)
     // console.log(
     //   'old price: ',
     //   oldPrice,
@@ -99,6 +99,9 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
                 handleSelect={() => handleSelect(detail.id)}
                 discount={
                   !selected.includes(detail.id) &&
+                  ![basic_support_id, priority_support_id].includes(
+                    detail.id
+                  ) &&
                   getPriceAndDiscount([...selected, detail.id]).discount
                 }
               />

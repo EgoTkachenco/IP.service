@@ -11,10 +11,13 @@ const PeersSummary = ({ id, data = [] }) => {
       <Text>There are {data?.length || 0} peers for this ASN.</Text>
       <StyledCard direction="column" gap="32px" color="white">
         <List
-          data={data.map((peer) => ({
-            peer,
-            name: '---',
-          }))}
+          data={data.map((peer) => {
+            const isObj = typeof peer === 'object'
+            return {
+              peer: isObj ? peer.asn : peer,
+              name: isObj ? peer.name : '---',
+            }
+          })}
           columns={['peer', 'name']}
           moreText="Show more peers"
         />

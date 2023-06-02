@@ -78,7 +78,7 @@ export const sendFeedback = (form) =>
 
 export const allService = ({ ip, domain }) =>
   axios.get(
-    '/api/v1/public/services/all' + `?ip=${ip || domain}`
+    '/api/v1/public/services/all-details' + `?ip=${ip || domain}`
     // (ip ? `?ip=${ip}` : `?domain=${domain}`)
   )
 

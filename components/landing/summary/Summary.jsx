@@ -162,10 +162,11 @@ const Summary = () => {
           />
         ),
       })
-      list.push({
-        title: 'Device info',
-        children: <DeviceInfo id={getBlockId()} key={getBlockId()} />,
-      })
+      if (ip === userIP)
+        list.push({
+          title: 'Device info',
+          children: <DeviceInfo id={getBlockId()} key={getBlockId()} />,
+        })
       list.push({
         title: 'Privacy',
         children: (

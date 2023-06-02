@@ -12,8 +12,8 @@ const PrivacySummary = ({ id, data }) => {
           <CheckValue label="VPN" value={data?.is_vpn} />
           <CheckValue label="Proxy" value={data?.is_proxy} />
           <CheckValue label="Tor" value={data?.is_tor} />
-          <CheckValue label="Relay" value={false} />
-          <CheckValue label="Hosting" value={false} />
+          {/* <CheckValue label="Relay" value={false} />
+          <CheckValue label="Hosting" value={false} /> */}
         </ValuesContainer>
         <Delimiter />
         <ServiceDetails
