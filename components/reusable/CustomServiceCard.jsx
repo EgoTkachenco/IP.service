@@ -29,7 +29,9 @@ const CustomServiceCard = ({
         )}
         <Title color="dark">{details?.name}</Title>
         {details.advanced ? (
-          <Chip type="primary-transparent">Advanced</Chip>
+          <Chip type="primary-transparent">
+            <Icon icon="star" size="16px" color="primary" />
+          </Chip>
         ) : (
           ''
         )}
@@ -129,6 +131,7 @@ const Bottom = styled(Flex)`
 
 const IconWrapper = styled(Flex)`
   width: 40px;
+  min-width: 40px;
   height: 40px;
   justify-content: center;
   align-items: center;

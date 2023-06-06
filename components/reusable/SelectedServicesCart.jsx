@@ -9,14 +9,10 @@ const SelectedServicesCart = ({
   onSubscribe,
   discount,
   price,
+  alternatePrice,
 }) => {
   const list = details.filter((el) => selected.includes(el.id))
-  const priceKey = period === 'month' ? 'year_price' : 'month_price'
 
-  const alternatePrice = list.reduce(
-    (acc, option) => (acc += option[priceKey]),
-    0
-  )
   const additional_req_sum = list.reduce(
     (acc, option) => (acc += option.additional_requests_price),
     0
@@ -52,17 +48,16 @@ const SelectedServicesCart = ({
               </ListItem>
             ))}
             <Text weight={600}>Total:</Text>
-            <Flex direction={period === 'month' ? 'column' : 'column-reverse'}>
+            <Flex direction="column">
               <Flex align="baseline">
                 <H3 color="dark" weight={700}>
                   ${price.toFixed(0)}
                 </H3>
                 <Caption weight={700}>/a {period}</Caption>
               </Flex>
-              <Caption>
-                Billed ${alternatePrice.toFixed(0)} a{' '}
-                {period === 'month' ? 'year' : 'month'}
-              </Caption>
+              {period === 'year' && (
+                <Caption>Billed ${alternatePrice.toFixed(0)} a month</Caption>
+              )}
             </Flex>
             <Lookups>
               <Caption weight={700} color="dark">

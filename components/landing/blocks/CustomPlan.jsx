@@ -58,32 +58,32 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
           selected.includes(service.id) &&
           ![basic_support_id, priority_support_id].includes(service.id)
       ) || []
+
     const priceKey = period === 'month' ? 'month_price' : 'year_price'
+    const alternatePriceKey = period === 'month' ? 'year_price' : 'month_price'
     let price = options.reduce((acc, option) => (acc += option[priceKey]), 0)
+    let alternatePrice = options.reduce(
+      (acc, option) => (acc += option[alternatePriceKey]),
+      0
+    )
     let discount = options?.length > 1 ? 2 * (options.length - 1) : 0
-    let oldPrice = price
 
-    if (!discount) return { discount, price }
+    if (!discount) return { discount, price, alternatePrice }
 
-    price = price * ((100 - discount) / 100)
-    price =
-      price >= 1000
+    const getPriceRound = (price) => {
+      price = price * ((100 - discount) / 100)
+      return price >= 1000
         ? Math.floor(price / 100) * 100 + 99
         : Math.floor(price / 10) * 10 + 9
+    }
 
-    // discount = ((oldPrice - price) / oldPrice) * 100
-    // discount = discount.toFixed(0)
-    // console.log(
-    //   'old price: ',
-    //   oldPrice,
-    //   ' price: ',
-    //   price,
-    //   ' discount: ',
-    //   discount
-    // )
-    return { price, discount }
+    price = getPriceRound(price)
+    alternatePrice = getPriceRound(alternatePrice)
+
+    return { price, discount, alternatePrice }
   }
-  const { price, discount } = getPriceAndDiscount(selected)
+  const { price, discount, alternatePrice } = getPriceAndDiscount(selected)
+  console.log(price, alternatePrice)
   return (
     <Container>
       <CardsContainer>
@@ -111,6 +111,7 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
         period={period}
         discount={discount}
         price={price}
+        alternatePrice={alternatePrice}
         details={details || []}
         selected={selected}
         onItemRemove={removeItem}
