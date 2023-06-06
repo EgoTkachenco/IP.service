@@ -1,6 +1,6 @@
 import { useState, useEffect, Component } from 'react'
 import { BlockInner } from '../blocks/Block'
-import { allService } from '@/utils/api'
+import { allDetailsService } from '@/utils/api'
 import { validateIP, validateASN } from '@/utils'
 import { Flex, Text, H1, Input, Icon } from '@/core'
 import Image from 'next/image'
@@ -36,7 +36,7 @@ const getAllService = (data) => {
   const params = {}
   if (validateIP(data)) params.ip = data
   else params.domain = data
-  return allService(params)
+  return allDetailsService(params)
 }
 
 const Summary = () => {

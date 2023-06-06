@@ -59,16 +59,17 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
           ![basic_support_id, priority_support_id].includes(service.id)
       ) || []
 
-    const priceKey = period === 'month' ? 'month_price' : 'year_price'
-    const alternatePriceKey = period === 'month' ? 'year_price' : 'month_price'
-    let price = options.reduce((acc, option) => (acc += option[priceKey]), 0)
-    let alternatePrice = options.reduce(
-      (acc, option) => (acc += option[alternatePriceKey]),
+    let month_price = options.reduce(
+      (acc, option) => (acc += option.month_price),
+      0
+    )
+    let year_price = options.reduce(
+      (acc, option) => (acc += option.year_price),
       0
     )
     let discount = options?.length > 1 ? 2 * (options.length - 1) : 0
 
-    if (!discount) return { discount, price, alternatePrice }
+    if (!discount) return { month_price, discount, year_price }
 
     const getPriceRound = (price) => {
       price = price * ((100 - discount) / 100)
@@ -77,13 +78,12 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
         : Math.floor(price / 10) * 10 + 9
     }
 
-    price = getPriceRound(price)
-    alternatePrice = getPriceRound(alternatePrice)
+    month_price = getPriceRound(month_price)
+    year_price = getPriceRound(year_price)
 
-    return { price, discount, alternatePrice }
+    return { month_price, discount, year_price }
   }
-  const { price, discount, alternatePrice } = getPriceAndDiscount(selected)
-  console.log(price, alternatePrice)
+  const { month_price, discount, year_price } = getPriceAndDiscount(selected)
   return (
     <Container>
       <CardsContainer>
@@ -110,8 +110,8 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
       <SelectedServicesCart
         period={period}
         discount={discount}
-        price={price}
-        alternatePrice={alternatePrice}
+        month_price={month_price}
+        year_price={year_price}
         details={details || []}
         selected={selected}
         onItemRemove={removeItem}

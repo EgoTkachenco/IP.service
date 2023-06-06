@@ -38,25 +38,21 @@ const CustomServiceCard = ({
         {discount ? <Chip type="red">-{discount}%</Chip> : ''}
       </Flex>
       <Description>{details.description}</Description>
-      <Flex direction={period === 'month' ? 'column' : 'column-reverse'}>
+      <Flex direction="column">
         <PriceContainer>
           <H3 color="dark" weight={700}>
-            ${details[priceKey].toFixed(0)}
+            ${details.month_price.toFixed(0)}
           </H3>
 
           <Caption weight={700} color="light-grey">
-            /a {period}
+            /a month
           </Caption>
         </PriceContainer>
-        <PriceContainer>
-          <Caption>
-            Billed $
-            {details[
-              priceKey === 'month_price' ? 'year_price' : 'month_price'
-            ].toFixed(0)}{' '}
-            a {period === 'month' ? 'year' : 'month'}
-          </Caption>
-        </PriceContainer>
+        {period === 'year' && (
+          <PriceContainer>
+            <Caption>Billed ${details.year_price.toFixed(0)} a year</Caption>
+          </PriceContainer>
+        )}
       </Flex>
 
       {!isSupport && (

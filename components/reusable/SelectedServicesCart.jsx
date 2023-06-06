@@ -8,8 +8,8 @@ const SelectedServicesCart = ({
   onItemRemove,
   onSubscribe,
   discount,
-  price,
-  alternatePrice,
+  month_price,
+  year_price,
 }) => {
   const list = details.filter((el) => selected.includes(el.id))
 
@@ -51,12 +51,12 @@ const SelectedServicesCart = ({
             <Flex direction="column">
               <Flex align="baseline">
                 <H3 color="dark" weight={700}>
-                  ${price.toFixed(0)}
+                  ${month_price.toFixed(0)}
                 </H3>
-                <Caption weight={700}>/a {period}</Caption>
+                <Caption weight={700}>/a month</Caption>
               </Flex>
               {period === 'year' && (
-                <Caption>Billed ${alternatePrice.toFixed(0)} a month</Caption>
+                <Caption>Billed ${year_price.toFixed(0)} a year</Caption>
               )}
             </Flex>
             <Lookups>
@@ -72,7 +72,7 @@ const SelectedServicesCart = ({
       </Content>
       <Button
         id="custom-plan-subscribe"
-        value={price.toFixed(0)}
+        value={(period === 'month' ? month_price : year_price).toFixed(0)}
         disabled={list.length === 0}
         variant={list.length === 0 ? 'primary-transparent' : null}
         onClick={onSubscribe}

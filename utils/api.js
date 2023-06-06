@@ -76,9 +76,12 @@ export const getAnalytics = (duration = 7) =>
 export const sendFeedback = (form) =>
   axios.post('/api/v1/public/feedback/contact-form', form)
 
+export const allDetailsService = ({ ip, domain }) =>
+  axios.get('/api/v1/public/services/all-details' + `?ip=${ip || domain}`)
+
 export const allService = ({ ip, domain }) =>
   axios.get(
-    '/api/v1/public/services/all-details' + `?ip=${ip || domain}`
+    '/api/v1/public/services/all' + `?ip=${ip || domain}`
     // (ip ? `?ip=${ip}` : `?domain=${domain}`)
   )
 
