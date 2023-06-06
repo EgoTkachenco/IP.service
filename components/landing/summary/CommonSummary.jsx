@@ -20,16 +20,16 @@ const CommonSummary = ({ id, data }) => {
             </>
           }
         />
-        <ValueCard label="Hostname" value="No Hostname" />
-        <ValueCard label="Range" value={<Text color="primary">---</Text>} />
+        <ValueCard label="Hostname" value={data?.geolocation?.hostname} />
+        <ValueCard
+          label="Range"
+          value={<Text color="primary">{data?.abuse?.network}</Text>}
+        />
         <ValueCard
           label="Company"
           value={data?.asn?.organisation && data?.asn?.organisation['org-name']}
         />
-        <ValueCard
-          label="Hosted domains"
-          value={data?.reverse?.domains.length}
-        />
+        <ValueCard label="Hosted domains" value={data?.ranges?.num_ranges} />
         <ValueCard
           label="Privacy"
           value={<CheckValue label="False" value={data?.privacy?.isProxy} />}

@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Component } from 'react'
 import { BlockInner } from '../blocks/Block'
 import { allService } from '@/utils/api'
 import { validateIP, validateASN } from '@/utils'
-import { Flex, Text, H1, H3, Input, Icon, Card, Tooltip, H6 } from '@/core'
+import { Flex, Text, H1, Input, Icon } from '@/core'
 import Image from 'next/image'
 import styled from 'styled-components'
-import { useObserverNavigation, useService } from '@/hooks'
+// import { useObserverNavigation, useService } from '@/hooks'
+import { useService } from '@/hooks'
 import { useForm } from '@mantine/form'
+import { useScrollNavigation } from '@/hooks/use-scroll-navigation'
 
 import CommonSummary from './CommonSummary'
 import CommonASNSummary from './CommonASNSummary'
@@ -59,13 +61,20 @@ const Summary = () => {
     form.setFieldValue('search', ip)
   }, [ip])
 
-  const onSubmit = form.onSubmit((values) => !isFetch && setIp(values.search))
+  const onSubmit = form.onSubmit(
+    (values) => !isFetch && onIPChange(values.search)
+  )
   const isInfo = isFetch ? null : !!data
   const isASN = validateASN(ip)
-  const [activeBlock, setActiveBlock] = useObserverNavigation(
+  const [activeBlock, setActiveBlock, reset] = useScrollNavigation(
     'content',
-    isFetch ? null : list
+    isFetch ? null : !!list
   )
+
+  const onIPChange = (ip) => {
+    setIp(ip)
+    reset()
+  }
 
   useEffect(() => {
     let block_number = 0
@@ -75,149 +84,36 @@ const Summary = () => {
       block_number++
       return result
     }
-    if (isASN)
+    const addBlock = (title, Cmp, data) => {
+      const id = getBlockId()
       list.push({
-        title: 'Summary',
-        children: (
-          <CommonASNSummary id={getBlockId()} key={getBlockId()} data={data} />
-        ),
+        title,
+        children: <Cmp id={id} key={id} data={data} />,
       })
-    else
-      list.push({
-        title: 'Summary',
-        children: (
-          <CommonSummary id={getBlockId()} key={getBlockId()} data={data} />
-        ),
-      })
+    }
+    if (isASN) addBlock('Summary', CommonASNSummary, data)
+    else addBlock('Summary', CommonSummary, data)
 
     if (isASN) {
-      list.push({
-        title: 'IP Address Ranges',
-        children: (
-          <RangesSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.asn}
-          />
-        ),
-      })
-      list.push({
-        title: 'WHOIS Details',
-        children: (
-          <WhoisSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.whois}
-          />
-        ),
-      })
-      list.push({
-        title: 'Hosted Domains',
-        children: (
-          <HostedDomainsSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.reverse}
-          />
-        ),
-      })
-      list.push({
-        title: 'Peers',
-        children: (
-          <PeersSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.asn?.peers}
-          />
-        ),
-      })
-      list.push({
-        title: 'Upstreams',
-        children: (
-          <UpstreamsSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.asn?.upstream}
-          />
-        ),
-      })
-      list.push({
-        title: 'Downstreams',
-        children: (
-          <DownstreamsSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.asn?.downstream}
-          />
-        ),
-      })
+      addBlock('IP Address Ranges', RangesSummary, data?.asn)
+      addBlock('WHOIS Details', WhoisSummary, data?.whois)
+      addBlock('Hosted Domains', HostedDomainsSummary, data?.reverse)
+      addBlock('Peers', PeersSummary, data?.asn?.peers)
+      addBlock('Upstreams', UpstreamsSummary, data?.asn?.upstream)
+      addBlock('Downstreams', DownstreamsSummary, data?.asn?.downstream)
     } else {
-      list.push({
-        title: 'Geolocation',
-        children: (
-          <GeolocationSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.geolocation}
-          />
-        ),
-      })
-      if (ip === userIP)
-        list.push({
-          title: 'Device info',
-          children: <DeviceInfo id={getBlockId()} key={getBlockId()} />,
-        })
-      list.push({
-        title: 'Privacy',
-        children: (
-          <PrivacySummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.privacy}
-          />
-        ),
-      })
-      list.push({
-        title: 'ASN',
-        children: (
-          <ASNSummary id={getBlockId()} key={getBlockId()} data={data?.asn} />
-        ),
-      })
-      list.push({
-        title: 'Company',
-        children: (
-          <CompanySummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.company}
-          />
-        ),
-      })
-      if (data?.carrier)
-        list.push({
-          title: 'Carrier',
-          children: (
-            <CarrierSummary
-              id={getBlockId()}
-              key={getBlockId()}
-              data={data?.carrier}
-            />
-          ),
-        })
-      list.push({
-        title: 'Abuse',
-        children: (
-          <AbuseSummary
-            id={getBlockId()}
-            key={getBlockId()}
-            data={data?.abuse}
-          />
-        ),
-      })
-      list.push({
-        title: 'Q&A',
-        children: <FAQ id={getBlockId()} key={getBlockId()} />,
-      })
+      addBlock('Geolocation', GeolocationSummary, data?.geolocation)
+
+      if (ip === userIP) addBlock('Device info', DeviceInfo, undefined)
+
+      addBlock('Privacy', PrivacySummary, data?.privacy)
+      addBlock('ASN', ASNSummary, data?.asn)
+      addBlock('Company', CompanySummary, data?.company)
+
+      if (data?.carrier) addBlock('Carrier', CarrierSummary, data?.carrier)
+
+      addBlock('Abuse', AbuseSummary, data?.abuse)
+      addBlock('Q&A', FAQ, undefined)
     }
 
     setList(list)
@@ -263,7 +159,7 @@ const Summary = () => {
           <Content id="content">{list.map((el) => el.children)}</Content>
         )}
       </Container>
-      {isASN && <RelatedNetworks onNetworkChange={(asn) => setIp(asn)} />}
+      {isASN && <RelatedNetworks onNetworkChange={(asn) => onIPChange(asn)} />}
       {isASN && <ASNInfo />}
       <GetStarted />
     </Wrapper>
@@ -340,8 +236,9 @@ const Navigation = ({
       {list.length > 0 && (
         <List>
           {list.map((item, i) => (
-            <Link key={i} href={routes.summary + '#block-' + i}>
+            <Link shallow={true} key={i} href={routes.summary + '?block=' + i}>
               <ListItem
+                key={i}
                 active={i == currentBlock}
                 onClick={() => onNavigationChange(i)}
               >

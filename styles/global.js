@@ -5,6 +5,9 @@ export default createGlobalStyle`
 	* { 
 		box-sizing: border-box;
 	}
+	html {
+		scroll-behavior: smooth;
+	}
 	body {
 		max-width: 100%;
 		margin: 0;	

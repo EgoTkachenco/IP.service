@@ -56,7 +56,7 @@ export const ServiceDetails = ({ title, description, linkText, link }) => (
     <H6>{title}</H6>
     <Flex direction="column" gap="32px">
       <Text>{description}</Text>
-      <Link href={link}>
+      <Link href={link} target="_blank">
         <Flex align="center" gap="16px">
           <Text color="primary" weight={600}>
             {linkText}
