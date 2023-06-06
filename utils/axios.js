@@ -66,10 +66,10 @@ function eraseToken(tokenName = TOKEN_NAME) {
   document.cookie = `${tokenName}=; Max-Age=0`
 }
 
-let securedFetchOptions = (tokenName = TOKEN_NAME) => {
+let securedFetchOptions = (tokenName = TOKEN_NAME, token = null) => {
   return {
     headers: {
-      Authorization: 'Bearer ' + getToken(tokenName),
+      Authorization: 'Bearer ' + (token || getToken(tokenName)),
     },
   }
 }

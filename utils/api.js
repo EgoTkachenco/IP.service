@@ -159,8 +159,8 @@ export const setBillingName = (name) =>
 export const switchToYear = () =>
   axios.get('/api/v1/order/switch-to-year', securedFetchOptions())
 
-export const getOrderDetails = (id) =>
-  axios.get(`/api/v1/order/show/${id}`, securedFetchOptions())
+export const getOrderDetails = (id, token) =>
+  axios.get(`/api/v1/order/show/${id}`, securedFetchOptions(undefined, token))
 
 export const getCanceledOrderDetails = (id) =>
   axios.get(`/api/v1/order/canceled/${id}`, securedFetchOptions())
