@@ -5,6 +5,7 @@ import { useNoBodyScroll } from './use-no-body-scroll'
 import { useWindowSize } from './use-window-size'
 import { useMetadataRenderer } from './use-metadata'
 import { useObserverNavigation } from './use-observer-navigation'
+import { useScrollNavigation } from './use-scroll-navigation'
 
 export {
   useClickOutside,
@@ -14,4 +15,5 @@ export {
   useNoBodyScroll,
   useWindowSize,
   useObserverNavigation,
+  useScrollNavigation,
 }

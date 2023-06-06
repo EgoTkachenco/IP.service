@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Flex, H5, Text, Card, H2, H6, Chip, Caption } from '@/core'
 import Navigation from './Navigation'
-import { useObserverNavigation } from '@/hooks'
-import { Fragment, useEffect, useState } from 'react'
+import { useScrollNavigation } from '@/hooks'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { CopyIconButton } from '@/components/reusable/onboarding/OnboardingStep1'
 import JSONPreview, {
   ErrorJSON,
@@ -22,7 +22,21 @@ import {
 const host = 'https://spyskey.com'
 
 const Docs = () => {
-  const [activeBlock, setActiveBlock] = useObserverNavigation('docs')
+  const [activeBlock, setActiveBlock] = useScrollNavigation('#docs > div', true)
+  const content = useMemo(
+    () =>
+      docs.map((topic, i) => (
+        <Fragment key={i}>
+          <TopicTitle color="dark">{topic.title}</TopicTitle>
+          {topic.blocks.map((block, j) => (
+            <DocsCard title={block.title} id={'block-' + block.order} key={j}>
+              {block.content()}
+            </DocsCard>
+          ))}
+        </Fragment>
+      )),
+    []
+  )
   return (
     <Wrapper>
       <Navigation
@@ -31,7 +45,8 @@ const Docs = () => {
         onNavigationChange={setActiveBlock}
       />
       <Content id="docs">
-        {docs.map((topic, i) => (
+        {content}
+        {/* {docs.map((topic, i) => (
           <Fragment key={i}>
             <TopicTitle color="dark">{topic.title}</TopicTitle>
             {topic.blocks.map((block, j) => (
@@ -40,7 +55,7 @@ const Docs = () => {
               </DocsCard>
             ))}
           </Fragment>
-        ))}
+        ))} */}
       </Content>
     </Wrapper>
   )
@@ -1553,7 +1568,7 @@ const docs = DOCS.map((topic) => {
   return {
     ...topic,
     blocks: topic.blocks.map((block) => {
-      return { ...block, order: ++order }
+      return { ...block, order: order++ }
     }),
   }
 })

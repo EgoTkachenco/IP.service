@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Flex, Text, H6, Caption } from '@/components/core'
 import Link from 'next/link'
 import styled from 'styled-components'
+import routes from '@/constants/routes'
 
 const Navigation = ({ docs, currentBlock, onNavigationChange }) => {
   return (
@@ -12,8 +13,15 @@ const Navigation = ({ docs, currentBlock, onNavigationChange }) => {
             <Title>{topic.title}</Title>
             <Links>
               {topic.blocks.map((block, i) => (
-                <Link key={i} href={`#block-` + block.order}>
-                  <NavigationLink active={currentBlock >= block.order}>
+                <Link
+                  key={i}
+                  href={routes.docs + '?block=' + block.order}
+                  shallow={true}
+                >
+                  <NavigationLink
+                    active={currentBlock >= block.order}
+                    onClick={() => onNavigationChange(block.order)}
+                  >
                     {block.title}
                   </NavigationLink>
                 </Link>

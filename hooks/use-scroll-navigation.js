@@ -1,38 +1,41 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import _ from 'lodash'
 import routes from '@/constants/routes'
 
-export function useScrollNavigation(contentId, isInfo) {
+export function useScrollNavigation(blocksSelector, isInfo) {
   const [activeBlock, setActiveBlock] = useState(0)
   const [blocks, setBlocks] = useState([])
   const router = useRouter()
 
-  useEffect(() => {
-    const onscroll = (e) => {
+  const onscroll = useCallback(
+    _.debounce(() => {
       const clientScroll = document.documentElement.scrollTop
-      const currentBlock = blocks.find(
-        (block) => Math.abs(clientScroll - block.offsetTop) < 100
+      const currentBlock = blocks?.find(
+        (block) => Math.abs(clientScroll - block.offsetTop) < 200
       )
       if (currentBlock) {
         setActiveBlock(currentBlock.order)
       }
-    }
+    }, 15),
+    [blocks]
+  )
 
+  useEffect(() => {
     document.addEventListener('scroll', onscroll)
 
     return () => {
       document.removeEventListener('scroll', onscroll)
     }
-  }, [])
+  }, [onscroll])
 
   useEffect(() => {
-    const content = document.getElementById(contentId)
-    if (!content) setBlocks(null)
+    const content = document.querySelectorAll(blocksSelector)
+    if (!content || content.length === 0) setBlocks(null)
     else {
       const blocks = []
-      for (let i = 0; i < content.children.length; i++) {
-        const block = content.children[i]
+      for (let i = 0; i < content.length; i++) {
+        const block = content[i]
         blocks.push({
           offsetTop: block.offsetTop,
           order: i,

@@ -5,10 +5,8 @@ import { validateIP, validateASN } from '@/utils'
 import { Flex, Text, H1, Input, Icon } from '@/core'
 import Image from 'next/image'
 import styled from 'styled-components'
-// import { useObserverNavigation, useService } from '@/hooks'
-import { useService } from '@/hooks'
+import { useScrollNavigation, useService } from '@/hooks'
 import { useForm } from '@mantine/form'
-import { useScrollNavigation } from '@/hooks/use-scroll-navigation'
 
 import CommonSummary from './CommonSummary'
 import CommonASNSummary from './CommonASNSummary'
@@ -67,7 +65,7 @@ const Summary = () => {
   const isInfo = isFetch ? null : !!data
   const isASN = validateASN(ip)
   const [activeBlock, setActiveBlock, reset] = useScrollNavigation(
-    'content',
+    '#content > div',
     isFetch ? null : !!list
   )
 

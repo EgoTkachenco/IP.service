@@ -2,11 +2,14 @@ import styled from 'styled-components'
 import { H1, Flex, H5, Text, Caption, Icon } from '@/core'
 import { BlockInner } from './blocks/Block'
 import Link from 'next/link'
-import { useObserverNavigation } from '@/hooks'
+import { useScrollNavigation } from '@/hooks'
+import routes from '@/constants/routes'
 
 const TermsOfService = ({ title, data, published }) => {
-  const [activeBlock] = useObserverNavigation('terms-content')
-
+  const [activeBlock, setActiveBlock] = useScrollNavigation(
+    '#terms-content > div',
+    true
+  )
   return (
     <>
       <Wrapper>
@@ -40,7 +43,11 @@ const TermsOfService = ({ title, data, published }) => {
             }
           `}
         </style>
-        <TitlesList activeBlock={activeBlock} data={data} />
+        <TitlesList
+          activeBlock={activeBlock}
+          data={data}
+          onNavigationChange={setActiveBlock}
+        />
         <Flex direction="column">
           <Title color="dark">{title}</Title>
           <LastUpdate>
@@ -66,12 +73,15 @@ const TermsOfService = ({ title, data, published }) => {
 
 export default TermsOfService
 
-const TitlesList = ({ activeBlock, data }) => {
+const TitlesList = ({ activeBlock, data, onNavigationChange }) => {
   return (
     <TitlesListWrapper>
       {data.map((block, i) => (
-        <Link key={i} href={`#block-` + i}>
-          <TitlesListItem active={i <= activeBlock}>
+        <Link key={i} href={routes.terms + `?block-` + i} shallow={true}>
+          <TitlesListItem
+            active={i <= activeBlock}
+            onClick={() => onNavigationChange(i)}
+          >
             {block.title}
           </TitlesListItem>
         </Link>
