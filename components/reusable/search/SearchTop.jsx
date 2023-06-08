@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { Flex, Text } from '@/core'
 import CopyButton from '@/components/reusable/CopyButton'
+import { site_url } from '@/constants/constants'
 
-const SearchTop = ({ ip, result }) => {
-  if (!ip) return ''
+const SearchTop = ({ token, ip, result }) => {
+  if (!ip || !token) return ''
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}?ip=${ip}`
-
+  const apiUrl = `${site_url}/${ip}?token=${token}`
   return (
     <Wrapper>
       <Text weight="600">Showing results for {ip}</Text>

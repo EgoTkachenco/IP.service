@@ -16,6 +16,7 @@ import AnalyticsStore from '@/store/AnalyticsStore'
 import SearchStore from '@/store/SearchStore'
 import BillingStore from '@/store/BillingStore'
 import AuthStore from '@/store/AuthStore'
+import { site_url } from '@/constants/constants'
 
 const Home = observer(() => {
   const { analytics, usage, duration, loadAnalytics, changeDuration } =
@@ -28,9 +29,9 @@ const Home = observer(() => {
     if (!ip) getIpInfo()
   }, [])
 
-  const host = 'https://back.spyskey.com'
-  // const url = `${host}/${ip}?token=${analytics?.token}`
-  const url = `${host}/${ip}`
+  const host = site_url
+  const url = `${host}/${ip}?token=${analytics?.token}`
+  // const url = `${host}/${ip}`
   return (
     <Flex direction="column" gap="50px">
       {showOnboarding && (

@@ -21,6 +21,7 @@ class AuthStore {
     makeAutoObservable(this, {
       showOnboarding: computed,
       isTrialAvailable: computed,
+      token: computed,
     })
   }
 
@@ -135,6 +136,10 @@ class AuthStore {
 
   get isTrialAvailable() {
     return this.user && this.user.trial ? true : false
+  }
+
+  get token() {
+    return this.user ? getToken() : ''
   }
 }
 

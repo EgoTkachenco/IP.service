@@ -48,7 +48,8 @@ const SignInModal = observer(({ onRegistration, onForget, onClose }) => {
         else form.setErrors('email', error.message)
       })
   })
-  const error = form.getInputProps('email').error
+  const error =
+    form.getInputProps('email').error || form.getInputProps('password').error
 
   return (
     <Modal onClose={onClose} isIllustration={true}>

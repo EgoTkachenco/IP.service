@@ -1,6 +1,6 @@
 import Layout from '@/components/landing/layout/Layout'
 import { useMetadataRenderer } from '@/hooks'
-import { Flex, Button } from '@/core'
+import { Flex, Button, H3 } from '@/core'
 import styled from 'styled-components'
 import Payment from '@/components/reusable/Payment'
 import { useRouter } from 'next/router'
@@ -18,6 +18,7 @@ export default function PaymentCancelPage() {
     if (order) getOrderDetails(order).then((res) => setOrderDetails(res.data))
     // getCanceledOrderDetails(order)
   }, [order])
+
   return (
     <>
       {renderMetadata({
@@ -25,14 +26,18 @@ export default function PaymentCancelPage() {
       })}
       <Layout animation={false}>
         <Content>
-          <Payment
-            details={orderDetails}
-            bottomSlot={
-              <Link href={routes.upgrade}>
-                <Button>Try again</Button>
-              </Link>
-            }
-          />
+          {orderDetails ? (
+            <Payment
+              details={orderDetails}
+              bottomSlot={
+                <Link href={routes.upgrade}>
+                  <Button>Try again</Button>
+                </Link>
+              }
+            />
+          ) : (
+            <H3 color="dark">Payment not found</H3>
+          )}
         </Content>
       </Layout>
     </>

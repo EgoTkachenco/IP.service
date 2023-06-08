@@ -10,7 +10,11 @@ const CopyButton = (props) => {
       color={clipboard.copied ? 'success' : props.color}
       onClick={() =>
         Object.keys(props.data).length > 0 &&
-        clipboard.copy(JSON.stringify(props.data))
+        clipboard.copy(
+          typeof props.data === 'string'
+            ? props.data
+            : JSON.stringify(props.data)
+        )
       }
     >
       {props.children}

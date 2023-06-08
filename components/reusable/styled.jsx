@@ -71,8 +71,7 @@ export const TokenQuery = ({ token, host }) => (
       Query Parameter
     </Caption>
     <Caption inline>
-      {host}/[IP address]
-      {/* ?token={token} */}
+      {host}/[IP address] ?token={token}
     </Caption>
   </Flex>
 )

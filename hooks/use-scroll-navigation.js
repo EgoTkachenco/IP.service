@@ -10,9 +10,11 @@ export function useScrollNavigation(blocksSelector, isInfo) {
 
   const onscroll = useCallback(
     _.debounce(() => {
-      const clientScroll = document.documentElement.scrollTop
+      const clientScroll = window.pageYOffset
       const currentBlock = blocks?.find(
-        (block) => Math.abs(clientScroll - block.offsetTop) < 200
+        (block) =>
+          Math.abs(clientScroll - document.getElementById(block.id).offsetTop) <
+          200
       )
       if (currentBlock) {
         setActiveBlock(currentBlock.order)
@@ -37,7 +39,6 @@ export function useScrollNavigation(blocksSelector, isInfo) {
       for (let i = 0; i < content.length; i++) {
         const block = content[i]
         blocks.push({
-          offsetTop: block.offsetTop,
           order: i,
           id: block.id,
         })
@@ -52,24 +53,24 @@ export function useScrollNavigation(blocksSelector, isInfo) {
     if (search.length > 1) search = new URLSearchParams(search[1])
     else return
 
-    const block = search.get('block')
-    const blockEl = blocks?.find((el) => el.order == block)
-    if (block && isInfo && blockEl) {
-      setActiveBlock(Number(block))
+    const blockOrder = search.get('block')
+    const block = blocks?.find((el) => el.order == blockOrder)
+    if (block && isInfo) {
+      setActiveBlock(Number(block.order))
       window.scroll({
         behavior: 'smooth',
-        top: blockEl.offsetTop,
+        top: document.getElementById(block.id).offsetTop,
       })
     }
   }, [blocks])
 
   const onBlockChange = (block) => {
     setActiveBlock(block)
-    const blockEl = blocks.find((el) => el.order == block)
-    if (blockEl) {
+    const { id } = blocks.find((el) => el.order == block)
+    if (id) {
       window.scroll({
         behavior: 'smooth',
-        top: blockEl.offsetTop,
+        top: document.getElementById(id).offsetTop,
       })
     }
   }

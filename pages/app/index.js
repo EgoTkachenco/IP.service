@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Spyskey',
+        description: 'Spyskey',
       })}
       <Layout>
         <HomeView />

@@ -18,8 +18,9 @@ import {
   reverseService,
   whoisService,
 } from '@/utils/api'
+import { site_url } from '@/constants/constants'
 
-const host = 'https://spyskey.com'
+const host = site_url
 
 const Docs = () => {
   const [activeBlock, setActiveBlock] = useScrollNavigation('#docs > div', true)
@@ -44,7 +45,7 @@ const Docs = () => {
         currentBlock={activeBlock}
         onNavigationChange={setActiveBlock}
       />
-      <Content id="docs">
+      <Content as="main" id="docs">
         {content}
         {/* {docs.map((topic, i) => (
           <Fragment key={i}>
@@ -105,8 +106,10 @@ const TopicTitle = styled(H2)`
 `
 
 const DocsCard = ({ title, children, id }) => (
-  <Card id={id} color="white" width="100%" gap="24px">
-    <H5 color="dark">{title}</H5>
+  <Card id={id} as="section" color="white" width="100%" gap="24px">
+    <H5 as="h3" color="dark">
+      {title}
+    </H5>
     <DocsContent>{children}</DocsContent>
   </Card>
 )
@@ -402,7 +405,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -431,7 +434,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -464,7 +467,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/asn/8.8.8.8?token=TOKEN`}>
-                GET: {host}/asn/8.8.8.8?token = TOKEN
+                GET: {host}/asn/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -499,7 +502,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/1.38.167.255?token=TOKEN`}>
-                GET: {host}/1.38.167.255?token = TOKEN
+                GET: {host}/1.38.167.255?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -535,7 +538,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -569,7 +572,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -1415,7 +1418,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>
@@ -1451,7 +1454,7 @@ const DOCS = [
             <Example>
               <H6 color="dark">Example Request:</H6>
               <CopyCard data={`${host}/8.8.8.8?token=TOKEN`}>
-                GET: {host}/8.8.8.8?token = TOKEN
+                GET: {host}/8.8.8.8?token=TOKEN
               </CopyCard>
             </Example>
             <Example>

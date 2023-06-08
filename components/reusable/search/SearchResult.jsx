@@ -39,22 +39,26 @@ const Result = ({ currentPlan, changePlan, result }) => {
             <PlanLabels plan={plan.name} />
             {renderPlan(
               plan.data_groups,
-              <PlanCard
-                name={plan.name}
-                buttonColor={plan_color[plan.name]}
-                buttonText={buttonText}
-                disabled={isActive}
-                onClick={() => {
-                  if (isCustom) {
-                    router.push({
-                      pathname: routes.upgrade,
-                      query: { tab: 'custom' },
-                    })
-                  } else if (!isActive) {
-                    changePlan(plan.name)
-                  }
-                }}
-              />
+              plan.name !== 'Free' ? (
+                <PlanCard
+                  name={plan.name}
+                  buttonColor={plan_color[plan.name]}
+                  buttonText={buttonText}
+                  disabled={isActive}
+                  onClick={() => {
+                    if (isCustom) {
+                      router.push({
+                        pathname: routes.upgrade,
+                        query: { tab: 'custom' },
+                      })
+                    } else if (!isActive) {
+                      changePlan(plan.name)
+                    }
+                  }}
+                />
+              ) : (
+                <div style={{ marginBottom: '50px' }}></div>
+              )
             )}
           </Fragment>
         )
@@ -92,7 +96,12 @@ const DataPreviewBlock = ({ title, data, bottomSlot }) => {
 const PlanLabels = ({ plan }) => {
   const plans = ['Basic', 'Standard', 'Business']
   const filtered_plans =
-    plan !== 'Custom' ? plans.slice(0, plans.indexOf(plan) + 1) : ['Custom']
+    plan === 'Custom'
+      ? ['Custom']
+      : plan === 'Free'
+      ? ['Free']
+      : plans.slice(0, plans.indexOf(plan) + 1)
+
   return (
     <ChipContainer gap="10px">
       {filtered_plans.map((name, i) => (
@@ -109,6 +118,7 @@ const plan_color = {
   Standard: 'secondary',
   Business: 'primary',
   Custom: 'pink',
+  Free: 'primary-transparent',
 }
 
 const WrapperCard = styled(Card)`

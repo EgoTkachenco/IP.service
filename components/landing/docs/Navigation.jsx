@@ -6,7 +6,7 @@ import routes from '@/constants/routes'
 
 const Navigation = ({ docs, currentBlock, onNavigationChange }) => {
   return (
-    <Wrapper>
+    <Wrapper as="aside">
       <Inner>
         {docs.map((topic, key) => (
           <Fragment key={key}>

@@ -26,7 +26,8 @@ class SearchStore {
       }
 
       const result = await searchIp(ip)
-      this.result = result.filter((plan) => plan.name !== 'Free')
+      // this.result = result.filter((plan) => plan.name !== 'Free')
+      this.result = result
     } catch (error) {
       console.log(error)
     }

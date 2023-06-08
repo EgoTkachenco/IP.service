@@ -24,8 +24,8 @@ const Upgrade = observer(() => {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Spyskey',
+        description: 'Spyskey',
       })}
       <Layout animation={false}>
         <BillingLayout>

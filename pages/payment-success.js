@@ -1,6 +1,6 @@
 import Layout from '@/components/landing/layout/Layout'
 import { useMetadataRenderer } from '@/hooks'
-import { Flex, Button } from '@/core'
+import { Flex, Button, H3 } from '@/core'
 import styled from 'styled-components'
 import Payment from '@/components/reusable/Payment'
 import { getOrderDetails } from '@/utils/api'
@@ -11,39 +11,28 @@ import { getCookieToken } from '@/utils'
 
 export default function PaymentSuccessPage({ orderDetails }) {
   const renderMetadata = useMetadataRenderer()
-  console.log(orderDetails)
 
   return (
     <>
       {renderMetadata({
         title: 'Success payment | Spyskey',
       })}
-      <PaymentConversionMeta order={orderDetails} />
-      {/* <!-- Event snippet for Paid conversion page --> */}
-      {/* <Script strategy="beforeInteractive">
-        {`gtag('event', 'conversion', {
-						'send_to': 'AW-11176276843/9bIICIbazKMYEOvmodEp',
-						'transaction_id': ''
-					});`}
-      </Script> */}
-      {/* <!-- Event snippet for plans conversion --> */}
-      {/* <Script strategy="beforeInteractive">
-        {`gtag('event', 'conversion', {
-						'send_to': 'AW-11176276843/9bIICIbazKMYEOvmodEp',
-						'transaction_id': ''
-					});`}
-      </Script> */}
+      {orderDetails && <PaymentConversionMeta order={orderDetails} />}
       <Layout animation={false}>
         <Content>
-          <Payment
-            details={orderDetails}
-            isSuccess
-            bottomSlot={
-              <Link href={routes.app}>
-                <Button>Go home</Button>
-              </Link>
-            }
-          />
+          {orderDetails ? (
+            <Payment
+              details={orderDetails}
+              isSuccess
+              bottomSlot={
+                <Link href={routes.app}>
+                  <Button>Go home</Button>
+                </Link>
+              }
+            />
+          ) : (
+            <H3 color="dark">Payment not found</H3>
+          )}
         </Content>
       </Layout>
     </>

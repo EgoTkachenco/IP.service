@@ -13,8 +13,8 @@ export default function Profile() {
   return (
     <>
       {renderMetadata({
-        title: 'IP Service',
-        description: 'IP Service',
+        title: 'Spyskey',
+        description: 'Spyskey',
       })}
       <Layout>
         <ProfileView />

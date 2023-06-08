@@ -13,11 +13,13 @@ export const getServerSideProps = async ({ res }) => {
         return ![
           'app',
           'admin',
+          'flags',
           'api',
           '_app.js',
           '_document.js',
           '404.js',
           'sitemap.xml.js',
+          'payment-success.js',
         ].includes(staticPage)
       })
       .reduce((acc, filename) => {
