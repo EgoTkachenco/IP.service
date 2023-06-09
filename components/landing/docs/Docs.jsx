@@ -23,7 +23,10 @@ import { site_url } from '@/constants/constants'
 const host = site_url
 
 const Docs = () => {
-  const [activeBlock, setActiveBlock] = useScrollNavigation('#docs > div', true)
+  const [activeBlock, setActiveBlock] = useScrollNavigation(
+    '#docs > section',
+    true
+  )
   const content = useMemo(
     () =>
       docs.map((topic, i) => (
@@ -136,6 +139,7 @@ const CopyCard = ({ children, data }) => (
     py="20px"
     gap="8px"
     width="100%"
+    as="code"
   >
     <Text
       color="success"
@@ -178,7 +182,7 @@ const Details = ({ service, ip, format }) => {
           <span />
         </Points>
       </DetailsCardTop>
-      <PreviewContainer className="custom-scroll">
+      <PreviewContainer className="custom-scroll" as="code">
         {format ? <Text color="secondary">...</Text> : ''}
         <JSONPreview icon={false} data={response || {}} color="white" />
         {format ? <Text color="secondary">...</Text> : ''}
@@ -349,7 +353,7 @@ const DOCS = [
               The API returns HTTP status codes to indicate the status of the
               request. The following HTTP status codes may be returned:
             </Text>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -637,7 +641,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -736,7 +740,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -836,7 +840,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -936,7 +940,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -1034,7 +1038,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -1141,7 +1145,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested ASN information is returned in the response body."
@@ -1245,7 +1249,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested IP address ranges are returned in the response body."
@@ -1347,7 +1351,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested IP address ranges are returned in the response body."
@@ -1513,7 +1517,7 @@ const DOCS = [
                 request. The following HTTP status codes may be returned:
               </Text>
             </Example>
-            <Card color="dark" gap="20px">
+            <Card color="dark" gap="20px" as="code">
               <ErrorJSON
                 name="200 OK"
                 value="The request was successful, and the requested IP address ranges are returned in the response body."
