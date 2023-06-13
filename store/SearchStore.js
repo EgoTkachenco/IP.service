@@ -15,18 +15,16 @@ class SearchStore {
   getIpInfo = async (ip) => {
     this.isFetch = true
     try {
-      const info = await getIp(ip)
-      if (typeof info === 'string') {
-        this.ip = info
-        this.userIp = info
+      if (!ip) {
+        ip = await getIp(ip)
+        this.ip = ip
+        this.userIp = ip
         this.isUserIp = true
       } else {
-        this.ip = info.ip
+        this.ip = ip
         this.isUserIp = false
       }
-
       const result = await searchIp(ip)
-      // this.result = result.filter((plan) => plan.name !== 'Free')
       this.result = result
     } catch (error) {
       console.log(error)
