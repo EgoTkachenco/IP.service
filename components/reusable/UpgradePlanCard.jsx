@@ -10,6 +10,7 @@ const UpgradePlanCard = ({
   options,
   isCurrent,
   setPlan,
+  buttonId,
 }) => {
   return (
     <PlanCardWrapper color="white">
@@ -49,6 +50,7 @@ const UpgradePlanCard = ({
       </Flex>
       <PriceCardDelimiter />
       <Button
+        id={buttonId}
         variant={isCurrent ? 'primary-transparent' : ''}
         onClick={setPlan}
         disabled={isCurrent}

@@ -99,6 +99,7 @@ const PlansList = ({ currentPlan, plans, period, onPlanChoose }) => {
               options={plan.options}
               setPlan={() => onPlanChoose(plan.name)}
               isCurrent={currentPlan?.name === plan.name}
+              buttonId={`${plan.name}-${period}-btn`}
             />
           </Animation>
         ))}
