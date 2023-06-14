@@ -4,9 +4,14 @@ import styled from 'styled-components'
 
 const page_size = 10
 
-const List = ({ data = [], columns = [], moreText = 'Show more' }) => {
+const List = ({
+  data = [],
+  columns = [],
+  moreText = 'Show more',
+  isMore = true,
+}) => {
   const [page, setPage] = useState(1)
-  const result = data.slice(0, page * page_size)
+  const result = data.slice(0, isMore ? page * page_size : -1)
   const isShowMore = result.length < data.length
   const f_column = (column) => column[0].toUpperCase().concat(column.slice(1))
   return (

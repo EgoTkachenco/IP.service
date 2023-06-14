@@ -1,11 +1,10 @@
-import { useState, useEffect, Component } from 'react'
+import { useEffect, useMemo } from 'react'
 import { BlockInner } from '../blocks/Block'
-import { allDetailsService } from '@/utils/api'
-import { validateIP, validateASN } from '@/utils'
+import { validateASN } from '@/utils'
 import { Flex, Text, H1, Input, Icon } from '@/core'
 import Image from 'next/image'
 import styled from 'styled-components'
-import { useScrollNavigation, useService } from '@/hooks'
+import { useScrollNavigation } from '@/hooks'
 import { useForm } from '@mantine/form'
 
 import CommonSummary from './CommonSummary'
@@ -31,50 +30,13 @@ import DeviceInfo from './DeviceInfo'
 
 import Link from 'next/link'
 import routes from '@/constants/routes'
+import { useRouter } from 'next/router'
 
-const getAllService = (data) => {
-  const params = {}
-  if (validateIP(data)) params.ip = data
-  else params.domain = data
-  return allDetailsService(params)
-}
-
-const Summary = () => {
-  const { ip, setIp, data, isFetch, userIP } = useService('', getAllService)
-  const [list, setList] = useState([])
-
-  const form = useForm({
-    initialValues: {
-      search: '',
-    },
-
-    validate: {
-      search: (value) => {
-        if (!value) return 'Required'
-        return null
-      },
-    },
-  })
-  useEffect(() => {
-    form.setFieldValue('search', ip)
-  }, [ip])
-
-  const onSubmit = form.onSubmit(
-    (values) => !isFetch && onIPChange(values.search)
-  )
-  const isInfo = isFetch ? null : !!data
+const Summary = ({ ip, data, isUserIp = false }) => {
+  const isInfo = !!data
   const isASN = validateASN(ip)
-  const [activeBlock, setActiveBlock, reset] = useScrollNavigation(
-    '#content > div',
-    isFetch ? null : !!list
-  )
-
-  const onIPChange = (ip) => {
-    setIp(ip)
-    reset()
-  }
-
-  useEffect(() => {
+  const list = useMemo(() => {
+    if (!isInfo) return []
     let block_number = 0
     const list = []
     const getBlockId = () => {
@@ -102,7 +64,7 @@ const Summary = () => {
     } else {
       addBlock('Geolocation', GeolocationSummary, data?.geolocation)
 
-      if (ip === userIP) addBlock('Device info', DeviceInfo, undefined)
+      if (isUserIp) addBlock('Device info', DeviceInfo, undefined)
 
       addBlock('Privacy', PrivacySummary, data?.privacy)
       addBlock('ASN', ASNSummary, data?.asn)
@@ -113,25 +75,51 @@ const Summary = () => {
       addBlock('Abuse', AbuseSummary, data?.abuse)
       addBlock('Q&A', FAQ, undefined)
     }
+    return list
+  }, [ip])
+  const router = useRouter()
 
-    setList(list)
-    return () => {
-      setList([])
-    }
-  }, [data])
+  const form = useForm({
+    initialValues: {
+      search: '',
+    },
+
+    validate: {
+      search: (value) => {
+        if (!value) return 'Required'
+        return null
+      },
+    },
+  })
+  useEffect(() => {
+    form.setFieldValue('search', ip)
+  }, [ip])
+
+  const onSubmit = form.onSubmit((values) => onIPChange(values.search))
+  const [activeBlock, setActiveBlock, reset] = useScrollNavigation(
+    '#content > div',
+    list
+  )
+
+  const onIPChange = (ip) => router.push(`${routes.summary}/${ip}`)
 
   return (
     <Wrapper>
       {isASN ? (
         <SummaryTopASN
-          asn={data?.asn?.ashandle}
-          subtitle={[data?.asn?.organisation['org-name'], data?.asn?.domain]
+          asn={data?.asn?.ashandle || data?.whois?.ashandle || ip}
+          subtitle={[
+            (data?.asn?.organisation && data?.asn?.organisation['org-name']) ||
+              (data?.whois?.organisation &&
+                data?.whois?.organisation['org-name']),
+            data?.asn?.domain,
+          ]
             .filter((el) => el)
             .join(' - ')}
         />
       ) : (
         <SummaryTopIP
-          ip={data?.ip}
+          ip={ip}
           flag={data?.geolocation?.flag}
           address={[
             data?.geolocation?.city,
@@ -140,8 +128,8 @@ const Summary = () => {
           ]
             .filter((el) => el)
             .join(', ')}
-          isFetch={!isInfo}
-          isUserIP={ip === userIP}
+          isInfo={isInfo}
+          isUserIP={isUserIp}
         />
       )}
 
@@ -152,9 +140,17 @@ const Summary = () => {
           onNavigationChange={setActiveBlock}
           form={form}
           onSubmit={onSubmit}
+          ip={ip}
+          isUserIp={isUserIp}
         />
-        {isInfo && (
+        {isInfo ? (
           <Content id="content">{list.map((el) => el.children)}</Content>
+        ) : (
+          <Flex align="center" justify="center" width="100%">
+            <Text align="center" weight={500}>
+              No data found
+            </Text>
+          </Flex>
         )}
       </Container>
       {isASN && <RelatedNetworks onNetworkChange={(asn) => onIPChange(asn)} />}
@@ -166,7 +162,7 @@ const Summary = () => {
 
 export default Summary
 
-const SummaryTopIP = ({ ip, flag, address, isFetch, isUserIP }) => (
+const SummaryTopIP = ({ ip, flag, address, isInfo, isUserIP }) => (
   <Flex direction="column" align="center" gap="12px">
     <Image
       src="/map-point.svg"
@@ -176,13 +172,11 @@ const SummaryTopIP = ({ ip, flag, address, isFetch, isUserIP }) => (
       alt="map point"
     />
     <Text weight={600}>{isUserIP ? 'My ' : ''}IP address</Text>
-
-    {isFetch && <Text>Fetching</Text>}
-    {!isFetch && (
+    <H1 color="dark" as="p">
+      {ip}
+    </H1>
+    {isInfo && (
       <>
-        <H1 color="dark" as="p">
-          {ip}
-        </H1>
         <Flex gap="12px" align="center">
           {!!flag && <Image src={flag} width={21} height={15} alt={flag} />}
           <Text weight={600}>{address}</Text>
@@ -210,6 +204,8 @@ const Navigation = ({
   onNavigationChange,
   form,
   onSubmit,
+  ip,
+  isUserIp,
 }) => {
   return (
     <NavigationWrapper>
@@ -234,7 +230,11 @@ const Navigation = ({
       {list.length > 0 && (
         <List>
           {list.map((item, i) => (
-            <Link shallow={true} key={i} href={routes.summary + '?block=' + i}>
+            <Link
+              shallow={true}
+              key={i}
+              href={routes.summary + (isUserIp ? '' : '/' + ip) + '?block=' + i}
+            >
               <ListItem
                 key={i}
                 active={i == currentBlock}

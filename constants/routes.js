@@ -17,6 +17,8 @@ const routes = {
   'ranges-api': '/services/ranges',
   'privacy-api': '/services/privacy',
 
+  ips: '/ips',
+
   app: '/app',
   search: '/app/search',
   billing: '/app/billing',

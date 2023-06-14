@@ -2,7 +2,6 @@ import { Flex, H3, Text } from '@/core'
 import { ValueCard, CheckValue } from './styled'
 
 const CommonASNSummary = ({ id, data }) => {
-  console.log(data)
   return (
     <Flex direction="column" gap="32px" id={id} width="100%">
       <H3 color="dark">Summary</H3>
@@ -12,12 +11,16 @@ const CommonASNSummary = ({ id, data }) => {
           value={
             <>
               <Text color="primary" inline>
-                {data?.asn?.ashandle || data?.asn?.['aut-num']}
+                {data?.asn?.ashandle ||
+                  data?.asn?.['aut-num'] ||
+                  data?.whois?.['aut-num']}
               </Text>{' '}
               -{' '}
               {data?.asn?.desscr ||
                 (data?.asn?.organisation &&
                   data?.asn?.organisation['org-name']) ||
+                (data?.whois?.organisation &&
+                  data?.whois?.organisation['org-name']) ||
                 'no organisation'}
             </>
           }

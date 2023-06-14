@@ -13,8 +13,9 @@ export function useScrollNavigation(blocksSelector, isInfo) {
       const clientScroll = window.pageYOffset
       const currentBlock = blocks?.find(
         (block) =>
-          Math.abs(clientScroll - document.getElementById(block.id).offsetTop) <
-          200
+          Math.abs(
+            clientScroll - document.getElementById(block.id)?.offsetTop
+          ) < 200
       )
       if (currentBlock) {
         setActiveBlock(currentBlock.order)
