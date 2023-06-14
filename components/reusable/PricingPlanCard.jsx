@@ -44,11 +44,11 @@ const PlanCard = ({
         </FeaturesContainer>
         <PriceCardDelimiter />
         {!isCurrent ? (
-          <Button id={buttonId} onClick={onSubscription}>
+          <Button id={buttonId} onClick={onSubscription} value={price}>
             Subscribe
           </Button>
         ) : (
-          <Button id={buttonId} disabled>
+          <Button id={buttonId} disabled value={price}>
             Current plan
           </Button>
         )}

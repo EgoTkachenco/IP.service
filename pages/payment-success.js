@@ -69,8 +69,8 @@ const PaymentConversionMeta = ({ order }) => {
   const eventIds = {
     'Basic-month': 'AW-11176276843/Rq5_CIL_gagYEOvmodEp',
     'Basic-year': 'AW-11176276843/v7EQCIv_gagYEOvmodEp',
-    'Standart-year': 'AW-11176276843/gqJcCI7_gagYEOvmodEp',
-    'Standart-month': 'AW-11176276843/eAhkCIX_gagYEOvmodEp',
+    'Standard-year': 'AW-11176276843/gqJcCI7_gagYEOvmodEp',
+    'Standard-month': 'AW-11176276843/eAhkCIX_gagYEOvmodEp',
     'Business-year': 'AW-11176276843/YFW_CImAgqgYEOvmodEp',
     'Business-month': 'AW-11176276843/aNxdCIj_gagYEOvmodEp',
 

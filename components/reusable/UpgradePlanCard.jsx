@@ -52,6 +52,7 @@ const UpgradePlanCard = ({
         variant={isCurrent ? 'primary-transparent' : ''}
         onClick={setPlan}
         disabled={isCurrent}
+        value={price?.toFixed(0)}
       >
         {isCurrent ? 'Current Plan' : name}
       </Button>
