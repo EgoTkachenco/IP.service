@@ -76,7 +76,7 @@ const Summary = ({ ip, data, isUserIp = false }) => {
       addBlock('Q&A', FAQ, undefined)
     }
     return list
-  }, [ip])
+  }, [data])
   const router = useRouter()
 
   const form = useForm({
