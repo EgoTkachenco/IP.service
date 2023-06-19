@@ -14,6 +14,7 @@ import {
   companyService,
   geolocationService,
   privacyService,
+  privacyRealIPService,
   rangesService,
   reverseService,
   whoisService,
@@ -1564,6 +1565,245 @@ const DOCS = [
               for the IP address "8.8.8.8". It returns whois information about
               the given ip address.
             </Text>
+          </>
+        ),
+      },
+      {
+        title: 'Uncover real IP address',
+        content: () => (
+          <>
+            <Flex gap="16px" align="center">
+              <Text weight={700}>Uncover real IP address: </Text>
+              <Flex gap="10px">
+                <Chip type="secondary">IP</Chip>
+                <Chip type="primary">API</Chip>
+              </Flex>
+            </Flex>
+            <Text>
+              The Uncover real IP address is a RESTful API that provides access
+              to privacy-related information associated with an IP address. This
+              API allows users to retrieve personal information that is kept
+              confidential and protected, ensuring the privacy of individuals.
+            </Text>
+
+            <Example>
+              <H6 color="dark">API Usage:</H6>
+              <Text>
+                To use the Uncover real IP address, make a GET request to the
+                endpoint{' '}
+                <Text color="primary" inline>
+                  {'/privacy/{ip}'}
+                </Text>
+                , where{' '}
+                <Text color="primary" inline>
+                  {'{ip}'}
+                </Text>{' '}
+                represents the IP address for which privacy information is
+                desired. The request should include a token as a query parameter
+                for authentication and access control.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Request Parameters:</H6>
+              <Text>The API requires the following path parameter:</Text>
+              <ul>
+                <li>
+                  <Text>
+                    <Text color="primary" inline>
+                      {'{ip}'}
+                    </Text>{' '}
+                    (required): The IP address for which you want to retrieve
+                    privacy information. The parameter should be a valid IPv4 or
+                    IPv6 address.
+                  </Text>
+                </li>
+              </ul>
+              <Text>
+                The following query parameters can be included in the request:
+              </Text>
+              <ul>
+                <li>
+                  <Text>
+                    <Text color="primary" inline>
+                      {'{token}'}
+                    </Text>{' '}
+                    (required): A token or key to authenticate the user and
+                    authorize access to the API.
+                  </Text>
+                </li>
+                <li>
+                  <Text>
+                    <Text color="primary" inline>
+                      {'{ua}'}
+                    </Text>{' '}
+                    (optional): The user agent string associated with the
+                    request.
+                  </Text>
+                </li>
+              </ul>
+            </Example>
+            <Example>
+              <H6 color="dark">User Agent</H6>
+              <Text>
+                A user agent is a string of information that is sent by a web
+                browser or a client application to identify itself to a server
+                or website. It provides details about the client software,
+                operating system, and device used to access the server. The user
+                agent allows servers to tailor their responses based on the
+                capabilities and preferences of the client.
+              </Text>
+              <Text>
+                The user agent string typically includes information such as the
+                browser name and version, the operating system name and version,
+                and sometimes additional details specific to the client
+                application. For example:
+              </Text>
+              <Text>
+                Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101
+                Firefox/47.0
+              </Text>
+              <Text>
+                Here's how to find the user agent in some popular web browsers:
+              </Text>
+              <ul>
+                <li>
+                  <Text>
+                    <Text color="dark" weight={600} inline>
+                      Google Chrome
+                    </Text>
+                    : Open the Chrome browser and press{' '}
+                    <Text color="primary" inline>
+                      {'Ctrl+Shift+I'}
+                    </Text>{' '}
+                    (or{' '}
+                    <Text color="primary" inline>
+                      {'Cmd+Option+I'}
+                    </Text>{' '}
+                    on macOS) to open the developer tools. Then go to the
+                    "Network" tab and select a request. In the request headers,
+                    you can find the "User-Agent" field.
+                  </Text>
+                </li>
+                <li>
+                  <Text>
+                    <Text color="dark" weight={600} inline>
+                      Mozilla Firefox
+                    </Text>
+                    : Open the Firefox browser and press{' '}
+                    <Text color="primary" inline>
+                      {'Ctrl+Shift+I'}
+                    </Text>{' '}
+                    (or{' '}
+                    <Text color="primary" inline>
+                      {'Cmd+Option+I'}
+                    </Text>{' '}
+                    on macOS) to open the developer tools. Then go to the
+                    "Network" tab and select a request. In the request headers,
+                    you can find the "User-Agent" field.
+                  </Text>
+                </li>
+                <li>
+                  <Text>
+                    <Text color="dark" weight={600} inline>
+                      Microsoft Edge
+                    </Text>
+                    : Open the Edge browser and press{' '}
+                    <Text color="primary" inline>
+                      {'Ctrl+Shift+I'}
+                    </Text>{' '}
+                    (or{' '}
+                    <Text color="primary" inline>
+                      {'Cmd+Option+I'}
+                    </Text>{' '}
+                    on macOS) to open the developer tools. Then go to the
+                    "Network" tab and select a request. In the request headers,
+                    you can find the "User-Agent" field.
+                  </Text>
+                </li>
+              </ul>
+            </Example>
+            <Example>
+              <H6 color="dark">Response Codes:</H6>
+              <Text>
+                The API returns the following HTTP status codes to indicate the
+                status of the request:
+              </Text>
+            </Example>
+            <Card color="dark" gap="20px" as="code">
+              <ErrorJSON
+                name="200 OK"
+                value="The request was successful, and the requested privacy information is returned in the response body."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="400 Bad Request"
+                value="The request is invalid or malformed."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="401 Unauthorized"
+                value="Authentication credentials were missing or invalid."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="404 Not Found"
+                value="The requested IP address could not be found in the database."
+                isIcon
+                errorColor="danger"
+              />
+              <ErrorJSON
+                name="429 Too Many Requests"
+                value="The user has exceeded the rate limit for requests."
+                isIcon
+                errorColor="danger"
+              />
+            </Card>
+            <Example>
+              <H6 color="dark">Example Request:</H6>
+              <CopyCard
+                data={`${host}/privacy/127.0.0.1?token=<YOUR_TOKEN>&ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3`}
+              >
+                GET: {host}/privacy/127.0.0.1?token={'<YOUR_TOKEN>'}
+                &ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+              </CopyCard>
+              <Text>
+                This example request retrieves privacy information for the IP
+                address{' '}
+                <Text color="primary" inline>
+                  127.0.0.1
+                </Text>{' '}
+                using the provided authorization token and user agent.
+              </Text>
+            </Example>
+            <Example>
+              <H6 color="dark">Example Response:</H6>
+              <Text>
+                If the user agent is specified, the response will contain an
+                array of IP addresses associated with the requested IP address.
+                For example:
+              </Text>
+              <Details service={privacyRealIPService} />
+              <Text>
+                If the user agent is not specified, the response will contain
+                privacy information for the requested IP address. For example:
+              </Text>
+              <Details service={privacyService} />
+            </Example>
+            <Example>
+              <H6 color="dark">Conclusion</H6>
+              <Text>
+                The Uncover real IP address is a valuable resource for accessing
+                privacy-related information associated with an IP address. By
+                following the provided documentation and incorporating the
+                necessary parameters in your requests, developers can easily
+                integrate this API into their applications, ensuring the
+                protection of personal data and respecting individual privacy.
+              </Text>
+            </Example>
           </>
         ),
       },

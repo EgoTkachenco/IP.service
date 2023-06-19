@@ -443,5 +443,44 @@
         "answer": "Spyskey Whois API is widely used in various applications such as domain research, brand protection, cybersecurity, threat analysis, network monitoring, and more. Its extensive data insights help users make informed decisions and streamline their online endeavors."
       }
     ]
+  },
+
+  {
+    "code": "Real IP",
+    "name": "About Real IP API",
+    "questions": [
+      {
+        "question": "How accurate is the 'Uncover Real IP Address' service?",
+        "answer": "Our service is designed to provide a high level of accuracy (around 95%). However, the exact accuracy may vary based on factors such as the browser used by the visitor, network, etc."
+      },
+      {
+        "question": "How does the 'Uncover Real IP Address' service work in real-time?",
+        "answer": "The service operates by analyzing the provided IP address and User-Agent in real-time, using advanced algorithms to reveal the real IP as soon as the data is input."
+      },
+      {
+        "question": "What is the coverage of the service?",
+        "answer": "The service covers around 50% of all devices in the world."
+      },
+      {
+        "question": "Why do I receive a list of uncovered IP addresses?",
+        "answer": "It may happen in the case of many devices in one network."
+      },
+      {
+        "question": "What information do I need to provide to use the 'Uncover Real IP Address' service?",
+        "answer": "To use the service, you need to provide the IP address of the device and the User-Agent of its browser."
+      },
+      {
+        "question": "Can the 'Uncover Real IP Address' service detect IP addresses from all around the world?",
+        "answer": "Yes, our service is globally effective and can uncover real IP addresses from all parts of the world."
+      },
+      {
+        "question": "Can the 'Uncover Real IP Address' service be integrated into my current cybersecurity system?",
+        "answer": "Absolutely. Our service is designed to be versatile and can easily be integrated into your existing cybersecurity infrastructure."
+      },
+      {
+        "question": "What measures are in place to ensure the legal compliance of the 'Uncover Real IP Address' service?",
+        "answer": "We adhere strictly to regional and international regulations related to data privacy and cybersecurity. Our compliance team constantly reviews and updates our policies to ensure we stay in line with the changing laws."
+      }
+    ]
   }
 ]

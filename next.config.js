@@ -61,6 +61,31 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/whois/:ip?token=:token`,
       },
+      // Real IP service
+      {
+        source: '/privacy/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+          {
+            type: 'query',
+            key: 'ua',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/privacy/:ip?token=:token&ua=:ua`,
+      },
+      {
+        source: '/privacy/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/privacy/:ip?token=:token`,
+      },
       // // flags
       // {
       //   source: '/flags/:id',
