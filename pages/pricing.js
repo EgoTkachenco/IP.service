@@ -3,6 +3,7 @@ import Pricing from '@/components/landing/Pricing'
 import { useMetadataRenderer } from '@/hooks'
 import BillingStore from '@/store/BillingStore'
 import PlansStore from '@/store/PlansStore'
+import { onProductShow } from '@/utils/ga'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 
@@ -15,6 +16,9 @@ const PricingPage = observer(({ plans }) => {
 
   useEffect(() => {
     loadCustomPlanOptions()
+  }, [])
+  useEffect(() => {
+    onProductShow()
   }, [])
 
   return (

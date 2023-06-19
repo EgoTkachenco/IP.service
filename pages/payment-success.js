@@ -8,9 +8,34 @@ import Link from 'next/link'
 import routes from '@/constants/routes'
 import Script from 'next/script'
 import { getCookieToken } from '@/utils'
+import { useEffect } from 'react'
+import { onPurchase } from '@/utils/ga'
 
-export default function PaymentSuccessPage({ orderDetails }) {
+export default function PaymentSuccessPage({ order, orderDetails }) {
   const renderMetadata = useMetadataRenderer()
+  useEffect(() => {
+    const term_key = orderDetails.term === 'month' ? 'Monthly' : 'Yearly'
+    const price_key =
+      orderDetails.term === 'month' ? 'month_price' : 'year_price'
+    const name_key = orderDetails.plan
+    onPurchase({
+      transaction_id: order, // сюди має динамічно підставлятись id транзакції
+      affiliation: `${name_key} ${term_key}`, // В це поле має підтягуватись назва тарифу з урахуванням терміну підписки або список послуг, які клієнт обрав у кастомному тарифі
+      value: orderDetails.total,
+      tax: '0',
+      shipping: '0',
+      currency: '‎USD',
+      // coupon: "SALE", // дані про купони на знижку чи промо-код (якщо використовуються)
+      //це блок для переліку декількох послуг в кастомному тарифі
+      items:
+        orderDetails.plan === 'Custom'
+          ? orderDetails.options.map((option) => ({
+              item_name: option.name,
+              price: option[price_key],
+            }))
+          : [],
+    })
+  }, [])
 
   return (
     <>
@@ -51,7 +76,7 @@ export async function getServerSideProps(context) {
     console.log(error.message)
   }
   return {
-    props: { orderDetails },
+    props: { order, orderDetails },
   }
 }
 

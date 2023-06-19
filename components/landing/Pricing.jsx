@@ -11,6 +11,7 @@ import ModalContext from '@/utils/modalContext'
 import AuthContext from '@/utils/authContext'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { onCheckoutStart } from '@/utils/ga'
 
 const Pricing = ({
   currentPlan,
@@ -34,8 +35,30 @@ const Pricing = ({
   }
 
   const handleSubscription = (params, callback) => {
-    if (isLogged) return callback(params, period)
-    else {
+    if (isLogged) {
+      const items = []
+      if (Array.isArray(params)) {
+        const options = customPlan.filter((el) => params.includes(el.id))
+        options.forEach((option) =>
+          items.push({
+            item_name: option.name,
+            item_id: option.id || '16', // TODO: is this id ?
+            price: period === 'month' ? option.month_price : option.year_price,
+            item_variant: period === 'month' ? 'Monthly' : 'Yearly',
+          })
+        )
+      } else {
+        items.push({
+          item_name: params.name,
+          item_id: params.id || '16', // TODO: is this id ?
+          price: period === 'month' ? params.month_price : params.year_price,
+          item_variant: period === 'month' ? 'Monthly' : 'Yearly',
+        })
+        params = params.name
+      }
+      onCheckoutStart(items)
+      return callback(params, period)
+    } else {
       openModal('sign-up')
       return Promise.reject()
     }

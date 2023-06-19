@@ -24,7 +24,7 @@ const APIAccess = ({ currentPlan, period, plans, onPlanChange }) => {
             additional_description={plan.additional_description}
             options={plan.options.filter((option) => option.included)}
             types={(i + 1) * 2 + 1}
-            onSubscription={() => onPlanChange(plan.name)}
+            onSubscription={() => onPlanChange(plan)}
             buttonId={`${plan.name}-${period}-btn`}
           />
         </Animation>

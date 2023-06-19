@@ -5,7 +5,7 @@ import { getAllService } from '@/utils'
 import { getIp } from '@/utils/api'
 import { useEffect, useState } from 'react'
 
-export default function SummaryPage(props) {
+export default function SummaryPage() {
   const renderMetadata = useMetadataRenderer()
   const [state, setState] = useState({ ip: '', data: null })
 
