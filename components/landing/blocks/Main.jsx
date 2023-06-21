@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Flex, H2, Text, Chip } from '@/core'
 import { BlockInner } from './Block'
 import APIPreview from '@/components/reusable/APIPreview'
+import APIWithQueryPreview from '@/components/reusable/APIWithQueryPreview'
 import { SignInContactButtons } from './styled'
 
 const Main = ({
@@ -17,6 +18,7 @@ const Main = ({
   alignContent = 'stretch',
   examples,
   placeholder,
+  withQuery = false,
 }) => {
   return (
     <Wrapper align={alignContent}>
@@ -54,12 +56,21 @@ const Main = ({
         <SignInContactButtons />
       </Content>
 
-      <APIPreview
-        service={service}
-        validation={validation}
-        examples={examples}
-        placeholder={placeholder}
-      />
+      {withQuery ? (
+        <APIWithQueryPreview
+          service={service}
+          validation={validation}
+          examples={examples}
+          placeholder={placeholder}
+        />
+      ) : (
+        <APIPreview
+          service={service}
+          validation={validation}
+          examples={examples}
+          placeholder={placeholder}
+        />
+      )}
     </Wrapper>
   )
 }

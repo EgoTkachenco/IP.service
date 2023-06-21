@@ -73,6 +73,11 @@ const LightWrapper = styled(Wrapper)`
     padding: 10px;
   }
 `
+const FlatWrapper = styled(Wrapper)`
+  background: transparent;
+  padding: 0 8px;
+  height: auto;
+`
 const DefaultWrapper = styled(Wrapper)`
   ${({ isTextarea }) =>
     isTextarea
@@ -108,6 +113,9 @@ const TextField = ({
       break
     case 'light':
       textFieldVariant = LightWrapper
+      break
+    case 'flat':
+      textFieldVariant = FlatWrapper
       break
     default:
       textFieldVariant = DefaultWrapper

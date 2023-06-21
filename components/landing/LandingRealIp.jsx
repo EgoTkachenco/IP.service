@@ -9,7 +9,7 @@ import GetStarted from './blocks/GetStarted'
 import Products from './blocks/Products'
 import ServiceStatistic from './blocks/ServiceStatistic'
 
-import { privacyService } from '@/utils/api'
+import { privacyRealIPService } from '@/utils/api'
 
 const LandingRealIp = () => {
   return (
@@ -18,8 +18,24 @@ const LandingRealIp = () => {
         logo="/services-logo/real-ip.svg"
         title="Uncover real IP address"
         description="Discover the hidden truth with Spyskey's unprecedented service in the world. Simply provide an IP address and User-Agent from a device's browser to pierce the veil of digital anonymity. Our service operates in real-time, offering high success rates in revealing a visitor's genuine IP. Don't let misleading IP addresses confound your security or business insights any longer; empower your digital decision-making with us."
-        service={privacyService}
-        examples={['', '64.225.8.118', '100.2.45.164', '192.169.249.16']}
+        service={privacyRealIPService}
+        examples={[
+          { ip: '', ua: process.browser ? window.navigator.userAgent : '' },
+          {
+            ip: '194.195.91.34',
+            ua: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          },
+          {
+            ip: '114.99.6.82',
+            ua: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
+          },
+          {
+            ip: '1.20.207.34',
+            ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          },
+        ]}
+        advanced={true}
+        withQuery={true}
       />
       <Feedback
         name="Joshua Barnes"

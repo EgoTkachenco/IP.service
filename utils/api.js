@@ -116,11 +116,10 @@ export const rangesService = (ip) =>
 export const privacyService = (ip) =>
   axios.get('/api/v1/public/services/privacy' + (ip ? `?ip=${ip}` : ''))
 
-export const privacyRealIPService = (
-  ip,
-  ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-) =>
-  axios.get('/api/v1/public/services/privacy' + (ip ? `?ip=${ip}&ua={ua}` : ''))
+export const privacyRealIPService = (ip, ua = '') =>
+  axios.get(
+    '/api/v1/public/services/privacy' + (ip ? `?ip=${ip}&ua=${ua}` : '')
+  )
 
 export const getFlag = (flag) => axios.get(`/api/v1/public/flag/${flag}`)
 
