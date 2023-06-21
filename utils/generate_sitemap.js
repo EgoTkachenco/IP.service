@@ -101,21 +101,6 @@ ${urls
   if (urls_list.length > 0) result_filenames.push(generateSitemap(urls_list))
 
   return result_filenames
-  // // ranges
-  // // const ranges = []
-
-  // const ranges_level_1 = getRangeList('', [range])
-  // ranges_level_1.forEach(({ range }) => ranges.push(range))
-
-  // const ranges_level_2 = ranges_level_1
-  //   .map((range) => getRangeList(range.range))
-  //   .reduce((acc, el) => [...acc, ...el], [])
-  // ranges_level_2.forEach(({ range }) => ranges.push(range))
-
-  // const ranges_level_3 = ranges_level_2
-  //   .map((range) => getRangeList(range.range))
-  //   .reduce((acc, el) => [...acc, ...el], [])
-  // ranges_level_3.forEach(({ range }) => ranges.push(range))
 }
 
 const getRecirsiveStaticPaths = (folder = '') =>
@@ -198,7 +183,6 @@ const generateSitemapIndex = (sitemapsNames) => {
 const sitemapsNames = []
 const ranges = [104, 172]
 const ips_sitemaps = generateRangesSitemaps(ranges)
-console.log(ips_sitemaps)
 sitemapsNames.concat(ips_sitemaps)
 sitemapsNames.push(generateStaticSitemap())
 generateSitemapIndex(sitemapsNames)
