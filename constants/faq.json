@@ -482,5 +482,28 @@
         "answer": "We adhere strictly to regional and international regulations related to data privacy and cybersecurity. Our compliance team constantly reviews and updates our policies to ensure we stay in line with the changing laws."
       }
     ]
+  },
+  {
+    "code": "Summary",
+    "name": "Questions & Answers",
+    "hidden": true,
+    "questions": [
+      {
+        "question": "What is an IP address?",
+        "answer": "IP geolocation are high-level location insights derived from an IP address. These generalized insights include the country, region, postal code, city, and latitude or longitude of the nearest city center."
+      },
+      {
+        "question": "How IP addresses work?",
+        "answer": "You can compare Internet Protocol to postal services in the real-world. A postal code is an identifier for mail routing. And, in very simple words, IP address is a digital postal code for internet traffic routing. Every device, website and network server have an IP address."
+      },
+      {
+        "question": "How an IP address looks like?",
+        "answer": "There are 2 common standards for IP address: IPv4 (IP Version 4) and IPv6 (IP Version 6) that is aimed at replacing IPv4 in the future. IPv4 address uses 32 binary bits and contains from 4 to 12 digits, 4 numbers separated by dots.Examples: 8.8.4.4, 188.100.210.213. IPv6 address uses 128 binary bits and can contain up to 45 characters (8 groups of 4 hexadecimal digits separated by 6 colons). Groups with all zeros can be shortened for the simplicity of the representation.Example: 2001:4860:4860::8888 (expanded – 2001:4860:4860:0000:0000:0000:0000:8888)"
+      },
+      {
+        "question": "What information someone can get from my IP address?",
+        "answer": "Here you can find out how much information you can get from an IP address."
+      }
+    ]
   }
 ]

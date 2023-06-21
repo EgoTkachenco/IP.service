@@ -73,8 +73,8 @@ const Summary = ({ ip, data, isUserIp = false }) => {
       if (data?.carrier) addBlock('Carrier', CarrierSummary, data?.carrier)
 
       addBlock('Abuse', AbuseSummary, data?.abuse)
-      addBlock('Q&A', FAQ, undefined)
     }
+    addBlock('Q&A', FAQ, undefined)
     return list
   }, [data])
   const router = useRouter()

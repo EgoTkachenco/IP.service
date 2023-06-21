@@ -1,8 +1,6 @@
 import { Flex, H3, H5, Text } from '@/core'
-import FAQ_QUESTIONS from '@/constants/faq.json'
 
 const FAQ = ({ id }) => {
-  // const questions = FAQ_QUESTIONS.find((topic) => topic.code === 'common')
   const questions = [
     {
       question: 'What is an IP address?',

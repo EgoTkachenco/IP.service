@@ -25,6 +25,8 @@ export default function SummaryPage() {
     <>
       {renderMetadata({
         title: 'My IP address | Spyskey',
+        schema: 'faq',
+        faqTopic: 'Summary',
       })}
       <Layout>
         <Summary ip={state.ip} data={state.data} isUserIp={true} />

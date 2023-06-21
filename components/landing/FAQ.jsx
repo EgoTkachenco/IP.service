@@ -8,16 +8,18 @@ import { useMediaQuery } from '@mantine/hooks'
 import _ from 'lodash'
 let onSearchChange
 
+const getQuestionsList = () => FAQ_QUESTIONS.filter((topic) => !topic.hidden)
+
 const FAQ = () => {
   const [search, setSearch] = useState('')
-  const [questions, setQuestions] = useState([...FAQ_QUESTIONS])
+  const [questions, setQuestions] = useState(getQuestionsList())
   const [activeBlock, setActiveBlock] = useState(0)
   const [activeQuestion, setActiveQuestion] = useState(null)
 
   useEffect(() => {
     onSearchChange = _.debounce((search) => {
       if (search) {
-        let newQuestions = FAQ_QUESTIONS.reduce((acc, topic) => {
+        let newQuestions = getQuestionsList().reduce((acc, topic) => {
           acc.push({
             ...topic,
             questions: topic.questions.filter(
@@ -33,7 +35,7 @@ const FAQ = () => {
         setActiveBlock(newQuestions.length > 0 ? 0 : null)
         setQuestions(newQuestions)
       } else {
-        setQuestions([...FAQ_QUESTIONS])
+        setQuestions([...getQuestionsList()])
         setActiveQuestion(null)
         setActiveBlock(0)
       }

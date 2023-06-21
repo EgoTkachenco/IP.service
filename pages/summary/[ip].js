@@ -10,6 +10,8 @@ export default function SummaryPage(props) {
     <>
       {renderMetadata({
         title: 'IP address summary | Spyskey',
+        schema: 'faq',
+        faqTopic: 'Summary',
       })}
       <Layout>
         <Summary {...props} />
