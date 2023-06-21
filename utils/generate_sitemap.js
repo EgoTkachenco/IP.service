@@ -55,24 +55,29 @@ const getRangeList = (range = '', allowed = []) => {
   return result
 }
 
-const generateRangeSitemap = (range) => {
-  const ranges = []
-  const ranges_level_1 = getRangeList('', [range])
-  ranges_level_1.forEach(({ range }) => ranges.push(range))
+const generateRangesSitemaps = (allowed_ranges) => {
+  const max_size = 50000
+  let urls_list = []
+  let filename_count = 0
+  const result_filenames = []
 
-  const ranges_level_2 = ranges_level_1
-    .map((range) => getRangeList(range.range))
-    .reduce((acc, el) => [...acc, ...el], [])
-  ranges_level_2.forEach(({ range }) => ranges.push(range))
+  const iteration = (range, level = 1) => {
+    if (urls_list.length === max_size) {
+      result_filenames.push(generateSitemap(urls_list))
+      urls_list = []
+    }
 
-  const ranges_level_3 = ranges_level_2
-    .map((range) => getRangeList(range.range))
-    .reduce((acc, el) => [...acc, ...el], [])
-  ranges_level_3.forEach(({ range }) => ranges.push(range))
+    urls_list.push(range)
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+    if (level === 3) return
+    const ranges = getRangeList(range)
+    ranges.forEach((range) => iteration(range.range, level + 1))
+  }
+
+  const generateSitemap = (urls) => {
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ranges
+${urls
   .map(
     (url) =>
       `<url>
@@ -82,9 +87,35 @@ ${ranges
   .join('\n')}
 	</urlset>
 `
-  const filename = `sitemap-range-${range}.xml`
-  fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
-  return filename
+    const filename = `sitemap-range-${filename_count}.xml`
+    filename_count++
+    fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
+    return filename
+  }
+
+  const ranges = getRangeList('', allowed_ranges)
+  for (let i = 0; i < ranges.length; i++) {
+    const range = ranges[i]
+    iteration(range.range, 1)
+  }
+  if (urls_list.length > 0) result_filenames.push(generateSitemap(urls_list))
+
+  return result_filenames
+  // // ranges
+  // // const ranges = []
+
+  // const ranges_level_1 = getRangeList('', [range])
+  // ranges_level_1.forEach(({ range }) => ranges.push(range))
+
+  // const ranges_level_2 = ranges_level_1
+  //   .map((range) => getRangeList(range.range))
+  //   .reduce((acc, el) => [...acc, ...el], [])
+  // ranges_level_2.forEach(({ range }) => ranges.push(range))
+
+  // const ranges_level_3 = ranges_level_2
+  //   .map((range) => getRangeList(range.range))
+  //   .reduce((acc, el) => [...acc, ...el], [])
+  // ranges_level_3.forEach(({ range }) => ranges.push(range))
 }
 
 const getRecirsiveStaticPaths = (folder = '') =>
@@ -158,12 +189,16 @@ const generateSitemapIndex = (sitemapsNames) => {
   const filename = `sitemap.xml`
   fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
 }
-const ranges = [104, 172]
-const sitemapsNames = []
-for (let i = 0; i < ranges.length; i++) {
-  const range = ranges[i]
-  sitemapsNames.push(generateRangeSitemap(range))
-}
-sitemapsNames.push(generateStaticSitemap())
 
+/*
+	Generate sitemap files for ips pages.
+	Each file should contain less than 50 000 urls
+*/
+
+const sitemapsNames = []
+const ranges = [104, 172]
+const ips_sitemaps = generateRangesSitemaps(ranges)
+console.log(ips_sitemaps)
+sitemapsNames.concat(ips_sitemaps)
+sitemapsNames.push(generateStaticSitemap())
 generateSitemapIndex(sitemapsNames)
