@@ -7,7 +7,7 @@ import routes from '@/constants/routes'
 const Navigation = ({ docs, currentBlock, onNavigationChange }) => {
   return (
     <Wrapper as="aside">
-      <Inner>
+      <Inner className="custom-scroll">
         {docs.map((topic, key) => (
           <Fragment key={key}>
             <Title>{topic.title}</Title>
@@ -41,12 +41,15 @@ const Wrapper = styled(Flex)`
   border: 1px solid rgba(52, 64, 84, 0.1);
   width: 27%;
   transform: translateY(-1px);
+
   @media (max-width: 1140px) {
     width: 100%;
     overflow: auto;
     padding-bottom: 16px;
-    background: none;
     border: none;
+    position: sticky;
+    top: 0;
+    background: #f9fafc;
   }
 `
 
@@ -55,19 +58,22 @@ const Inner = styled(Flex)`
   width: 224px;
   margin-left: auto;
   position: sticky;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   top: 0;
   bottom: 0;
   left: 0;
+  max-height: 100vh;
+  overflow: auto;
 
   @media (max-width: 1140px) {
+    width: 100%;
     flex-direction: row;
     align-items: center;
     gap: 16px;
     position: relative;
-    margin-top: 24px;
-    margin-bottom: 0;
+    padding-top: 24px;
+    padding-bottom: 0;
     margin-left: 0;
   }
 `

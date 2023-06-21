@@ -51,16 +51,6 @@ const Docs = () => {
       />
       <Content as="main" id="docs">
         {content}
-        {/* {docs.map((topic, i) => (
-          <Fragment key={i}>
-            <TopicTitle color="dark">{topic.title}</TopicTitle>
-            {topic.blocks.map((block, j) => (
-              <DocsCard title={block.title} id={'block-' + block.order} key={j}>
-                {block.content()}
-              </DocsCard>
-            ))}
-          </Fragment>
-        ))} */}
       </Content>
     </Wrapper>
   )
@@ -222,6 +212,7 @@ const PreviewContainer = styled(Flex)`
   flex-direction: column;
   gap: 8px;
   max-height: 300px;
+  min-height: 300px;
   overflow: auto;
 `
 const Points = styled(Flex)`
