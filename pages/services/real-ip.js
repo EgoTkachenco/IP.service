@@ -7,9 +7,10 @@ export default function RealIpService() {
   return (
     <>
       {renderMetadata({
-        title: 'Proxy & VPN detection API: VPN IP Address Check | Spyskey',
+        title:
+          'Uncover Real IP Address with Spyskey: Real-Time, Accurate IP Detection Service',
         description:
-          'Conduct a complimentary VPN detection test to verify whether an IP address is connected through a VPN. Determine if any IP address is associated with a Virtual Private Network. Test any IP address linked to a VPN now.',
+          'ost your cybersecurity and business intelligence with Spyskey’s unprecedented service that uncovers real IP addresses. Experience real-time, accurate IP detection to enhance security, improve marketing analytics, aid in fraud prevention, and ensure legal compliance.',
         schema: 'faq',
         faqTopic: 'Real IP',
       })}

@@ -20,7 +20,7 @@ export function useScrollNavigation(blocksSelector, isInfo) {
       if (currentBlock) {
         setActiveBlock(currentBlock.order)
       }
-    }, 15),
+    }, 20),
     [blocks]
   )
 

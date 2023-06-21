@@ -10,7 +10,7 @@ const GetStarted = () => {
 
   return (
     <WrapperCard color="dark">
-      <H3 color="white">Get started with IP.Service</H3>
+      <H3 color="white">Get started with Spyskey</H3>
 
       <ButtonsWrapper flex="1">
         <Button onClick={() => openModal('sign-up')}>

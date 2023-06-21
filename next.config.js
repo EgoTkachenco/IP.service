@@ -86,6 +86,46 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/privacy/:ip?token=:token`,
       },
+      {
+        source: '/geolocation/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/geolocation/:ip?token=:token`,
+      },
+      {
+        source: '/company/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/company/:ip?token=:token`,
+      },
+      {
+        source: '/carrier/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/carrier/:ip?token=:token`,
+      },
+      {
+        source: '/abuse/:ip',
+        has: [
+          {
+            type: 'query',
+            key: 'token',
+          },
+        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/abuse/:ip?token=:token`,
+      },
       // // flags
       // {
       //   source: '/flags/:id',

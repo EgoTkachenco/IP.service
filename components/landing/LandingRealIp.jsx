@@ -15,7 +15,7 @@ const LandingRealIp = () => {
   return (
     <>
       <Main
-        logo="/services-logo/privacy.svg"
+        logo="/services-logo/real-ip.svg"
         title="Uncover real IP address"
         description="Discover the hidden truth with Spyskey's unprecedented service in the world. Simply provide an IP address and User-Agent from a device's browser to pierce the veil of digital anonymity. Our service operates in real-time, offering high success rates in revealing a visitor's genuine IP. Don't let misleading IP addresses confound your security or business insights any longer; empower your digital decision-making with us."
         service={privacyService}
@@ -25,7 +25,7 @@ const LandingRealIp = () => {
         name="Joshua Barnes"
         position="Director of Cybersecurity"
         feedback="My team faced a major hurdle with masked IP addresses. The ambiguity they brought impacted our security infrastructure and decision-making process. That's when we turned to Spyskey's 'Uncover Real IP Address' service. The real-time revelation of true IP addresses was a game-changer for us. This tool didn't just help us enhance our security, but it also provided us with vital insights that allowed us to make better-informed decisions. I would highly recommend Spyskey's service to anyone needing precision IP intelligence - it truly brings clarity in the fog of digital anonymity."
-        avatar="/feedbacks/Chief Information Security Officer.jpg"
+        avatar="/feedbacks/Director of Cybersecurity.jpg"
       />
       <ServiceStatistic
         features={[

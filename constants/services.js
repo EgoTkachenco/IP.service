@@ -82,6 +82,15 @@ const services = [
       'Offering precise, user-friendly records encompassing Point of Contact (POC), Organization Identifiers (ORG), Networks (NET), and additional insights.',
     link: routes['whois-api'],
   },
+  {
+    icon: 'real-ip',
+    color: 'primary',
+    name: 'Real IP Address',
+    description: 'Uncover Real IP Address',
+    description_full:
+      'Boost your cybersecurity and business intelligence with Spyskey’s unprecedented service that uncovers real IP addresses.',
+    link: routes['real-ip-api'],
+  },
 ]
 
 export default services

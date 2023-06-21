@@ -16,6 +16,7 @@ const routes = {
   'whois-api': '/services/whois',
   'ranges-api': '/services/ranges',
   'privacy-api': '/services/privacy',
+  'real-ip-api': '/services/real-ip',
 
   ips: '/ips',
 
