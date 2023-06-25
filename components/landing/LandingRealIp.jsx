@@ -64,7 +64,7 @@ const LandingRealIp = () => {
       <Partners
         title={'Industry-leading companies \naround the world trust our APIs'}
       />
-      <GetStarted text="Discover the power of our Privacy Detection API with a risk-free 7-day trial - no credit card required. Experience enhanced security firsthand." />
+      <GetStarted text="Discover the power of our Real IP Address API with a risk-free 7-day trial - no credit card required. Experience enhanced security firsthand." />
     </>
   )
 }

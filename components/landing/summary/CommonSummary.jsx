@@ -51,7 +51,7 @@ const CommonSummary = ({ id, data }) => {
                 color="primary"
                 href={`mailto:${data?.abuse?.email}`}
               >
-                mailto:{data?.abuse?.email}
+                {data?.abuse?.email}
               </Text>
             }
           />
