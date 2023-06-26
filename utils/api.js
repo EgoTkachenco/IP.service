@@ -118,7 +118,7 @@ export const privacyService = (ip) =>
 
 export const privacyRealIPService = (ip, ua = '') =>
   axios.get(
-    '/api/v1/public/services/privacy' + (ip ? `?ip=${ip}&ua=${ua}` : '')
+    '/api/v1/public/services/real-ip' + (ip ? `?ip=${ip}&ua=${ua}` : '')
   )
 
 export const getFlag = (flag) => axios.get(`/api/v1/public/flag/${flag}`)
@@ -172,3 +172,14 @@ export const getOrderDetails = (id, token) =>
 
 export const getCanceledOrderDetails = (id) =>
   axios.get(`/api/v1/order/canceled/${id}`, securedFetchOptions())
+
+export const getOrderUrl = (id) =>
+  axios.get(
+    `/api/v1/order/get-invoice-link?invoice_id=${id}`,
+    securedFetchOptions()
+  )
+export const getDownloadOrderUrl = (id) =>
+  axios.get(
+    `/api/v1/order/get-invoice-pdf?invoice_id=${id}`,
+    securedFetchOptions()
+  )

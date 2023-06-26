@@ -16,6 +16,7 @@ const SubscriptionsTable = ({ plans }) => {
     'IP Ranges API',
     'Company',
     'Whois',
+    'Real IP',
     'Support',
   ]
 

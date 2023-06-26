@@ -63,7 +63,7 @@ const nextConfig = {
       },
       // Real IP service
       {
-        source: '/privacy/:ip',
+        source: '/real-ip/:ip',
         has: [
           {
             type: 'query',
@@ -74,8 +74,9 @@ const nextConfig = {
             key: 'ua',
           },
         ],
-        destination: `${process.env.NEXT_PUBLIC_API_URL}/privacy/:ip?token=:token&ua=:ua`,
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/real-ip/:ip?token=:token&ua=:ua`,
       },
+      // Privacy service
       {
         source: '/privacy/:ip',
         has: [
@@ -86,6 +87,7 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/privacy/:ip?token=:token`,
       },
+      // Geolocation service
       {
         source: '/geolocation/:ip',
         has: [
@@ -96,6 +98,7 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/geolocation/:ip?token=:token`,
       },
+      // Company service
       {
         source: '/company/:ip',
         has: [
@@ -106,6 +109,7 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/company/:ip?token=:token`,
       },
+      // Carrier service
       {
         source: '/carrier/:ip',
         has: [
@@ -116,6 +120,7 @@ const nextConfig = {
         ],
         destination: `${process.env.NEXT_PUBLIC_API_URL}/carrier/:ip?token=:token`,
       },
+      // Abuse service
       {
         source: '/abuse/:ip',
         has: [

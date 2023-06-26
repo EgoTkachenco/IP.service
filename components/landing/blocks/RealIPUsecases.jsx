@@ -106,7 +106,7 @@ const LeftContainer = styled(Flex)`
 const UseCase = styled(Flex)`
   padding-left: 16px;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
 
   &:before {
     content: '';

@@ -5,8 +5,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import routes from '@/constants/routes'
 import { OnlyDesktop, OnlyMobile } from '@/components/landing/blocks/styled'
+import { useContext } from 'react'
+import ModalContext from '@/utils/modalContext'
+import AuthContext from '@/utils/authContext'
+import { useRouter } from 'next/router'
 
 const Footer = () => {
+  const router = useRouter()
+  const { openModal } = useContext(ModalContext)
+  const { isLogged } = useContext(AuthContext)
+
+  const onLinkClick = (e, name) => {
+    if (name === 'My account') {
+      if (!isLogged) {
+        e.preventDefault()
+        openModal('sign-up')
+      }
+    }
+  }
   return (
     <BlockInner direction="column">
       <Wrapper>
@@ -27,7 +43,11 @@ const Footer = () => {
             <Flex direction="column" gap="10px" key={i}>
               <FooterTitle color="dark">{column.title}</FooterTitle>
               {column.links.map((link, j) => (
-                <Link href={link.href} key={j}>
+                <Link
+                  href={link.href}
+                  key={j}
+                  onClick={(e) => link.onClick && onLinkClick(e, link.name)}
+                >
                   <LinkText>{link.name}</LinkText>
                 </Link>
               ))}
@@ -80,7 +100,8 @@ const footer_links = [
       { name: 'IP to Mobile Carrier', href: routes['carrier-api'] },
       { name: 'ASN API', href: routes['asn-api'] },
       { name: 'Hosted Domains API', href: routes['reverse-api'] },
-      { name: 'IP WHOIS Down', href: routes['whois-api'] },
+      { name: 'IP WHOIS API', href: routes['whois-api'] },
+      { name: 'Real IP', href: routes['real-ip-api'] },
     ],
   },
   {
@@ -90,7 +111,7 @@ const footer_links = [
       { name: 'Contact', href: routes.contact },
       { name: 'Help Center', href: routes.faq },
       { name: 'Docs', href: routes.docs },
-      { name: 'Login', href: '/' },
+      { name: 'My account', href: routes.app, onClick: true },
     ],
   },
 ]

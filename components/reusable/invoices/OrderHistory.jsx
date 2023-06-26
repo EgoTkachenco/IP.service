@@ -1,8 +1,25 @@
 import styled from 'styled-components'
 import { Card, H6, Text, Flex, Button, Icon } from '@/core'
 import { CardBottom } from '@/components/reusable/styled.jsx'
+import { getOrderUrl, getDownloadOrderUrl } from '@/utils/api'
 
 const OrderHistory = ({ orders }) => {
+  // 	getOrderUrl
+  // getDownloadOrderUrl
+  const onViewClick = (id) => {
+    getOrderUrl(id)
+      .then(({ link }) => {
+        if (link) window.open(link, '_blank')
+      })
+      .catch((error) => console.log(error.message))
+  }
+  const onDownloadClick = (id) => {
+    getDownloadOrderUrl(id)
+      .then(({ link }) => {
+        if (link) window.open(link, '_blank')
+      })
+      .catch((error) => console.log(error.message))
+  }
   return (
     <Card color="white" width="100%">
       <H6>ORDER HISTORY</H6>
@@ -47,14 +64,25 @@ const OrderHistory = ({ orders }) => {
               </Text>
             </Column>
             <Column>
-              <Flex gap="8px">
-                <Button variant="primary-transparent" width="90px" size="small">
-                  View
-                </Button>
-                <Button width="45px" size="small">
-                  <Icon icon="export" size="19px" />
-                </Button>
-              </Flex>
+              {order.invoice_id && (
+                <Flex gap="8px">
+                  <Button
+                    variant="primary-transparent"
+                    width="90px"
+                    size="small"
+                    onClick={() => onViewClick(order.invoice_id)}
+                  >
+                    View
+                  </Button>
+                  <Button
+                    width="45px"
+                    size="small"
+                    onClick={() => onDownloadClick(order.invoice_id)}
+                  >
+                    <Icon icon="export" size="19px" />
+                  </Button>
+                </Flex>
+              )}
             </Column>
           </Row>
         ))}

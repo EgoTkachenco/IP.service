@@ -1583,7 +1583,7 @@ const DOCS = [
                 To use the Uncover real IP address, make a GET request to the
                 endpoint{' '}
                 <Text color="primary" inline>
-                  {'/privacy/{ip}'}
+                  {'/real-ip/{ip}'}
                 </Text>
                 , where{' '}
                 <Text color="primary" inline>
@@ -1757,7 +1757,7 @@ const DOCS = [
               <CopyCard
                 data={`${host}/privacy/127.0.0.1?token=<YOUR_TOKEN>&ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3`}
               >
-                GET: {host}/privacy/127.0.0.1?token={'<YOUR_TOKEN>'}
+                GET: {host}/real-ip/127.0.0.1?token={'<YOUR_TOKEN>'}
                 &ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
                 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
               </CopyCard>
@@ -1777,12 +1777,19 @@ const DOCS = [
                 array of IP addresses associated with the requested IP address.
                 For example:
               </Text>
-              <Details service={privacyRealIPService} />
+              <Details
+                service={(ip) =>
+                  privacyRealIPService(
+                    ip,
+                    'ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+                  )
+                }
+              />
               <Text>
                 If the user agent is not specified, the response will contain
                 privacy information for the requested IP address. For example:
               </Text>
-              <Details service={privacyService} />
+              <Details service={privacyRealIPService} />
             </Example>
             <Example>
               <H6 color="dark">Conclusion</H6>
