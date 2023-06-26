@@ -180,9 +180,9 @@ const generateSitemapIndex = (sitemapsNames) => {
 	Each file should contain less than 50 000 urls
 */
 
-const sitemapsNames = []
+let sitemapsNames = []
 const ranges = [104, 172]
 const ips_sitemaps = generateRangesSitemaps(ranges)
-sitemapsNames.concat(ips_sitemaps)
+sitemapsNames = sitemapsNames.concat(ips_sitemaps)
 sitemapsNames.push(generateStaticSitemap())
 generateSitemapIndex(sitemapsNames)
