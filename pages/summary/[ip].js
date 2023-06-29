@@ -19,8 +19,9 @@ export default function SummaryPage(props) {
           ? `${ip} IP Address Detail | Spyskey IP network tools`
           : `${ip} ${organization} details | Spyskey`,
         description: `${ip} ${organization} - IP Address location, domain information and network tools.`,
-        schema: 'faq',
+        schema: ['faq', 'data-feed'],
         faqTopic: 'Summary',
+        dataFeed: props.data,
       })}
       <Layout>
         <Summary {...props} />

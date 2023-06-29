@@ -198,11 +198,16 @@ ${urls
     fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
     return filename
   }
-  let asn_list = await axios.get(
-    `http://65.108.98.200:3671/asn-num-list?auth=${process.env.ASN_LIST_API_KEY}&take=150000&skip=0`
-  )
+  let asn_list = []
+  try {
+    let asn_list = await axios.get(
+      `http://65.108.98.200:3671/asn-num-list?auth=${process.env.ASN_LIST_API_KEY}&take=150000&skip=0`
+    )
+    asn_list = asn_list.data
+  } catch (error) {
+    return
+  }
 
-  asn_list = asn_list.data
   let urls = []
   for (let i = 0; i < asn_list.length; i++) {
     const element = asn_list[i]

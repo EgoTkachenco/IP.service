@@ -4,7 +4,6 @@ import { CheckValue, ServiceDetails, Delimiter } from './styled'
 import styled from 'styled-components'
 
 const HostedDomainsSummary = ({ id, data }) => {
-  console.log(data)
   return (
     <Flex direction="column" gap="32px" id={id}>
       <H3 color="dark">Hosted Domains</H3>
