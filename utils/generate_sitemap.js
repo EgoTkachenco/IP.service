@@ -200,12 +200,13 @@ ${urls
   }
   let asn_list = []
   try {
-    let asn_list = await axios.get(
+    asn_list = await axios.get(
       `http://65.108.98.200:3671/asn-num-list?auth=${process.env.ASN_LIST_API_KEY}&take=150000&skip=0`
     )
     asn_list = asn_list.data
   } catch (error) {
-    return
+    console.log(error.message)
+    return []
   }
 
   let urls = []
