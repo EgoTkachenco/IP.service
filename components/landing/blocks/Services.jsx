@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { H2, H5, Flex, Button, Text, Icon } from '@/core'
+import { H5, Flex, Button, Text, Icon } from '@/core'
 import { Block, BlockInner, Title } from './Block'
 import services from '@/constants/services'
 import Link from 'next/link'

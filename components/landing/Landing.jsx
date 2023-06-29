@@ -21,7 +21,6 @@ const Landing = () => {
         validation={(data) => {
           const isIp = validateIP(data)
           const isASN = validateASN(data)
-          console.log(data, isIp, isASN, !isIp && !isASN)
           if (!isIp && !isASN) return 'Invalid ip or asn'
           return null
         }}

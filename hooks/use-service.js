@@ -46,5 +46,11 @@ export const useService = (initialIp, service, autoload = true) => {
     }
   }, [service])
 
-  return { ip, setIp, data, isFetch, userIP }
+  return {
+    ip,
+    setIp,
+    data,
+    isFetch: isFetch || !userIP || (userIP === ip && !data),
+    userIP,
+  }
 }

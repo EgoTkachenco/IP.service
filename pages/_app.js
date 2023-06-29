@@ -33,6 +33,20 @@ const App = observer(({ Component, pageProps, router }) => {
 
   return (
     <>
+      {/* <!-- Chatra {literal} --> */}
+      <Script strategy="beforeInteractive">
+        {`(function(d, w, c) {
+        w.ChatraID = 'hgbpDrSJigQFvMAiR';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');`}
+      </Script>
+      {/* <!-- /Chatra {/literal} --> */}
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
