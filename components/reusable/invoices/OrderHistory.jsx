@@ -6,6 +6,7 @@ import { getOrderUrl, getDownloadOrderUrl } from '@/utils/api'
 const OrderHistory = ({ orders }) => {
   // 	getOrderUrl
   // getDownloadOrderUrl
+  console.log(orders)
   const onViewClick = (id) => {
     getOrderUrl(id)
       .then(({ link }) => {
@@ -41,6 +42,11 @@ const OrderHistory = ({ orders }) => {
         </Column>
         <Column>
           <Text color="dark" weight={700}>
+            Plan
+          </Text>
+        </Column>
+        <Column>
+          <Text color="dark" weight={700}>
             Action
           </Text>
         </Column>
@@ -61,6 +67,11 @@ const OrderHistory = ({ orders }) => {
             <Column>
               <Text color="grey" weight={400}>
                 {order.status}
+              </Text>
+            </Column>
+            <Column>
+              <Text color="grey" weight={400}>
+                {order.plan}
               </Text>
             </Column>
             <Column>
@@ -102,4 +113,5 @@ const Column = styled(Flex)`
   width: 172px;
   flex-direction: column;
   gap: 10px;
+  min-width: 172px;
 `

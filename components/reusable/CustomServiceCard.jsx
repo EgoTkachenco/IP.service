@@ -18,7 +18,8 @@ const CustomServiceCard = ({
   const additional_lookups = details.additional_requests_limit
     ? Math.floor(details.additional_requests_limit / 1000) + 'k'
     : 0
-
+  const month_price =
+    period === 'month' ? details.month_price : details.year_price / 12
   return (
     <Card color="white">
       <Flex align="center" gap="20px" width="100%">
@@ -41,7 +42,7 @@ const CustomServiceCard = ({
       <Flex direction="column">
         <PriceContainer>
           <H3 color="dark" weight={700}>
-            ${details.month_price.toFixed(0)}
+            ${month_price.toFixed(0)}
           </H3>
 
           <Caption weight={700} color="light-grey">

@@ -110,7 +110,7 @@ const CustomPlan = ({ period, details = [], onSubscribe }) => {
       <SelectedServicesCart
         period={period}
         discount={discount}
-        month_price={month_price}
+        month_price={period === 'month' ? month_price : year_price / 12}
         year_price={year_price}
         details={details || []}
         selected={selected}

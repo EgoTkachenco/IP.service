@@ -23,13 +23,14 @@ const OnboardingStep4 = ({ setTrial }) => {
           <ListItem>ASN</ListItem>
           <ListItem>Carrier</ListItem>
           <ListItem>IP Whois</ListItem>
+          <ListItem>Real IP</ListItem>
 
-          <ListItem>Basic Support</ListItem>
+          {/* <ListItem>Basic Support</ListItem> */}
           <ListItem>Company</ListItem>
           <ListItem>IP Ranges</ListItem>
 
           <ListItem>Abuse</ListItem>
-          <ListItem>Priority Support</ListItem>
+          {/* <ListItem>Priority Support</ListItem> */}
         </List>
         <Button size="small" width="auto" onClick={setTrial}>
           Start Free Trial
