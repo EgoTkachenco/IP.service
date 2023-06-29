@@ -1,7 +1,11 @@
+import routes from '@/constants/routes'
 import { Flex, H3, Text } from '@/core'
+import Link from 'next/link'
 import { ValueCard, CheckValue } from './styled'
 
 const CommonSummary = ({ id, data }) => {
+  const asn = data?.asn?.ashandle || data?.asn?.['aut-num']
+  const range = data?.abuse?.network
   return (
     <Flex direction="column" gap="32px" id={id} width="100%">
       <H3 color="dark">Summary</H3>
@@ -10,9 +14,11 @@ const CommonSummary = ({ id, data }) => {
           label="ASN"
           value={
             <>
-              <Text color="primary" inline>
-                {data?.asn?.ashandle || data?.asn?.['aut-num']}
-              </Text>{' '}
+              <Link href={routes.summary + '/AS' + asn}>
+                <Text color="primary" inline>
+                  {asn}
+                </Text>
+              </Link>{' '}
               -{' '}
               {data?.asn?.desscr ||
                 (data?.asn?.organisation &&
@@ -23,7 +29,11 @@ const CommonSummary = ({ id, data }) => {
         <ValueCard label="Hostname" value={data?.geolocation?.hostname} />
         <ValueCard
           label="Range"
-          value={<Text color="primary">{data?.abuse?.network}</Text>}
+          value={
+            <Link href={routes.ips + '/' + range}>
+              <Text color="primary">{range}</Text>
+            </Link>
+          }
         />
         <ValueCard
           label="Company"

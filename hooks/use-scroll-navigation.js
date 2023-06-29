@@ -17,6 +17,16 @@ export function useScrollNavigation(blocksSelector, isInfo) {
             clientScroll - document.getElementById(block.id)?.offsetTop
           ) < 200
       )
+      // const currentBlock = blocks?.reduce((acc, block) => {
+      //   console.log(clientScroll, document.getElementById(block.id)?.offsetTop)
+      //   if (
+      //     !acc &&
+      //     clientScroll <= document.getElementById(block.id)?.offsetTop
+      //   )
+      //     acc = block
+
+      //   return acc
+      // }, null)
       if (currentBlock) {
         setActiveBlock(currentBlock.order)
       }

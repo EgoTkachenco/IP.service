@@ -1578,7 +1578,7 @@ const DOCS = [
             </Text>
 
             <Example>
-              <H6 color="dark">API Usage:</H6>
+              <H6 color="dark">API Endpoint:</H6>
               <Text>
                 To use the Uncover real IP address, make a GET request to the
                 endpoint{' '}
@@ -1616,7 +1616,7 @@ const DOCS = [
                 <li>
                   <Text>
                     <Text color="primary" inline>
-                      {'{token}'}
+                      {'{auth}'}
                     </Text>{' '}
                     (required): A token or key to authenticate the user and
                     authorize access to the API.
@@ -1714,6 +1714,36 @@ const DOCS = [
               </ul>
             </Example>
             <Example>
+              <H6 color="dark">Response parameters:</H6>
+              <Text>
+                The response will be a JSON string containing the following
+                information:
+              </Text>
+              <ul>
+                <li>
+                  <Text>
+                    <Text color="dark" weight={600} inline>
+                      real_ip
+                    </Text>
+                    (string): If the IP address being checked is identified as a
+                    proxy, this field will contain the real IP address
+                    associated with it.
+                  </Text>
+                </li>
+                <li>
+                  <Text>
+                    <Text color="dark" weight={600} inline>
+                      proxies
+                    </Text>
+                    (array): An array of IP addresses that are in the subnet of
+                    the desired IP address. These IP addresses are considered
+                    potential proxies related to the provided IP address. If no
+                    proxy IP addresses are found, this array will be empty.
+                  </Text>
+                </li>
+              </ul>
+            </Example>
+            <Example>
               <H6 color="dark">Response Codes:</H6>
               <Text>
                 The API returns the following HTTP status codes to indicate the
@@ -1772,11 +1802,7 @@ const DOCS = [
             </Example>
             <Example>
               <H6 color="dark">Example Response:</H6>
-              <Text>
-                If the user agent is specified, the response will contain an
-                array of IP addresses associated with the requested IP address.
-                For example:
-              </Text>
+
               <Details
                 service={(ip) =>
                   privacyRealIPService(
@@ -1785,11 +1811,6 @@ const DOCS = [
                   )
                 }
               />
-              <Text>
-                If the user agent is not specified, the response will contain
-                privacy information for the requested IP address. For example:
-              </Text>
-              <Details service={privacyRealIPService} />
             </Example>
             <Example>
               <H6 color="dark">Conclusion</H6>

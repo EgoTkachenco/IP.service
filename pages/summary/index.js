@@ -24,7 +24,9 @@ export default function SummaryPage() {
   return (
     <>
       {renderMetadata({
-        title: 'My IP address | Spyskey',
+        title: 'My IP Address Detail | Spyskey IP network tools',
+        description:
+          'My  IP Address location, domain information and network tools.',
         schema: 'faq',
         faqTopic: 'Summary',
       })}

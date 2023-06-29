@@ -1,7 +1,11 @@
 import { Flex, H3, Text } from '@/core'
 import { ValueCard, CheckValue } from './styled'
+import routes from '@/constants/routes'
+import Link from 'next/link'
 
 const CommonASNSummary = ({ id, data }) => {
+  const asn =
+    data?.asn?.ashandle || data?.asn?.['aut-num'] || data?.whois?.['aut-num']
   return (
     <Flex direction="column" gap="32px" id={id} width="100%">
       <H3 color="dark">Summary</H3>
@@ -10,11 +14,11 @@ const CommonASNSummary = ({ id, data }) => {
           label="ASN"
           value={
             <>
-              <Text color="primary" inline>
-                {data?.asn?.ashandle ||
-                  data?.asn?.['aut-num'] ||
-                  data?.whois?.['aut-num']}
-              </Text>{' '}
+              <Link href={routes.summary + '/AS' + asn}>
+                <Text color="primary" inline>
+                  {asn}
+                </Text>
+              </Link>{' '}
               -{' '}
               {data?.asn?.desscr ||
                 (data?.asn?.organisation &&

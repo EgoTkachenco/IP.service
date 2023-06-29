@@ -1,4 +1,6 @@
+import routes from '@/constants/routes'
 import { Flex, Button, Card, Text } from '@/core'
+import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -27,9 +29,15 @@ const List = ({
         {result.map((el, i) => (
           <ItemCard key={i}>
             <Row size={columns.length}>
-              {columns.map((column) => (
+              {columns.map((column, j) => (
                 <Cell key={column}>
-                  <Text>{el[column]}</Text>
+                  {j == 0 && el[column].search('AS') !== -1 ? (
+                    <Link href={routes.summary + '/' + el[column]}>
+                      <Text color="primary">{el[column]}</Text>
+                    </Link>
+                  ) : (
+                    <Text>{el[column]}</Text>
+                  )}
                 </Cell>
               ))}
             </Row>

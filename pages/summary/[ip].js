@@ -1,15 +1,24 @@
 import Layout from '@/components/landing/layout/Layout'
 import Summary from '@/components/landing/summary/Summary'
 import { useMetadataRenderer } from '@/hooks'
-import { getAllService } from '@/utils'
+import { getAllService, validateASN } from '@/utils'
 
 export default function SummaryPage(props) {
   const renderMetadata = useMetadataRenderer()
-
+  const { ip } = props.data
+  const isASN = validateASN(ip)
+  const organization =
+    (props.data?.asn?.organisation &&
+      props.data?.asn?.organisation['org-name']) ||
+    (props.data?.whois?.organisation &&
+      props.data?.whois?.organisation['org-name'])
   return (
     <>
       {renderMetadata({
-        title: 'IP address summary | Spyskey',
+        title: !isASN
+          ? `${ip} IP Address Detail | Spyskey IP network tools`
+          : `${ip} ${organization} details | Spyskey`,
+        description: `${ip} ${organization} - IP Address location, domain information and network tools.`,
         schema: 'faq',
         faqTopic: 'Summary',
       })}

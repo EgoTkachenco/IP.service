@@ -1,7 +1,10 @@
+const axios = require('axios')
+const { loadEnvConfig } = require('@next/env')
+loadEnvConfig(process.cwd())
 const fs = require('fs')
 const path = require('path')
-
 const site_url = 'https://spyskey.com'
+const max_size = 50000
 
 const getRangeList = (range = '', allowed = []) => {
   let level = 0
@@ -56,7 +59,6 @@ const getRangeList = (range = '', allowed = []) => {
 }
 
 const generateRangesSitemaps = (allowed_ranges) => {
-  const max_size = 50000
   let urls_list = []
   let filename_count = 0
   const result_filenames = []
@@ -175,14 +177,61 @@ const generateSitemapIndex = (sitemapsNames) => {
   fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
 }
 
+const generateASNSummarySitemaps = async () => {
+  const result = []
+  let filename_count = 0
+  const generateSitemap = (urls) => {
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) =>
+      `<url>
+	<loc>${site_url}/summary/${url}</loc>
+</url>`
+  )
+  .join('\n')}
+	</urlset>
+`
+    const filename = `sitemap-asn-${filename_count}.xml`
+    filename_count++
+    fs.writeFileSync(path.join(__dirname, '../public/', filename), sitemap)
+    return filename
+  }
+  let asn_list = await axios.get(
+    `http://65.108.98.200:3671/asn-num-list?auth=${process.env.ASN_LIST_API_KEY}&take=150000&skip=0`
+  )
+
+  asn_list = asn_list.data
+  let urls = []
+  for (let i = 0; i < asn_list.length; i++) {
+    const element = asn_list[i]
+    urls.push('AS' + element['aut-num'])
+
+    if (urls.length === max_size) {
+      result.push(generateSitemap(urls))
+      urls = []
+    }
+  }
+  if (urls.length > 0) result.push(generateSitemap(urls))
+
+  return result
+}
+
 /*
 	Generate sitemap files for ips pages.
 	Each file should contain less than 50 000 urls
 */
 
-let sitemapsNames = []
-const ranges = [104, 172]
-const ips_sitemaps = generateRangesSitemaps(ranges)
-sitemapsNames = sitemapsNames.concat(ips_sitemaps)
-sitemapsNames.push(generateStaticSitemap())
-generateSitemapIndex(sitemapsNames)
+async function generate() {
+  let sitemapsNames = []
+  const ranges = [104, 172]
+  const ips_sitemaps = generateRangesSitemaps(ranges)
+  sitemapsNames = sitemapsNames.concat(ips_sitemaps)
+  const asn_summary_sitemaps = await generateASNSummarySitemaps()
+  sitemapsNames = sitemapsNames.concat(asn_summary_sitemaps)
+  sitemapsNames.push(generateStaticSitemap())
+  generateSitemapIndex(sitemapsNames)
+}
+
+generate()
